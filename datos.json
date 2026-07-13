@@ -1,0 +1,107 @@
+{
+  "generado": "2026-07-13T23:10:21.640170+00:00",
+  "macro": {
+    "uf": {
+      "nombre": "Unidad de fomento (UF)",
+      "unidad": "Pesos",
+      "valor": 40844.79,
+      "fecha": "2026-07-13T04:00:00.000Z"
+    },
+    "utm": {
+      "nombre": "Unidad Tributaria Mensual (UTM)",
+      "unidad": "Pesos",
+      "valor": 71649,
+      "fecha": "2026-07-01T04:00:00.000Z"
+    },
+    "dolar": {
+      "nombre": "Dólar observado",
+      "unidad": "Pesos",
+      "valor": 924.94,
+      "fecha": "2026-07-13T04:00:00.000Z"
+    },
+    "euro": {
+      "nombre": "Euro",
+      "unidad": "Pesos",
+      "valor": 1055.87,
+      "fecha": "2026-07-13T04:00:00.000Z"
+    },
+    "ipc": {
+      "nombre": "Indice de Precios al Consumidor (IPC)",
+      "unidad": "Porcentaje",
+      "valor": -0.2,
+      "fecha": "2025-12-01T03:00:00.000Z"
+    },
+    "tpm": {
+      "nombre": "Tasa Política Monetaria (TPM)",
+      "unidad": "Porcentaje",
+      "valor": 4.5,
+      "fecha": "2026-07-13T04:00:00.000Z"
+    },
+    "imacec": {
+      "nombre": "Imacec",
+      "unidad": "Porcentaje",
+      "valor": -0.9,
+      "fecha": "2026-05-01T04:00:00.000Z"
+    },
+    "tasa_desempleo": {
+      "nombre": "Tasa de desempleo",
+      "unidad": "Porcentaje",
+      "valor": 9.44,
+      "fecha": "2026-05-01T04:00:00.000Z"
+    },
+    "libra_cobre": {
+      "nombre": "Libra de Cobre",
+      "unidad": "Dólar",
+      "valor": 6.1,
+      "fecha": "2026-07-13T04:00:00.000Z"
+    },
+    "bitcoin": {
+      "nombre": "Bitcoin",
+      "unidad": "Dólar",
+      "valor": 63744.39,
+      "fecha": "2026-07-12T04:00:00.000Z"
+    }
+  },
+  "tasas": {
+    "tip": [
+      {
+        "tipo": 24,
+        "etiqueta": "Hipotecario UF (>1 año, hasta 2.000 UF)",
+        "titulo": "Operaciones reajustables en moneda nacional",
+        "subtitulo": "De un año o más. Inferiores o iguales al equivalente de 2000 unidades de fomento",
+        "valor": 4.2,
+        "fecha": "2026-06-15",
+        "hasta": ""
+      },
+      {
+        "tipo": 35,
+        "etiqueta": "Consumo en pesos (largo plazo, montos medios)",
+        "titulo": "Operaciones no reajustables en moneda nacional 90 días o más",
+        "subtitulo": "Inferiores o iguales al equivalente de 5.000 unidades de fomento y superiores al equivalente de 200 unidades de fomento",
+        "valor": 20.42,
+        "fecha": "2026-06-15",
+        "hasta": ""
+      }
+    ],
+    "tmc": [
+      {
+        "tipo": 24,
+        "etiqueta": "Hipotecario UF (>1 año, hasta 2.000 UF)",
+        "titulo": "Operaciones reajustables en moneda nacional",
+        "subtitulo": "De un año o más. Inferiores o iguales al equivalente de 2000 unidades de fomento",
+        "valor": 6.3,
+        "fecha": "2026-06-15",
+        "hasta": ""
+      },
+      {
+        "tipo": 35,
+        "etiqueta": "Consumo en pesos (largo plazo, montos medios)",
+        "titulo": "Operaciones no reajustables en moneda nacional 90 días o más",
+        "subtitulo": "Inferiores o iguales al equivalente de 5.000 unidades de fomento y superiores al equivalente de 200 unidades de fomento",
+        "valor": 30.63,
+        "fecha": "2026-06-15",
+        "hasta": ""
+      }
+    ]
+  }
+}
