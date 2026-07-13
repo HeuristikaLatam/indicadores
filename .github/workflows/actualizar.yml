@@ -1,0 +1,38 @@
+name: Actualizar indicadores
+
+on:
+  schedule:
+    # Corre todos los días a las 12:00 UTC (~09:00 hora Chile continental)
+    - cron: "0 12 * * *"
+  workflow_dispatch: {}  # permite correrlo manualmente desde la pestaña Actions
+
+permissions:
+  contents: write
+
+jobs:
+  actualizar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Descargar datos
+        env:
+          CMF_API_KEY: ${{ secrets.CMF_API_KEY }}
+        run: python3 indices.py
+
+      - name: Generar sitio
+        run: python3 build_site.py
+
+      - name: Commit y push si hay cambios
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add datos.json index.html
+          git diff --quiet --cached || git commit -m "Actualiza indicadores $(date -u +%Y-%m-%d)"
+          git push
