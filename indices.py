@@ -173,6 +173,50 @@ def get_cmf_historico():
     return salida
  
  
+def get_cmf_ipc():
+    """IPC directo desde CMF (que a su vez toma el dato oficial del INE).
+    Se usa como reemplazo del IPC de mindicador.cl, que suele atrasarse."""
+    if not CMF_API_KEY:
+        return []
+ 
+    print(f"Descargando IPC (CMF/INE), últimos {N_ANIOS_HISTORICO} años ...")
+    anios = range(ANIO_ACTUAL - N_ANIOS_HISTORICO + 1, ANIO_ACTUAL + 1)
+    puntos = {}
+ 
+    for anio in anios:
+        url = f"https://api.cmfchile.cl/api-sbifv3/recursos_api/ipc/{anio}?apikey={CMF_API_KEY}&formato=json"
+        try:
+            data = http_get_json(url)
+        except Exception as e:
+            print(f"  aviso: no se pudo traer IPC {anio}: {e}")
+            continue
+ 
+        bloque = data.get("IPCs", [])
+        if isinstance(bloque, list):
+            items = bloque
+        elif isinstance(bloque, dict):
+            sub = bloque.get("IPC", [])
+            items = sub if isinstance(sub, list) else ([sub] if sub else [])
+        else:
+            items = []
+ 
+        for item in items:
+            if not isinstance(item, dict):
+                continue
+            fecha = item.get("Fecha")
+            valor_raw = item.get("Valor")
+            if not fecha or valor_raw is None:
+                continue
+            try:
+                valor = float(str(valor_raw).replace(",", "."))
+            except ValueError:
+                continue
+            puntos[fecha] = valor
+        time.sleep(0.1)
+ 
+    return [{"fecha": f, "periodo": f[:7], "valor": v} for f, v in sorted(puntos.items())]
+ 
+ 
 def main():
     salida = {
         "generado": datetime.now(timezone.utc).isoformat(),
@@ -180,6 +224,21 @@ def main():
         "historico_macro": get_mindicador_historico(),
         "tasas": get_cmf_historico(),
     }
+ 
+    # El IPC de mindicador.cl suele atrasarse; si CMF tiene datos, los usamos.
+    ipc_cmf = get_cmf_ipc()
+    if ipc_cmf:
+        salida["historico_macro"]["ipc"] = [
+            {"periodo": p["periodo"], "valor": p["valor"]} for p in ipc_cmf
+        ]
+        ultimo = ipc_cmf[-1]
+        salida["macro"]["ipc"] = {
+            "nombre": "Indice de Precios al Consumidor (IPC)",
+            "unidad": "Porcentaje",
+            "valor": ultimo["valor"],
+            "fecha": ultimo["fecha"],
+        }
+        print(f"  IPC actualizado desde CMF: {ultimo['valor']}% ({ultimo['fecha']})")
  
     with open("datos.json", "w", encoding="utf-8") as f:
         json.dump(salida, f, ensure_ascii=False, indent=2)
