@@ -1,5 +1,5 @@
 {
-  "generado": "2026-07-13T23:29:25.865481+00:00",
+  "generado": "2026-07-13T23:43:09.402921+00:00",
   "macro": {
     "dolar": {
       "nombre": "Dólar observado",
@@ -2018,7 +2018,7 @@
       },
       {
         "periodo": "2026-07",
-        "valor": 6.03
+        "valor": 6.036
       }
     ],
     "bitcoin": [
