@@ -272,9 +272,39 @@ def get_cmf_ipc():
     return [{"fecha": f, "periodo": f[:7], "valor": v} for f, v in sorted(puntos.items())]
  
  
+def cargar_datos_anteriores():
+    """Lee el datos.json de la corrida anterior, si existe, para poder usarlo
+    como respaldo cuando alguna fuente falla puntualmente en esta corrida."""
+    try:
+        with open("datos.json", "r", encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        return None
+ 
+ 
 def main():
+    anterior = cargar_datos_anteriores()
+ 
     historico_macro, recientes = get_mindicador_historico()
     macro = get_mindicador_actual()
+ 
+    # Resiliencia: si mindicador.cl falla puntualmente para un indicador en
+    # esta corrida (timeout, etc.), no queremos publicar una tarjeta vacía —
+    # mantenemos el dato de la corrida anterior para ESE indicador y
+    # avisamos en el log, para que se note sin romper el sitio.
+    if anterior:
+        anterior_macro = anterior.get("macro", {})
+        anterior_hist = anterior.get("historico_macro", {})
+        anterior_rec = anterior.get("recientes", {})
+        for indicador in MACRO_INDICADORES:
+            if not recientes.get(indicador, {}).get("puntos") and anterior_rec.get(indicador, {}).get("puntos"):
+                recientes[indicador] = anterior_rec[indicador]
+                print(f"  AVISO: {indicador} sin datos recientes esta corrida, se mantiene el dato anterior.")
+            if not historico_macro.get(indicador) and anterior_hist.get(indicador):
+                historico_macro[indicador] = anterior_hist[indicador]
+            if indicador not in macro and indicador in anterior_macro:
+                macro[indicador] = anterior_macro[indicador]
+                print(f"  AVISO: {indicador} sin valor actual esta corrida, se mantiene el dato anterior.")
  
     # Para que el valor "destacado" nunca quede desincronizado con la fila de
     # valores recientes (que viene de una fuente distinta), el destacado se
@@ -323,14 +353,25 @@ def main():
         }
         print(f"  IPC actualizado desde CMF: {ultimo['valor']}% ({ultimo['fecha']})")
  
+    # Mismo respaldo para CMF: si TIP/TMC o el IPC vinieron vacíos esta
+    # corrida, mantenemos lo de la corrida anterior en vez de publicar vacío.
+    if anterior:
+        if not salida["tasas"]["tip"] and not salida["tasas"]["tmc"] and anterior.get("tasas"):
+            salida["tasas"] = anterior["tasas"]
+            print("AVISO: tasas TIP/TMC vacías esta corrida (CMF no respondió), se mantienen las anteriores.")
+        if not ipc_cmf and anterior.get("macro", {}).get("ipc"):
+            salida["macro"]["ipc"] = anterior["macro"]["ipc"]
+            salida["historico_macro"]["ipc"] = anterior.get("historico_macro", {}).get("ipc", salida["historico_macro"].get("ipc", []))
+            salida["recientes"]["ipc"] = anterior.get("recientes", {}).get("ipc", salida["recientes"].get("ipc", {}))
+            print("AVISO: no se pudo actualizar IPC desde CMF esta corrida, se mantuvo el IPC anterior.")
+    else:
+        if not salida["tasas"]["tip"] and not salida["tasas"]["tmc"]:
+            print("AVISO: tasas TIP/TMC quedaron vacías esta corrida (CMF no respondió).")
+        if not ipc_cmf:
+            print("AVISO: no se pudo actualizar IPC desde CMF esta corrida (sin dato anterior de respaldo).")
+ 
     with open("datos.json", "w", encoding="utf-8") as f:
         json.dump(salida, f, ensure_ascii=False, indent=2)
- 
-    # Aviso visible si algo quedó vacío, para detectarlo altiro en el log.
-    if not salida["tasas"]["tip"] and not salida["tasas"]["tmc"]:
-        print("AVISO: tasas TIP/TMC quedaron vacías esta corrida (CMF no respondió).")
-    if not ipc_cmf:
-        print("AVISO: no se pudo actualizar IPC desde CMF esta corrida, se mantuvo el de mindicador.cl.")
  
     print("OK -> datos.json")
  
