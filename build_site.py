@@ -28,6 +28,10 @@ def fmt(valor, unidad, key=None):
     return f"${valor:,.0f}".replace(",", ".")
 
 
+def fmt_litro(valor):
+    return f"${valor:,.0f}".replace(",", ".")
+
+
 def fecha_legible(iso):
     try:
         return datetime.fromisoformat(iso.replace("Z", "+00:00")).strftime("%d-%m-%Y")
@@ -112,11 +116,12 @@ macro = DATA.get("macro", {})
 historico_macro = DATA.get("historico_macro", {})
 recientes = DATA.get("recientes", {})
 tasas = DATA.get("tasas", {"tip": {}, "tmc": {}})
+combustibles = DATA.get("combustibles", {"nacional": {}, "regional": {}})
 
 # ---------------------------------------------------------------------------
 # Resumen: KPIs destacados arriba de todo, con flecha de variación vs. el
 # período anterior. Se arma solo con lo que ya tenemos en "macro"/"recientes",
-# así que cuando sumemos combustibles/alimentos basta con agregar sus keys acá.
+# así que cuando sumemos alimentos basta con agregar sus keys acá.
 # ---------------------------------------------------------------------------
 
 RESUMEN_ORDEN = [
@@ -261,6 +266,84 @@ if tasas.get("tip") or tasas.get("tmc"):
     </div>
     </section>
     """
+
+# ---------------------------------------------------------------------------
+# Combustibles (CNE) — precio promedio nacional por tipo, con timeline igual
+# a las tarjetas macro, más una tabla por región con el último dato.
+# ---------------------------------------------------------------------------
+
+combustibles_nacional = combustibles.get("nacional", {})
+combustibles_regional = combustibles.get("regional", {})
+
+combustibles_cards = ""
+for tipo in sorted(combustibles_nacional.keys()):
+    serie = combustibles_nacional[tipo]
+    if not serie:
+        continue
+    # Mismos últimos N puntos que las tarjetas macro, mes a mes.
+    puntos = serie[-6:]
+    puntos_html = ""
+    total = len(puntos)
+    for i, p in enumerate(puntos):
+        es_destacado = (i == total - 1)
+        clase = "pt pt-destacado" if es_destacado else "pt"
+        puntos_html += f"""
+        <div class="{clase}">
+          <div class="pt-label">{etiqueta_mes(p['periodo'])}</div>
+          <div class="pt-val">{fmt_litro(p['valor'])}</div>
+        </div>"""
+
+    combustibles_cards += f"""
+    <div class="card-wide">
+      <div class="card-head">
+        <span class="card-name">{tipo}</span>
+        <span class="card-desc">Precio promedio nacional por litro, según la CNE.</span>
+      </div>
+      <div class="card-timeline">{puntos_html}</div>
+    </div>"""
+
+combustibles_regional_tables = ""
+for tipo in sorted(combustibles_regional.keys()):
+    por_region = combustibles_regional[tipo]
+    if not por_region:
+        continue
+    filas = ""
+    for region, punto in sorted(por_region.items(), key=lambda kv: kv[0]):
+        filas += f"""
+        <tr>
+          <td>{region}</td>
+          <td class="num">{fmt_litro(punto['valor'])}</td>
+          <td class="date-cell">{etiqueta_mes(punto['periodo'])}</td>
+        </tr>"""
+    combustibles_regional_tables += f"""
+      <div class="tbox">
+        <div class="tbox-head">
+          <span class="card-name">{tipo}</span>
+          <span class="card-desc">Último precio informado por región.</span>
+        </div>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>Región</th><th>Precio / litro</th><th>Período</th></tr></thead>
+            <tbody>{filas}</tbody>
+          </table>
+        </div>
+      </div>"""
+
+combustibles_seccion_body = ""
+if combustibles_cards:
+    combustibles_seccion_body += f'<div class="grid">{combustibles_cards}\n    </div>'
+if combustibles_regional_tables:
+    combustibles_seccion_body += f'<div class="subhead">Por región</div><div class="tables">{combustibles_regional_tables}</div>'
+
+if not combustibles_seccion_body:
+    combustibles_seccion_body = f"""
+    <div class="card-wide placeholder">
+      <div class="card-head">
+        <span class="card-name">Bencina y diésel</span>
+        <span class="card-desc">Precios por región y tipo de combustible, según la CNE.</span>
+      </div>
+      <div class="placeholder-text">Próximamente.</div>
+    </div>"""
 
 # ---------------------------------------------------------------------------
 # Gráficos históricos — macro (Chart.js)
@@ -454,8 +537,8 @@ for recurso, titulo in (("tip", "TIP"), ("tmc", "TMC")):
         }})();""")
 
 # ---------------------------------------------------------------------------
-# Secciones "próximamente" — combustibles (CNE) y alimentos (ODEPA), listas
-# para reemplazar por datos reales apenas conectemos esas fuentes.
+# Sección "próximamente" — alimentos (ODEPA), lista para reemplazar por
+# datos reales apenas conectemos esa fuente.
 # ---------------------------------------------------------------------------
 
 def placeholder_seccion(titulo, descripcion):
@@ -693,8 +776,8 @@ HTML = f"""<!DOCTYPE html>
 
   <section id="combustibles" class="section">
     <h1>Combustibles</h1>
-    <div class="section-sub">Precios de bencina y diésel (CNE) — en construcción.</div>
-    {placeholder_seccion("Bencina y diésel", "Precios por región y tipo de combustible, según la CNE.")}
+    <div class="section-sub">Precios de bencina y diésel, según la CNE.</div>
+    {combustibles_seccion_body}
   </section>
 
   <section id="alimentos" class="section">
@@ -706,8 +789,9 @@ HTML = f"""<!DOCTYPE html>
   {historicos_seccion}
 
   <div class="footer">
-    Fuentes: <a href="https://mindicador.cl" target="_blank">mindicador.cl</a> (Banco Central de Chile)
-    y <a href="https://api.cmfchile.cl" target="_blank">CMF Bancos</a> (Comisión para el Mercado Financiero).
+    Fuentes: <a href="https://mindicador.cl" target="_blank">mindicador.cl</a> (Banco Central de Chile),
+    <a href="https://api.cmfchile.cl" target="_blank">CMF Bancos</a> (Comisión para el Mercado Financiera)
+    y <a href="https://api.cne.cl" target="_blank">CNE</a> (Comisión Nacional de Energía).
     Información con fines informativos. No constituye asesoría ni recomendación de inversión.
   </div>
 
