@@ -30,12 +30,20 @@ CNE_EMAIL = os.environ.get("CNE_EMAIL", "")
 CNE_PASSWORD = os.environ.get("CNE_PASSWORD", "")
 AHORA = datetime.now()
 ANIO_ACTUAL = AHORA.year
-N_ANIOS_HISTORICO = 5  # cuántos años hacia atrás traer para los gráficos
+N_ANIOS_HISTORICO = 20  # cuántos años hacia atrás traer para los gráficos
+                        # (el sitio ofrece rangos de 5/10/20 años — si esto
+                        # es menor a 20, los botones de 10 y 20 años no
+                        # tienen más datos que mostrar y no "hacen nada")
 
 MACRO_INDICADORES = [
     "dolar", "euro", "uf", "utm", "ipc", "tpm",
     "imacec", "tasa_desempleo", "libra_cobre", "bitcoin",
 ]
+
+# Indicadores que mindicador.cl publica con frecuencia mensual (el resto son
+# diarios). Se usa para armar "recientes" con el formato correcto (fecha
+# completa vs. periodo "YYYY-MM").
+INDICADORES_MENSUALES = {"utm", "ipc", "tpm", "imacec", "tasa_desempleo"}
 
 # Tipos de operación TIP/TMC más relevantes para "costo del crédito".
 # Ver documentación: https://api.cmfchile.cl/documentacion/TIP.html
@@ -125,6 +133,42 @@ def get_mindicador_historico():
             for mes, vals in sorted(puntos_por_mes.items())
         ]
         resultado[indicador] = serie_mensual
+
+    return resultado
+
+
+def get_mindicador_recientes(n_puntos=6):
+    """Serie corta 'reciente' de cada indicador — mindicador.cl entrega los
+    últimos ~30 valores en el endpoint sin año (a diferencia de /api/{ind}/{año},
+    que trae el año completo). Esto es lo que alimenta la fila de valores
+    recientes de cada tarjeta en Macro y las flechas ▲▼＝ del Resumen."""
+    print("Descargando valores recientes de mindicador.cl ...")
+    resultado = {}
+    for indicador in MACRO_INDICADORES:
+        try:
+            data = http_get_json(f"https://mindicador.cl/api/{indicador}")
+        except Exception as e:
+            print(f"  aviso: no se pudo traer recientes de {indicador}: {e}")
+            continue
+
+        serie = data.get("serie", [])
+        if not serie:
+            continue
+
+        es_mensual = indicador in INDICADORES_MENSUALES
+        puntos = []
+        # La serie viene del más reciente al más antiguo; la damos vuelta
+        # para que quede de más antiguo (izquierda) a más reciente (derecha).
+        for punto in reversed(serie[:n_puntos]):
+            fecha = punto.get("fecha", "")
+            valor = punto.get("valor")
+            if not fecha or valor is None:
+                continue
+            etiqueta = fecha[:7] if es_mensual else fecha[:10]
+            puntos.append({"etiqueta": etiqueta, "valor": valor})
+
+        if puntos:
+            resultado[indicador] = {"tipo": "mensual" if es_mensual else "diario", "puntos": puntos}
 
     return resultado
 
@@ -739,6 +783,7 @@ def main():
         "generado": datetime.now(timezone.utc).isoformat(),
         "macro": get_mindicador_actual(),
         "historico_macro": get_mindicador_historico(),
+        "recientes": get_mindicador_recientes(),
         "tasas": get_cmf_historico(),
         "combustibles": get_cne_combustibles(),
         "alimentos": {
