@@ -28,6 +28,11 @@ MACRO_INDICADORES = [
     "imacec", "tasa_desempleo", "libra_cobre", "bitcoin",
 ]
  
+# Indicadores que se publican día a día vs. una vez al mes —
+# determina si "los últimos N datos" se muestran por día o por mes.
+INDICADORES_DIARIOS = {"dolar", "euro", "uf", "libra_cobre", "bitcoin"}
+N_RECIENTES = 5
+ 
 # Tipos de operación TIP/TMC más relevantes para "costo del crédito".
 # Ver documentación: https://api.cmfchile.cl/documentacion/TIP.html
 TIPOS_RELEVANTES = {
@@ -77,13 +82,18 @@ def get_mindicador_actual():
  
 def get_mindicador_historico():
     """Trae la serie de cada indicador para los últimos N años y la
-    agrega a promedio mensual (para que los gráficos no sean gigantes)."""
+    agrega a promedio mensual (para que los gráficos no sean gigantes).
+    De paso guarda los últimos N_RECIENTES puntos "crudos" (por día para
+    los indicadores diarios, por mes para los mensuales) para la vista
+    de tarjetas con el valor destacado + últimos períodos."""
     print(f"Descargando histórico ({N_ANIOS_HISTORICO} años) de mindicador.cl ...")
     anios = range(ANIO_ACTUAL - N_ANIOS_HISTORICO + 1, ANIO_ACTUAL + 1)
     resultado = {}
+    recientes = {}
  
     for indicador in MACRO_INDICADORES:
         puntos_por_mes = {}
+        puntos_crudos = {}  # fecha -> valor, sin agregar
         for anio in anios:
             url = f"https://mindicador.cl/api/{indicador}/{anio}"
             try:
@@ -98,6 +108,7 @@ def get_mindicador_historico():
                     continue
                 mes = fecha[:7]  # "YYYY-MM"
                 puntos_por_mes.setdefault(mes, []).append(valor)
+                puntos_crudos[fecha] = valor
             time.sleep(0.1)  # ser amable con la API
  
         serie_mensual = [
@@ -106,7 +117,20 @@ def get_mindicador_historico():
         ]
         resultado[indicador] = serie_mensual
  
-    return resultado
+        if indicador in INDICADORES_DIARIOS:
+            ultimos = sorted(puntos_crudos.items())[-N_RECIENTES:]
+            recientes[indicador] = {
+                "tipo": "diario",
+                "puntos": [{"etiqueta": f, "valor": v} for f, v in ultimos],
+            }
+        else:
+            ultimos = serie_mensual[-N_RECIENTES:]
+            recientes[indicador] = {
+                "tipo": "mensual",
+                "puntos": [{"etiqueta": p["periodo"], "valor": p["valor"]} for p in ultimos],
+            }
+ 
+    return resultado, recientes
  
  
 # ---------------------------------------------------------------------------
@@ -235,10 +259,12 @@ def get_cmf_ipc():
  
  
 def main():
+    historico_macro, recientes = get_mindicador_historico()
     salida = {
         "generado": datetime.now(timezone.utc).isoformat(),
         "macro": get_mindicador_actual(),
-        "historico_macro": get_mindicador_historico(),
+        "historico_macro": historico_macro,
+        "recientes": recientes,
         "tasas": get_cmf_historico(),
     }
  
@@ -254,6 +280,13 @@ def main():
             "unidad": "Porcentaje",
             "valor": ultimo["valor"],
             "fecha": ultimo["fecha"],
+        }
+        salida["recientes"]["ipc"] = {
+            "tipo": "mensual",
+            "puntos": [
+                {"etiqueta": p["periodo"], "valor": p["valor"]}
+                for p in ipc_cmf[-N_RECIENTES:]
+            ],
         }
         print(f"  IPC actualizado desde CMF: {ultimo['valor']}% ({ultimo['fecha']})")
  
