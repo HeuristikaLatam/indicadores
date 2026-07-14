@@ -87,6 +87,27 @@ MACRO_DESCRIPCIONES = {
     "bitcoin": "Precio de bitcoin, convertido a pesos chilenos.",
 }
 
+# Descripciones para los gráficos históricos — un poco más largas que las
+# de las tarjetas de arriba, porque acá hay más espacio y vale la pena dar
+# contexto de qué está mostrando la tendencia.
+CHART_DESCRIPCIONES = {
+    "dolar": "Promedio mensual del dólar observado a lo largo del tiempo, para ver la tendencia más allá del vaivén diario.",
+    "euro": "Promedio mensual del valor del euro en pesos chilenos.",
+    "uf": "Evolución mensual de la Unidad de Fomento, que sigue de cerca la inflación acumulada.",
+    "utm": "Evolución de la Unidad Tributaria Mensual, usada para calcular impuestos, multas y otros trámites legales.",
+    "ipc": "Variación mensual de precios (inflación), mes a mes.",
+    "tpm": "Historial de la tasa de política monetaria, fijada por el Banco Central en cada reunión.",
+    "imacec": "Evolución mensual del índice de actividad económica, un adelanto del crecimiento del PIB.",
+    "tasa_desempleo": "Evolución de la tasa de desocupación nacional, medida por el INE.",
+    "libra_cobre": "Promedio mensual del precio del cobre en el mercado internacional.",
+    "bitcoin": "Promedio mensual del precio de bitcoin, convertido a pesos chilenos.",
+}
+
+TASAS_DESCRIPCIONES = {
+    "tip": "Historial de la tasa de interés promedio cobrada por la banca, por tipo de crédito.",
+    "tmc": "Historial de la tasa máxima que la banca puede cobrar por ley, por tipo de crédito.",
+}
+
 macro = DATA.get("macro", {})
 historico_macro = DATA.get("historico_macro", {})
 recientes = DATA.get("recientes", {})
@@ -289,7 +310,10 @@ for key, label in MACRO_ORDEN:
 
     macro_chart_cards += f"""
     <div class="chart-card">
-      <div class="chart-title">{label}</div>
+      <div class="chart-head">
+        <span class="chart-title">{label}</span>
+        <span class="chart-desc">{CHART_DESCRIPCIONES.get(key, '')}</span>
+      </div>
       {botones_rango(canvas_id)}
       <div class="chart-canvas-wrap"><canvas id="{canvas_id}"></canvas></div>
       <div class="chart-range">mín {minimo:,.2f} · máx {maximo:,.2f} (todo el histórico disponible)</div>
@@ -367,7 +391,10 @@ for recurso, titulo in (("tip", "TIP"), ("tmc", "TMC")):
 
         tasas_chart_cards += f"""
         <div class="chart-card">
-          <div class="chart-title">{info['etiqueta']} · {titulo}</div>
+          <div class="chart-head">
+            <span class="chart-title">{info['etiqueta']} · {titulo}</span>
+            <span class="chart-desc">{TASAS_DESCRIPCIONES.get(recurso, '')}</span>
+          </div>
           {botones_rango(canvas_id)}
           <div class="chart-canvas-wrap"><canvas id="{canvas_id}"></canvas></div>
         </div>"""
@@ -444,7 +471,10 @@ def placeholder_seccion(titulo, descripcion):
 
 historicos_seccion = ""
 if macro_chart_cards or tasas_chart_cards:
-    historicos_seccion = '<section id="historicos" class="section"><h1>Históricos</h1><div class="section-sub">Últimos 5 años.</div>'
+    historicos_seccion = (
+        '<section id="historicos" class="section"><h1>Históricos</h1>'
+        '<div class="section-sub">Hasta 20 años atrás — usa los botones de cada gráfico para cambiar el rango.</div>'
+    )
     if macro_chart_cards:
         historicos_seccion += f"""
         <div class="subhead">Macro</div>
@@ -582,7 +612,9 @@ HTML = f"""<!DOCTYPE html>
   }}
   .subhead{{font-size:12px; color:var(--orange); text-transform:uppercase; letter-spacing:.08em; margin:24px 0 12px;}}
   .subhead:first-of-type{{margin-top:0;}}
-  .chart-title{{font-size:14px; color:var(--text); font-weight:600; margin-bottom:12px;}}
+  .chart-head{{display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; margin-bottom:12px;}}
+  .chart-title{{font-size:14px; color:var(--text); font-weight:600;}}
+  .chart-desc{{font-size:12px; color:var(--muted);}}
   .chart-canvas-wrap{{position:relative; width:100%; height:280px;}}
   .chart-range{{font-size:11px; color:var(--muted); margin-top:10px;}}
   .range-btns{{display:flex; gap:6px; margin-bottom:12px;}}
