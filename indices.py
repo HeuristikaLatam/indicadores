@@ -794,6 +794,118 @@ def get_odepa_consumidor_tendencia():
     return tendencia
 
 
+# ---------------------------------------------------------------------------
+# Detector de anomalías — un dato destacado por categoría (Macro, Crédito,
+# Alimentos), calculado sobre datos que ya descargamos, sin llamadas extra.
+#
+# Criterio: no destacamos "el cambio más grande en términos absolutos" (eso
+# casi siempre sería Bitcoin en Macro, porque es naturalmente volátil), sino
+# el cambio más INUSUAL para CADA indicador según su propia historia — un
+# z-score del último cambio % contra la volatilidad de sus cambios previos.
+# Así un movimiento chico en algo que normalmente no se mueve (ej. la UF)
+# puede ganarle a un movimiento grande en algo que siempre es volátil.
+# ---------------------------------------------------------------------------
+
+def _anomalia_por_zscore(valores_cronologicos):
+    """valores_cronologicos: lista de valores numéricos, del más antiguo al
+    más reciente. Devuelve {"cambio_pct": n, "zscore": n} del último cambio,
+    o None si no hay suficientes puntos para una comparación confiable."""
+    valores = [v for v in valores_cronologicos if v is not None]
+    if len(valores) < 5:
+        return None
+
+    cambios_pct = []
+    for i in range(1, len(valores)):
+        anterior = valores[i - 1]
+        if not anterior:
+            continue
+        cambios_pct.append((valores[i] - anterior) / abs(anterior) * 100)
+
+    if len(cambios_pct) < 4:
+        return None
+
+    ultimo = cambios_pct[-1]
+    historicos = cambios_pct[:-1]
+    media = sum(historicos) / len(historicos)
+    varianza = sum((c - media) ** 2 for c in historicos) / len(historicos)
+    desviacion = varianza ** 0.5
+    if desviacion == 0:
+        return None
+
+    return {"cambio_pct": round(ultimo, 2), "zscore": round((ultimo - media) / desviacion, 2)}
+
+
+def get_anomalia_macro(historico_macro):
+    candidatos = []
+    for indicador, serie in historico_macro.items():
+        if not serie:
+            continue
+        resultado = _anomalia_por_zscore([p["valor"] for p in serie])
+        if resultado:
+            candidatos.append({
+                "clave": indicador,
+                "periodo": serie[-1]["periodo"],
+                "valor_actual": serie[-1]["valor"],
+                **resultado,
+            })
+    if not candidatos:
+        return None
+    return max(candidatos, key=lambda c: abs(c["zscore"]))
+
+
+def get_anomalia_credito(tasas):
+    candidatos = []
+    for recurso in ("tip", "tmc"):
+        for tipo, info in tasas.get(recurso, {}).items():
+            serie = info.get("serie", [])
+            if not serie:
+                continue
+            resultado = _anomalia_por_zscore([p["valor"] for p in serie])
+            if resultado:
+                candidatos.append({
+                    "recurso": recurso,
+                    "tipo": tipo,
+                    "etiqueta": info.get("etiqueta", tipo),
+                    "fecha": serie[-1]["fecha"],
+                    "valor_actual": serie[-1]["valor"],
+                    **resultado,
+                })
+    if not candidatos:
+        return None
+    return max(candidatos, key=lambda c: abs(c["zscore"]))
+
+
+def get_anomalia_alimentos(tendencia_mayoristas, tendencia_consumidor):
+    candidatos = []
+    for producto, serie in tendencia_mayoristas.items():
+        if not serie:
+            continue
+        resultado = _anomalia_por_zscore([p["valor"] for p in serie])
+        if resultado:
+            candidatos.append({
+                "tipo_canasta": "mayorista",
+                "producto": producto,
+                "fecha": serie[-1]["fecha"],
+                "valor_actual": serie[-1]["valor"],
+                **resultado,
+            })
+    for producto, serie in tendencia_consumidor.items():
+        if not serie:
+            continue
+        resultado = _anomalia_por_zscore([p["valor"] for p in serie])
+        if resultado:
+            candidatos.append({
+                "tipo_canasta": "consumidor",
+                "producto": producto,
+                "fecha": serie[-1]["fecha"],
+                "valor_actual": serie[-1]["valor"],
+                **resultado,
+            })
+    if not candidatos:
+        return None
+    return max(candidatos, key=lambda c: abs(c["zscore"]))
+
+
 def main():
     macro_actual = get_mindicador_actual()
     salida = {
@@ -833,6 +945,16 @@ def main():
         ]
         salida["recientes"]["ipc"] = {"tipo": "mensual", "puntos": puntos_ipc_cmf}
         print(f"  IPC actualizado desde CMF: {ultimo['valor']}% ({ultimo['fecha']})")
+
+    print("Calculando anomalías (Macro, Crédito, Alimentos) ...")
+    salida["anomalias"] = {
+        "macro": get_anomalia_macro(salida["historico_macro"]),
+        "credito": get_anomalia_credito(salida["tasas"]),
+        "alimentos": get_anomalia_alimentos(
+            salida["alimentos"]["tendencia_mayoristas"],
+            salida["alimentos"]["tendencia_consumidor"],
+        ),
+    }
 
     with open("datos.json", "w", encoding="utf-8") as f:
         json.dump(salida, f, ensure_ascii=False, indent=2)
