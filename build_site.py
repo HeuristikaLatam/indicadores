@@ -88,9 +88,12 @@ for key, label in MACRO_ORDEN:
  
     # Fila cronológica: el más antiguo a la izquierda, el más reciente
     # (destacado, en naranjo) a la derecha. Si no hay histórico "reciente"
-    # cargado, al menos mostramos el valor actual como único punto.
+    # cargado (ej. la corrida de hoy no logró traer datos de este
+    # indicador), al menos mostramos el valor actual como único punto,
+    # con el formato de fecha que corresponda (día completo vs. período).
     if not puntos:
-        puntos = [{"etiqueta": d["fecha"][:10], "valor": d["valor"]}]
+        etiqueta_respaldo = d["fecha"][:10] if es_diario else d["fecha"][:7]
+        puntos = [{"etiqueta": etiqueta_respaldo, "valor": d["valor"]}]
  
     puntos_html = ""
     total = len(puntos)
