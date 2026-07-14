@@ -1,34 +1,41 @@
 name: Actualizar indicadores
-
+ 
 on:
   schedule:
-    # Corre todos los días a las 12:00 UTC (~09:00 hora Chile continental)
-    - cron: "0 12 * * *"
+    # Objetivo: 5:00 AM y 5:00 PM hora de Chile continental, todos los días.
+    # Chile cambia de huso horario dos veces al año (UTC-4 en invierno, UTC-3
+    # en verano), así que agregamos las 4 horas UTC que cubren ambos casos.
+    # Como máximo corre una vez de más cerca de cada horario durante el
+    # cambio de hora (abril/septiembre) — inofensivo, solo re-genera el sitio.
+    - cron: "0 8 * * *"   # 5:00 AM Chile (horario de verano, UTC-3)
+    - cron: "0 9 * * *"   # 5:00 AM Chile (horario de invierno, UTC-4)
+    - cron: "0 20 * * *"  # 5:00 PM Chile (horario de verano, UTC-3)
+    - cron: "0 21 * * *"  # 5:00 PM Chile (horario de invierno, UTC-4)
   workflow_dispatch: {}  # permite correrlo manualmente desde la pestaña Actions
-
+ 
 permissions:
   contents: write
-
+ 
 jobs:
   actualizar:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
+ 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-
+ 
       - name: Descargar datos
         env:
           CMF_API_KEY: ${{ secrets.CMF_API_KEY }}
         run: python3 indices.py
-
+ 
       - name: Generar sitio
         run: python3 build_site.py
-
+ 
       - name: Commit y push si hay cambios
         run: |
           git config user.name "github-actions[bot]"
@@ -36,3 +43,4 @@ jobs:
           git add datos.json index.html
           git diff --quiet --cached || git commit -m "Actualiza indicadores $(date -u +%Y-%m-%d)"
           git push
+ 
