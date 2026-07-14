@@ -120,6 +120,7 @@ if tasas.get("tip") or tasas.get("tmc"):
 CHART_COLOR = "#e2792f"
 CHART_GRID = "#242830"
 CHART_TEXT = "#8a8f98"
+CHART_BG = "#1a1d22"
  
 charts_js = []
 macro_chart_cards = ""
@@ -137,7 +138,7 @@ for key, label in MACRO_ORDEN:
     macro_chart_cards += f"""
     <div class="chart-card">
       <div class="chart-title">{label}</div>
-      <canvas id="{canvas_id}" height="90"></canvas>
+      <div class="chart-canvas-wrap"><canvas id="{canvas_id}"></canvas></div>
       <div class="chart-range">mín {minimo:,.2f} · máx {maximo:,.2f}</div>
     </div>"""
  
@@ -152,15 +153,34 @@ for key, label in MACRO_ORDEN:
           backgroundColor: '{CHART_COLOR}22',
           borderWidth: 2,
           pointRadius: 0,
+          pointHoverRadius: 5,
+          pointHoverBackgroundColor: '{CHART_COLOR}',
+          pointHitRadius: 12,
           tension: 0.25,
           fill: true,
         }}]
       }},
       options: {{
         responsive: true,
-        plugins: {{ legend: {{ display: false }} }},
+        maintainAspectRatio: false,
+        interaction: {{ mode: 'index', intersect: false }},
+        plugins: {{
+          legend: {{ display: false }},
+          tooltip: {{
+            backgroundColor: '{CHART_BG}',
+            borderColor: '{CHART_GRID}',
+            borderWidth: 1,
+            titleColor: '{CHART_COLOR}',
+            bodyColor: '#eef0f2',
+            padding: 10,
+            displayColors: false,
+          }},
+        }},
         scales: {{
-          x: {{ display: false }},
+          x: {{
+            ticks: {{ color: '{CHART_TEXT}', font: {{ size: 10 }}, maxTicksLimit: 12, maxRotation: 0 }},
+            grid: {{ display: false }},
+          }},
           y: {{
             ticks: {{ color: '{CHART_TEXT}', font: {{ size: 10 }} }},
             grid: {{ color: '{CHART_GRID}' }},
@@ -187,7 +207,7 @@ for recurso, titulo in (("tip", "TIP"), ("tmc", "TMC")):
         tasas_chart_cards += f"""
         <div class="chart-card">
           <div class="chart-title">{info['etiqueta']} · {titulo}</div>
-          <canvas id="{canvas_id}" height="90"></canvas>
+          <div class="chart-canvas-wrap"><canvas id="{canvas_id}"></canvas></div>
         </div>"""
  
         charts_js.append(f"""
@@ -201,6 +221,9 @@ for recurso, titulo in (("tip", "TIP"), ("tmc", "TMC")):
               backgroundColor: '{CHART_COLOR}22',
               borderWidth: 2,
               pointRadius: 0,
+              pointHoverRadius: 5,
+              pointHoverBackgroundColor: '{CHART_COLOR}',
+              pointHitRadius: 12,
               tension: 0.1,
               stepped: true,
               fill: true,
@@ -208,9 +231,28 @@ for recurso, titulo in (("tip", "TIP"), ("tmc", "TMC")):
           }},
           options: {{
             responsive: true,
-            plugins: {{ legend: {{ display: false }} }},
+            maintainAspectRatio: false,
+            interaction: {{ mode: 'index', intersect: false }},
+            plugins: {{
+              legend: {{ display: false }},
+              tooltip: {{
+                backgroundColor: '{CHART_BG}',
+                borderColor: '{CHART_GRID}',
+                borderWidth: 1,
+                titleColor: '{CHART_COLOR}',
+                bodyColor: '#eef0f2',
+                padding: 10,
+                displayColors: false,
+                callbacks: {{
+                  label: function(ctx) {{ return ctx.parsed.y.toFixed(2) + '%'; }}
+                }}
+              }},
+            }},
             scales: {{
-              x: {{ display: false }},
+              x: {{
+                ticks: {{ color: '{CHART_TEXT}', font: {{ size: 10 }}, maxTicksLimit: 12, maxRotation: 0 }},
+                grid: {{ display: false }},
+              }},
               y: {{
                 ticks: {{ color: '{CHART_TEXT}', font: {{ size: 10 }} }},
                 grid: {{ color: '{CHART_GRID}' }},
@@ -298,14 +340,15 @@ HTML = f"""<!DOCTYPE html>
   td.empty{{color:var(--muted); font-style:italic; text-align:center;}}
  
   .chart-grid{{
-    display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:14px;
+    display:flex; flex-direction:column; gap:16px;
   }}
   .chart-card{{
     background:var(--card); border:1px solid var(--line); border-radius:10px;
-    padding:14px 16px;
+    padding:20px 24px;
   }}
-  .chart-title{{font-size:12px; color:var(--muted); margin-bottom:8px;}}
-  .chart-range{{font-size:10px; color:var(--muted); margin-top:6px;}}
+  .chart-title{{font-size:14px; color:var(--text); font-weight:600; margin-bottom:12px;}}
+  .chart-canvas-wrap{{position:relative; width:100%; height:280px;}}
+  .chart-range{{font-size:11px; color:var(--muted); margin-top:10px;}}
  
   .footer{{margin-top:36px; font-size:11px; color:var(--muted); line-height:1.6;}}
   .footer a{{color:var(--orange); text-decoration:none;}}
