@@ -1,11 +1,11 @@
 {
-  "generado": "2026-07-14T09:04:59.465406-04:00",
+  "generado": "2026-07-14T11:44:19.547327-04:00",
   "macro": {
     "dolar": {
       "nombre": "Dólar observado",
       "unidad": "Pesos",
-      "valor": 928.84,
-      "fecha": "2026-07-14T04:00:00.000Z"
+      "valor": 992.12,
+      "fecha": "2024-12-30T03:00:00.000Z"
     },
     "euro": {
       "nombre": "Euro",
@@ -47,13 +47,13 @@
       "nombre": "Tasa de desempleo",
       "unidad": "Porcentaje",
       "valor": 9.44,
-      "fecha": "2026-05-01T04:00:00.000Z"
+      "fecha": "2026-05-01"
     },
     "libra_cobre": {
       "nombre": "Libra de Cobre",
       "unidad": "Dólar",
-      "valor": 5.53,
-      "fecha": "2025-12-30T03:00:00.000Z"
+      "valor": 6.09,
+      "fecha": "2026-07-14T04:00:00.000Z"
     },
     "bitcoin": {
       "nombre": "Bitcoin",
@@ -207,82 +207,6 @@
       {
         "periodo": "2024-12",
         "valor": 982.296
-      },
-      {
-        "periodo": "2025-01",
-        "valor": 1000.7636
-      },
-      {
-        "periodo": "2025-02",
-        "valor": 956.62
-      },
-      {
-        "periodo": "2025-03",
-        "valor": 932.5519
-      },
-      {
-        "periodo": "2025-04",
-        "valor": 961.9571
-      },
-      {
-        "periodo": "2025-05",
-        "valor": 941.0125
-      },
-      {
-        "periodo": "2025-06",
-        "valor": 938.037
-      },
-      {
-        "periodo": "2025-07",
-        "valor": 951.55
-      },
-      {
-        "periodo": "2025-08",
-        "valor": 966.3035
-      },
-      {
-        "periodo": "2025-09",
-        "valor": 960.3675
-      },
-      {
-        "periodo": "2025-10",
-        "valor": 953.9732
-      },
-      {
-        "periodo": "2025-11",
-        "valor": 935.6975
-      },
-      {
-        "periodo": "2025-12",
-        "valor": 916.163
-      },
-      {
-        "periodo": "2026-01",
-        "valor": 883.9657
-      },
-      {
-        "periodo": "2026-02",
-        "valor": 862.02
-      },
-      {
-        "periodo": "2026-03",
-        "valor": 909.8932
-      },
-      {
-        "periodo": "2026-04",
-        "valor": 897.8862
-      },
-      {
-        "periodo": "2026-05",
-        "valor": 897.6379
-      },
-      {
-        "periodo": "2026-06",
-        "valor": 903.3843
-      },
-      {
-        "periodo": "2026-07",
-        "valor": 926.509
       }
     ],
     "euro": [
@@ -507,6 +431,54 @@
       {
         "periodo": "2022-12",
         "valor": 34948.7423
+      },
+      {
+        "periodo": "2023-01",
+        "valor": 35227.2365
+      },
+      {
+        "periodo": "2023-02",
+        "valor": 35382.1418
+      },
+      {
+        "periodo": "2023-03",
+        "valor": 35579.6184
+      },
+      {
+        "periodo": "2023-04",
+        "valor": 35666.6533
+      },
+      {
+        "periodo": "2023-05",
+        "valor": 35969.5342
+      },
+      {
+        "periodo": "2023-06",
+        "valor": 36069.313
+      },
+      {
+        "periodo": "2023-07",
+        "valor": 36079.8861
+      },
+      {
+        "periodo": "2023-08",
+        "valor": 36068.7035
+      },
+      {
+        "periodo": "2023-09",
+        "valor": 36175.9047
+      },
+      {
+        "periodo": "2023-10",
+        "valor": 36273.5868
+      },
+      {
+        "periodo": "2023-11",
+        "valor": 36489.395
+      },
+      {
+        "periodo": "2023-12",
+        "valor": 36669.3765
       },
       {
         "periodo": "2024-01",
@@ -1349,6 +1321,150 @@
         "valor": -1.0
       },
       {
+        "periodo": "2023-01",
+        "valor": 0.4
+      },
+      {
+        "periodo": "2023-02",
+        "valor": -0.5
+      },
+      {
+        "periodo": "2023-03",
+        "valor": -2.1
+      },
+      {
+        "periodo": "2023-04",
+        "valor": -1.1
+      },
+      {
+        "periodo": "2023-05",
+        "valor": -2.0
+      },
+      {
+        "periodo": "2023-06",
+        "valor": -1.0
+      },
+      {
+        "periodo": "2023-07",
+        "valor": 1.8
+      },
+      {
+        "periodo": "2023-08",
+        "valor": -0.9
+      },
+      {
+        "periodo": "2023-09",
+        "valor": 0.0
+      },
+      {
+        "periodo": "2023-10",
+        "valor": 0.3
+      },
+      {
+        "periodo": "2023-11",
+        "valor": 1.2
+      },
+      {
+        "periodo": "2023-12",
+        "valor": -1.0
+      },
+      {
+        "periodo": "2024-01",
+        "valor": 2.5
+      },
+      {
+        "periodo": "2024-02",
+        "valor": 4.5
+      },
+      {
+        "periodo": "2024-03",
+        "valor": 0.8
+      },
+      {
+        "periodo": "2024-04",
+        "valor": 3.5
+      },
+      {
+        "periodo": "2024-05",
+        "valor": 1.1
+      },
+      {
+        "periodo": "2024-06",
+        "valor": 0.1
+      },
+      {
+        "periodo": "2024-07",
+        "valor": 4.2
+      },
+      {
+        "periodo": "2024-08",
+        "valor": 2.3
+      },
+      {
+        "periodo": "2024-09",
+        "valor": 0.0
+      },
+      {
+        "periodo": "2024-10",
+        "valor": 2.3
+      },
+      {
+        "periodo": "2024-11",
+        "valor": 2.1
+      },
+      {
+        "periodo": "2024-12",
+        "valor": 6.6
+      },
+      {
+        "periodo": "2025-01",
+        "valor": 2.5
+      },
+      {
+        "periodo": "2025-02",
+        "valor": -0.1
+      },
+      {
+        "periodo": "2025-03",
+        "valor": 3.8
+      },
+      {
+        "periodo": "2025-04",
+        "valor": 2.5
+      },
+      {
+        "periodo": "2025-05",
+        "valor": 3.2
+      },
+      {
+        "periodo": "2025-06",
+        "valor": 3.1
+      },
+      {
+        "periodo": "2025-07",
+        "valor": 1.8
+      },
+      {
+        "periodo": "2025-08",
+        "valor": 0.5
+      },
+      {
+        "periodo": "2025-09",
+        "valor": 3.2
+      },
+      {
+        "periodo": "2025-10",
+        "valor": 2.2
+      },
+      {
+        "periodo": "2025-11",
+        "valor": 1.2
+      },
+      {
+        "periodo": "2025-12",
+        "valor": 1.7
+      },
+      {
         "periodo": "2026-01",
         "valor": -0.1
       },
@@ -1369,7 +1485,220 @@
         "valor": -0.9
       }
     ],
-    "tasa_desempleo": [],
+    "tasa_desempleo": [
+      {
+        "periodo": "2022-01",
+        "valor": 7.27
+      },
+      {
+        "periodo": "2022-02",
+        "valor": 7.5
+      },
+      {
+        "periodo": "2022-03",
+        "valor": 7.8
+      },
+      {
+        "periodo": "2022-04",
+        "valor": 7.75
+      },
+      {
+        "periodo": "2022-05",
+        "valor": 7.8
+      },
+      {
+        "periodo": "2022-06",
+        "valor": 7.81
+      },
+      {
+        "periodo": "2022-07",
+        "valor": 7.92
+      },
+      {
+        "periodo": "2022-08",
+        "valor": 7.93
+      },
+      {
+        "periodo": "2022-09",
+        "valor": 8.04
+      },
+      {
+        "periodo": "2022-10",
+        "valor": 7.97
+      },
+      {
+        "periodo": "2022-11",
+        "valor": 7.95
+      },
+      {
+        "periodo": "2022-12",
+        "valor": 7.86
+      },
+      {
+        "periodo": "2023-01",
+        "valor": 8.04
+      },
+      {
+        "periodo": "2023-02",
+        "valor": 8.37
+      },
+      {
+        "periodo": "2023-03",
+        "valor": 8.81
+      },
+      {
+        "periodo": "2023-04",
+        "valor": 8.66
+      },
+      {
+        "periodo": "2023-05",
+        "valor": 8.52
+      },
+      {
+        "periodo": "2023-06",
+        "valor": 8.53
+      },
+      {
+        "periodo": "2023-07",
+        "valor": 8.77
+      },
+      {
+        "periodo": "2023-08",
+        "valor": 9.0
+      },
+      {
+        "periodo": "2023-09",
+        "valor": 8.91
+      },
+      {
+        "periodo": "2023-10",
+        "valor": 8.89
+      },
+      {
+        "periodo": "2023-11",
+        "valor": 8.73
+      },
+      {
+        "periodo": "2023-12",
+        "valor": 8.48
+      },
+      {
+        "periodo": "2024-01",
+        "valor": 8.44
+      },
+      {
+        "periodo": "2024-02",
+        "valor": 8.5
+      },
+      {
+        "periodo": "2024-03",
+        "valor": 8.68
+      },
+      {
+        "periodo": "2024-04",
+        "valor": 8.52
+      },
+      {
+        "periodo": "2024-05",
+        "valor": 8.31
+      },
+      {
+        "periodo": "2024-06",
+        "valor": 8.35
+      },
+      {
+        "periodo": "2024-07",
+        "valor": 8.68
+      },
+      {
+        "periodo": "2024-08",
+        "valor": 8.9
+      },
+      {
+        "periodo": "2024-09",
+        "valor": 8.74
+      },
+      {
+        "periodo": "2024-10",
+        "valor": 8.58
+      },
+      {
+        "periodo": "2024-11",
+        "valor": 8.22
+      },
+      {
+        "periodo": "2024-12",
+        "valor": 8.08
+      },
+      {
+        "periodo": "2025-01",
+        "valor": 8.02
+      },
+      {
+        "periodo": "2025-02",
+        "valor": 8.38
+      },
+      {
+        "periodo": "2025-03",
+        "valor": 8.71
+      },
+      {
+        "periodo": "2025-04",
+        "valor": 8.84
+      },
+      {
+        "periodo": "2025-05",
+        "valor": 8.94
+      },
+      {
+        "periodo": "2025-06",
+        "valor": 8.89
+      },
+      {
+        "periodo": "2025-07",
+        "valor": 8.7
+      },
+      {
+        "periodo": "2025-08",
+        "valor": 8.56
+      },
+      {
+        "periodo": "2025-09",
+        "valor": 8.53
+      },
+      {
+        "periodo": "2025-10",
+        "valor": 8.45
+      },
+      {
+        "periodo": "2025-11",
+        "valor": 8.42
+      },
+      {
+        "periodo": "2025-12",
+        "valor": 8.05
+      },
+      {
+        "periodo": "2026-01",
+        "valor": 8.28
+      },
+      {
+        "periodo": "2026-02",
+        "valor": 8.33
+      },
+      {
+        "periodo": "2026-03",
+        "valor": 8.93
+      },
+      {
+        "periodo": "2026-04",
+        "valor": 9.11
+      },
+      {
+        "periodo": "2026-05",
+        "valor": 9.44
+      }
+    ],
     "libra_cobre": [
       {
         "periodo": "2022-01",
@@ -1562,6 +1891,34 @@
       {
         "periodo": "2025-12",
         "valor": 5.2835
+      },
+      {
+        "periodo": "2026-01",
+        "valor": 5.8614
+      },
+      {
+        "periodo": "2026-02",
+        "valor": 5.8755
+      },
+      {
+        "periodo": "2026-03",
+        "valor": 5.7264
+      },
+      {
+        "periodo": "2026-04",
+        "valor": 5.8286
+      },
+      {
+        "periodo": "2026-05",
+        "valor": 6.11
+      },
+      {
+        "periodo": "2026-06",
+        "valor": 6.1657
+      },
+      {
+        "periodo": "2026-07",
+        "valor": 6.036
       }
     ],
     "bitcoin": [
@@ -1792,28 +2149,28 @@
       "tipo": "diario",
       "puntos": [
         {
-          "etiqueta": "2026-07-07T04:00:00.000Z",
-          "valor": 926.25
+          "etiqueta": "2024-12-20T03:00:00.000Z",
+          "valor": 996.35
         },
         {
-          "etiqueta": "2026-07-08T04:00:00.000Z",
-          "valor": 927.36
+          "etiqueta": "2024-12-23T03:00:00.000Z",
+          "valor": 991.18
         },
         {
-          "etiqueta": "2026-07-09T04:00:00.000Z",
-          "valor": 935.71
+          "etiqueta": "2024-12-24T03:00:00.000Z",
+          "valor": 992.78
         },
         {
-          "etiqueta": "2026-07-10T04:00:00.000Z",
-          "valor": 928.99
+          "etiqueta": "2024-12-26T03:00:00.000Z",
+          "valor": 989.07
         },
         {
-          "etiqueta": "2026-07-13T04:00:00.000Z",
-          "valor": 924.94
+          "etiqueta": "2024-12-27T03:00:00.000Z",
+          "valor": 990.95
         },
         {
-          "etiqueta": "2026-07-14T04:00:00.000Z",
-          "valor": 928.84
+          "etiqueta": "2024-12-30T03:00:00.000Z",
+          "valor": 992.12
         }
       ]
     },
@@ -1966,8 +2323,8 @@
       "tipo": "mensual",
       "puntos": [
         {
-          "etiqueta": "2022-12",
-          "valor": -1.0
+          "etiqueta": "2025-12",
+          "valor": 1.7
         },
         {
           "etiqueta": "2026-01",
@@ -1993,34 +2350,59 @@
     },
     "tasa_desempleo": {
       "tipo": "mensual",
-      "puntos": []
+      "puntos": [
+        {
+          "etiqueta": "2025-12",
+          "valor": 8.05
+        },
+        {
+          "etiqueta": "2026-01",
+          "valor": 8.28
+        },
+        {
+          "etiqueta": "2026-02",
+          "valor": 8.33
+        },
+        {
+          "etiqueta": "2026-03",
+          "valor": 8.93
+        },
+        {
+          "etiqueta": "2026-04",
+          "valor": 9.11
+        },
+        {
+          "etiqueta": "2026-05",
+          "valor": 9.44
+        }
+      ]
     },
     "libra_cobre": {
       "tipo": "diario",
       "puntos": [
         {
-          "etiqueta": "2025-12-22T03:00:00.000Z",
-          "valor": 5.34
+          "etiqueta": "2026-07-07T04:00:00.000Z",
+          "valor": 6.04
         },
         {
-          "etiqueta": "2025-12-23T03:00:00.000Z",
-          "valor": 5.39
+          "etiqueta": "2026-07-08T04:00:00.000Z",
+          "valor": 6.05
         },
         {
-          "etiqueta": "2025-12-24T03:00:00.000Z",
-          "valor": 5.41
+          "etiqueta": "2026-07-09T04:00:00.000Z",
+          "valor": 6.03
         },
         {
-          "etiqueta": "2025-12-26T03:00:00.000Z",
-          "valor": 5.48
+          "etiqueta": "2026-07-10T04:00:00.000Z",
+          "valor": 5.94
         },
         {
-          "etiqueta": "2025-12-29T03:00:00.000Z",
-          "valor": 5.53
+          "etiqueta": "2026-07-13T04:00:00.000Z",
+          "valor": 6.1
         },
         {
-          "etiqueta": "2025-12-30T03:00:00.000Z",
-          "valor": 5.53
+          "etiqueta": "2026-07-14T04:00:00.000Z",
+          "valor": 6.09
         }
       ]
     },
