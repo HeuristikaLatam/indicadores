@@ -59,14 +59,15 @@
   td.empty{color:var(--muted); font-style:italic; text-align:center;}
  
   .chart-grid{
-    display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:14px;
+    display:flex; flex-direction:column; gap:16px;
   }
   .chart-card{
     background:var(--card); border:1px solid var(--line); border-radius:10px;
-    padding:14px 16px;
+    padding:20px 24px;
   }
-  .chart-title{font-size:12px; color:var(--muted); margin-bottom:8px;}
-  .chart-range{font-size:10px; color:var(--muted); margin-top:6px;}
+  .chart-title{font-size:14px; color:var(--text); font-weight:600; margin-bottom:12px;}
+  .chart-canvas-wrap{position:relative; width:100%; height:280px;}
+  .chart-range{font-size:11px; color:var(--muted); margin-top:10px;}
  
   .footer{margin-top:36px; font-size:11px; color:var(--muted); line-height:1.6;}
   .footer a{color:var(--orange); text-decoration:none;}
@@ -109,8 +110,8 @@
     </div>
     <div class="card">
       <div class="name">IPC</div>
-      <div class="val">0.00%</div>
-      <div class="date">01-06-2026</div>
+      <div class="val">-0.20%</div>
+      <div class="date">01-12-2025</div>
     </div>
     <div class="card">
       <div class="name">TPM</div>
@@ -140,125 +141,68 @@
   </div>
  
   
-    <h1>Costo del crédito</h1>
-    <div class="tables">
-      <div class="tbox">
-        <div class="tbox-title">Tasa de interés promedio (TIP)</div>
-        <table>
-          <thead><tr><th>Tipo de operación</th><th>Tasa</th><th>Vigencia desde</th></tr></thead>
-          <tbody>
-        <tr>
-          <td>Hipotecario UF (>1 año, hasta 2.000 UF)</td>
-          <td class="num">4.20%</td>
-          <td class="date-cell">15-06-2026</td>
-        </tr>
-        <tr>
-          <td>Consumo en pesos (largo plazo, montos medios)</td>
-          <td class="num">20.42%</td>
-          <td class="date-cell">15-06-2026</td>
-        </tr></tbody>
-        </table>
-      </div>
-      <div class="tbox">
-        <div class="tbox-title">Tasa máxima convencional (TMC)</div>
-        <table>
-          <thead><tr><th>Tipo de operación</th><th>Tasa</th><th>Vigencia desde</th></tr></thead>
-          <tbody>
-        <tr>
-          <td>Hipotecario UF (>1 año, hasta 2.000 UF)</td>
-          <td class="num">6.30%</td>
-          <td class="date-cell">15-06-2026</td>
-        </tr>
-        <tr>
-          <td>Consumo en pesos (largo plazo, montos medios)</td>
-          <td class="num">30.63%</td>
-          <td class="date-cell">15-06-2026</td>
-        </tr></tbody>
-        </table>
-      </div>
-    </div>
-    
  
   
     <h1>Históricos · Macro</h1>
     <div class="chart-grid">
     <div class="chart-card">
       <div class="chart-title">Dólar obs.</div>
-      <canvas id="chart_dolar" height="90"></canvas>
+      <div class="chart-canvas-wrap"><canvas id="chart_dolar"></canvas></div>
       <div class="chart-range">mín 798.26 · máx 1,000.76</div>
     </div>
     <div class="chart-card">
       <div class="chart-title">Euro</div>
-      <canvas id="chart_euro" height="90"></canvas>
+      <div class="chart-canvas-wrap"><canvas id="chart_euro"></canvas></div>
       <div class="chart-range">mín 855.19 · máx 1,126.50</div>
     </div>
     <div class="chart-card">
       <div class="chart-title">UF</div>
-      <canvas id="chart_uf" height="90"></canvas>
+      <div class="chart-canvas-wrap"><canvas id="chart_uf"></canvas></div>
       <div class="chart-range">mín 31,096.09 · máx 40,844.79</div>
     </div>
     <div class="chart-card">
       <div class="chart-title">UTM</div>
-      <canvas id="chart_utm" height="90"></canvas>
+      <div class="chart-canvas-wrap"><canvas id="chart_utm"></canvas></div>
       <div class="chart-range">mín 54,442.00 · máx 71,649.00</div>
     </div>
     <div class="chart-card">
       <div class="chart-title">IPC</div>
-      <canvas id="chart_ipc" height="90"></canvas>
+      <div class="chart-canvas-wrap"><canvas id="chart_ipc"></canvas></div>
       <div class="chart-range">mín -0.50 · máx 1.90</div>
     </div>
     <div class="chart-card">
       <div class="chart-title">TPM</div>
-      <canvas id="chart_tpm" height="90"></canvas>
+      <div class="chart-canvas-wrap"><canvas id="chart_tpm"></canvas></div>
       <div class="chart-range">mín 4.21 · máx 11.25</div>
     </div>
     <div class="chart-card">
       <div class="chart-title">Imacec</div>
-      <canvas id="chart_imacec" height="90"></canvas>
+      <div class="chart-canvas-wrap"><canvas id="chart_imacec"></canvas></div>
       <div class="chart-range">mín -2.50 · máx 9.00</div>
     </div>
     <div class="chart-card">
       <div class="chart-title">Desempleo</div>
-      <canvas id="chart_tasa_desempleo" height="90"></canvas>
+      <div class="chart-canvas-wrap"><canvas id="chart_tasa_desempleo"></canvas></div>
       <div class="chart-range">mín 7.27 · máx 9.44</div>
     </div>
     <div class="chart-card">
       <div class="chart-title">Cobre (lb)</div>
-      <canvas id="chart_libra_cobre" height="90"></canvas>
+      <div class="chart-canvas-wrap"><canvas id="chart_libra_cobre"></canvas></div>
       <div class="chart-range">mín 3.44 · máx 6.17</div>
     </div>
     <div class="chart-card">
       <div class="chart-title">Bitcoin</div>
-      <canvas id="chart_bitcoin" height="90"></canvas>
+      <div class="chart-canvas-wrap"><canvas id="chart_bitcoin"></canvas></div>
       <div class="chart-range">mín 16,969.83 · máx 114,867.73</div>
     </div>
-    </div>
-    
-    <h1>Históricos · Costo del crédito</h1>
-    <div class="chart-grid">
-        <div class="chart-card">
-          <div class="chart-title">Hipotecario UF (>1 año, hasta 2.000 UF) · TIP</div>
-          <canvas id="chart_tip_24" height="90"></canvas>
-        </div>
-        <div class="chart-card">
-          <div class="chart-title">Consumo en pesos (largo plazo, montos medios) · TIP</div>
-          <canvas id="chart_tip_35" height="90"></canvas>
-        </div>
-        <div class="chart-card">
-          <div class="chart-title">Hipotecario UF (>1 año, hasta 2.000 UF) · TMC</div>
-          <canvas id="chart_tmc_24" height="90"></canvas>
-        </div>
-        <div class="chart-card">
-          <div class="chart-title">Consumo en pesos (largo plazo, montos medios) · TMC</div>
-          <canvas id="chart_tmc_35" height="90"></canvas>
-        </div>
     </div>
     
  
   <div class="footer">
     Fuentes: <a href="https://mindicador.cl" target="_blank">mindicador.cl</a> (Banco Central de Chile)
     y <a href="https://api.cmfchile.cl" target="_blank">CMF Bancos</a> (Comisión para el Mercado Financiero).
-    Generado automáticamente el 13-07-2026.<br>
+    Esta data se actualiza de forma automática a las 5:00 AM y 5:00 PM hora de Chile, todos los días.<br>
+    Generado automáticamente el 14-07-2026.<br>
     Información con fines informativos. No constituye asesoría ni recomendación de inversión.
   </div>
  
@@ -276,15 +220,34 @@
           backgroundColor: '#e2792f22',
           borderWidth: 2,
           pointRadius: 0,
+          pointHoverRadius: 5,
+          pointHoverBackgroundColor: '#e2792f',
+          pointHitRadius: 12,
           tension: 0.25,
           fill: true,
         }]
       },
       options: {
         responsive: true,
-        plugins: { legend: { display: false } },
+        maintainAspectRatio: false,
+        interaction: { mode: 'index', intersect: false },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: '#1a1d22',
+            borderColor: '#242830',
+            borderWidth: 1,
+            titleColor: '#e2792f',
+            bodyColor: '#eef0f2',
+            padding: 10,
+            displayColors: false,
+          },
+        },
         scales: {
-          x: { display: false },
+          x: {
+            ticks: { color: '#8a8f98', font: { size: 10 }, maxTicksLimit: 12, maxRotation: 0 },
+            grid: { display: false },
+          },
           y: {
             ticks: { color: '#8a8f98', font: { size: 10 } },
             grid: { color: '#242830' },
@@ -303,15 +266,34 @@
           backgroundColor: '#e2792f22',
           borderWidth: 2,
           pointRadius: 0,
+          pointHoverRadius: 5,
+          pointHoverBackgroundColor: '#e2792f',
+          pointHitRadius: 12,
           tension: 0.25,
           fill: true,
         }]
       },
       options: {
         responsive: true,
-        plugins: { legend: { display: false } },
+        maintainAspectRatio: false,
+        interaction: { mode: 'index', intersect: false },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: '#1a1d22',
+            borderColor: '#242830',
+            borderWidth: 1,
+            titleColor: '#e2792f',
+            bodyColor: '#eef0f2',
+            padding: 10,
+            displayColors: false,
+          },
+        },
         scales: {
-          x: { display: false },
+          x: {
+            ticks: { color: '#8a8f98', font: { size: 10 }, maxTicksLimit: 12, maxRotation: 0 },
+            grid: { display: false },
+          },
           y: {
             ticks: { color: '#8a8f98', font: { size: 10 } },
             grid: { color: '#242830' },
@@ -330,15 +312,34 @@
           backgroundColor: '#e2792f22',
           borderWidth: 2,
           pointRadius: 0,
+          pointHoverRadius: 5,
+          pointHoverBackgroundColor: '#e2792f',
+          pointHitRadius: 12,
           tension: 0.25,
           fill: true,
         }]
       },
       options: {
         responsive: true,
-        plugins: { legend: { display: false } },
+        maintainAspectRatio: false,
+        interaction: { mode: 'index', intersect: false },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: '#1a1d22',
+            borderColor: '#242830',
+            borderWidth: 1,
+            titleColor: '#e2792f',
+            bodyColor: '#eef0f2',
+            padding: 10,
+            displayColors: false,
+          },
+        },
         scales: {
-          x: { display: false },
+          x: {
+            ticks: { color: '#8a8f98', font: { size: 10 }, maxTicksLimit: 12, maxRotation: 0 },
+            grid: { display: false },
+          },
           y: {
             ticks: { color: '#8a8f98', font: { size: 10 } },
             grid: { color: '#242830' },
@@ -357,15 +358,34 @@
           backgroundColor: '#e2792f22',
           borderWidth: 2,
           pointRadius: 0,
+          pointHoverRadius: 5,
+          pointHoverBackgroundColor: '#e2792f',
+          pointHitRadius: 12,
           tension: 0.25,
           fill: true,
         }]
       },
       options: {
         responsive: true,
-        plugins: { legend: { display: false } },
+        maintainAspectRatio: false,
+        interaction: { mode: 'index', intersect: false },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: '#1a1d22',
+            borderColor: '#242830',
+            borderWidth: 1,
+            titleColor: '#e2792f',
+            bodyColor: '#eef0f2',
+            padding: 10,
+            displayColors: false,
+          },
+        },
         scales: {
-          x: { display: false },
+          x: {
+            ticks: { color: '#8a8f98', font: { size: 10 }, maxTicksLimit: 12, maxRotation: 0 },
+            grid: { display: false },
+          },
           y: {
             ticks: { color: '#8a8f98', font: { size: 10 } },
             grid: { color: '#242830' },
@@ -377,22 +397,41 @@
     new Chart(document.getElementById('chart_ipc'), {
       type: 'line',
       data: {
-        labels: ["2022-01", "2022-02", "2022-03", "2022-04", "2022-05", "2022-06", "2022-07", "2022-08", "2022-09", "2022-10", "2022-11", "2022-12", "2023-01", "2023-02", "2023-03", "2023-04", "2023-05", "2023-06", "2023-07", "2023-08", "2023-09", "2023-10", "2023-11", "2023-12", "2024-01", "2024-02", "2024-03", "2024-04", "2024-05", "2024-06", "2024-07", "2024-08", "2024-09", "2024-10", "2024-11", "2024-12", "2025-01", "2025-02", "2025-03", "2025-04", "2025-05", "2025-06", "2025-07", "2025-08", "2025-09", "2025-10", "2025-11", "2025-12", "2026-01", "2026-02", "2026-03", "2026-04", "2026-05", "2026-06"],
+        labels: ["2022-01", "2022-02", "2022-03", "2022-04", "2022-05", "2022-06", "2022-07", "2022-08", "2022-09", "2022-10", "2022-11", "2022-12", "2023-01", "2023-02", "2023-03", "2023-04", "2023-05", "2023-06", "2023-07", "2023-08", "2023-09", "2023-10", "2023-11", "2023-12", "2024-01", "2024-02", "2024-03", "2024-04", "2024-05", "2024-06", "2024-07", "2024-08", "2024-09", "2024-10", "2024-11", "2024-12", "2025-01", "2025-02", "2025-03", "2025-04", "2025-05", "2025-06", "2025-07", "2025-08", "2025-09", "2025-10", "2025-11", "2025-12"],
         datasets: [{
-          data: [1.2, 0.3, 1.9, 1.4, 1.2, 0.9, 1.4, 1.2, 0.9, 0.5, 1.0, 0.3, 0.8, -0.1, 1.1, 0.3, 0.1, -0.2, 0.4, 0.1, 0.7, 0.4, 0.7, -0.5, 0.7, 0.6, 0.4, 0.5, 0.3, -0.1, 0.7, 0.3, 0.1, 1.0, 0.2, -0.2, 1.1, 0.4, 0.5, 0.2, 0.2, -0.4, 0.9, 0.0, 0.4, 0.0, 0.3, -0.2, 0.4, 0.0, 1.0, 1.3, 0.2, 0.0],
+          data: [1.2, 0.3, 1.9, 1.4, 1.2, 0.9, 1.4, 1.2, 0.9, 0.5, 1.0, 0.3, 0.8, -0.1, 1.1, 0.3, 0.1, -0.2, 0.4, 0.1, 0.7, 0.4, 0.7, -0.5, 0.7, 0.6, 0.4, 0.5, 0.3, -0.1, 0.7, 0.3, 0.1, 1.0, 0.2, -0.2, 1.1, 0.4, 0.5, 0.2, 0.2, -0.4, 0.9, 0.0, 0.4, 0.0, 0.3, -0.2],
           borderColor: '#e2792f',
           backgroundColor: '#e2792f22',
           borderWidth: 2,
           pointRadius: 0,
+          pointHoverRadius: 5,
+          pointHoverBackgroundColor: '#e2792f',
+          pointHitRadius: 12,
           tension: 0.25,
           fill: true,
         }]
       },
       options: {
         responsive: true,
-        plugins: { legend: { display: false } },
+        maintainAspectRatio: false,
+        interaction: { mode: 'index', intersect: false },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: '#1a1d22',
+            borderColor: '#242830',
+            borderWidth: 1,
+            titleColor: '#e2792f',
+            bodyColor: '#eef0f2',
+            padding: 10,
+            displayColors: false,
+          },
+        },
         scales: {
-          x: { display: false },
+          x: {
+            ticks: { color: '#8a8f98', font: { size: 10 }, maxTicksLimit: 12, maxRotation: 0 },
+            grid: { display: false },
+          },
           y: {
             ticks: { color: '#8a8f98', font: { size: 10 } },
             grid: { color: '#242830' },
@@ -411,15 +450,34 @@
           backgroundColor: '#e2792f22',
           borderWidth: 2,
           pointRadius: 0,
+          pointHoverRadius: 5,
+          pointHoverBackgroundColor: '#e2792f',
+          pointHitRadius: 12,
           tension: 0.25,
           fill: true,
         }]
       },
       options: {
         responsive: true,
-        plugins: { legend: { display: false } },
+        maintainAspectRatio: false,
+        interaction: { mode: 'index', intersect: false },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: '#1a1d22',
+            borderColor: '#242830',
+            borderWidth: 1,
+            titleColor: '#e2792f',
+            bodyColor: '#eef0f2',
+            padding: 10,
+            displayColors: false,
+          },
+        },
         scales: {
-          x: { display: false },
+          x: {
+            ticks: { color: '#8a8f98', font: { size: 10 }, maxTicksLimit: 12, maxRotation: 0 },
+            grid: { display: false },
+          },
           y: {
             ticks: { color: '#8a8f98', font: { size: 10 } },
             grid: { color: '#242830' },
@@ -438,15 +496,34 @@
           backgroundColor: '#e2792f22',
           borderWidth: 2,
           pointRadius: 0,
+          pointHoverRadius: 5,
+          pointHoverBackgroundColor: '#e2792f',
+          pointHitRadius: 12,
           tension: 0.25,
           fill: true,
         }]
       },
       options: {
         responsive: true,
-        plugins: { legend: { display: false } },
+        maintainAspectRatio: false,
+        interaction: { mode: 'index', intersect: false },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: '#1a1d22',
+            borderColor: '#242830',
+            borderWidth: 1,
+            titleColor: '#e2792f',
+            bodyColor: '#eef0f2',
+            padding: 10,
+            displayColors: false,
+          },
+        },
         scales: {
-          x: { display: false },
+          x: {
+            ticks: { color: '#8a8f98', font: { size: 10 }, maxTicksLimit: 12, maxRotation: 0 },
+            grid: { display: false },
+          },
           y: {
             ticks: { color: '#8a8f98', font: { size: 10 } },
             grid: { color: '#242830' },
@@ -465,15 +542,34 @@
           backgroundColor: '#e2792f22',
           borderWidth: 2,
           pointRadius: 0,
+          pointHoverRadius: 5,
+          pointHoverBackgroundColor: '#e2792f',
+          pointHitRadius: 12,
           tension: 0.25,
           fill: true,
         }]
       },
       options: {
         responsive: true,
-        plugins: { legend: { display: false } },
+        maintainAspectRatio: false,
+        interaction: { mode: 'index', intersect: false },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: '#1a1d22',
+            borderColor: '#242830',
+            borderWidth: 1,
+            titleColor: '#e2792f',
+            bodyColor: '#eef0f2',
+            padding: 10,
+            displayColors: false,
+          },
+        },
         scales: {
-          x: { display: false },
+          x: {
+            ticks: { color: '#8a8f98', font: { size: 10 }, maxTicksLimit: 12, maxRotation: 0 },
+            grid: { display: false },
+          },
           y: {
             ticks: { color: '#8a8f98', font: { size: 10 } },
             grid: { color: '#242830' },
@@ -492,15 +588,34 @@
           backgroundColor: '#e2792f22',
           borderWidth: 2,
           pointRadius: 0,
+          pointHoverRadius: 5,
+          pointHoverBackgroundColor: '#e2792f',
+          pointHitRadius: 12,
           tension: 0.25,
           fill: true,
         }]
       },
       options: {
         responsive: true,
-        plugins: { legend: { display: false } },
+        maintainAspectRatio: false,
+        interaction: { mode: 'index', intersect: false },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: '#1a1d22',
+            borderColor: '#242830',
+            borderWidth: 1,
+            titleColor: '#e2792f',
+            bodyColor: '#eef0f2',
+            padding: 10,
+            displayColors: false,
+          },
+        },
         scales: {
-          x: { display: false },
+          x: {
+            ticks: { color: '#8a8f98', font: { size: 10 }, maxTicksLimit: 12, maxRotation: 0 },
+            grid: { display: false },
+          },
           y: {
             ticks: { color: '#8a8f98', font: { size: 10 } },
             grid: { color: '#242830' },
@@ -519,15 +634,34 @@
           backgroundColor: '#e2792f22',
           borderWidth: 2,
           pointRadius: 0,
+          pointHoverRadius: 5,
+          pointHoverBackgroundColor: '#e2792f',
+          pointHitRadius: 12,
           tension: 0.25,
           fill: true,
         }]
       },
       options: {
         responsive: true,
-        plugins: { legend: { display: false } },
+        maintainAspectRatio: false,
+        interaction: { mode: 'index', intersect: false },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: '#1a1d22',
+            borderColor: '#242830',
+            borderWidth: 1,
+            titleColor: '#e2792f',
+            bodyColor: '#eef0f2',
+            padding: 10,
+            displayColors: false,
+          },
+        },
         scales: {
-          x: { display: false },
+          x: {
+            ticks: { color: '#8a8f98', font: { size: 10 }, maxTicksLimit: 12, maxRotation: 0 },
+            grid: { display: false },
+          },
           y: {
             ticks: { color: '#8a8f98', font: { size: 10 } },
             grid: { color: '#242830' },
@@ -535,118 +669,6 @@
         }
       }
     });
-
-        new Chart(document.getElementById('chart_tip_24'), {
-          type: 'line',
-          data: {
-            labels: ["2022-01-15", "2022-02-15", "2022-03-15", "2022-04-14", "2022-05-14", "2022-06-15", "2022-07-15", "2022-08-13", "2022-09-15", "2022-10-15", "2022-11-15", "2022-12-15", "2023-01-14", "2023-02-15", "2023-03-15", "2023-04-15", "2023-05-15", "2023-06-15", "2023-07-15", "2023-08-14", "2023-09-15", "2023-10-14", "2023-11-15", "2023-12-15", "2024-01-15", "2024-02-15", "2024-03-15", "2024-04-15", "2024-05-15", "2024-06-15", "2024-07-15", "2024-08-14", "2024-09-14", "2024-10-15", "2024-11-15", "2024-12-14", "2025-01-15", "2025-02-15", "2025-03-15", "2025-04-15", "2025-05-15", "2025-06-14", "2025-07-15", "2025-08-14", "2025-09-15", "2025-10-15", "2025-11-15", "2025-12-15", "2026-01-15", "2026-02-14", "2026-03-14", "2026-04-15", "2026-05-15", "2026-06-15"],
-            datasets: [{
-              data: [4.6, 4.64, 4.76, 4.76, 4.7, 4.58, 4.46, 4.4, 4.3, 4.32, 4.52, 4.66, 4.52, 4.3, 4.26, 4.24, 4.26, 4.22, 4.18, 4.24, 4.24, 4.34, 4.68, 5.12, 5.22, 5.06, 5.02, 4.98, 4.95, 5.04, 5.08, 5.1, 5.02, 4.9, 4.76, 4.62, 4.52, 4.54, 4.44, 4.44, 4.48, 4.5, 4.52, 4.52, 4.5, 4.44, 4.44, 4.42, 4.44, 4.46, 4.38, 4.26, 4.26, 4.2],
-              borderColor: '#e2792f',
-              backgroundColor: '#e2792f22',
-              borderWidth: 2,
-              pointRadius: 0,
-              tension: 0.1,
-              stepped: true,
-              fill: true,
-            }]
-          },
-          options: {
-            responsive: true,
-            plugins: { legend: { display: false } },
-            scales: {
-              x: { display: false },
-              y: {
-                ticks: { color: '#8a8f98', font: { size: 10 } },
-                grid: { color: '#242830' },
-              }
-            }
-          }
-        });
-
-        new Chart(document.getElementById('chart_tip_35'), {
-          type: 'line',
-          data: {
-            labels: ["2022-01-15", "2022-02-15", "2022-03-15", "2022-04-14", "2022-05-14", "2022-06-15", "2022-07-15", "2022-08-13", "2022-09-15", "2022-10-15", "2022-11-15", "2022-12-15", "2023-01-14", "2023-02-15", "2023-03-15", "2023-04-15", "2023-05-15", "2023-06-15", "2023-07-15", "2023-08-14", "2023-09-15", "2023-10-14", "2023-11-15", "2023-12-15", "2024-01-15", "2024-02-15", "2024-03-15", "2024-04-15", "2024-05-15", "2024-06-15", "2024-07-15", "2024-08-14", "2024-09-14", "2024-10-15", "2024-11-15", "2024-12-14", "2025-01-15", "2025-02-15", "2025-03-15", "2025-04-15", "2025-05-15", "2025-06-14", "2025-07-15", "2025-08-14", "2025-09-15", "2025-10-15", "2025-11-15", "2025-12-15", "2026-01-15", "2026-02-14", "2026-03-14", "2026-04-15", "2026-05-15", "2026-06-15"],
-            datasets: [{
-              data: [16.66, 17.42, 18.16, 18.16, 19.1, 19.44, 19.84, 20.08, 20.14, 20.92, 21.5, 21.2, 21.7, 21.18, 21.88, 21.28, 22.04, 21.8, 21.92, 21.52, 20.6, 20.96, 20.93, 20.68, 20.88, 20.06, 19.74, 18.4, 18.32, 18.08, 17.58, 17.58, 17.16, 17.1, 17.2, 17.56, 18.08, 18.04, 18.44, 17.2, 17.26, 17.26, 16.82, 17.1, 16.8, 16.92, 16.78, 16.88, 17.04, 19.2, 19.9, 19.6, 20.28, 20.42],
-              borderColor: '#e2792f',
-              backgroundColor: '#e2792f22',
-              borderWidth: 2,
-              pointRadius: 0,
-              tension: 0.1,
-              stepped: true,
-              fill: true,
-            }]
-          },
-          options: {
-            responsive: true,
-            plugins: { legend: { display: false } },
-            scales: {
-              x: { display: false },
-              y: {
-                ticks: { color: '#8a8f98', font: { size: 10 } },
-                grid: { color: '#242830' },
-              }
-            }
-          }
-        });
-
-        new Chart(document.getElementById('chart_tmc_24'), {
-          type: 'line',
-          data: {
-            labels: ["2022-01-15", "2022-02-15", "2022-03-15", "2022-04-14", "2022-05-14", "2022-06-15", "2022-07-15", "2022-08-13", "2022-09-15", "2022-10-15", "2022-11-15", "2022-12-15", "2023-01-14", "2023-02-15", "2023-03-15", "2023-04-15", "2023-05-15", "2023-06-15", "2023-07-15", "2023-08-14", "2023-09-15", "2023-10-14", "2023-11-15", "2023-12-15", "2024-01-15", "2024-02-15", "2024-03-15", "2024-04-15", "2024-05-15", "2024-06-15", "2024-07-15", "2024-08-14", "2024-09-14", "2024-10-15", "2024-11-15", "2024-12-14", "2025-01-15", "2025-02-15", "2025-03-15", "2025-04-15", "2025-05-15", "2025-06-14", "2025-07-15", "2025-08-14", "2025-09-15", "2025-10-15", "2025-11-15", "2025-12-15", "2026-01-15", "2026-02-14", "2026-03-14", "2026-04-15", "2026-05-15", "2026-06-15"],
-            datasets: [{
-              data: [6.9, 6.96, 7.14, 7.14, 7.05, 6.87, 6.69, 6.6, 6.45, 6.48, 6.78, 6.99, 6.78, 6.45, 6.39, 6.36, 6.39, 6.33, 6.27, 6.36, 6.36, 6.51, 7.02, 7.68, 7.83, 7.59, 7.53, 7.47, 7.43, 7.56, 7.62, 7.65, 7.53, 7.35, 7.14, 6.93, 6.78, 6.81, 6.66, 6.66, 6.72, 6.75, 6.78, 6.78, 6.75, 6.66, 6.66, 6.63, 6.66, 6.69, 6.57, 6.39, 6.39, 6.3],
-              borderColor: '#e2792f',
-              backgroundColor: '#e2792f22',
-              borderWidth: 2,
-              pointRadius: 0,
-              tension: 0.1,
-              stepped: true,
-              fill: true,
-            }]
-          },
-          options: {
-            responsive: true,
-            plugins: { legend: { display: false } },
-            scales: {
-              x: { display: false },
-              y: {
-                ticks: { color: '#8a8f98', font: { size: 10 } },
-                grid: { color: '#242830' },
-              }
-            }
-          }
-        });
-
-        new Chart(document.getElementById('chart_tmc_35'), {
-          type: 'line',
-          data: {
-            labels: ["2022-01-15", "2022-02-15", "2022-03-15", "2022-04-14", "2022-05-14", "2022-06-15", "2022-07-15", "2022-08-13", "2022-09-15", "2022-10-15", "2022-11-15", "2022-12-15", "2023-01-14", "2023-02-15", "2023-03-15", "2023-04-15", "2023-05-15", "2023-06-15", "2023-07-15", "2023-08-14", "2023-09-15", "2023-10-14", "2023-11-15", "2023-12-15", "2024-01-15", "2024-02-15", "2024-03-15", "2024-04-15", "2024-05-15", "2024-06-15", "2024-07-15", "2024-08-14", "2024-09-14", "2024-10-15", "2024-11-15", "2024-12-14", "2025-01-15", "2025-02-15", "2025-03-15", "2025-04-15", "2025-05-15", "2025-06-14", "2025-07-15", "2025-08-14", "2025-09-15", "2025-10-15", "2025-11-15", "2025-12-15", "2026-01-15", "2026-02-14", "2026-03-14", "2026-04-15", "2026-05-15", "2026-06-15"],
-            datasets: [{
-              data: [24.99, 26.13, 27.24, 27.24, 28.65, 29.16, 29.76, 30.12, 30.21, 31.38, 32.25, 31.8, 32.55, 31.77, 32.82, 31.92, 33.06, 32.7, 32.88, 32.28, 30.9, 31.44, 31.39, 31.02, 31.32, 30.09, 29.61, 27.6, 27.48, 27.12, 26.37, 26.37, 25.74, 25.65, 25.8, 26.34, 27.12, 27.06, 27.66, 25.8, 25.89, 25.89, 25.23, 25.65, 25.2, 25.38, 25.17, 25.32, 25.56, 28.8, 29.85, 29.4, 30.42, 30.63],
-              borderColor: '#e2792f',
-              backgroundColor: '#e2792f22',
-              borderWidth: 2,
-              pointRadius: 0,
-              tension: 0.1,
-              stepped: true,
-              fill: true,
-            }]
-          },
-          options: {
-            responsive: true,
-            plugins: { legend: { display: false } },
-            scales: {
-              x: { display: false },
-              y: {
-                ticks: { color: '#8a8f98', font: { size: 10 } },
-                grid: { color: '#242830' },
-              }
-            }
-          }
-        });
 </script>
  
 </body>
