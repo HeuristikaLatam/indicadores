@@ -40,10 +40,13 @@ MACRO_INDICADORES = [
     "imacec", "tasa_desempleo", "libra_cobre", "bitcoin",
 ]
 
-# Indicadores que mindicador.cl publica con frecuencia mensual (el resto son
-# diarios). Se usa para armar "recientes" con el formato correcto (fecha
-# completa vs. periodo "YYYY-MM").
-INDICADORES_MENSUALES = {"utm", "ipc", "tpm", "imacec", "tasa_desempleo"}
+# Indicadores que mindicador.cl publica con frecuencia mensual — es solo
+# informativo (guarda el "tipo" en recientes), NO afecta el formato de la
+# fecha: mindicador.cl siempre entrega una fecha completa, incluso para
+# estos. OJO: la TPM se ve "mensual" conceptualmente, pero mindicador.cl la
+# reporta con fecha diaria (repite el mismo valor día a día hasta que el
+# Banco Central la cambia), así que va como diaria.
+INDICADORES_MENSUALES = {"utm", "ipc", "imacec", "tasa_desempleo"}
 
 # Tipos de operación TIP/TMC más relevantes para "costo del crédito".
 # Ver documentación: https://api.cmfchile.cl/documentacion/TIP.html
@@ -137,11 +140,18 @@ def get_mindicador_historico():
     return resultado
 
 
-def get_mindicador_recientes(n_puntos=6):
+def get_mindicador_recientes(macro_actual, n_puntos=6):
     """Serie corta 'reciente' de cada indicador — mindicador.cl entrega los
     últimos ~30 valores en el endpoint sin año (a diferencia de /api/{ind}/{año},
     que trae el año completo). Esto es lo que alimenta la fila de valores
-    recientes de cada tarjeta en Macro y las flechas ▲▼＝ del Resumen."""
+    recientes de cada tarjeta en Macro y las flechas ▲▼＝ del Resumen.
+
+    OJO: el endpoint "serie corta" (/api/{indicador}) y el endpoint "actual"
+    (/api, usado en get_mindicador_actual) a veces NO están sincronizados —
+    ej. Imacec o Bitcoin pueden aparecer más recientes en uno que en el
+    otro. Por eso recibimos macro_actual y, si su fecha es más nueva que el
+    último punto de la serie corta, lo agregamos — así la tarjeta siempre
+    termina en el mismo dato que ya se muestra como "hoy"."""
     print("Descargando valores recientes de mindicador.cl ...")
     resultado = {}
     for indicador in MACRO_INDICADORES:
@@ -152,20 +162,26 @@ def get_mindicador_recientes(n_puntos=6):
             continue
 
         serie = data.get("serie", [])
-        if not serie:
-            continue
-
         es_mensual = indicador in INDICADORES_MENSUALES
         puntos = []
         # La serie viene del más reciente al más antiguo; la damos vuelta
         # para que quede de más antiguo (izquierda) a más reciente (derecha).
+        # La etiqueta es siempre la fecha completa (dd/mm/aaaa se formatea
+        # después, en build_site.py) — mindicador.cl entrega fecha completa
+        # incluso para indicadores mensuales.
         for punto in reversed(serie[:n_puntos]):
             fecha = punto.get("fecha", "")
             valor = punto.get("valor")
             if not fecha or valor is None:
                 continue
-            etiqueta = fecha[:7] if es_mensual else fecha[:10]
-            puntos.append({"etiqueta": etiqueta, "valor": valor})
+            puntos.append({"etiqueta": fecha[:10], "valor": valor})
+
+        actual = macro_actual.get(indicador)
+        if actual and actual.get("fecha"):
+            etiqueta_actual = actual["fecha"][:10]
+            if not puntos or puntos[-1]["etiqueta"] != etiqueta_actual:
+                puntos.append({"etiqueta": etiqueta_actual, "valor": actual["valor"]})
+                puntos = puntos[-n_puntos:]
 
         if puntos:
             resultado[indicador] = {"tipo": "mensual" if es_mensual else "diario", "puntos": puntos}
@@ -779,11 +795,12 @@ def get_odepa_consumidor_tendencia():
 
 
 def main():
+    macro_actual = get_mindicador_actual()
     salida = {
         "generado": datetime.now(timezone.utc).isoformat(),
-        "macro": get_mindicador_actual(),
+        "macro": macro_actual,
         "historico_macro": get_mindicador_historico(),
-        "recientes": get_mindicador_recientes(),
+        "recientes": get_mindicador_recientes(macro_actual),
         "tasas": get_cmf_historico(),
         "combustibles": get_cne_combustibles(),
         "alimentos": {
@@ -794,7 +811,11 @@ def main():
         },
     }
 
-    # El IPC de mindicador.cl suele atrasarse; si CMF tiene datos, los usamos.
+    # El IPC de mindicador.cl suele atrasarse (a veces varios meses); si CMF
+    # tiene datos más recientes los usamos — tanto para el valor "hoy" como
+    # para la tarjeta de recientes, para que ambos queden consistentes y no
+    # se vea la tarjeta pegada en una fecha vieja mientras el KPI de arriba
+    # ya muestra el dato nuevo.
     ipc_cmf = get_cmf_ipc()
     if ipc_cmf:
         salida["historico_macro"]["ipc"] = [
@@ -807,6 +828,10 @@ def main():
             "valor": ultimo["valor"],
             "fecha": ultimo["fecha"],
         }
+        puntos_ipc_cmf = [
+            {"etiqueta": p["fecha"][:10], "valor": p["valor"]} for p in ipc_cmf[-6:]
+        ]
+        salida["recientes"]["ipc"] = {"tipo": "mensual", "puntos": puntos_ipc_cmf}
         print(f"  IPC actualizado desde CMF: {ultimo['valor']}% ({ultimo['fecha']})")
 
     with open("datos.json", "w", encoding="utf-8") as f:
