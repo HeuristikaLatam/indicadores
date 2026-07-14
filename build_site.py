@@ -299,18 +299,17 @@ HTML = f"""<!DOCTYPE html>
   }}
   .wrap{{max-width:1100px; margin:0 auto;}}
  
-  .brand{{display:flex; align-items:center; gap:14px; margin-bottom:8px;}}
-  .brand-mark{{
-    display:grid; grid-template-columns:repeat(3,10px); grid-template-rows:repeat(3,10px);
-    gap:3px; flex-shrink:0;
-  }}
-  .brand-mark div{{background:var(--muted); border-radius:2px;}}
-  .brand-mark div:nth-child(1),.brand-mark div:nth-child(3),
-  .brand-mark div:nth-child(7),.brand-mark div:nth-child(9){{background:transparent;}}
-  .brand-mark div:nth-child(5){{background:var(--orange);}}
-  .brand-name{{font-size:20px; font-weight:700; letter-spacing:.04em;}}
+  .brand{{display:flex; align-items:center; gap:14px; margin-bottom:2px;}}
+  .brand-mark{{flex-shrink:0;}}
+  .brand-name{{font-size:22px; font-weight:700; letter-spacing:.06em;}}
   .brand-name .k{{color:var(--orange);}}
-  .brand-tag{{font-size:11px; color:var(--muted); letter-spacing:.08em; text-transform:uppercase; margin:2px 0 28px 0;}}
+  .brand-tagline{{
+    font-size:11px; color:var(--muted); letter-spacing:.12em; text-transform:uppercase;
+    display:flex; align-items:center; gap:10px; margin:10px 0 18px 0;
+  }}
+  .brand-tagline .dash{{display:inline-block; width:22px; height:1px; background:var(--orange);}}
+  .brand-tag{{font-size:11px; color:var(--muted); letter-spacing:.08em; text-transform:uppercase; margin:0 0 8px 0;}}
+  .update-note{{font-size:11px; color:var(--muted); line-height:1.6; margin-bottom:28px;}}
  
   h1{{font-size:14px; font-weight:600; color:var(--muted); text-transform:uppercase;
      letter-spacing:.08em; margin:32px 0 14px;}}
@@ -358,14 +357,20 @@ HTML = f"""<!DOCTYPE html>
 <div class="wrap">
  
   <div class="brand">
-    <div class="brand-mark">
-      <div></div><div></div><div></div>
-      <div></div><div></div><div></div>
-      <div></div><div></div><div></div>
-    </div>
+    <svg class="brand-mark" width="40" height="40" viewBox="0 0 112 120" xmlns="http://www.w3.org/2000/svg">
+      <rect x="20" y="8"  width="22" height="40" rx="3" fill="#eef0f2"/>
+      <rect x="20" y="72" width="22" height="40" rx="3" fill="#eef0f2"/>
+      <rect x="68" y="8"  width="22" height="40" rx="3" fill="#eef0f2"/>
+      <path d="M68,72 H90 V112 Q68,112 68,90 Z" fill="#eef0f2"/>
+      <rect x="2"  y="48" width="16" height="16" rx="2" fill="#8a8f98"/>
+      <rect x="48" y="48" width="16" height="16" rx="2" fill="#e2792f"/>
+      <rect x="94" y="48" width="16" height="16" rx="2" fill="#8a8f98"/>
+    </svg>
     <div class="brand-name">HEURISTI<span class="k">K</span>A</div>
   </div>
+  <div class="brand-tagline"><span class="dash"></span>Capacidad Humana Amplificada<span class="dash"></span></div>
   <div class="brand-tag">Indicadores económicos · Chile</div>
+  <div class="update-note">Esta data se actualiza de forma automática a las 5:00 AM y 5:00 PM hora de Chile, todos los días.<br>Generado automáticamente el {generado}.</div>
  
   <h1>Macro</h1>
   <div class="grid">{macro_cards}
@@ -378,8 +383,6 @@ HTML = f"""<!DOCTYPE html>
   <div class="footer">
     Fuentes: <a href="https://mindicador.cl" target="_blank">mindicador.cl</a> (Banco Central de Chile)
     y <a href="https://api.cmfchile.cl" target="_blank">CMF Bancos</a> (Comisión para el Mercado Financiero).
-    Esta data se actualiza de forma automática a las 5:00 AM y 5:00 PM hora de Chile, todos los días.<br>
-    Generado automáticamente el {generado}.<br>
     Información con fines informativos. No constituye asesoría ni recomendación de inversión.
   </div>
  
