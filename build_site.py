@@ -628,10 +628,11 @@ def placeholder_seccion(titulo, descripcion):
 # consumidor (semanal, canasta básica).
 # ---------------------------------------------------------------------------
 
-alimentos = DATA.get("alimentos", {"mayoristas": {"nacional": {}, "regional": {}}, "consumidor": {}})
+alimentos = DATA.get("alimentos", {})
 mayoristas_nacional = alimentos.get("mayoristas", {}).get("nacional", {})
 mayoristas_regional = alimentos.get("mayoristas", {}).get("regional", {})
-consumidor = alimentos.get("consumidor", {})
+consumidor_nacional = alimentos.get("consumidor", {}).get("nacional", {})
+consumidor_regional = alimentos.get("consumidor", {}).get("regional", {})
 
 MAYORISTA_ORDEN = ["Palta", "Tomate", "Papa", "Cebolla", "Plátano", "Manzana"]
 
@@ -711,7 +712,7 @@ if mayoristas_tabla_filas:
 consumidor_kpis = ""
 fechas_consumidor = []
 for producto in CONSUMIDOR_ORDEN:
-    info = consumidor.get(producto)
+    info = consumidor_nacional.get(producto)
     if not info:
         continue
     fechas_consumidor.append(info.get("fecha", ""))
@@ -720,6 +721,36 @@ for producto in CONSUMIDOR_ORDEN:
       <div class="kpi-main">
         <div class="kpi-label">{CONSUMIDOR_ETIQUETAS.get(producto, producto)}</div>
         <div class="kpi-val">{fmt_alimento(info['promedio'], info.get('unidad', 'kg'))}</div>
+      </div>
+    </div>"""
+
+# --- Consumidor: tabla por región --------------------------------------------
+
+consumidor_tabla_filas = ""
+for nombre_api, etiqueta in ODEPA_REGIONES_ORDEN:
+    valores = consumidor_regional.get(nombre_api)
+    if not valores:
+        continue
+    celdas = "".join(
+        f'<td class="num">{fmt_alimento(valores[p], (consumidor_nacional.get(p) or {}).get("unidad", "kg")) if p in valores else "—"}</td>'
+        for p in CONSUMIDOR_ORDEN
+    )
+    consumidor_tabla_filas += f"<tr><td>{etiqueta}</td>{celdas}</tr>"
+
+consumidor_tabla = ""
+if consumidor_tabla_filas:
+    encabezados = "".join(f"<th>{CONSUMIDOR_ETIQUETAS.get(p, p)}</th>" for p in CONSUMIDOR_ORDEN)
+    consumidor_tabla = f"""
+    <div class="tbox">
+      <div class="tbox-head">
+        <span class="card-name">Precio al consumidor por región</span>
+        <span class="card-desc">Promedio de supermercados, ferias, carnicerías y panaderías de cada región.</span>
+      </div>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>Región</th>{encabezados}</tr></thead>
+          <tbody>{consumidor_tabla_filas}</tbody>
+        </table>
       </div>
     </div>"""
 
@@ -742,6 +773,56 @@ if mayoristas_kpis or consumidor_kpis:
     <div class="subhead">Consumidor (semanal)</div>
     <div class="kpis">{consumidor_kpis}</div>
     <div class="section-sub" style="margin-top:10px;">Precio promedio al consumidor (supermercados, ferias, carnicerías y panaderías), semana que termina el {fecha_legible(fecha_consumidor_dato) if fecha_consumidor_dato else 's/i'}.</div>"""
+    if consumidor_tabla:
+        alimentos_seccion_body += f"""
+    <div class="tables" style="margin-top:14px;">{consumidor_tabla}</div>"""
+
+    # --- Tendencia mensual (últimos ~9 meses) de cada producto de la canasta ---
+    # Un punto por mes: el último día (o última semana, para consumidor) con
+    # datos de ese mes, terminando en el mismo valor que ya se ve en los KPIs
+    # de arriba — para revisar la variación reciente de cada producto.
+
+    tendencia_mayoristas = alimentos.get("tendencia_mayoristas", {})
+    tendencia_consumidor = alimentos.get("tendencia_consumidor", {})
+
+    def _tendencia_card(nombre, serie, unidad="kg"):
+        if not serie:
+            return ""
+        puntos_html = ""
+        total = len(serie)
+        for i, p in enumerate(serie):
+            es_destacado = (i == total - 1)
+            clase = "pt pt-destacado" if es_destacado else "pt"
+            puntos_html += f"""
+            <div class="{clase}">
+              <div class="pt-label">{etiqueta_mes(p['periodo'])}</div>
+              <div class="pt-val">{fmt_alimento(p['valor'], unidad)}</div>
+            </div>"""
+        return f"""
+    <div class="card-wide">
+      <div class="card-head">
+        <span class="card-name">{nombre}</span>
+        <span class="card-desc">Precio del último día con datos de cada mes.</span>
+      </div>
+      <div class="card-timeline">{puntos_html}</div>
+    </div>"""
+
+    tendencia_cards = ""
+    for producto in MAYORISTA_ORDEN:
+        tendencia_cards += _tendencia_card(f"{producto} (mayorista)", tendencia_mayoristas.get(producto, []))
+    for producto in CONSUMIDOR_ORDEN:
+        unidad_producto = (consumidor_nacional.get(producto) or {}).get("unidad", "kg")
+        tendencia_cards += _tendencia_card(
+            f"{CONSUMIDOR_ETIQUETAS.get(producto, producto)} (consumidor)",
+            tendencia_consumidor.get(producto, []),
+            unidad_producto,
+        )
+
+    if tendencia_cards:
+        alimentos_seccion_body += f"""
+    <div class="subhead">Tendencia mensual</div>
+    <div class="grid">{tendencia_cards}
+    </div>"""
 else:
     alimentos_seccion_body = placeholder_seccion(
         "Precios de alimentos",
