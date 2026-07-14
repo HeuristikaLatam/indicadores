@@ -36,6 +36,20 @@ def fmt_alimento(valor, unidad="kg"):
     return f"${valor:,.0f}".replace(",", ".") + f" /{unidad}"
 
 
+def anomalia_card_html(descripcion_html):
+    """Tarjeta destacada para el dato más 'inusual' de una categoría (ver
+    _anomalia_por_zscore en indices.py) — visualmente distinta de las
+    tarjetas normales para que se note que es un hallazgo, no un dato más."""
+    return f"""
+    <div class="anomaly-card">
+      <div class="anomaly-icon">⚡</div>
+      <div class="anomaly-body">
+        <div class="anomaly-title">Lo más inusual</div>
+        <div class="anomaly-desc">{descripcion_html}</div>
+      </div>
+    </div>"""
+
+
 def fecha_legible(iso):
     """Formato único para todas las fechas del sitio: dd/mm/aaaa."""
     try:
@@ -126,6 +140,7 @@ historico_macro = DATA.get("historico_macro", {})
 recientes = DATA.get("recientes", {})
 tasas = DATA.get("tasas", {"tip": {}, "tmc": {}})
 combustibles = DATA.get("combustibles", {"nacional": {}, "regional": {}})
+anomalias = DATA.get("anomalias", {})
 _alimentos_resumen = DATA.get("alimentos", {})
 _consumidor_nacional_resumen = _alimentos_resumen.get("consumidor", {}).get("nacional", {})
 
@@ -238,6 +253,20 @@ for key, label in MACRO_ORDEN:
       <div class="card-timeline">{puntos_html}</div>
     </div>"""
 
+# --- Anomalía destacada de Macro --------------------------------------------
+
+anomalia_macro_html = ""
+_am = anomalias.get("macro")
+if _am:
+    _am_label = dict(MACRO_ORDEN).get(_am["clave"], _am["clave"])
+    _am_unidad = macro.get(_am["clave"], {}).get("unidad", "")
+    _am_signo = "+" if _am["cambio_pct"] > 0 else ""
+    anomalia_macro_html = anomalia_card_html(
+        f"<strong>{_am_label}</strong> tuvo el movimiento más inusual de la categoría: "
+        f"{_am_signo}{_am['cambio_pct']:.2f}% el {fecha_legible(_am['periodo'])} "
+        f"(valor actual: {fmt(_am['valor_actual'], _am_unidad, _am['clave'])})."
+    )
+
 # ---------------------------------------------------------------------------
 # Tabla de tasas (valor más reciente de cada tipo)
 # ---------------------------------------------------------------------------
@@ -263,6 +292,18 @@ def tabla_tasas(bloque):
 
 tip_rows = tabla_tasas(tasas.get("tip", {}))
 tmc_rows = tabla_tasas(tasas.get("tmc", {}))
+
+# --- Anomalía destacada de Crédito ------------------------------------------
+
+anomalia_credito_html = ""
+_ac = anomalias.get("credito")
+if _ac:
+    _ac_signo = "+" if _ac["cambio_pct"] > 0 else ""
+    anomalia_credito_html = anomalia_card_html(
+        f"<strong>{_ac['etiqueta']}</strong> ({_ac['recurso'].upper()}) tuvo el movimiento más inusual "
+        f"de la categoría: {_ac_signo}{_ac['cambio_pct']:.2f}% al {fecha_legible(_ac['fecha'])} "
+        f"(tasa actual: {_ac['valor_actual']:.2f}%)."
+    )
 
 tasas_seccion = ""
 if tasas.get("tip") or tasas.get("tmc"):
@@ -296,6 +337,7 @@ if tasas.get("tip") or tasas.get("tmc"):
         </div>
       </div>
     </div>
+    {anomalia_credito_html}
     </section>
     """
 
@@ -851,6 +893,23 @@ if mayoristas_kpis or consumidor_kpis:
     <div class="subhead">Tendencia mensual</div>
     <div class="grid">{tendencia_cards}
     </div>"""
+
+    # --- Anomalía destacada de Alimentos ------------------------------------
+
+    _aa = anomalias.get("alimentos")
+    if _aa:
+        if _aa["tipo_canasta"] == "mayorista":
+            _aa_nombre = f"{_aa['producto']} (mayorista)"
+            _aa_unidad = "kg"
+        else:
+            _aa_nombre = f"{CONSUMIDOR_ETIQUETAS.get(_aa['producto'], _aa['producto'])} (consumidor)"
+            _aa_unidad = (consumidor_nacional.get(_aa["producto"]) or {}).get("unidad", "kg")
+        _aa_signo = "+" if _aa["cambio_pct"] > 0 else ""
+        alimentos_seccion_body += anomalia_card_html(
+            f"<strong>{_aa_nombre}</strong> tuvo el movimiento más inusual de la categoría: "
+            f"{_aa_signo}{_aa['cambio_pct']:.2f}% al {fecha_legible(_aa['fecha'])} "
+            f"(precio actual: {fmt_alimento(_aa['valor_actual'], _aa_unidad)})."
+        )
 else:
     alimentos_seccion_body = placeholder_seccion(
         "Precios de alimentos",
@@ -1021,6 +1080,18 @@ HTML = f"""<!DOCTYPE html>
   .footer{{margin-top:36px; font-size:11px; color:var(--muted); line-height:1.6;}}
   .footer a{{color:var(--orange); text-decoration:none;}}
 
+  .anomaly-card{{
+    display:flex; align-items:flex-start; gap:12px;
+    background:linear-gradient(135deg, rgba(255,140,0,0.10), rgba(255,140,0,0.03));
+    border:1px solid var(--orange); border-radius:10px;
+    padding:14px 18px; margin-top:16px;
+  }}
+  .anomaly-icon{{font-size:20px; line-height:1; flex:0 0 auto;}}
+  .anomaly-body{{min-width:0;}}
+  .anomaly-title{{font-size:11px; font-weight:700; color:var(--orange); text-transform:uppercase; letter-spacing:.06em; margin-bottom:4px;}}
+  .anomaly-desc{{font-size:13px; color:var(--text); line-height:1.5;}}
+  .anomaly-desc strong{{color:var(--orange);}}
+
   @media (max-width: 480px){{
     body{{padding:20px 14px 44px;}}
     .brand-mark{{width:32px; height:32px;}}
@@ -1083,6 +1154,7 @@ HTML = f"""<!DOCTYPE html>
     <div class="section-sub">Todos los indicadores, con su historial reciente.</div>
     <div class="grid">{macro_cards}
     </div>
+    {anomalia_macro_html}
   </section>
 
   {tasas_seccion}
