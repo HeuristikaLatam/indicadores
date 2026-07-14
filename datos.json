@@ -1,23 +1,23 @@
 {
-  "generado": "2026-07-13T21:38:09.212930-04:00",
+  "generado": "2026-07-13T21:55:02.193400-04:00",
   "macro": {
     "dolar": {
       "nombre": "Dólar observado",
       "unidad": "Pesos",
-      "valor": 928.84,
-      "fecha": "2026-07-14T04:00:00.000Z"
+      "valor": 924.94,
+      "fecha": "2026-07-13T04:00:00.000Z"
     },
     "euro": {
       "nombre": "Euro",
       "unidad": "Pesos",
-      "valor": 1057.66,
-      "fecha": "2026-07-14T04:00:00.000Z"
+      "valor": 1055.87,
+      "fecha": "2026-07-13T04:00:00.000Z"
     },
     "uf": {
       "nombre": "Unidad de fomento (UF)",
       "unidad": "Pesos",
       "valor": 40844.79,
-      "fecha": "2026-08-09T04:00:00.000Z"
+      "fecha": "2026-07-13T04:00:00.000Z"
     },
     "utm": {
       "nombre": "Unidad Tributaria Mensual (UTM)",
@@ -52,8 +52,8 @@
     "libra_cobre": {
       "nombre": "Libra de Cobre",
       "unidad": "Dólar",
-      "valor": 6.09,
-      "fecha": "2026-07-14T04:00:00.000Z"
+      "valor": 6.1,
+      "fecha": "2026-07-13T04:00:00.000Z"
     },
     "bitcoin": {
       "nombre": "Bitcoin",
@@ -2273,6 +2273,10 @@
       "tipo": "diario",
       "puntos": [
         {
+          "etiqueta": "2026-07-06T04:00:00.000Z",
+          "valor": 921.74
+        },
+        {
           "etiqueta": "2026-07-07T04:00:00.000Z",
           "valor": 926.25
         },
@@ -2291,16 +2295,16 @@
         {
           "etiqueta": "2026-07-13T04:00:00.000Z",
           "valor": 924.94
-        },
-        {
-          "etiqueta": "2026-07-14T04:00:00.000Z",
-          "valor": 928.84
         }
       ]
     },
     "euro": {
       "tipo": "diario",
       "puntos": [
+        {
+          "etiqueta": "2026-07-06T04:00:00.000Z",
+          "valor": 1054.38
+        },
         {
           "etiqueta": "2026-07-07T04:00:00.000Z",
           "valor": 1059.54
@@ -2320,10 +2324,6 @@
         {
           "etiqueta": "2026-07-13T04:00:00.000Z",
           "valor": 1055.87
-        },
-        {
-          "etiqueta": "2026-07-14T04:00:00.000Z",
-          "valor": 1057.66
         }
       ]
     },
@@ -2331,27 +2331,27 @@
       "tipo": "diario",
       "puntos": [
         {
-          "etiqueta": "2026-08-04T04:00:00.000Z",
+          "etiqueta": "2026-07-08T04:00:00.000Z",
+          "valor": 40842.07
+        },
+        {
+          "etiqueta": "2026-07-09T04:00:00.000Z",
           "valor": 40844.79
         },
         {
-          "etiqueta": "2026-08-05T04:00:00.000Z",
+          "etiqueta": "2026-07-10T04:00:00.000Z",
           "valor": 40844.79
         },
         {
-          "etiqueta": "2026-08-06T04:00:00.000Z",
+          "etiqueta": "2026-07-11T04:00:00.000Z",
           "valor": 40844.79
         },
         {
-          "etiqueta": "2026-08-07T04:00:00.000Z",
+          "etiqueta": "2026-07-12T04:00:00.000Z",
           "valor": 40844.79
         },
         {
-          "etiqueta": "2026-08-08T04:00:00.000Z",
-          "valor": 40844.79
-        },
-        {
-          "etiqueta": "2026-08-09T04:00:00.000Z",
+          "etiqueta": "2026-07-13T04:00:00.000Z",
           "valor": 40844.79
         }
       ]
@@ -2505,6 +2505,10 @@
       "tipo": "diario",
       "puntos": [
         {
+          "etiqueta": "2026-07-06T04:00:00.000Z",
+          "valor": 6.03
+        },
+        {
           "etiqueta": "2026-07-07T04:00:00.000Z",
           "valor": 6.04
         },
@@ -2523,10 +2527,6 @@
         {
           "etiqueta": "2026-07-13T04:00:00.000Z",
           "valor": 6.1
-        },
-        {
-          "etiqueta": "2026-07-14T04:00:00.000Z",
-          "valor": 6.09
         }
       ]
     },
