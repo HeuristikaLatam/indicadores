@@ -94,6 +94,15 @@ def get_mindicador_historico():
     resultado = {}
     recientes = {}
  
+    # La UF (y a veces la UTM) viene publicada por el Banco Central con
+    # semanas/meses de anticipación. Si tomáramos literalmente "los últimos
+    # N puntos de la serie" incluiríamos fechas futuras y el destacado
+    # mostraría un valor de un día que aún no llega. Filtramos todo a
+    # <= hoy (hora de Chile) antes de quedarnos con los N más recientes.
+    hoy_chile = datetime.now(CHILE_TZ).date()
+    hoy_str = hoy_chile.isoformat()
+    mes_actual_str = hoy_str[:7]
+ 
     for indicador in MACRO_INDICADORES:
         puntos_por_mes = {}
         puntos_crudos = {}  # fecha -> valor, sin agregar
@@ -121,13 +130,15 @@ def get_mindicador_historico():
         resultado[indicador] = serie_mensual
  
         if indicador in INDICADORES_DIARIOS:
-            ultimos = sorted(puntos_crudos.items())[-N_RECIENTES:]
+            puntos_pasados = {f: v for f, v in puntos_crudos.items() if f[:10] <= hoy_str}
+            ultimos = sorted(puntos_pasados.items())[-N_RECIENTES:]
             recientes[indicador] = {
                 "tipo": "diario",
                 "puntos": [{"etiqueta": f, "valor": v} for f, v in ultimos],
             }
         else:
-            ultimos = serie_mensual[-N_RECIENTES:]
+            serie_pasada = [p for p in serie_mensual if p["periodo"] <= mes_actual_str]
+            ultimos = serie_pasada[-N_RECIENTES:]
             recientes[indicador] = {
                 "tipo": "mensual",
                 "puntos": [{"etiqueta": p["periodo"], "valor": p["valor"]} for p in ultimos],
