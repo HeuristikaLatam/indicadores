@@ -143,17 +143,21 @@ if tasas.get("tip") or tasas.get("tmc"):
     <div class="tables">
       <div class="tbox">
         <div class="tbox-title">Tasa de interés promedio (TIP)</div>
-        <table>
-          <thead><tr><th>Tipo de operación</th><th>Tasa</th><th>Vigencia desde</th></tr></thead>
-          <tbody>{tip_rows}</tbody>
-        </table>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>Tipo de operación</th><th>Tasa</th><th>Vigencia desde</th></tr></thead>
+            <tbody>{tip_rows}</tbody>
+          </table>
+        </div>
       </div>
       <div class="tbox">
         <div class="tbox-title">Tasa máxima convencional (TMC)</div>
-        <table>
-          <thead><tr><th>Tipo de operación</th><th>Tasa</th><th>Vigencia desde</th></tr></thead>
-          <tbody>{tmc_rows}</tbody>
-        </table>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>Tipo de operación</th><th>Tasa</th><th>Vigencia desde</th></tr></thead>
+            <tbody>{tmc_rows}</tbody>
+          </table>
+        </div>
       </div>
     </div>
     """
@@ -373,24 +377,27 @@ HTML = f"""<!DOCTYPE html>
   }}
   .card-name{{font-size:12px; color:var(--muted); margin-bottom:12px;}}
   .card-timeline{{
-    display:flex; align-items:flex-end; justify-content:space-between; gap:6px;
+    display:flex; align-items:flex-end; justify-content:space-between; gap:10px;
+    overflow-x:auto; scrollbar-width:none; -webkit-overflow-scrolling:touch;
   }}
-  .pt{{text-align:center; flex:1;}}
-  .pt-label{{font-size:10px; color:var(--muted); margin-bottom:4px;}}
-  .pt-val{{font-size:12px; font-weight:600; color:var(--text); font-variant-numeric:tabular-nums;}}
+  .card-timeline::-webkit-scrollbar{{display:none;}}
+  .pt{{text-align:center; flex:0 0 auto; min-width:44px;}}
+  .pt-label{{font-size:10px; color:var(--muted); margin-bottom:4px; white-space:nowrap;}}
+  .pt-val{{font-size:12px; font-weight:600; color:var(--text); font-variant-numeric:tabular-nums; white-space:nowrap;}}
   .pt-destacado .pt-label{{color:var(--orange); font-weight:600;}}
   .pt-destacado .pt-val{{font-size:20px; font-weight:700; color:var(--orange);}}
  
   .tables{{display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:16px;}}
   .tbox{{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:16px;}}
   .tbox-title{{font-size:13px; font-weight:600; margin-bottom:10px; color:var(--text);}}
-  table{{width:100%; border-collapse:collapse; font-size:13px;}}
+  .table-scroll{{overflow-x:auto; -webkit-overflow-scrolling:touch;}}
+  table{{width:100%; min-width:280px; border-collapse:collapse; font-size:13px;}}
   th{{text-align:left; color:var(--muted); font-weight:500; font-size:11px;
-     text-transform:uppercase; letter-spacing:.04em; padding-bottom:8px; border-bottom:1px solid var(--line);}}
-  td{{padding:8px 0; border-bottom:1px solid var(--line);}}
+     text-transform:uppercase; letter-spacing:.04em; padding-bottom:8px; border-bottom:1px solid var(--line); white-space:nowrap;}}
+  td{{padding:8px 0; border-bottom:1px solid var(--line); white-space:nowrap;}}
   td.num{{font-variant-numeric:tabular-nums; font-weight:600; color:var(--orange);}}
   td.date-cell{{color:var(--muted); font-size:12px;}}
-  td.empty{{color:var(--muted); font-style:italic; text-align:center;}}
+  td.empty{{color:var(--muted); font-style:italic; text-align:center; white-space:normal;}}
  
   .chart-grid{{
     display:flex; flex-direction:column; gap:16px;
@@ -405,6 +412,15 @@ HTML = f"""<!DOCTYPE html>
  
   .footer{{margin-top:36px; font-size:11px; color:var(--muted); line-height:1.6;}}
   .footer a{{color:var(--orange); text-decoration:none;}}
+ 
+  @media (max-width: 480px){{
+    body{{padding:20px 14px 44px;}}
+    .brand-mark{{width:32px; height:32px;}}
+    .brand-name{{font-size:18px;}}
+    .card-wide{{padding:14px 14px 16px;}}
+    .chart-card{{padding:16px 14px;}}
+    .chart-canvas-wrap{{height:220px;}}
+  }}
 </style>
 </head>
 <body>
@@ -444,6 +460,13 @@ HTML = f"""<!DOCTYPE html>
  
 <script>
 {CHARTS_JS}
+ 
+// En pantallas angostas cada fila de indicador puede no caber entera:
+// la dejamos desplazada hasta el valor destacado (el de hoy, a la derecha)
+// para que se vea de entrada sin que el usuario tenga que hacer swipe.
+document.querySelectorAll('.card-timeline').forEach(function(row) {{
+  row.scrollLeft = row.scrollWidth;
+}});
 </script>
  
 </body>
