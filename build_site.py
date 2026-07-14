@@ -37,22 +37,27 @@ def fmt_alimento(valor, unidad="kg"):
 
 
 def fecha_legible(iso):
+    """Formato único para todas las fechas del sitio: dd/mm/aaaa."""
     try:
-        return datetime.fromisoformat(iso.replace("Z", "+00:00")).strftime("%d-%m-%Y")
+        return datetime.fromisoformat(iso.replace("Z", "+00:00")).strftime("%d/%m/%Y")
     except Exception:
         return iso
 
 
 def fecha_hora_legible(iso):
     try:
-        return datetime.fromisoformat(iso.replace("Z", "+00:00")).strftime("%d-%m-%Y a las %H:%M")
+        return datetime.fromisoformat(iso.replace("Z", "+00:00")).strftime("%d/%m/%Y a las %H:%M")
     except Exception:
         return iso
 
 
 def etiqueta_dia(iso):
+    """Fecha completa dd/mm/aaaa para los puntos de las tarjetas — antes
+    mostraba solo día-mes sin año; ahora siempre la fecha exacta que entrega
+    la fuente (mindicador.cl da fecha completa incluso para indicadores
+    mensuales, así que ya no hace falta truncarla a "mes año")."""
     try:
-        return datetime.fromisoformat(iso.replace("Z", "+00:00")).strftime("%d-%m")
+        return datetime.fromisoformat(iso.replace("Z", "+00:00")).strftime("%d/%m/%Y")
     except Exception:
         return iso
 
@@ -199,23 +204,22 @@ for key, label in MACRO_ORDEN:
     if not d:
         continue
 
-    rec = recientes.get(key, {"tipo": "diario", "puntos": []})
-    es_diario = rec.get("tipo") != "mensual"
+    rec = recientes.get(key, {"puntos": []})
     puntos = rec.get("puntos", [])
 
     # Fila cronológica: el más antiguo a la izquierda, el más reciente
     # (destacado, en naranjo) a la derecha. Si no hay histórico "reciente"
     # cargado (ej. la corrida de hoy no logró traer datos de este
-    # indicador), al menos mostramos el valor actual como único punto,
-    # con el formato de fecha que corresponda (día completo vs. período).
+    # indicador), al menos mostramos el valor actual como único punto.
+    # La etiqueta siempre es la fecha completa (dd/mm/aaaa) — mindicador.cl
+    # entrega fecha completa incluso para indicadores mensuales.
     if not puntos:
-        etiqueta_respaldo = d["fecha"][:10] if es_diario else d["fecha"][:7]
-        puntos = [{"etiqueta": etiqueta_respaldo, "valor": d["valor"]}]
+        puntos = [{"etiqueta": d["fecha"][:10], "valor": d["valor"]}]
 
     puntos_html = ""
     total = len(puntos)
     for i, p in enumerate(puntos):
-        etiqueta = etiqueta_dia(p["etiqueta"]) if es_diario else etiqueta_mes(p["etiqueta"])
+        etiqueta = etiqueta_dia(p["etiqueta"])
         es_destacado = (i == total - 1)
         clase = "pt pt-destacado" if es_destacado else "pt"
         puntos_html += f"""
@@ -819,7 +823,7 @@ if mayoristas_kpis or consumidor_kpis:
             clase = "pt pt-destacado" if es_destacado else "pt"
             puntos_html += f"""
             <div class="{clase}">
-              <div class="pt-label">{etiqueta_mes(p['periodo'])}</div>
+              <div class="pt-label">{fecha_legible(p.get('fecha', p['periodo']))}</div>
               <div class="pt-val">{fmt_alimento(p['valor'], unidad)}</div>
             </div>"""
         return f"""
