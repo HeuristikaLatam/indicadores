@@ -1,5 +1,5 @@
 {
-  "generado": "2026-07-14T23:14:25.402888+00:00",
+  "generado": "2026-07-14T23:27:47.556520+00:00",
   "macro": {
     "dolar": {
       "nombre": "Dólar observado",
@@ -13376,18 +13376,6 @@
           "Pollo Entero": 3860,
           "Leche Fluida Entera": 1220
         },
-        "Región de Ñuble": {
-          "Marraqueta": 2208,
-          "Asado Carnicero": 11020,
-          "Pollo Entero": 3768,
-          "Leche Fluida Entera": 1196
-        },
-        "Región de Arica y Parinacota": {
-          "Marraqueta": 2144,
-          "Asado Carnicero": 9752,
-          "Pollo Entero": 3898,
-          "Leche Fluida Entera": 1208
-        },
         "Región Metropolitana de Santiago": {
           "Marraqueta": 2218,
           "Asado Carnicero": 9804,
@@ -13399,6 +13387,12 @@
           "Asado Carnicero": 10007,
           "Pollo Entero": 3789,
           "Leche Fluida Entera": 1219
+        },
+        "Región de Ñuble": {
+          "Marraqueta": 2208,
+          "Asado Carnicero": 11020,
+          "Pollo Entero": 3768,
+          "Leche Fluida Entera": 1196
         },
         "Región de La Araucanía": {
           "Marraqueta": 2275,
@@ -13424,6 +13418,12 @@
           "Asado Carnicero": 10538,
           "Pollo Entero": 3767,
           "Leche Fluida Entera": 1185
+        },
+        "Región de Arica y Parinacota": {
+          "Marraqueta": 2144,
+          "Asado Carnicero": 9752,
+          "Pollo Entero": 3898,
+          "Leche Fluida Entera": 1208
         }
       }
     },
@@ -13947,6 +13947,32 @@
           "valor": 1205
         }
       ]
+    }
+  },
+  "anomalias": {
+    "macro": {
+      "clave": "tasa_desempleo",
+      "periodo": "2026-05",
+      "valor_actual": 9.44,
+      "cambio_pct": 3.62,
+      "zscore": 0.98
+    },
+    "credito": {
+      "recurso": "tmc",
+      "tipo": "24",
+      "etiqueta": "Hipotecario UF (>1 año, hasta 2.000 UF)",
+      "fecha": "2026-06-15",
+      "valor_actual": 6.3,
+      "cambio_pct": -1.41,
+      "zscore": -0.38
+    },
+    "alimentos": {
+      "tipo_canasta": "consumidor",
+      "producto": "Pollo Entero",
+      "fecha": "2026-07-10",
+      "valor_actual": 3824,
+      "cambio_pct": 1.95,
+      "zscore": 2.26
     }
   }
 }
