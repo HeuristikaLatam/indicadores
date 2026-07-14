@@ -1,5 +1,5 @@
 {
-  "generado": "2026-07-14T19:20:52.622347+00:00",
+  "generado": "2026-07-14T19:34:12.716923+00:00",
   "macro": {
     "dolar": {
       "nombre": "Dólar observado",
@@ -3398,31 +3398,611 @@
       }
     },
     "consumidor": {
-      "Marraqueta": {
-        "promedio": 2293,
-        "fecha": "2026-07-10",
-        "unidad": "kg"
+      "nacional": {
+        "Marraqueta": {
+          "promedio": 2293,
+          "fecha": "2026-07-10",
+          "unidad": "kg"
+        },
+        "Asado Carnicero": {
+          "promedio": 10516,
+          "fecha": "2026-07-10",
+          "unidad": "kg"
+        },
+        "Pollo Entero": {
+          "promedio": 3824,
+          "fecha": "2026-07-10",
+          "unidad": "kg"
+        },
+        "Huevo blanco - Extra": {
+          "promedio": 220,
+          "fecha": "2026-07-10",
+          "unidad": "un"
+        },
+        "Leche Fluida Entera": {
+          "promedio": 1205,
+          "fecha": "2026-07-10",
+          "unidad": "L"
+        }
       },
-      "Asado Carnicero": {
-        "promedio": 10516,
-        "fecha": "2026-07-10",
-        "unidad": "kg"
-      },
-      "Pollo Entero": {
-        "promedio": 3824,
-        "fecha": "2026-07-10",
-        "unidad": "kg"
-      },
-      "Huevo blanco - Extra": {
-        "promedio": 220,
-        "fecha": "2026-07-10",
-        "unidad": "un"
-      },
-      "Leche Fluida Entera": {
-        "promedio": 1205,
-        "fecha": "2026-07-10",
-        "unidad": "L"
+      "regional": {
+        "Región de Coquimbo": {
+          "Marraqueta": 2378,
+          "Asado Carnicero": 10840,
+          "Pollo Entero": 3860,
+          "Leche Fluida Entera": 1220
+        },
+        "Región de Ñuble": {
+          "Marraqueta": 2208,
+          "Asado Carnicero": 11020,
+          "Pollo Entero": 3768,
+          "Leche Fluida Entera": 1196
+        },
+        "Región de Arica y Parinacota": {
+          "Marraqueta": 2144,
+          "Asado Carnicero": 9752,
+          "Pollo Entero": 3898,
+          "Leche Fluida Entera": 1208
+        },
+        "Región Metropolitana de Santiago": {
+          "Marraqueta": 2218,
+          "Asado Carnicero": 9804,
+          "Pollo Entero": 3715,
+          "Leche Fluida Entera": 1186
+        },
+        "Región de Los Lagos": {
+          "Marraqueta": 2360,
+          "Asado Carnicero": 10007,
+          "Pollo Entero": 3789,
+          "Leche Fluida Entera": 1219
+        },
+        "Región de La Araucanía": {
+          "Marraqueta": 2275,
+          "Asado Carnicero": 11195,
+          "Pollo Entero": 3811,
+          "Huevo blanco - Extra": 220,
+          "Leche Fluida Entera": 1230
+        },
+        "Región del Biobío": {
+          "Marraqueta": 2340,
+          "Asado Carnicero": 10366,
+          "Pollo Entero": 4042,
+          "Leche Fluida Entera": 1221
+        },
+        "Región del Maule": {
+          "Marraqueta": 2210,
+          "Asado Carnicero": 11087,
+          "Pollo Entero": 3847,
+          "Leche Fluida Entera": 1189
+        },
+        "Región de Valparaíso": {
+          "Marraqueta": 2352,
+          "Asado Carnicero": 10538,
+          "Pollo Entero": 3767,
+          "Leche Fluida Entera": 1185
+        }
       }
+    },
+    "tendencia_mayoristas": {
+      "Palta": [
+        {
+          "periodo": "2025-11",
+          "fecha": "2025-11-28",
+          "valor": 2590
+        },
+        {
+          "periodo": "2025-12",
+          "fecha": "2025-12-31",
+          "valor": 2892
+        },
+        {
+          "periodo": "2026-01",
+          "fecha": "2026-01-30",
+          "valor": 3070
+        },
+        {
+          "periodo": "2026-02",
+          "fecha": "2026-02-27",
+          "valor": 2896
+        },
+        {
+          "periodo": "2026-03",
+          "fecha": "2026-03-31",
+          "valor": 3538
+        },
+        {
+          "periodo": "2026-04",
+          "fecha": "2026-04-30",
+          "valor": 3340
+        },
+        {
+          "periodo": "2026-05",
+          "fecha": "2026-05-29",
+          "valor": 3186
+        },
+        {
+          "periodo": "2026-06",
+          "fecha": "2026-06-30",
+          "valor": 2932
+        },
+        {
+          "periodo": "2026-07",
+          "fecha": "2026-07-10",
+          "valor": 3161
+        }
+      ],
+      "Tomate": [
+        {
+          "periodo": "2025-11",
+          "fecha": "2025-11-28",
+          "valor": 619
+        },
+        {
+          "periodo": "2025-12",
+          "fecha": "2025-12-31",
+          "valor": 891
+        },
+        {
+          "periodo": "2026-01",
+          "fecha": "2026-01-30",
+          "valor": 435
+        },
+        {
+          "periodo": "2026-02",
+          "fecha": "2026-02-27",
+          "valor": 906
+        },
+        {
+          "periodo": "2026-03",
+          "fecha": "2026-03-31",
+          "valor": 757
+        },
+        {
+          "periodo": "2026-04",
+          "fecha": "2026-04-30",
+          "valor": 729
+        },
+        {
+          "periodo": "2026-05",
+          "fecha": "2026-05-29",
+          "valor": 751
+        },
+        {
+          "periodo": "2026-06",
+          "fecha": "2026-06-30",
+          "valor": 739
+        },
+        {
+          "periodo": "2026-07",
+          "fecha": "2026-07-10",
+          "valor": 797
+        }
+      ],
+      "Papa": [
+        {
+          "periodo": "2025-11",
+          "fecha": "2025-11-28",
+          "valor": 240
+        },
+        {
+          "periodo": "2025-12",
+          "fecha": "2025-12-31",
+          "valor": 300
+        },
+        {
+          "periodo": "2026-01",
+          "fecha": "2026-01-30",
+          "valor": 291
+        },
+        {
+          "periodo": "2026-02",
+          "fecha": "2026-02-27",
+          "valor": 298
+        },
+        {
+          "periodo": "2026-03",
+          "fecha": "2026-03-31",
+          "valor": 448
+        },
+        {
+          "periodo": "2026-04",
+          "fecha": "2026-04-30",
+          "valor": 380
+        },
+        {
+          "periodo": "2026-05",
+          "fecha": "2026-05-29",
+          "valor": 384
+        },
+        {
+          "periodo": "2026-06",
+          "fecha": "2026-06-30",
+          "valor": 388
+        },
+        {
+          "periodo": "2026-07",
+          "fecha": "2026-07-10",
+          "valor": 377
+        }
+      ],
+      "Cebolla": [
+        {
+          "periodo": "2025-11",
+          "fecha": "2025-11-28",
+          "valor": 332
+        },
+        {
+          "periodo": "2025-12",
+          "fecha": "2025-12-31",
+          "valor": 281
+        },
+        {
+          "periodo": "2026-01",
+          "fecha": "2026-01-30",
+          "valor": 280
+        },
+        {
+          "periodo": "2026-02",
+          "fecha": "2026-02-27",
+          "valor": 289
+        },
+        {
+          "periodo": "2026-03",
+          "fecha": "2026-03-31",
+          "valor": 370
+        },
+        {
+          "periodo": "2026-04",
+          "fecha": "2026-04-30",
+          "valor": 383
+        },
+        {
+          "periodo": "2026-05",
+          "fecha": "2026-05-29",
+          "valor": 420
+        },
+        {
+          "periodo": "2026-06",
+          "fecha": "2026-06-30",
+          "valor": 381
+        },
+        {
+          "periodo": "2026-07",
+          "fecha": "2026-07-10",
+          "valor": 398
+        }
+      ],
+      "Plátano": [
+        {
+          "periodo": "2025-11",
+          "fecha": "2025-11-28",
+          "valor": 1315
+        },
+        {
+          "periodo": "2025-12",
+          "fecha": "2025-12-31",
+          "valor": 1006
+        },
+        {
+          "periodo": "2026-01",
+          "fecha": "2026-01-30",
+          "valor": 761
+        },
+        {
+          "periodo": "2026-02",
+          "fecha": "2026-02-27",
+          "valor": 1248
+        },
+        {
+          "periodo": "2026-03",
+          "fecha": "2026-03-31",
+          "valor": 1159
+        },
+        {
+          "periodo": "2026-04",
+          "fecha": "2026-04-30",
+          "valor": 877
+        },
+        {
+          "periodo": "2026-05",
+          "fecha": "2026-05-29",
+          "valor": 872
+        },
+        {
+          "periodo": "2026-06",
+          "fecha": "2026-06-30",
+          "valor": 1085
+        },
+        {
+          "periodo": "2026-07",
+          "fecha": "2026-07-10",
+          "valor": 1125
+        }
+      ],
+      "Manzana": [
+        {
+          "periodo": "2025-11",
+          "fecha": "2025-11-28",
+          "valor": 1131
+        },
+        {
+          "periodo": "2025-12",
+          "fecha": "2025-12-31",
+          "valor": 1254
+        },
+        {
+          "periodo": "2026-01",
+          "fecha": "2026-01-30",
+          "valor": 1315
+        },
+        {
+          "periodo": "2026-02",
+          "fecha": "2026-02-27",
+          "valor": 879
+        },
+        {
+          "periodo": "2026-03",
+          "fecha": "2026-03-31",
+          "valor": 827
+        },
+        {
+          "periodo": "2026-04",
+          "fecha": "2026-04-30",
+          "valor": 785
+        },
+        {
+          "periodo": "2026-05",
+          "fecha": "2026-05-29",
+          "valor": 731
+        },
+        {
+          "periodo": "2026-06",
+          "fecha": "2026-06-30",
+          "valor": 748
+        },
+        {
+          "periodo": "2026-07",
+          "fecha": "2026-07-10",
+          "valor": 836
+        }
+      ]
+    },
+    "tendencia_consumidor": {
+      "Marraqueta": [
+        {
+          "periodo": "2025-11",
+          "fecha": "2025-11-28",
+          "valor": 2237
+        },
+        {
+          "periodo": "2025-12",
+          "fecha": "2025-12-26",
+          "valor": 2173
+        },
+        {
+          "periodo": "2026-01",
+          "fecha": "2026-01-30",
+          "valor": 2239
+        },
+        {
+          "periodo": "2026-02",
+          "fecha": "2026-02-27",
+          "valor": 2237
+        },
+        {
+          "periodo": "2026-03",
+          "fecha": "2026-03-27",
+          "valor": 2282
+        },
+        {
+          "periodo": "2026-04",
+          "fecha": "2026-04-24",
+          "valor": 2285
+        },
+        {
+          "periodo": "2026-05",
+          "fecha": "2026-05-29",
+          "valor": 2301
+        },
+        {
+          "periodo": "2026-06",
+          "fecha": "2026-06-26",
+          "valor": 2304
+        },
+        {
+          "periodo": "2026-07",
+          "fecha": "2026-07-10",
+          "valor": 2293
+        }
+      ],
+      "Asado Carnicero": [
+        {
+          "periodo": "2025-11",
+          "fecha": "2025-11-28",
+          "valor": 10359
+        },
+        {
+          "periodo": "2025-12",
+          "fecha": "2025-12-26",
+          "valor": 10127
+        },
+        {
+          "periodo": "2026-01",
+          "fecha": "2026-01-30",
+          "valor": 10241
+        },
+        {
+          "periodo": "2026-02",
+          "fecha": "2026-02-27",
+          "valor": 10586
+        },
+        {
+          "periodo": "2026-03",
+          "fecha": "2026-03-27",
+          "valor": 10303
+        },
+        {
+          "periodo": "2026-04",
+          "fecha": "2026-04-24",
+          "valor": 10430
+        },
+        {
+          "periodo": "2026-05",
+          "fecha": "2026-05-29",
+          "valor": 10685
+        },
+        {
+          "periodo": "2026-06",
+          "fecha": "2026-06-26",
+          "valor": 10743
+        },
+        {
+          "periodo": "2026-07",
+          "fecha": "2026-07-10",
+          "valor": 10516
+        }
+      ],
+      "Pollo Entero": [
+        {
+          "periodo": "2025-11",
+          "fecha": "2025-11-28",
+          "valor": 4071
+        },
+        {
+          "periodo": "2025-12",
+          "fecha": "2025-12-26",
+          "valor": 4041
+        },
+        {
+          "periodo": "2026-01",
+          "fecha": "2026-01-30",
+          "valor": 4032
+        },
+        {
+          "periodo": "2026-02",
+          "fecha": "2026-02-27",
+          "valor": 3901
+        },
+        {
+          "periodo": "2026-03",
+          "fecha": "2026-03-27",
+          "valor": 3786
+        },
+        {
+          "periodo": "2026-04",
+          "fecha": "2026-04-24",
+          "valor": 3786
+        },
+        {
+          "periodo": "2026-05",
+          "fecha": "2026-05-29",
+          "valor": 3729
+        },
+        {
+          "periodo": "2026-06",
+          "fecha": "2026-06-26",
+          "valor": 3751
+        },
+        {
+          "periodo": "2026-07",
+          "fecha": "2026-07-10",
+          "valor": 3824
+        }
+      ],
+      "Huevo blanco - Extra": [
+        {
+          "periodo": "2025-11",
+          "fecha": "2025-11-28",
+          "valor": 188
+        },
+        {
+          "periodo": "2025-12",
+          "fecha": "2025-12-26",
+          "valor": 161
+        },
+        {
+          "periodo": "2026-01",
+          "fecha": "2026-01-30",
+          "valor": 186
+        },
+        {
+          "periodo": "2026-02",
+          "fecha": "2026-02-27",
+          "valor": 195
+        },
+        {
+          "periodo": "2026-03",
+          "fecha": "2026-03-27",
+          "valor": 206
+        },
+        {
+          "periodo": "2026-04",
+          "fecha": "2026-04-24",
+          "valor": 257
+        },
+        {
+          "periodo": "2026-05",
+          "fecha": "2026-05-29",
+          "valor": 243
+        },
+        {
+          "periodo": "2026-06",
+          "fecha": "2026-06-26",
+          "valor": 235
+        },
+        {
+          "periodo": "2026-07",
+          "fecha": "2026-07-10",
+          "valor": 220
+        }
+      ],
+      "Leche Fluida Entera": [
+        {
+          "periodo": "2025-11",
+          "fecha": "2025-11-28",
+          "valor": 1150
+        },
+        {
+          "periodo": "2025-12",
+          "fecha": "2025-12-26",
+          "valor": 1162
+        },
+        {
+          "periodo": "2026-01",
+          "fecha": "2026-01-30",
+          "valor": 1153
+        },
+        {
+          "periodo": "2026-02",
+          "fecha": "2026-02-27",
+          "valor": 1143
+        },
+        {
+          "periodo": "2026-03",
+          "fecha": "2026-03-27",
+          "valor": 1144
+        },
+        {
+          "periodo": "2026-04",
+          "fecha": "2026-04-24",
+          "valor": 1174
+        },
+        {
+          "periodo": "2026-05",
+          "fecha": "2026-05-29",
+          "valor": 1207
+        },
+        {
+          "periodo": "2026-06",
+          "fecha": "2026-06-26",
+          "valor": 1213
+        },
+        {
+          "periodo": "2026-07",
+          "fecha": "2026-07-10",
+          "valor": 1205
+        }
+      ]
     }
   }
 }
