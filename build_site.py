@@ -227,11 +227,11 @@ for key, label in MACRO_ORDEN:
         }},
         scales: {{
           x: {{
-            ticks: {{ color: '{CHART_TEXT}', font: {{ size: 10 }}, maxTicksLimit: 12, maxRotation: 0 }},
+            ticks: {{ color: '{CHART_TEXT}', font: {{ size: CHART_FONT_SIZE }}, maxTicksLimit: CHART_MAX_TICKS, maxRotation: 0 }},
             grid: {{ display: false }},
           }},
           y: {{
-            ticks: {{ color: '{CHART_TEXT}', font: {{ size: 10 }} }},
+            ticks: {{ color: '{CHART_TEXT}', font: {{ size: CHART_FONT_SIZE }} }},
             grid: {{ color: '{CHART_GRID}' }},
           }}
         }}
@@ -299,11 +299,11 @@ for recurso, titulo in (("tip", "TIP"), ("tmc", "TMC")):
             }},
             scales: {{
               x: {{
-                ticks: {{ color: '{CHART_TEXT}', font: {{ size: 10 }}, maxTicksLimit: 12, maxRotation: 0 }},
+                ticks: {{ color: '{CHART_TEXT}', font: {{ size: CHART_FONT_SIZE }}, maxTicksLimit: CHART_MAX_TICKS, maxRotation: 0 }},
                 grid: {{ display: false }},
               }},
               y: {{
-                ticks: {{ color: '{CHART_TEXT}', font: {{ size: 10 }} }},
+                ticks: {{ color: '{CHART_TEXT}', font: {{ size: CHART_FONT_SIZE }} }},
                 grid: {{ color: '{CHART_GRID}' }},
               }}
             }}
@@ -378,6 +378,7 @@ HTML = f"""<!DOCTYPE html>
   .card-name{{font-size:12px; color:var(--muted); margin-bottom:12px;}}
   .card-timeline{{
     display:flex; align-items:flex-end; justify-content:space-between; gap:10px;
+    max-width:440px;
     overflow-x:auto; scrollbar-width:none; -webkit-overflow-scrolling:touch;
   }}
   .card-timeline::-webkit-scrollbar{{display:none;}}
@@ -418,8 +419,12 @@ HTML = f"""<!DOCTYPE html>
     .brand-mark{{width:32px; height:32px;}}
     .brand-name{{font-size:18px;}}
     .card-wide{{padding:14px 14px 16px;}}
-    .chart-card{{padding:16px 14px;}}
-    .chart-canvas-wrap{{height:220px;}}
+    .card-timeline{{max-width:none;}}
+    /* En pantalla angosta mostramos solo los últimos 3 puntos (2 anteriores
+       + el destacado de hoy) para que quepan sin necesitar swipe. */
+    .pt:nth-last-child(n+4){{display:none;}}
+    .chart-card{{padding:16px 12px;}}
+    .chart-canvas-wrap{{height:260px;}}
   }}
 </style>
 </head>
@@ -459,11 +464,16 @@ HTML = f"""<!DOCTYPE html>
 </div>
  
 <script>
+// En pantallas angostas los gráficos usan letra más grande y menos marcas
+// en el eje X para que no se amontonen (en mobile, con CSS ya mostramos
+// solo los últimos 3 puntos por tarjeta, así que no dependemos de scroll).
+const CHART_FONT_SIZE = window.innerWidth < 480 ? 11 : 10;
+const CHART_MAX_TICKS = window.innerWidth < 480 ? 6 : 12;
+ 
 {CHARTS_JS}
  
-// En pantallas angostas cada fila de indicador puede no caber entera:
-// la dejamos desplazada hasta el valor destacado (el de hoy, a la derecha)
-// para que se vea de entrada sin que el usuario tenga que hacer swipe.
+// Respaldo: si en algún navegador la fila de indicador no cupiera entera,
+// la dejamos desplazada hasta el valor destacado (el de hoy, a la derecha).
 document.querySelectorAll('.card-timeline').forEach(function(row) {{
   row.scrollLeft = row.scrollWidth;
 }});
