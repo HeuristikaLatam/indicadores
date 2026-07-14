@@ -14,6 +14,7 @@ Uso local:
     python3 indices.py
 """
 
+import gzip
 import json
 import os
 import time
@@ -56,7 +57,15 @@ def http_get_json(url, timeout=25, reintentos=3, headers=None):
         try:
             req = urllib.request.Request(url, headers=base_headers)
             with urllib.request.urlopen(req, timeout=timeout) as resp:
-                return json.loads(resp.read().decode("utf-8"))
+                raw = resp.read()
+                # Algunas respuestas grandes (ej. combustibles CNE) llegan
+                # comprimidas en gzip aunque no lo pidamos explícitamente —
+                # urllib no las descomprime solo. Detectamos por el header
+                # o por la firma de gzip (\x1f\x8b) como respaldo.
+                content_encoding = resp.headers.get("Content-Encoding", "").lower()
+                if content_encoding == "gzip" or raw[:2] == b"\x1f\x8b":
+                    raw = gzip.decompress(raw)
+                return json.loads(raw.decode("utf-8"))
         except Exception as e:
             ultimo_error = e
             if intento < reintentos:
