@@ -32,6 +32,10 @@ def fmt_litro(valor):
     return f"${valor:,.0f}".replace(",", ".")
 
 
+def fmt_alimento(valor, unidad="kg"):
+    return f"${valor:,.0f}".replace(",", ".") + f" /{unidad}"
+
+
 def fecha_legible(iso):
     try:
         return datetime.fromisoformat(iso.replace("Z", "+00:00")).strftime("%d-%m-%Y")
@@ -606,11 +610,6 @@ for recurso, titulo in (("tip", "TIP"), ("tmc", "TMC")):
           CHARTS_REGISTRY['{canvas_id}'] = {{ chart: chart, labels: {json.dumps(labels_full)}, valores: {json.dumps(valores_full)} }};
         }})();""")
 
-# ---------------------------------------------------------------------------
-# Sección "próximamente" — alimentos (ODEPA), lista para reemplazar por
-# datos reales apenas conectemos esa fuente.
-# ---------------------------------------------------------------------------
-
 def placeholder_seccion(titulo, descripcion):
     return f"""
     <div class="card-wide placeholder">
@@ -620,6 +619,134 @@ def placeholder_seccion(titulo, descripcion):
       </div>
       <div class="placeholder-text">Próximamente.</div>
     </div>"""
+
+
+# ---------------------------------------------------------------------------
+# Alimentos (ODEPA) — misma lógica que Combustibles: canasta chica, precio
+# de hoy/esta semana, sin ahogar la página en las cientos de variedades que
+# ODEPA reporta. Dos bloques: mayoristas (diario, con tabla por región) y
+# consumidor (semanal, canasta básica).
+# ---------------------------------------------------------------------------
+
+alimentos = DATA.get("alimentos", {"mayoristas": {"nacional": {}, "regional": {}}, "consumidor": {}})
+mayoristas_nacional = alimentos.get("mayoristas", {}).get("nacional", {})
+mayoristas_regional = alimentos.get("mayoristas", {}).get("regional", {})
+consumidor = alimentos.get("consumidor", {})
+
+MAYORISTA_ORDEN = ["Palta", "Tomate", "Papa", "Cebolla", "Plátano", "Manzana"]
+
+# Solo las regiones que efectivamente tienen mercado mayorista de fruta y
+# hortaliza (9 de las 16) — mismo criterio de orden norte -> sur que en
+# Combustibles, pero con los nombres tal como los entrega ODEPA.
+ODEPA_REGIONES_ORDEN = [
+    ("Región de Arica y Parinacota", "Arica y Parinacota"),
+    ("Región de Coquimbo", "Coquimbo"),
+    ("Región de Valparaíso", "Valparaíso"),
+    ("Región Metropolitana de Santiago", "Metropolitana"),
+    ("Región del Maule", "Maule"),
+    ("Región de Ñuble", "Ñuble"),
+    ("Región del Biobío", "Biobío"),
+    ("Región de La Araucanía", "Araucanía"),
+    ("Región de Los Lagos", "Los Lagos"),
+]
+
+CONSUMIDOR_ETIQUETAS = {
+    "Marraqueta": "Pan (marraqueta)",
+    "Asado Carnicero": "Carne (asado carnicero)",
+    "Pollo Entero": "Pollo entero",
+    "Huevo blanco - Extra": "Huevos",
+    "Leche Fluida Entera": "Leche entera",
+}
+CONSUMIDOR_ORDEN = ["Marraqueta", "Asado Carnicero", "Pollo Entero", "Huevo blanco - Extra", "Leche Fluida Entera"]
+
+# --- Mayoristas: KPIs -------------------------------------------------------
+
+mayoristas_kpis = ""
+fechas_mayoristas = []
+for producto in MAYORISTA_ORDEN:
+    info = mayoristas_nacional.get(producto)
+    if not info:
+        continue
+    fechas_mayoristas.append(info.get("fecha", ""))
+    mayoristas_kpis += f"""
+    <div class="kpi">
+      <div class="kpi-main">
+        <div class="kpi-label">{producto}</div>
+        <div class="kpi-val">{fmt_alimento(info['promedio'])}</div>
+      </div>
+    </div>"""
+
+# --- Mayoristas: tabla por región -------------------------------------------
+
+mayoristas_tabla_filas = ""
+for nombre_api, etiqueta in ODEPA_REGIONES_ORDEN:
+    valores = mayoristas_regional.get(nombre_api)
+    if not valores:
+        continue
+    celdas = "".join(
+        f'<td class="num">{fmt_alimento(valores[p]) if p in valores else "—"}</td>'
+        for p in MAYORISTA_ORDEN
+    )
+    mayoristas_tabla_filas += f"<tr><td>{etiqueta}</td>{celdas}</tr>"
+
+mayoristas_tabla = ""
+if mayoristas_tabla_filas:
+    encabezados = "".join(f"<th>{p}</th>" for p in MAYORISTA_ORDEN)
+    mayoristas_tabla = f"""
+    <div class="tbox">
+      <div class="tbox-head">
+        <span class="card-name">Precio mayorista por región</span>
+        <span class="card-desc">Promedio de los mercados mayoristas de cada región (solo regiones con mercado mayorista).</span>
+      </div>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>Región</th>{encabezados}</tr></thead>
+          <tbody>{mayoristas_tabla_filas}</tbody>
+        </table>
+      </div>
+    </div>"""
+
+# --- Consumidor: KPIs --------------------------------------------------------
+
+consumidor_kpis = ""
+fechas_consumidor = []
+for producto in CONSUMIDOR_ORDEN:
+    info = consumidor.get(producto)
+    if not info:
+        continue
+    fechas_consumidor.append(info.get("fecha", ""))
+    consumidor_kpis += f"""
+    <div class="kpi">
+      <div class="kpi-main">
+        <div class="kpi-label">{CONSUMIDOR_ETIQUETAS.get(producto, producto)}</div>
+        <div class="kpi-val">{fmt_alimento(info['promedio'], info.get('unidad', 'kg'))}</div>
+      </div>
+    </div>"""
+
+# --- Ensamblado final ---------------------------------------------------
+
+if mayoristas_kpis or consumidor_kpis:
+    fecha_mayoristas_dato = max(fechas_mayoristas) if fechas_mayoristas else ""
+    fecha_consumidor_dato = max(fechas_consumidor) if fechas_consumidor else ""
+    alimentos_seccion_body = ""
+    if mayoristas_kpis:
+        alimentos_seccion_body += f"""
+    <div class="subhead">Mayoristas (hoy)</div>
+    <div class="kpis">{mayoristas_kpis}</div>
+    <div class="section-sub" style="margin-top:10px;">Precio promedio mayorista por kilo, día hábil más reciente: {fecha_legible(fecha_mayoristas_dato) if fecha_mayoristas_dato else 's/i'}.</div>"""
+    if mayoristas_tabla:
+        alimentos_seccion_body += f"""
+    <div class="tables" style="margin-top:14px;">{mayoristas_tabla}</div>"""
+    if consumidor_kpis:
+        alimentos_seccion_body += f"""
+    <div class="subhead">Consumidor (semanal)</div>
+    <div class="kpis">{consumidor_kpis}</div>
+    <div class="section-sub" style="margin-top:10px;">Precio promedio al consumidor (supermercados, ferias, carnicerías y panaderías), semana que termina el {fecha_legible(fecha_consumidor_dato) if fecha_consumidor_dato else 's/i'}.</div>"""
+else:
+    alimentos_seccion_body = placeholder_seccion(
+        "Precios de alimentos",
+        "Precios mayoristas y al consumidor de frutas y verduras, según ODEPA.",
+    )
 
 
 historicos_seccion = ""
@@ -852,8 +979,8 @@ HTML = f"""<!DOCTYPE html>
 
   <section id="alimentos" class="section">
     <h1>Alimentos</h1>
-    <div class="section-sub">Precios agrícolas (ODEPA) — en construcción.</div>
-    {placeholder_seccion("Precios de alimentos", "Precios mayoristas y al consumidor de frutas y verduras, según ODEPA.")}
+    <div class="section-sub">Precios de una canasta chica de alimentos, según ODEPA.</div>
+    {alimentos_seccion_body}
   </section>
 
   {historicos_seccion}
