@@ -35,16 +35,28 @@
   h1:first-of-type{margin-top:0;}
  
   .grid{
-    display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
-    gap:10px;
+    display:grid; grid-template-columns:repeat(2, 1fr);
+    gap:14px;
   }
-  .card{
+  @media (max-width: 720px){
+    .grid{grid-template-columns:1fr;}
+  }
+  .card-wide{
     background:var(--card); border:1px solid var(--line); border-radius:10px;
-    padding:14px 16px;
+    padding:18px 22px;
+    display:flex; align-items:center; justify-content:space-between; gap:18px;
   }
-  .card .name{font-size:12px; color:var(--muted); margin-bottom:6px;}
-  .card .val{font-size:20px; font-weight:600; font-variant-numeric:tabular-nums;}
-  .card .date{font-size:10px; color:var(--muted); margin-top:6px;}
+  .card-main{flex-shrink:0; min-width:120px;}
+  .card-main .name{font-size:12px; color:var(--muted); margin-bottom:6px;}
+  .card-main .val{font-size:22px; font-weight:700; font-variant-numeric:tabular-nums;}
+  .card-main .date{font-size:10px; color:var(--muted); margin-top:6px;}
+  .card-mini-row{
+    display:flex; gap:14px; flex:1; justify-content:flex-end; flex-wrap:wrap;
+    border-left:1px solid var(--line); padding-left:18px;
+  }
+  .mini{text-align:center; min-width:52px;}
+  .mini-label{font-size:10px; color:var(--muted); margin-bottom:4px;}
+  .mini-val{font-size:12px; font-weight:600; color:var(--text); font-variant-numeric:tabular-nums;}
  
   .tables{display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:16px;}
   .tbox{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:16px;}
@@ -93,55 +105,285 @@
  
   <h1>Macro</h1>
   <div class="grid">
-    <div class="card">
-      <div class="name">Dólar obs.</div>
-      <div class="val">$925</div>
-      <div class="date">13-07-2026</div>
+    <div class="card-wide">
+      <div class="card-main">
+        <div class="name">Dólar obs.</div>
+        <div class="val">$925</div>
+        <div class="date">13-07-2026</div>
+      </div>
+      <div class="card-mini-row">
+        <div class="mini">
+          <div class="mini-label">08-07</div>
+          <div class="mini-val">$927</div>
+        </div>
+        <div class="mini">
+          <div class="mini-label">09-07</div>
+          <div class="mini-val">$936</div>
+        </div>
+        <div class="mini">
+          <div class="mini-label">10-07</div>
+          <div class="mini-val">$929</div>
+        </div>
+        <div class="mini">
+          <div class="mini-label">13-07</div>
+          <div class="mini-val">$925</div>
+        </div>
+        <div class="mini">
+          <div class="mini-label">14-07</div>
+          <div class="mini-val">$929</div>
+        </div></div>
     </div>
-    <div class="card">
-      <div class="name">Euro</div>
-      <div class="val">$1.056</div>
-      <div class="date">13-07-2026</div>
+    <div class="card-wide">
+      <div class="card-main">
+        <div class="name">Euro</div>
+        <div class="val">$1.056</div>
+        <div class="date">13-07-2026</div>
+      </div>
+      <div class="card-mini-row">
+        <div class="mini">
+          <div class="mini-label">08-07</div>
+          <div class="mini-val">$1.059</div>
+        </div>
+        <div class="mini">
+          <div class="mini-label">09-07</div>
+          <div class="mini-val">$1.069</div>
+        </div>
+        <div class="mini">
+          <div class="mini-label">10-07</div>
+          <div class="mini-val">$1.062</div>
+        </div>
+        <div class="mini">
+          <div class="mini-label">13-07</div>
+          <div class="mini-val">$1.056</div>
+        </div>
+        <div class="mini">
+          <div class="mini-label">14-07</div>
+          <div class="mini-val">$1.058</div>
+        </div></div>
     </div>
-    <div class="card">
-      <div class="name">UF</div>
-      <div class="val">$40.845</div>
-      <div class="date">13-07-2026</div>
+    <div class="card-wide">
+      <div class="card-main">
+        <div class="name">UF</div>
+        <div class="val">$40.845</div>
+        <div class="date">13-07-2026</div>
+      </div>
+      <div class="card-mini-row">
+        <div class="mini">
+          <div class="mini-label">05-08</div>
+          <div class="mini-val">$40.845</div>
+        </div>
+        <div class="mini">
+          <div class="mini-label">06-08</div>
+          <div class="mini-val">$40.845</div>
+        </div>
+        <div class="mini">
+          <div class="mini-label">07-08</div>
+          <div class="mini-val">$40.845</div>
+        </div>
+        <div class="mini">
+          <div class="mini-label">08-08</div>
+          <div class="mini-val">$40.845</div>
+        </div>
+        <div class="mini">
+          <div class="mini-label">09-08</div>
+          <div class="mini-val">$40.845</div>
+        </div></div>
     </div>
-    <div class="card">
-      <div class="name">UTM</div>
-      <div class="val">$71.649</div>
-      <div class="date">01-07-2026</div>
+    <div class="card-wide">
+      <div class="card-main">
+        <div class="name">UTM</div>
+        <div class="val">$71.649</div>
+        <div class="date">01-07-2026</div>
+      </div>
+      <div class="card-mini-row">
+        <div class="mini">
+          <div class="mini-label">Mar 26</div>
+          <div class="mini-val">$69.889</div>
+        </div>
+        <div class="mini">
+          <div class="mini-label">Abr 26</div>
+          <div class="mini-val">$69.889</div>
+        </div>
+        <div class="mini">
+          <div class="mini-label">May 26</div>
+          <div class="mini-val">$70.588</div>
+        </div>
+        <div class="mini">
+          <div class="mini-label">Jun 26</div>
+          <div class="mini-val">$71.506</div>
+        </div>
+        <div class="mini">
+          <div class="mini-label">Jul 26</div>
+          <div class="mini-val">$71.649</div>
+        </div></div>
     </div>
-    <div class="card">
-      <div class="name">IPC</div>
-      <div class="val">0.00%</div>
-      <div class="date">01-06-2026</div>
+    <div class="card-wide">
+      <div class="card-main">
+        <div class="name">IPC</div>
+        <div class="val">0.00%</div>
+        <div class="date">01-06-2026</div>
+      </div>
+      <div class="card-mini-row">
+        <div class="mini">
+          <div class="mini-label">Feb 26</div>
+          <div class="mini-val">0.00%</div>
+        </div>
+        <div class="mini">
+          <div class="mini-label">Mar 26</div>
+          <div class="mini-val">1.00%</div>
+        </div>
+        <div class="mini">
+          <div class="mini-label">Abr 26</div>
+          <div class="mini-val">1.30%</div>
+        </div>
+        <div class="mini">
+          <div class="mini-label">May 26</div>
+          <div class="mini-val">0.20%</div>
+        </div>
+        <div class="mini">
+          <div class="mini-label">Jun 26</div>
+          <div class="mini-val">0.00%</div>
+        </div></div>
     </div>
-    <div class="card">
-      <div class="name">TPM</div>
-      <div class="val">4.50%</div>
-      <div class="date">13-07-2026</div>
+    <div class="card-wide">
+      <div class="card-main">
+        <div class="name">TPM</div>
+        <div class="val">4.50%</div>
+        <div class="date">13-07-2026</div>
+      </div>
+      <div class="card-mini-row">
+        <div class="mini">
+          <div class="mini-label">Mar 26</div>
+          <div class="mini-val">4.50%</div>
+        </div>
+        <div class="mini">
+          <div class="mini-label">Abr 26</div>
+          <div class="mini-val">4.50%</div>
+        </div>
+        <div class="mini">
+          <div class="mini-label">May 26</div>
+          <div class="mini-val">4.50%</div>
+        </div>
+        <div class="mini">
+          <div class="mini-label">Jun 26</div>
+          <div class="mini-val">4.50%</div>
+        </div>
+        <div class="mini">
+          <div class="mini-label">Jul 26</div>
+          <div class="mini-val">4.50%</div>
+        </div></div>
     </div>
-    <div class="card">
-      <div class="name">Imacec</div>
-      <div class="val">-0.90%</div>
-      <div class="date">01-05-2026</div>
+    <div class="card-wide">
+      <div class="card-main">
+        <div class="name">Imacec</div>
+        <div class="val">-0.90%</div>
+        <div class="date">01-05-2026</div>
+      </div>
+      <div class="card-mini-row">
+        <div class="mini">
+          <div class="mini-label">Ene 26</div>
+          <div class="mini-val">-0.10%</div>
+        </div>
+        <div class="mini">
+          <div class="mini-label">Feb 26</div>
+          <div class="mini-val">-0.30%</div>
+        </div>
+        <div class="mini">
+          <div class="mini-label">Mar 26</div>
+          <div class="mini-val">-0.10%</div>
+        </div>
+        <div class="mini">
+          <div class="mini-label">Abr 26</div>
+          <div class="mini-val">-1.20%</div>
+        </div>
+        <div class="mini">
+          <div class="mini-label">May 26</div>
+          <div class="mini-val">-0.90%</div>
+        </div></div>
     </div>
-    <div class="card">
-      <div class="name">Desempleo</div>
-      <div class="val">9.44%</div>
-      <div class="date">01-05-2026</div>
+    <div class="card-wide">
+      <div class="card-main">
+        <div class="name">Desempleo</div>
+        <div class="val">9.44%</div>
+        <div class="date">01-05-2026</div>
+      </div>
+      <div class="card-mini-row">
+        <div class="mini">
+          <div class="mini-label">Ene 26</div>
+          <div class="mini-val">8.28%</div>
+        </div>
+        <div class="mini">
+          <div class="mini-label">Feb 26</div>
+          <div class="mini-val">8.33%</div>
+        </div>
+        <div class="mini">
+          <div class="mini-label">Mar 26</div>
+          <div class="mini-val">8.93%</div>
+        </div>
+        <div class="mini">
+          <div class="mini-label">Abr 26</div>
+          <div class="mini-val">9.11%</div>
+        </div>
+        <div class="mini">
+          <div class="mini-label">May 26</div>
+          <div class="mini-val">9.44%</div>
+        </div></div>
     </div>
-    <div class="card">
-      <div class="name">Cobre (lb)</div>
-      <div class="val">US$ 6.10</div>
-      <div class="date">13-07-2026</div>
+    <div class="card-wide">
+      <div class="card-main">
+        <div class="name">Cobre (lb)</div>
+        <div class="val">US$ 6.10</div>
+        <div class="date">13-07-2026</div>
+      </div>
+      <div class="card-mini-row">
+        <div class="mini">
+          <div class="mini-label">08-07</div>
+          <div class="mini-val">US$ 6.05</div>
+        </div>
+        <div class="mini">
+          <div class="mini-label">09-07</div>
+          <div class="mini-val">US$ 6.03</div>
+        </div>
+        <div class="mini">
+          <div class="mini-label">10-07</div>
+          <div class="mini-val">US$ 5.94</div>
+        </div>
+        <div class="mini">
+          <div class="mini-label">13-07</div>
+          <div class="mini-val">US$ 6.10</div>
+        </div>
+        <div class="mini">
+          <div class="mini-label">14-07</div>
+          <div class="mini-val">US$ 6.09</div>
+        </div></div>
     </div>
-    <div class="card">
-      <div class="name">Bitcoin</div>
-      <div class="val">US$ 63.744.39</div>
-      <div class="date">12-07-2026</div>
+    <div class="card-wide">
+      <div class="card-main">
+        <div class="name">Bitcoin</div>
+        <div class="val">US$ 63.744.39</div>
+        <div class="date">12-07-2026</div>
+      </div>
+      <div class="card-mini-row">
+        <div class="mini">
+          <div class="mini-label">26-06</div>
+          <div class="mini-val">US$ 60.023.84</div>
+        </div>
+        <div class="mini">
+          <div class="mini-label">30-06</div>
+          <div class="mini-val">US$ 58.534.28</div>
+        </div>
+        <div class="mini">
+          <div class="mini-label">04-07</div>
+          <div class="mini-val">US$ 63.086.45</div>
+        </div>
+        <div class="mini">
+          <div class="mini-label">08-07</div>
+          <div class="mini-val">US$ 62.249.52</div>
+        </div>
+        <div class="mini">
+          <div class="mini-label">12-07</div>
+          <div class="mini-val">US$ 63.744.39</div>
+        </div></div>
     </div>
   </div>
  
