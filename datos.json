@@ -1,5 +1,5 @@
 {
-  "generado": "2026-07-14T19:04:32.032207+00:00",
+  "generado": "2026-07-14T19:20:52.622347+00:00",
   "macro": {
     "dolar": {
       "nombre": "Dólar observado",
@@ -3297,6 +3297,131 @@
         "DI": 1168,
         "KE": 1079,
         "95": 1410
+      }
+    }
+  },
+  "alimentos": {
+    "mayoristas": {
+      "nacional": {
+        "Palta": {
+          "promedio": 3161,
+          "fecha": "2026-07-10"
+        },
+        "Tomate": {
+          "promedio": 797,
+          "fecha": "2026-07-10"
+        },
+        "Papa": {
+          "promedio": 377,
+          "fecha": "2026-07-10"
+        },
+        "Cebolla": {
+          "promedio": 398,
+          "fecha": "2026-07-10"
+        },
+        "Plátano": {
+          "promedio": 1125,
+          "fecha": "2026-07-10"
+        },
+        "Manzana": {
+          "promedio": 836,
+          "fecha": "2026-07-10"
+        }
+      },
+      "regional": {
+        "Región de Los Lagos": {
+          "Palta": 4150,
+          "Tomate": 1185,
+          "Papa": 400,
+          "Cebolla": 620,
+          "Plátano": 1225,
+          "Manzana": 1133
+        },
+        "Región Metropolitana de Santiago": {
+          "Palta": 3127,
+          "Tomate": 702,
+          "Papa": 364,
+          "Cebolla": 369,
+          "Plátano": 1091,
+          "Manzana": 879
+        },
+        "Región de La Araucanía": {
+          "Palta": 4429,
+          "Tomate": 1107,
+          "Papa": 400,
+          "Cebolla": 561,
+          "Plátano": 1336,
+          "Manzana": 1124
+        },
+        "Región de Valparaíso": {
+          "Palta": 2967,
+          "Tomate": 625,
+          "Papa": 414,
+          "Cebolla": 364,
+          "Plátano": 1035,
+          "Manzana": 800
+        },
+        "Región de Coquimbo": {
+          "Palta": 2110,
+          "Tomate": 679,
+          "Papa": 510,
+          "Cebolla": 398,
+          "Plátano": 1025,
+          "Manzana": 688
+        },
+        "Región del Maule": {
+          "Palta": 3857,
+          "Tomate": 778,
+          "Papa": 327,
+          "Cebolla": 307,
+          "Plátano": 867,
+          "Manzana": 667
+        },
+        "Región del Biobío": {
+          "Palta": 2767,
+          "Tomate": 833,
+          "Papa": 360,
+          "Cebolla": 382,
+          "Manzana": 635
+        },
+        "Región de Ñuble": {
+          "Palta": 2767,
+          "Papa": 387,
+          "Cebolla": 378,
+          "Plátano": 1050,
+          "Manzana": 693
+        },
+        "Región de Arica y Parinacota": {
+          "Tomate": 455,
+          "Plátano": 1450
+        }
+      }
+    },
+    "consumidor": {
+      "Marraqueta": {
+        "promedio": 2293,
+        "fecha": "2026-07-10",
+        "unidad": "kg"
+      },
+      "Asado Carnicero": {
+        "promedio": 10516,
+        "fecha": "2026-07-10",
+        "unidad": "kg"
+      },
+      "Pollo Entero": {
+        "promedio": 3824,
+        "fecha": "2026-07-10",
+        "unidad": "kg"
+      },
+      "Huevo blanco - Extra": {
+        "promedio": 220,
+        "fecha": "2026-07-10",
+        "unidad": "un"
+      },
+      "Leche Fluida Entera": {
+        "promedio": 1205,
+        "fecha": "2026-07-10",
+        "unidad": "L"
       }
     }
   }
