@@ -4,6 +4,7 @@ Descarga indicadores económicos y financieros de Chile:
   - mindicador.cl (sin API key): valores actuales + históricos mensuales
   - api.cmfchile.cl (requiere CMF_API_KEY): TIP/TMC actuales + históricos
   - api.cne.cl (requiere CNE_EMAIL/CNE_PASSWORD): precios de combustibles líquidos
+  - datos.odepa.gob.cl (sin API key): precios mayoristas y al consumidor de alimentos
 
 Escribe todo a datos.json, que luego consume build_site.py.
 
@@ -17,6 +18,7 @@ Uso local:
 import gzip
 import json
 import os
+import re
 import time
 from datetime import datetime, timezone
 import urllib.request
@@ -387,6 +389,195 @@ def get_cne_combustibles():
     return {"nacional": nacional, "regional": regional}
 
 
+# ---------------------------------------------------------------------------
+# datos.odepa.gob.cl (precios mayoristas y al consumidor de alimentos)
+# ---------------------------------------------------------------------------
+# Portal CKAN público, sin API key. ODEPA publica un recurso (CSV/datastore)
+# nuevo cada año, así que no podemos hardcodear el resource_id: lo resolvemos
+# por nombre en cada corrida vía package_show.
+
+ODEPA_MAYORISTA_PRODUCTOS = ["Palta", "Tomate", "Papa", "Cebolla", "Plátano", "Manzana"]
+
+ODEPA_CONSUMIDOR_ITEMS = [
+    ("Pan", "Marraqueta"),
+    ("Carne bovina", "Asado Carnicero"),
+    ("Carne de Cerdo - Ave - Cordero", "Pollo Entero"),
+    ("Lácteos - Huevos - Margarinas", "Huevo blanco - Extra"),
+    ("Lácteos - Huevos - Margarinas", "Leche Fluida Entera"),
+]
+
+
+def _normalizar_precio_odepa(precio, unidad):
+    """ODEPA reporta el precio por caja/malla/bandeja/docena — no siempre
+    por kilo o unidad — y el tamaño del envase varía por producto y mercado.
+    Promediar el precio "en bruto" mezclaría cajas de 10 kilos con cajas de
+    20, así que normalizamos todo a $/kilo, $/litro o $/unidad según lo que
+    indique el texto de la unidad de comercialización.
+
+    Devuelve (precio_normalizado, "kg"|"L"|"un") o (None, None) si el texto
+    no trae una cantidad reconocible (ej. "sin especificar")."""
+    u = (unidad or "").lower()
+    if u.startswith("$/kilo"):
+        return precio, "kg"
+    m = re.search(r"(\d+(?:[.,]\d+)?)\s*litro", u)
+    if m:
+        factor = float(m.group(1).replace(",", "."))
+        return (precio / factor if factor else None), "L"
+    m = re.search(r"(\d+(?:[.,]\d+)?)\s*kilos?", u)
+    if m:
+        factor = float(m.group(1).replace(",", "."))
+        return (precio / factor if factor else None), "kg"
+    m = re.search(r"(\d+(?:[.,]\d+)?)\s*unidad", u)
+    if m:
+        factor = float(m.group(1).replace(",", "."))
+        return (precio / factor if factor else None), "un"
+    return None, None
+
+
+def odepa_resource_id(dataset_slug, anio):
+    try:
+        data = http_get_json(f"https://datos.odepa.gob.cl/api/3/action/package_show?id={dataset_slug}")
+    except Exception as e:
+        print(f"  aviso: no se pudo consultar el dataset ODEPA '{dataset_slug}': {e}")
+        return None
+    for r in data.get("result", {}).get("resources", []):
+        if str(anio) in (r.get("name") or ""):
+            return r.get("id")
+    return None
+
+
+def odepa_datastore_search(resource_id, filters=None, sort=None, limit=500):
+    params = {"resource_id": resource_id, "limit": str(limit)}
+    if filters:
+        params["filters"] = json.dumps(filters, ensure_ascii=False)
+    if sort:
+        params["sort"] = sort
+    qs = urllib.parse.urlencode(params)
+    data = http_get_json(f"https://datos.odepa.gob.cl/api/3/action/datastore_search?{qs}")
+    return data.get("result", {}).get("records", [])
+
+
+def get_odepa_mayoristas():
+    """Precio mayorista ($/kilo, normalizado) del día hábil más reciente
+    para una canasta chica de frutas/hortalizas.
+
+    Devuelve:
+      - "nacional": {producto: {"promedio": n, "fecha": "YYYY-MM-DD"}}
+      - "regional": {region: {producto: promedio}}  (solo regiones con mercado mayorista)
+    """
+    anio = datetime.now().year
+    resource_id = odepa_resource_id("precios-mayoristas-de-frutas-y-hortalizas", anio)
+    if not resource_id:
+        print("AVISO: no se encontró el recurso ODEPA de precios mayoristas para este año.")
+        return {"nacional": {}, "regional": {}}
+
+    print("Descargando precios mayoristas ODEPA ...")
+    nacional = {}
+    regional = {}
+    for producto in ODEPA_MAYORISTA_PRODUCTOS:
+        try:
+            filas = odepa_datastore_search(
+                resource_id, filters={"Producto": producto}, sort='"Fecha" desc', limit=500,
+            )
+        except Exception as e:
+            print(f"  aviso: no se pudo traer '{producto}' (ODEPA mayorista): {e}")
+            continue
+        if not filas:
+            continue
+
+        fecha_reciente = max((f.get("Fecha") for f in filas if f.get("Fecha")), default=None)
+        if not fecha_reciente:
+            continue
+
+        precios_nacional = []
+        precios_region = {}
+        for f in filas:
+            if f.get("Fecha") != fecha_reciente:
+                continue
+            try:
+                precio_bruto = float(str(f.get("Precio promedio", "")).replace(",", "."))
+            except (TypeError, ValueError):
+                continue
+            precio, _unidad = _normalizar_precio_odepa(precio_bruto, f.get("Unidad de comercializacion"))
+            if precio is None or precio <= 0:
+                continue
+            precios_nacional.append(precio)
+            region = f.get("Region")
+            if region:
+                precios_region.setdefault(region, []).append(precio)
+
+        if precios_nacional:
+            nacional[producto] = {
+                "promedio": round(sum(precios_nacional) / len(precios_nacional)),
+                "fecha": fecha_reciente,
+            }
+        for region, precios in precios_region.items():
+            regional.setdefault(region, {})[producto] = round(sum(precios) / len(precios))
+
+    if not nacional:
+        print("  aviso: ODEPA no devolvió precios mayoristas utilizables.")
+
+    return {"nacional": nacional, "regional": regional}
+
+
+def get_odepa_consumidor():
+    """Precio al consumidor ($/kilo, $/litro o $/unidad según corresponda,
+    normalizado) de la semana más reciente, para una canasta chica: pan,
+    carne, pollo, huevos y leche. Promedio nacional simple."""
+    anio = datetime.now().year
+    resource_id = odepa_resource_id("precios-consumidor", anio)
+    if not resource_id:
+        print("AVISO: no se encontró el recurso ODEPA de precios consumidor para este año.")
+        return {}
+
+    print("Descargando precios al consumidor ODEPA ...")
+    salida = {}
+    for grupo, producto in ODEPA_CONSUMIDOR_ITEMS:
+        try:
+            filas = odepa_datastore_search(
+                resource_id,
+                filters={"Grupo": grupo, "Producto": producto},
+                sort='"Fecha termino" desc',
+                limit=500,
+            )
+        except Exception as e:
+            print(f"  aviso: no se pudo traer '{producto}' (ODEPA consumidor): {e}")
+            continue
+        if not filas:
+            continue
+
+        fecha_reciente = max((f.get("Fecha termino") for f in filas if f.get("Fecha termino")), default=None)
+        if not fecha_reciente:
+            continue
+
+        precios = []
+        unidad_norm = None
+        for f in filas:
+            if f.get("Fecha termino") != fecha_reciente:
+                continue
+            try:
+                precio_bruto = float(str(f.get("Precio promedio", "")).replace(",", "."))
+            except (TypeError, ValueError):
+                continue
+            precio, unidad = _normalizar_precio_odepa(precio_bruto, f.get("Unidad"))
+            if precio is None or precio <= 0:
+                continue
+            precios.append(precio)
+            unidad_norm = unidad_norm or unidad
+
+        if precios:
+            salida[producto] = {
+                "promedio": round(sum(precios) / len(precios)),
+                "fecha": fecha_reciente,
+                "unidad": unidad_norm or "kg",
+            }
+
+    if not salida:
+        print("  aviso: ODEPA no devolvió precios al consumidor utilizables.")
+
+    return salida
+
+
 def main():
     salida = {
         "generado": datetime.now(timezone.utc).isoformat(),
@@ -394,6 +585,10 @@ def main():
         "historico_macro": get_mindicador_historico(),
         "tasas": get_cmf_historico(),
         "combustibles": get_cne_combustibles(),
+        "alimentos": {
+            "mayoristas": get_odepa_mayoristas(),
+            "consumidor": get_odepa_consumidor(),
+        },
     }
 
     # El IPC de mindicador.cl suele atrasarse; si CMF tiene datos, los usamos.
