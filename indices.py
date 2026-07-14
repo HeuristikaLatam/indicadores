@@ -39,10 +39,21 @@ TIPOS_RELEVANTES = {
 }
  
  
-def http_get_json(url, timeout=20):
-    req = urllib.request.Request(url, headers={"User-Agent": "heuristika-indicadores/1.0"})
-    with urllib.request.urlopen(req, timeout=timeout) as resp:
-        return json.loads(resp.read().decode("utf-8"))
+def http_get_json(url, timeout=25, reintentos=3):
+    """GET con reintentos: las APIs públicas a veces se cuelgan un momento,
+    y este script corre solo todos los días sin nadie mirando."""
+    ultimo_error = None
+    for intento in range(1, reintentos + 1):
+        try:
+            req = urllib.request.Request(url, headers={"User-Agent": "heuristika-indicadores/1.0"})
+            with urllib.request.urlopen(req, timeout=timeout) as resp:
+                return json.loads(resp.read().decode("utf-8"))
+        except Exception as e:
+            ultimo_error = e
+            if intento < reintentos:
+                print(f"  aviso: intento {intento} falló ({e}), reintentando...")
+                time.sleep(2 * intento)
+    raise ultimo_error
  
  
 # ---------------------------------------------------------------------------
