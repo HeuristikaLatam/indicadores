@@ -15,10 +15,12 @@ import json
 import os
 import time
 from datetime import datetime, timezone
+from zoneinfo import ZoneInfo
 import urllib.request
 import urllib.error
  
 CMF_API_KEY = os.environ.get("CMF_API_KEY", "")
+CHILE_TZ = ZoneInfo("America/Santiago")
 AHORA = datetime.now()
 ANIO_ACTUAL = AHORA.year
 N_ANIOS_HISTORICO = 5  # cuántos años hacia atrás traer para los gráficos
@@ -31,7 +33,8 @@ MACRO_INDICADORES = [
 # Indicadores que se publican día a día vs. una vez al mes —
 # determina si "los últimos N datos" se muestran por día o por mes.
 INDICADORES_DIARIOS = {"dolar", "euro", "uf", "libra_cobre", "bitcoin"}
-N_RECIENTES = 5
+# Guardamos 6 puntos: los 5 "anteriores" + el más reciente (destacado).
+N_RECIENTES = 6
  
 # Tipos de operación TIP/TMC más relevantes para "costo del crédito".
 # Ver documentación: https://api.cmfchile.cl/documentacion/TIP.html
@@ -260,9 +263,28 @@ def get_cmf_ipc():
  
 def main():
     historico_macro, recientes = get_mindicador_historico()
+    macro = get_mindicador_actual()
+ 
+    # Para que el valor "destacado" nunca quede desincronizado con la fila de
+    # valores recientes (que viene de una fuente distinta), el destacado se
+    # recalcula a partir del último punto de "recientes" — misma fuente,
+    # mismo dato, sin posibilidad de que se contradigan.
+    for key, rec in recientes.items():
+        puntos = rec.get("puntos", [])
+        if not puntos or key not in macro:
+            continue
+        ultimo = puntos[-1]
+        etiqueta = ultimo["etiqueta"]
+        fecha_iso = etiqueta if rec.get("tipo") != "mensual" else f"{etiqueta}-01"
+        macro[key] = {
+            **macro[key],
+            "valor": ultimo["valor"],
+            "fecha": fecha_iso,
+        }
+ 
     salida = {
-        "generado": datetime.now(timezone.utc).isoformat(),
-        "macro": get_mindicador_actual(),
+        "generado": datetime.now(CHILE_TZ).isoformat(),
+        "macro": macro,
         "historico_macro": historico_macro,
         "recientes": recientes,
         "tasas": get_cmf_historico(),
