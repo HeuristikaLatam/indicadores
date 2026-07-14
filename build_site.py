@@ -32,6 +32,25 @@ def fecha_legible(iso):
         return iso
  
  
+def etiqueta_dia(iso):
+    try:
+        return datetime.fromisoformat(iso.replace("Z", "+00:00")).strftime("%d-%m")
+    except Exception:
+        return iso
+ 
+ 
+MESES_CORTOS = ["Ene", "Feb", "Mar", "Abr", "May", "Jun",
+                "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"]
+ 
+ 
+def etiqueta_mes(periodo):
+    try:
+        anio, mes = periodo.split("-")
+        return f"{MESES_CORTOS[int(mes) - 1]} {anio[2:]}"
+    except Exception:
+        return periodo
+ 
+ 
 MACRO_ORDEN = [
     ("dolar", "Dólar obs."),
     ("euro", "Euro"),
@@ -47,10 +66,11 @@ MACRO_ORDEN = [
  
 macro = DATA.get("macro", {})
 historico_macro = DATA.get("historico_macro", {})
+recientes = DATA.get("recientes", {})
 tasas = DATA.get("tasas", {"tip": {}, "tmc": {}})
  
 # ---------------------------------------------------------------------------
-# Tarjetas de valor actual
+# Tarjetas de valor actual: destacado + últimos N períodos al costado
 # ---------------------------------------------------------------------------
  
 macro_cards = ""
@@ -58,11 +78,27 @@ for key, label in MACRO_ORDEN:
     d = macro.get(key)
     if not d:
         continue
+ 
+    rec = recientes.get(key, {"tipo": "diario", "puntos": []})
+    es_diario = rec.get("tipo") != "mensual"
+ 
+    mini_html = ""
+    for p in rec.get("puntos", []):
+        etiqueta = etiqueta_dia(p["etiqueta"]) if es_diario else etiqueta_mes(p["etiqueta"])
+        mini_html += f"""
+        <div class="mini">
+          <div class="mini-label">{etiqueta}</div>
+          <div class="mini-val">{fmt(p['valor'], d['unidad'])}</div>
+        </div>"""
+ 
     macro_cards += f"""
-    <div class="card">
-      <div class="name">{label}</div>
-      <div class="val">{fmt(d['valor'], d['unidad'])}</div>
-      <div class="date">{fecha_legible(d['fecha'])}</div>
+    <div class="card-wide">
+      <div class="card-main">
+        <div class="name">{label}</div>
+        <div class="val">{fmt(d['valor'], d['unidad'])}</div>
+        <div class="date">{fecha_legible(d['fecha'])}</div>
+      </div>
+      <div class="card-mini-row">{mini_html}</div>
     </div>"""
  
 # ---------------------------------------------------------------------------
@@ -316,16 +352,28 @@ HTML = f"""<!DOCTYPE html>
   h1:first-of-type{{margin-top:0;}}
  
   .grid{{
-    display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
-    gap:10px;
+    display:grid; grid-template-columns:repeat(2, 1fr);
+    gap:14px;
   }}
-  .card{{
+  @media (max-width: 720px){{
+    .grid{{grid-template-columns:1fr;}}
+  }}
+  .card-wide{{
     background:var(--card); border:1px solid var(--line); border-radius:10px;
-    padding:14px 16px;
+    padding:18px 22px;
+    display:flex; align-items:center; justify-content:space-between; gap:18px;
   }}
-  .card .name{{font-size:12px; color:var(--muted); margin-bottom:6px;}}
-  .card .val{{font-size:20px; font-weight:600; font-variant-numeric:tabular-nums;}}
-  .card .date{{font-size:10px; color:var(--muted); margin-top:6px;}}
+  .card-main{{flex-shrink:0; min-width:120px;}}
+  .card-main .name{{font-size:12px; color:var(--muted); margin-bottom:6px;}}
+  .card-main .val{{font-size:22px; font-weight:700; font-variant-numeric:tabular-nums;}}
+  .card-main .date{{font-size:10px; color:var(--muted); margin-top:6px;}}
+  .card-mini-row{{
+    display:flex; gap:14px; flex:1; justify-content:flex-end; flex-wrap:wrap;
+    border-left:1px solid var(--line); padding-left:18px;
+  }}
+  .mini{{text-align:center; min-width:52px;}}
+  .mini-label{{font-size:10px; color:var(--muted); margin-bottom:4px;}}
+  .mini-val{{font-size:12px; font-weight:600; color:var(--text); font-variant-numeric:tabular-nums;}}
  
   .tables{{display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:16px;}}
   .tbox{{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:16px;}}
