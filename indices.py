@@ -39,9 +39,9 @@ TIPOS_RELEVANTES = {
 }
  
  
-def http_get_json(url, timeout=25, reintentos=3):
-    """GET con reintentos: las APIs públicas a veces se cuelgan un momento,
-    y este script corre solo todos los días sin nadie mirando."""
+def http_get_json(url, timeout=12, reintentos=2):
+    """GET con reintentos cortos: si falla, falla rápido (no queremos que
+    una API lenta haga que el job entero se demore 20+ minutos)."""
     ultimo_error = None
     for intento in range(1, reintentos + 1):
         try:
@@ -51,8 +51,8 @@ def http_get_json(url, timeout=25, reintentos=3):
         except Exception as e:
             ultimo_error = e
             if intento < reintentos:
-                print(f"  aviso: intento {intento} falló ({e}), reintentando...")
-                time.sleep(2 * intento)
+                print(f"  aviso: intento {intento} falló ({type(e).__name__}: {e}), reintentando...")
+                time.sleep(1.5)
     raise ultimo_error
  
  
@@ -125,6 +125,26 @@ def _extraer_items(data, clave, recurso):
     return []
  
  
+CMF_PAUSA = 1.2  # segundos entre llamadas a la API de CMF, para no gatillar su límite de tasa
+ 
+ 
+def _cmf_get(recurso, anio):
+    """Wrapper para llamar a un recurso de CMF (tip/tmc/ipc) para un año.
+    Devuelve None si falla, sin cortar el resto del proceso."""
+    url = (
+        f"https://api.cmfchile.cl/api-sbifv3/recursos_api/{recurso}/{anio}"
+        f"?apikey={CMF_API_KEY}&formato=json"
+    )
+    try:
+        data = http_get_json(url)
+    except Exception as e:
+        print(f"  aviso: no se pudo traer {recurso} {anio} desde CMF ({type(e).__name__}: {e})")
+        return None
+    finally:
+        time.sleep(CMF_PAUSA)
+    return data
+ 
+ 
 def get_cmf_historico():
     """Trae TIP y TMC para los últimos N años, filtrado a los tipos
     relevantes, y arma una serie de tiempo por tipo de operación."""
@@ -139,17 +159,8 @@ def get_cmf_historico():
     for recurso in ("tip", "tmc"):
         clave = "TIPs" if recurso == "tip" else "TMCs"
         for anio in anios:
-            url = (
-                f"https://api.cmfchile.cl/api-sbifv3/recursos_api/{recurso}/{anio}"
-                f"?apikey={CMF_API_KEY}&formato=json"
-            )
-            try:
-                data = http_get_json(url)
-            except urllib.error.HTTPError as e:
-                print(f"  error HTTP en {recurso} {anio}: {e}")
-                continue
-            except Exception as e:
-                print(f"  error en {recurso} {anio}: {e}")
+            data = _cmf_get(recurso, anio)
+            if data is None:
                 continue
  
             items = _extraer_items(data, clave, recurso)
@@ -170,7 +181,6 @@ def get_cmf_historico():
                 if not fecha:
                     continue
                 series[recurso].setdefault(tipo, {})[fecha] = valor
-            time.sleep(0.1)
  
     # convertir dict fecha->valor a lista ordenada por fecha
     salida = {"tip": {}, "tmc": {}}
@@ -195,11 +205,8 @@ def get_cmf_ipc():
     puntos = {}
  
     for anio in anios:
-        url = f"https://api.cmfchile.cl/api-sbifv3/recursos_api/ipc/{anio}?apikey={CMF_API_KEY}&formato=json"
-        try:
-            data = http_get_json(url)
-        except Exception as e:
-            print(f"  aviso: no se pudo traer IPC {anio}: {e}")
+        data = _cmf_get("ipc", anio)
+        if data is None:
             continue
  
         bloque = data.get("IPCs", [])
@@ -223,7 +230,6 @@ def get_cmf_ipc():
             except ValueError:
                 continue
             puntos[fecha] = valor
-        time.sleep(0.1)
  
     return [{"fecha": f, "periodo": f[:7], "valor": v} for f, v in sorted(puntos.items())]
  
@@ -253,6 +259,12 @@ def main():
  
     with open("datos.json", "w", encoding="utf-8") as f:
         json.dump(salida, f, ensure_ascii=False, indent=2)
+ 
+    # Aviso visible si algo quedó vacío, para detectarlo altiro en el log.
+    if not salida["tasas"]["tip"] and not salida["tasas"]["tmc"]:
+        print("AVISO: tasas TIP/TMC quedaron vacías esta corrida (CMF no respondió).")
+    if not ipc_cmf:
+        print("AVISO: no se pudo actualizar IPC desde CMF esta corrida, se mantuvo el de mindicador.cl.")
  
     print("OK -> datos.json")
  
