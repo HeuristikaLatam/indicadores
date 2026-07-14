@@ -81,24 +81,30 @@ for key, label in MACRO_ORDEN:
  
     rec = recientes.get(key, {"tipo": "diario", "puntos": []})
     es_diario = rec.get("tipo") != "mensual"
+    puntos = rec.get("puntos", [])
  
-    mini_html = ""
-    for p in rec.get("puntos", []):
+    # Fila cronológica: el más antiguo a la izquierda, el más reciente
+    # (destacado, en naranjo) a la derecha. Si no hay histórico "reciente"
+    # cargado, al menos mostramos el valor actual como único punto.
+    if not puntos:
+        puntos = [{"etiqueta": d["fecha"][:10], "valor": d["valor"]}]
+ 
+    puntos_html = ""
+    total = len(puntos)
+    for i, p in enumerate(puntos):
         etiqueta = etiqueta_dia(p["etiqueta"]) if es_diario else etiqueta_mes(p["etiqueta"])
-        mini_html += f"""
-        <div class="mini">
-          <div class="mini-label">{etiqueta}</div>
-          <div class="mini-val">{fmt(p['valor'], d['unidad'])}</div>
+        es_destacado = (i == total - 1)
+        clase = "pt pt-destacado" if es_destacado else "pt"
+        puntos_html += f"""
+        <div class="{clase}">
+          <div class="pt-label">{etiqueta}</div>
+          <div class="pt-val">{fmt(p['valor'], d['unidad'])}</div>
         </div>"""
  
     macro_cards += f"""
     <div class="card-wide">
-      <div class="card-main">
-        <div class="name">{label}</div>
-        <div class="val">{fmt(d['valor'], d['unidad'])}</div>
-        <div class="date">{fecha_legible(d['fecha'])}</div>
-      </div>
-      <div class="card-mini-row">{mini_html}</div>
+      <div class="card-name">{label}</div>
+      <div class="card-timeline">{puntos_html}</div>
     </div>"""
  
 # ---------------------------------------------------------------------------
@@ -360,20 +366,17 @@ HTML = f"""<!DOCTYPE html>
   }}
   .card-wide{{
     background:var(--card); border:1px solid var(--line); border-radius:10px;
-    padding:18px 22px;
-    display:flex; align-items:center; justify-content:space-between; gap:18px;
+    padding:16px 20px 18px;
   }}
-  .card-main{{flex-shrink:0; min-width:120px;}}
-  .card-main .name{{font-size:12px; color:var(--muted); margin-bottom:6px;}}
-  .card-main .val{{font-size:22px; font-weight:700; font-variant-numeric:tabular-nums;}}
-  .card-main .date{{font-size:10px; color:var(--muted); margin-top:6px;}}
-  .card-mini-row{{
-    display:flex; gap:14px; flex:1; justify-content:flex-end; flex-wrap:wrap;
-    border-left:1px solid var(--line); padding-left:18px;
+  .card-name{{font-size:12px; color:var(--muted); margin-bottom:12px;}}
+  .card-timeline{{
+    display:flex; align-items:flex-end; justify-content:space-between; gap:6px;
   }}
-  .mini{{text-align:center; min-width:52px;}}
-  .mini-label{{font-size:10px; color:var(--muted); margin-bottom:4px;}}
-  .mini-val{{font-size:12px; font-weight:600; color:var(--text); font-variant-numeric:tabular-nums;}}
+  .pt{{text-align:center; flex:1;}}
+  .pt-label{{font-size:10px; color:var(--muted); margin-bottom:4px;}}
+  .pt-val{{font-size:12px; font-weight:600; color:var(--text); font-variant-numeric:tabular-nums;}}
+  .pt-destacado .pt-label{{color:var(--orange); font-weight:600;}}
+  .pt-destacado .pt-val{{font-size:20px; font-weight:700; color:var(--orange);}}
  
   .tables{{display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:16px;}}
   .tbox{{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:16px;}}
