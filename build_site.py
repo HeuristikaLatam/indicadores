@@ -17,11 +17,14 @@ with open("datos.json", "r", encoding="utf-8") as f:
     DATA = json.load(f)
  
  
-def fmt(valor, unidad):
+def fmt(valor, unidad, key=None):
     if unidad == "Porcentaje":
         return f"{valor:.2f}%"
     if unidad == "Dólar":
         return f"US$ {valor:,.2f}".replace(",", ".")
+    if key == "uf":
+        # La UF cambia a diario en centavos — con 0 decimales se ve "congelada".
+        return f"${valor:,.2f}".replace(",", "@").replace(".", ",").replace("@", ".")
     return f"${valor:,.0f}".replace(",", ".")
  
  
@@ -98,7 +101,7 @@ for key, label in MACRO_ORDEN:
         puntos_html += f"""
         <div class="{clase}">
           <div class="pt-label">{etiqueta}</div>
-          <div class="pt-val">{fmt(p['valor'], d['unidad'])}</div>
+          <div class="pt-val">{fmt(p['valor'], d['unidad'], key)}</div>
         </div>"""
  
     macro_cards += f"""
