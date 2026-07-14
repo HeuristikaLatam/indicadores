@@ -268,79 +268,149 @@ if tasas.get("tip") or tasas.get("tmc"):
     """
 
 # ---------------------------------------------------------------------------
-# Combustibles (CNE) — precio promedio nacional por tipo, con timeline igual
-# a las tarjetas macro, más una tabla por región con el último dato.
+# Combustibles (CNE) — precio promedio de HOY, calculado sobre el precio
+# vigente de cada estación de servicio (/api/v4/estaciones). Tres bloques:
+#   1) 5 KPIs con el promedio nacional por tipo de combustible.
+#   2) Tabla con el promedio por región (filas) y tipo (columnas).
+#   3) 5 tarjetas de zonas destacadas, con los 5 tipos cada una.
 # ---------------------------------------------------------------------------
+
+COMBUSTIBLE_ETIQUETAS = {
+    "93": "Gasolina 93",
+    "95": "Gasolina 95",
+    "97": "Gasolina 97",
+    "KE": "Kerosene",
+    "DI": "Diésel",
+}
+COMBUSTIBLE_ORDEN = ["93", "95", "97", "KE", "DI"]
 
 combustibles_nacional = combustibles.get("nacional", {})
 combustibles_regional = combustibles.get("regional", {})
 
-combustibles_cards = ""
-for tipo in sorted(combustibles_nacional.keys()):
-    serie = combustibles_nacional[tipo]
-    if not serie:
-        continue
-    # Mismos últimos N puntos que las tarjetas macro, mes a mes.
-    puntos = serie[-6:]
-    puntos_html = ""
-    total = len(puntos)
-    for i, p in enumerate(puntos):
-        es_destacado = (i == total - 1)
-        clase = "pt pt-destacado" if es_destacado else "pt"
-        puntos_html += f"""
-        <div class="{clase}">
-          <div class="pt-label">{etiqueta_mes(p['periodo'])}</div>
-          <div class="pt-val">{fmt_litro(p['valor'])}</div>
-        </div>"""
+# --- 1) KPIs nacionales -----------------------------------------------------
 
-    combustibles_cards += f"""
-    <div class="card-wide">
-      <div class="card-head">
-        <span class="card-name">{tipo}</span>
-        <span class="card-desc">Precio promedio nacional por litro, según la CNE.</span>
+combustibles_kpis = ""
+fechas_combustibles = []
+for tipo in COMBUSTIBLE_ORDEN:
+    info = combustibles_nacional.get(tipo)
+    if not info:
+        continue
+    fechas_combustibles.append(info.get("fecha", ""))
+    combustibles_kpis += f"""
+    <div class="kpi">
+      <div class="kpi-main">
+        <div class="kpi-label">{COMBUSTIBLE_ETIQUETAS[tipo]}</div>
+        <div class="kpi-val">{fmt_litro(info['promedio'])}</div>
       </div>
-      <div class="card-timeline">{puntos_html}</div>
     </div>"""
 
-combustibles_regional_tables = ""
-for tipo in sorted(combustibles_regional.keys()):
-    por_region = combustibles_regional[tipo]
-    if not por_region:
+fecha_combustibles_dato = max(fechas_combustibles) if fechas_combustibles else ""
+
+# --- 2) Tabla por región -----------------------------------------------------
+# Orden geográfico oficial norte -> sur (no alfabético), con nombres cortos
+# para la tabla. La clave es el nombre_region tal como lo entrega la CNE.
+
+REGIONES_ORDEN = [
+    ("Arica y Parinacota", "Arica y Parinacota"),
+    ("Tarapacá", "Tarapacá"),
+    ("Antofagasta", "Antofagasta"),
+    ("Atacama", "Atacama"),
+    ("Coquimbo", "Coquimbo"),
+    ("Valparaíso", "Valparaíso"),
+    ("Metropolitana de Santiago", "Metropolitana"),
+    ("Del Libertador Gral. Bernardo O’Higgins", "O’Higgins"),
+    ("Del Maule", "Maule"),
+    ("Ñuble", "Ñuble"),
+    ("Del Biobío", "Biobío"),
+    ("De la Araucanía", "Araucanía"),
+    ("De los Ríos", "Los Ríos"),
+    ("De los Lagos", "Los Lagos"),
+    ("Aysén del Gral. Carlos Ibáñez del Campo", "Aysén"),
+    ("Magallanes y de la Antártica Chilena", "Magallanes"),
+]
+
+combustibles_tabla_filas = ""
+for nombre_api, etiqueta in REGIONES_ORDEN:
+    valores = combustibles_regional.get(nombre_api)
+    if not valores:
         continue
-    filas = ""
-    for region, punto in sorted(por_region.items(), key=lambda kv: kv[0]):
-        filas += f"""
-        <tr>
-          <td>{region}</td>
-          <td class="num">{fmt_litro(punto['valor'])}</td>
-          <td class="date-cell">{etiqueta_mes(punto['periodo'])}</td>
-        </tr>"""
-    combustibles_regional_tables += f"""
-      <div class="tbox">
-        <div class="tbox-head">
-          <span class="card-name">{tipo}</span>
-          <span class="card-desc">Último precio informado por región.</span>
-        </div>
-        <div class="table-scroll">
-          <table>
-            <thead><tr><th>Región</th><th>Precio / litro</th><th>Período</th></tr></thead>
-            <tbody>{filas}</tbody>
-          </table>
-        </div>
-      </div>"""
+    celdas = "".join(
+        f'<td class="num">{fmt_litro(valores[t]) if t in valores else "—"}</td>'
+        for t in COMBUSTIBLE_ORDEN
+    )
+    combustibles_tabla_filas += f"<tr><td>{etiqueta}</td>{celdas}</tr>"
 
-combustibles_seccion_body = ""
-if combustibles_cards:
-    combustibles_seccion_body += f'<div class="grid">{combustibles_cards}\n    </div>'
-if combustibles_regional_tables:
-    combustibles_seccion_body += f'<div class="subhead">Por región</div><div class="tables">{combustibles_regional_tables}</div>'
+combustibles_tabla = ""
+if combustibles_tabla_filas:
+    encabezados = "".join(f"<th>{COMBUSTIBLE_ETIQUETAS[t]}</th>" for t in COMBUSTIBLE_ORDEN)
+    combustibles_tabla = f"""
+    <div class="tbox">
+      <div class="tbox-head">
+        <span class="card-name">Precio promedio por región</span>
+        <span class="card-desc">Promedio de las estaciones de cada región, por tipo de combustible.</span>
+      </div>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>Región</th>{encabezados}</tr></thead>
+          <tbody>{combustibles_tabla_filas}</tbody>
+        </table>
+      </div>
+    </div>"""
 
-if not combustibles_seccion_body:
+# --- 3) Zonas destacadas -----------------------------------------------------
+# Cada tarjeta muestra los 5 tipos de combustible para esa región (o el país
+# completo). "Chile completo" reutiliza el promedio nacional ya calculado.
+
+ZONAS_DESTACADAS = [
+    ("Antofagasta", "Antofagasta"),
+    ("Valparaíso", "Valparaíso"),
+    ("Concepción, Región del Biobío", "Del Biobío"),
+    ("Región Metropolitana", "Metropolitana de Santiago"),
+    ("Chile completo", None),  # None -> usa el promedio nacional
+]
+
+combustibles_zonas = ""
+for etiqueta, nombre_api in ZONAS_DESTACADAS:
+    if nombre_api is None:
+        valores = {t: info["promedio"] for t, info in combustibles_nacional.items()}
+    else:
+        valores = combustibles_regional.get(nombre_api, {})
+    if not valores:
+        continue
+    filas_tipo = ""
+    for t in COMBUSTIBLE_ORDEN:
+        if t not in valores:
+            continue
+        filas_tipo += f"""
+        <div class="pt">
+          <div class="pt-label">{COMBUSTIBLE_ETIQUETAS[t]}</div>
+          <div class="pt-val">{fmt_litro(valores[t])}</div>
+        </div>"""
+    combustibles_zonas += f"""
+    <div class="card-wide">
+      <div class="card-head">
+        <span class="card-name">{etiqueta}</span>
+      </div>
+      <div class="card-timeline">{filas_tipo}</div>
+    </div>"""
+
+# --- Ensamblado final ---------------------------------------------------
+
+if combustibles_kpis:
+    combustibles_seccion_body = f"""
+    <div class="kpis">{combustibles_kpis}</div>
+    <div class="section-sub" style="margin-top:10px;">Promedio por litro, calculado sobre el precio vigente informado por cada estación de servicio (dato más reciente: {fecha_legible(fecha_combustibles_dato) if fecha_combustibles_dato else 's/i'}).</div>
+    <div class="subhead">Por región</div>
+    <div class="tables">{combustibles_tabla}</div>
+    <div class="subhead">Zonas destacadas</div>
+    <div class="grid">{combustibles_zonas}
+    </div>"""
+else:
     combustibles_seccion_body = f"""
     <div class="card-wide placeholder">
       <div class="card-head">
         <span class="card-name">Bencina y diésel</span>
-        <span class="card-desc">Precios por región y tipo de combustible, según la CNE.</span>
+        <span class="card-desc">Precio promedio nacional por litro, según la CNE.</span>
       </div>
       <div class="placeholder-text">Próximamente.</div>
     </div>"""
