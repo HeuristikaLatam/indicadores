@@ -300,74 +300,89 @@ def get_cne_token(reintentos=4):
     return None
 
 
+# Tipos de combustible que nos interesa mostrar, y cómo agrupar las
+# variantes de autoservicio ("A93" = 93 autoservicio) con su tipo base —
+# para los promedios no distinguimos asistido vs. autoservicio.
+# (Dejamos fuera GLP/GNC: la sección se enfoca en bencina/diésel/kerosene.)
+CNE_TIPO_BASE = {
+    "93": "93", "A93": "93",
+    "95": "95", "A95": "95",
+    "97": "97", "A97": "97",
+    "KE": "KE", "AKE": "KE",
+    "DI": "DI", "ADI": "DI",
+}
+
+
 def get_cne_combustibles():
-    """Precio promedio mensual por litro, por tipo de combustible, desde
-    la API de Energía Abierta de la CNE (/api/ea/precio/combustibleliquido).
+    """Precios de combustibles HOY, calculados a partir del precio vigente
+    de cada estación de servicio (/api/v4/estaciones): promedio nacional
+    por tipo, y promedio por tipo y región.
+
+    A diferencia del endpoint de Energía Abierta (que solo tenía datos
+    hasta mediados de 2025), este trae el precio que cada distribuidor
+    reportó más recientemente por estación — el más cercano a "cuánto
+    cuesta la bencina hoy" que ofrece la API de la CNE.
 
     Devuelve:
-      - "nacional": {tipo_combustible: [{"periodo": "YYYY-MM", "valor": n}, ...]}
-        (promedio simple de todas las regiones reportadas ese mes)
-      - "regional": {tipo_combustible: {region_nombre: {"periodo": ..., "valor": ...}}}
-        (último valor disponible por región, para la tabla de la sección)
-
-    NOTA: el endpoint está marcado "en desarrollo" en la documentación de la
-    CNE — si cambian los nombres de campo o de tipo_combustible, revisar
-    aquí primero antes que en build_site.py.
+      - "nacional": {tipo_base: {"promedio": n, "n_estaciones": n, "fecha": "YYYY-MM-DD"}}
+      - "regional": {nombre_region: {tipo_base: promedio}}
     """
     token = get_cne_token()
     if not token:
         print("AVISO: no hay CNE_EMAIL/CNE_PASSWORD (o falló el login), se omiten combustibles.")
         return {"nacional": {}, "regional": {}}
 
-    print("Descargando precios de combustibles líquidos (CNE) ...")
+    print("Descargando precios de combustibles (estaciones CNE) ...")
     try:
-        data = http_get_json(
-            "https://api.cne.cl/api/ea/precio/combustibleliquido",
+        estaciones = http_get_json(
+            "https://api.cne.cl/api/v4/estaciones",
             headers={"Authorization": f"Bearer {token}"},
         )
     except Exception as e:
-        print(f"  aviso: no se pudo traer combustibles CNE: {e}")
+        print(f"  aviso: no se pudo traer estaciones CNE: {e}")
         return {"nacional": {}, "regional": {}}
 
-    filas = data.get("data", [])
-    if not filas:
-        print("  aviso: la API CNE no devolvió filas de combustibles.")
+    precios_por_tipo = {}            # tipo_base -> [precios]
+    precios_por_region = {}          # (region, tipo_base) -> [precios]
+    fecha_reciente = {}              # tipo_base -> "YYYY-MM-DD" más reciente visto
 
-    nacional_puntos = {}          # tipo -> periodo -> [precios de cada región]
-    regional_ultimo = {}          # (tipo, region) -> {"periodo", "valor"}
-
-    for f in filas:
-        tipo = f.get("tipo_combustible")
-        anio = f.get("anio")
-        mes = f.get("mes")
-        region = f.get("region_nombre")
-        try:
-            precio = float(f.get("precio_por_litro"))
-        except (TypeError, ValueError):
+    for est in estaciones:
+        if est.get("en_mantenimiento"):
             continue
-        if not tipo or not anio or not mes:
-            continue
-        periodo = f"{int(anio):04d}-{int(mes):02d}"
+        region = (est.get("ubicacion") or {}).get("nombre_region")
+        for tipo, info in (est.get("precios") or {}).items():
+            base = CNE_TIPO_BASE.get(tipo)
+            if not base or not isinstance(info, dict):
+                continue
+            try:
+                precio = float(str(info.get("precio", "")).replace(",", "."))
+            except (TypeError, ValueError):
+                continue
+            if precio <= 0:
+                continue
 
-        nacional_puntos.setdefault(tipo, {}).setdefault(periodo, []).append(precio)
+            precios_por_tipo.setdefault(base, []).append(precio)
+            if region:
+                precios_por_region.setdefault((region, base), []).append(precio)
 
-        if region:
-            clave = (tipo, region)
-            actual = regional_ultimo.get(clave)
-            if not actual or periodo >= actual["periodo"]:
-                regional_ultimo[clave] = {"periodo": periodo, "valor": precio}
+            fecha = info.get("fecha_actualizacion", "")
+            if fecha and fecha > fecha_reciente.get(base, ""):
+                fecha_reciente[base] = fecha
+
+    if not precios_por_tipo:
+        print("  aviso: la API CNE no devolvió precios utilizables.")
 
     nacional = {}
-    for tipo, puntos_por_mes in nacional_puntos.items():
-        serie = [
-            {"periodo": p, "valor": round(sum(vals) / len(vals), 1)}
-            for p, vals in sorted(puntos_por_mes.items())
-        ]
-        nacional[tipo] = serie
+    for base, precios in precios_por_tipo.items():
+        nacional[base] = {
+            "promedio": round(sum(precios) / len(precios)),
+            "n_estaciones": len(precios),
+            "fecha": fecha_reciente.get(base, ""),
+        }
 
     regional = {}
-    for (tipo, region), punto in regional_ultimo.items():
-        regional.setdefault(tipo, {})[region] = punto
+    for (region, base), precios in precios_por_region.items():
+        regional.setdefault(region, {})[base] = round(sum(precios) / len(precios))
 
     return {"nacional": nacional, "regional": regional}
 
