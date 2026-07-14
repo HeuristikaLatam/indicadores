@@ -35,6 +35,13 @@ def fecha_legible(iso):
         return iso
 
 
+def fecha_hora_legible(iso):
+    try:
+        return datetime.fromisoformat(iso.replace("Z", "+00:00")).strftime("%d-%m-%Y a las %H:%M")
+    except Exception:
+        return iso
+
+
 def etiqueta_dia(iso):
     try:
         return datetime.fromisoformat(iso.replace("Z", "+00:00")).strftime("%d-%m")
@@ -66,6 +73,19 @@ MACRO_ORDEN = [
     ("libra_cobre", "Cobre (lb)"),
     ("bitcoin", "Bitcoin"),
 ]
+
+MACRO_DESCRIPCIONES = {
+    "dolar": "Valor del dólar observado, publicado por el Banco Central.",
+    "euro": "Valor del euro respecto al peso chileno.",
+    "uf": "Unidad de Fomento, reajustada a diario según la inflación.",
+    "utm": "Unidad Tributaria Mensual, usada para impuestos y multas.",
+    "ipc": "Variación mensual del Índice de Precios al Consumidor (inflación).",
+    "tpm": "Tasa de política monetaria fijada por el Banco Central.",
+    "imacec": "Índice mensual de actividad económica del país.",
+    "tasa_desempleo": "Tasa de desocupación nacional, medida por el INE.",
+    "libra_cobre": "Precio de la libra de cobre en el mercado internacional.",
+    "bitcoin": "Precio de bitcoin, convertido a pesos chilenos.",
+}
 
 macro = DATA.get("macro", {})
 historico_macro = DATA.get("historico_macro", {})
@@ -150,9 +170,13 @@ for key, label in MACRO_ORDEN:
           <div class="pt-val">{fmt(p['valor'], d['unidad'], key)}</div>
         </div>"""
 
+    descripcion = MACRO_DESCRIPCIONES.get(key, "")
     macro_cards += f"""
     <div class="card-wide">
-      <div class="card-name">{label}</div>
+      <div class="card-head">
+        <span class="card-name">{label}</span>
+        <span class="card-desc">{descripcion}</span>
+      </div>
       <div class="card-timeline">{puntos_html}</div>
     </div>"""
 
@@ -190,7 +214,10 @@ if tasas.get("tip") or tasas.get("tmc"):
     <div class="section-sub">Tasas bancarias vigentes, según la CMF.</div>
     <div class="tables">
       <div class="tbox">
-        <div class="tbox-title">Tasa de interés promedio (TIP)</div>
+        <div class="tbox-head">
+          <span class="card-name">Tasa de interés promedio (TIP)</span>
+          <span class="card-desc">Tasa de interés promedio cobrada por la banca en créditos vigentes.</span>
+        </div>
         <div class="table-scroll">
           <table>
             <thead><tr><th>Tipo de operación</th><th>Tasa</th><th>Vigencia desde</th></tr></thead>
@@ -199,7 +226,10 @@ if tasas.get("tip") or tasas.get("tmc"):
         </div>
       </div>
       <div class="tbox">
-        <div class="tbox-title">Tasa máxima convencional (TMC)</div>
+        <div class="tbox-head">
+          <span class="card-name">Tasa máxima convencional (TMC)</span>
+          <span class="card-desc">Tasa máxima que la banca puede cobrar por ley en cada tipo de crédito.</span>
+        </div>
         <div class="table-scroll">
           <table>
             <thead><tr><th>Tipo de operación</th><th>Tasa</th><th>Vigencia desde</th></tr></thead>
@@ -220,6 +250,29 @@ CHART_GRID = "#242830"
 CHART_TEXT = "#8a8f98"
 CHART_BG = "#1a1d22"
 
+ANIO_ACTUAL_CHART = datetime.now().year
+RANGOS_DISPONIBLES = (20, 10, 5)
+RANGO_INICIAL = 5  # con cuántos años parte cada gráfico al cargar la página
+
+
+def corte_anio(anios):
+    return f"{ANIO_ACTUAL_CHART - anios + 1}-01"
+
+
+def slice_por_anios(labels, valores, anios):
+    corte = corte_anio(anios)
+    idx = next((i for i, l in enumerate(labels) if l >= corte), len(labels))
+    return labels[idx:], valores[idx:]
+
+
+def botones_rango(canvas_id):
+    btns = ""
+    for anios in RANGOS_DISPONIBLES:
+        clase = "range-btn active" if anios == RANGO_INICIAL else "range-btn"
+        btns += f'<button class="{clase}" data-canvas="{canvas_id}" data-years="{anios}">{anios} años</button>'
+    return f'<div class="range-btns">{btns}</div>'
+
+
 charts_js = []
 macro_chart_cards = ""
 
@@ -228,64 +281,69 @@ for key, label in MACRO_ORDEN:
     if not serie:
         continue
     canvas_id = f"chart_{key}"
-    labels = [p["periodo"] for p in serie]
-    valores = [p["valor"] for p in serie]
-    minimo = min(valores)
-    maximo = max(valores)
+    labels_full = [p["periodo"] for p in serie]
+    valores_full = [p["valor"] for p in serie]
+    labels_ini, valores_ini = slice_por_anios(labels_full, valores_full, RANGO_INICIAL)
+    minimo = min(valores_full)
+    maximo = max(valores_full)
 
     macro_chart_cards += f"""
     <div class="chart-card">
       <div class="chart-title">{label}</div>
+      {botones_rango(canvas_id)}
       <div class="chart-canvas-wrap"><canvas id="{canvas_id}"></canvas></div>
-      <div class="chart-range">mín {minimo:,.2f} · máx {maximo:,.2f}</div>
+      <div class="chart-range">mín {minimo:,.2f} · máx {maximo:,.2f} (todo el histórico disponible)</div>
     </div>"""
 
     charts_js.append(f"""
-    new Chart(document.getElementById('{canvas_id}'), {{
-      type: 'line',
-      data: {{
-        labels: {json.dumps(labels)},
-        datasets: [{{
-          data: {json.dumps(valores)},
-          borderColor: '{CHART_COLOR}',
-          backgroundColor: '{CHART_COLOR}22',
-          borderWidth: 2,
-          pointRadius: 0,
-          pointHoverRadius: 5,
-          pointHoverBackgroundColor: '{CHART_COLOR}',
-          pointHitRadius: 12,
-          tension: 0.25,
-          fill: true,
-        }}]
-      }},
-      options: {{
-        responsive: true,
-        maintainAspectRatio: false,
-        interaction: {{ mode: 'index', intersect: false }},
-        plugins: {{
-          legend: {{ display: false }},
-          tooltip: {{
-            backgroundColor: '{CHART_BG}',
-            borderColor: '{CHART_GRID}',
-            borderWidth: 1,
-            titleColor: '{CHART_COLOR}',
-            bodyColor: '#eef0f2',
-            padding: 10,
-            displayColors: false,
-          }},
+    (function() {{
+      const chart = new Chart(document.getElementById('{canvas_id}'), {{
+        type: 'line',
+        data: {{
+          labels: {json.dumps(labels_ini)},
+          datasets: [{{
+            data: {json.dumps(valores_ini)},
+            borderColor: '{CHART_COLOR}',
+            backgroundColor: '{CHART_COLOR}22',
+            borderWidth: 2,
+            pointRadius: 0,
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: '{CHART_COLOR}',
+            pointHitRadius: 12,
+            tension: 0.25,
+            fill: true,
+          }}]
         }},
-        scales: {{
-          x: {{
-            ticks: {{ color: '{CHART_TEXT}', font: {{ size: CHART_FONT_SIZE }}, maxTicksLimit: CHART_MAX_TICKS, maxRotation: 0 }},
-            grid: {{ display: false }},
+        options: {{
+          responsive: true,
+          maintainAspectRatio: false,
+          interaction: {{ mode: 'index', intersect: false }},
+          plugins: {{
+            legend: {{ display: false }},
+            tooltip: {{
+              backgroundColor: '{CHART_BG}',
+              borderColor: '{CHART_GRID}',
+              borderWidth: 1,
+              titleColor: '{CHART_COLOR}',
+              bodyColor: '#eef0f2',
+              padding: 10,
+              displayColors: false,
+            }},
           }},
-          y: {{
-            ticks: {{ color: '{CHART_TEXT}', font: {{ size: CHART_FONT_SIZE }} }},
-            grid: {{ color: '{CHART_GRID}' }},
+          scales: {{
+            x: {{
+              ticks: {{ color: '{CHART_TEXT}', font: {{ size: CHART_FONT_SIZE }}, maxTicksLimit: CHART_MAX_TICKS, maxRotation: 0 }},
+              grid: {{ display: false }},
+            }},
+            y: {{
+              ticks: {{ color: '{CHART_TEXT}', font: {{ size: CHART_FONT_SIZE }} }},
+              grid: {{ color: '{CHART_GRID}' }},
+            }}
           }}
         }}
-      }}
-    }});""")
+      }});
+      CHARTS_REGISTRY['{canvas_id}'] = {{ chart: chart, labels: {json.dumps(labels_full)}, valores: {json.dumps(valores_full)} }};
+    }})();""")
 
 # ---------------------------------------------------------------------------
 # Gráficos históricos — tasas de crédito
@@ -299,75 +357,87 @@ for recurso, titulo in (("tip", "TIP"), ("tmc", "TMC")):
         if not serie:
             continue
         canvas_id = f"chart_{recurso}_{tipo}"
-        labels = [p["fecha"] for p in serie]
-        valores = [p["valor"] for p in serie]
+        labels_full = [p["fecha"] for p in serie]
+        valores_full = [p["valor"] for p in serie]
+        # Las tasas bancarias solo llegan a CMF_ANIOS_HISTORICO años (ver
+        # nota en indices.py), así que acá el rango inicial puede coincidir
+        # con "todo lo disponible" — los botones igual quedan, por si más
+        # adelante estiramos también esta fuente.
+        labels_ini, valores_ini = slice_por_anios(labels_full, valores_full, RANGO_INICIAL)
 
         tasas_chart_cards += f"""
         <div class="chart-card">
           <div class="chart-title">{info['etiqueta']} · {titulo}</div>
+          {botones_rango(canvas_id)}
           <div class="chart-canvas-wrap"><canvas id="{canvas_id}"></canvas></div>
         </div>"""
 
         charts_js.append(f"""
-        new Chart(document.getElementById('{canvas_id}'), {{
-          type: 'line',
-          data: {{
-            labels: {json.dumps(labels)},
-            datasets: [{{
-              data: {json.dumps(valores)},
-              borderColor: '{CHART_COLOR}',
-              backgroundColor: '{CHART_COLOR}22',
-              borderWidth: 2,
-              pointRadius: 0,
-              pointHoverRadius: 5,
-              pointHoverBackgroundColor: '{CHART_COLOR}',
-              pointHitRadius: 12,
-              tension: 0.1,
-              stepped: true,
-              fill: true,
-            }}]
-          }},
-          options: {{
-            responsive: true,
-            maintainAspectRatio: false,
-            interaction: {{ mode: 'index', intersect: false }},
-            plugins: {{
-              legend: {{ display: false }},
-              tooltip: {{
-                backgroundColor: '{CHART_BG}',
-                borderColor: '{CHART_GRID}',
-                borderWidth: 1,
-                titleColor: '{CHART_COLOR}',
-                bodyColor: '#eef0f2',
-                padding: 10,
-                displayColors: false,
-                callbacks: {{
-                  label: function(ctx) {{ return ctx.parsed.y.toFixed(2) + '%'; }}
-                }}
-              }},
+        (function() {{
+          const chart = new Chart(document.getElementById('{canvas_id}'), {{
+            type: 'line',
+            data: {{
+              labels: {json.dumps(labels_ini)},
+              datasets: [{{
+                data: {json.dumps(valores_ini)},
+                borderColor: '{CHART_COLOR}',
+                backgroundColor: '{CHART_COLOR}22',
+                borderWidth: 2,
+                pointRadius: 0,
+                pointHoverRadius: 5,
+                pointHoverBackgroundColor: '{CHART_COLOR}',
+                pointHitRadius: 12,
+                tension: 0.1,
+                stepped: true,
+                fill: true,
+              }}]
             }},
-            scales: {{
-              x: {{
-                ticks: {{ color: '{CHART_TEXT}', font: {{ size: CHART_FONT_SIZE }}, maxTicksLimit: CHART_MAX_TICKS, maxRotation: 0 }},
-                grid: {{ display: false }},
+            options: {{
+              responsive: true,
+              maintainAspectRatio: false,
+              interaction: {{ mode: 'index', intersect: false }},
+              plugins: {{
+                legend: {{ display: false }},
+                tooltip: {{
+                  backgroundColor: '{CHART_BG}',
+                  borderColor: '{CHART_GRID}',
+                  borderWidth: 1,
+                  titleColor: '{CHART_COLOR}',
+                  bodyColor: '#eef0f2',
+                  padding: 10,
+                  displayColors: false,
+                  callbacks: {{
+                    label: function(ctx) {{ return ctx.parsed.y.toFixed(2) + '%'; }}
+                  }}
+                }},
               }},
-              y: {{
-                ticks: {{ color: '{CHART_TEXT}', font: {{ size: CHART_FONT_SIZE }} }},
-                grid: {{ color: '{CHART_GRID}' }},
+              scales: {{
+                x: {{
+                  ticks: {{ color: '{CHART_TEXT}', font: {{ size: CHART_FONT_SIZE }}, maxTicksLimit: CHART_MAX_TICKS, maxRotation: 0 }},
+                  grid: {{ display: false }},
+                }},
+                y: {{
+                  ticks: {{ color: '{CHART_TEXT}', font: {{ size: CHART_FONT_SIZE }} }},
+                  grid: {{ color: '{CHART_GRID}' }},
+                }}
               }}
             }}
-          }}
-        }});""")
+          }});
+          CHARTS_REGISTRY['{canvas_id}'] = {{ chart: chart, labels: {json.dumps(labels_full)}, valores: {json.dumps(valores_full)} }};
+        }})();""")
 
 # ---------------------------------------------------------------------------
 # Secciones "próximamente" — combustibles (CNE) y alimentos (ODEPA), listas
 # para reemplazar por datos reales apenas conectemos esas fuentes.
 # ---------------------------------------------------------------------------
 
-def placeholder_seccion(titulo):
+def placeholder_seccion(titulo, descripcion):
     return f"""
     <div class="card-wide placeholder">
-      <div class="card-name">{titulo}</div>
+      <div class="card-head">
+        <span class="card-name">{titulo}</span>
+        <span class="card-desc">{descripcion}</span>
+      </div>
       <div class="placeholder-text">Próximamente.</div>
     </div>"""
 
@@ -391,7 +461,7 @@ if macro_chart_cards or tasas_chart_cards:
 
 CHARTS_JS = "\n".join(charts_js)
 
-generado = fecha_legible(DATA.get("generado", ""))
+cargado_en = fecha_hora_legible(DATA.get("generado", ""))
 
 HTML = f"""<!DOCTYPE html>
 <html lang="es">
@@ -413,16 +483,18 @@ HTML = f"""<!DOCTYPE html>
   }}
   .wrap{{max-width:1100px; margin:0 auto;}}
 
-  .brand{{display:flex; align-items:center; gap:14px; margin-bottom:2px;}}
+  .brand{{display:flex; align-items:center; gap:16px; margin-bottom:2px;}}
   .brand-mark{{flex-shrink:0;}}
-  .brand-name{{font-size:22px; font-weight:700; letter-spacing:.06em;}}
+  .brand-titles{{display:flex; flex-direction:column; gap:4px;}}
+  .page-title{{font-size:26px; font-weight:700; letter-spacing:.01em;}}
+  .page-title .flag{{font-size:22px;}}
+  .brand-name{{font-size:13px; font-weight:600; letter-spacing:.08em; color:var(--muted);}}
   .brand-name .k{{color:var(--orange);}}
   .brand-tagline{{
     font-size:11px; color:var(--muted); letter-spacing:.12em; text-transform:uppercase;
-    display:flex; align-items:center; gap:10px; margin:10px 0 18px 0;
+    display:flex; align-items:center; gap:10px; margin:14px 0 18px 0;
   }}
   .brand-tagline .dash{{display:inline-block; width:22px; height:1px; background:var(--orange);}}
-  .brand-tag{{font-size:11px; color:var(--muted); letter-spacing:.08em; text-transform:uppercase; margin:0 0 8px 0;}}
   .update-note{{font-size:11px; color:var(--muted); line-height:1.6; margin-bottom:28px;}}
 
   h1{{font-size:14px; font-weight:600; color:var(--muted); text-transform:uppercase;
@@ -474,7 +546,9 @@ HTML = f"""<!DOCTYPE html>
     background:var(--card); border:1px solid var(--line); border-radius:10px;
     padding:16px 20px 18px;
   }}
-  .card-name{{font-size:12px; color:var(--muted); margin-bottom:12px;}}
+  .card-head{{display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; margin-bottom:12px;}}
+  .card-name{{font-size:13px; font-weight:700; color:var(--orange);}}
+  .card-desc{{font-size:11px; color:var(--muted);}}
   .card-timeline{{
     display:flex; align-items:flex-end; justify-content:space-between; gap:10px;
     max-width:440px;
@@ -489,7 +563,7 @@ HTML = f"""<!DOCTYPE html>
 
   .tables{{display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:16px;}}
   .tbox{{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:16px;}}
-  .tbox-title{{font-size:13px; font-weight:600; margin-bottom:10px; color:var(--text);}}
+  .tbox-head{{display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; margin-bottom:10px;}}
   .table-scroll{{overflow-x:auto; -webkit-overflow-scrolling:touch;}}
   table{{width:100%; min-width:280px; border-collapse:collapse; font-size:13px;}}
   th{{text-align:left; color:var(--muted); font-weight:500; font-size:11px;
@@ -511,6 +585,13 @@ HTML = f"""<!DOCTYPE html>
   .chart-title{{font-size:14px; color:var(--text); font-weight:600; margin-bottom:12px;}}
   .chart-canvas-wrap{{position:relative; width:100%; height:280px;}}
   .chart-range{{font-size:11px; color:var(--muted); margin-top:10px;}}
+  .range-btns{{display:flex; gap:6px; margin-bottom:12px;}}
+  .range-btn{{
+    font:inherit; font-size:11px; color:var(--muted); background:var(--bg);
+    border:1px solid var(--line); border-radius:20px; padding:4px 12px; cursor:pointer;
+  }}
+  .range-btn:hover{{color:var(--text);}}
+  .range-btn.active{{color:var(--orange); border-color:var(--orange); font-weight:600;}}
 
   .footer{{margin-top:36px; font-size:11px; color:var(--muted); line-height:1.6;}}
   .footer a{{color:var(--orange); text-decoration:none;}}
@@ -518,7 +599,9 @@ HTML = f"""<!DOCTYPE html>
   @media (max-width: 480px){{
     body{{padding:20px 14px 44px;}}
     .brand-mark{{width:32px; height:32px;}}
-    .brand-name{{font-size:18px;}}
+    .page-title{{font-size:19px;}}
+    .page-title .flag{{font-size:16px;}}
+    .brand-name{{font-size:11px;}}
     .nav{{margin:0 -14px 22px; padding:10px 14px;}}
     .kpi{{min-width:112px; padding:12px 12px;}}
     .card-wide{{padding:14px 14px 16px;}}
@@ -535,7 +618,7 @@ HTML = f"""<!DOCTYPE html>
 <div class="wrap">
 
   <div class="brand">
-    <svg class="brand-mark" width="40" height="40" viewBox="0 0 112 120" xmlns="http://www.w3.org/2000/svg">
+    <svg class="brand-mark" width="48" height="48" viewBox="0 0 112 120" xmlns="http://www.w3.org/2000/svg">
       <rect x="20" y="8"  width="22" height="40" rx="3" fill="#eef0f2"/>
       <rect x="20" y="72" width="22" height="40" rx="3" fill="#eef0f2"/>
       <rect x="68" y="8"  width="22" height="40" rx="3" fill="#eef0f2"/>
@@ -544,11 +627,13 @@ HTML = f"""<!DOCTYPE html>
       <rect x="48" y="48" width="16" height="16" rx="2" fill="#e2792f"/>
       <rect x="94" y="48" width="16" height="16" rx="2" fill="#8a8f98"/>
     </svg>
-    <div class="brand-name">HEURISTI<span class="k">K</span>A</div>
+    <div class="brand-titles">
+      <div class="page-title">Indicadores Económicos Chile <span class="flag">🇨🇱</span></div>
+      <div class="brand-name">HEURISTI<span class="k">K</span>A</div>
+    </div>
   </div>
   <div class="brand-tagline"><span class="dash"></span>Capacidad Humana Amplificada<span class="dash"></span></div>
-  <div class="brand-tag">Indicadores económicos · Chile</div>
-  <div class="update-note">Esta data se actualiza de forma automática a las 5:00 AM y 5:00 PM hora de Chile, todos los días.<br>Generado automáticamente el {generado}.</div>
+  <div class="update-note">La información que estás viendo fue cargada el {cargado_en}.</div>
 
   <nav class="nav">
     <a href="#resumen">Resumen</a>
@@ -577,13 +662,13 @@ HTML = f"""<!DOCTYPE html>
   <section id="combustibles" class="section">
     <h1>Combustibles</h1>
     <div class="section-sub">Precios de bencina y diésel (CNE) — en construcción.</div>
-    {placeholder_seccion("Bencina y diésel")}
+    {placeholder_seccion("Bencina y diésel", "Precios por región y tipo de combustible, según la CNE.")}
   </section>
 
   <section id="alimentos" class="section">
     <h1>Alimentos</h1>
     <div class="section-sub">Precios agrícolas (ODEPA) — en construcción.</div>
-    {placeholder_seccion("Precios de alimentos")}
+    {placeholder_seccion("Precios de alimentos", "Precios mayoristas y al consumidor de frutas y verduras, según ODEPA.")}
   </section>
 
   {historicos_seccion}
@@ -603,7 +688,36 @@ HTML = f"""<!DOCTYPE html>
 const CHART_FONT_SIZE = window.innerWidth < 480 ? 11 : 10;
 const CHART_MAX_TICKS = window.innerWidth < 480 ? 6 : 12;
 
+// Cada gráfico se registra acá con su serie COMPLETA (hasta 20 años para
+// macro), aunque al cargar la página solo se dibujan los últimos 5 — los
+// botones de rango recortan/expanden sobre estos mismos datos, sin
+// necesidad de volver a pedir nada al servidor.
+const CHARTS_REGISTRY = {{}};
+
 {CHARTS_JS}
+
+function aplicarRango(canvasId, anios) {{
+  const info = CHARTS_REGISTRY[canvasId];
+  if (!info) return;
+  const anioActual = new Date().getFullYear();
+  const corte = String(anioActual - anios + 1) + '-01';
+  let idx = info.labels.findIndex(function(l) {{ return l >= corte; }});
+  if (idx === -1) idx = info.labels.length;
+  info.chart.data.labels = info.labels.slice(idx);
+  info.chart.data.datasets[0].data = info.valores.slice(idx);
+  info.chart.update();
+}}
+
+document.querySelectorAll('.range-btn').forEach(function(btn) {{
+  btn.addEventListener('click', function() {{
+    const canvasId = btn.dataset.canvas;
+    const anios = parseInt(btn.dataset.years, 10);
+    aplicarRango(canvasId, anios);
+    document.querySelectorAll('.range-btn[data-canvas="' + canvasId + '"]').forEach(function(b) {{
+      b.classList.toggle('active', b === btn);
+    }});
+  }});
+}});
 
 // Respaldo: si en algún navegador la fila de indicador no cupiera entera,
 // la dejamos desplazada hasta el valor destacado (el de hoy, a la derecha).
