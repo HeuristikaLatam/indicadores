@@ -523,15 +523,21 @@ def get_odepa_mayoristas():
 def get_odepa_consumidor():
     """Precio al consumidor ($/kilo, $/litro o $/unidad según corresponda,
     normalizado) de la semana más reciente, para una canasta chica: pan,
-    carne, pollo, huevos y leche. Promedio nacional simple."""
+    carne, pollo, huevos y leche.
+
+    Devuelve:
+      - "nacional": {producto: {"promedio": n, "fecha": "YYYY-MM-DD", "unidad": "kg"|"L"|"un"}}
+      - "regional": {region: {producto: promedio}}  (mismas 9 regiones que mayoristas)
+    """
     anio = datetime.now().year
     resource_id = odepa_resource_id("precios-consumidor", anio)
     if not resource_id:
         print("AVISO: no se encontró el recurso ODEPA de precios consumidor para este año.")
-        return {}
+        return {"nacional": {}, "regional": {}}
 
     print("Descargando precios al consumidor ODEPA ...")
-    salida = {}
+    nacional = {}
+    regional = {}
     for grupo, producto in ODEPA_CONSUMIDOR_ITEMS:
         try:
             filas = odepa_datastore_search(
@@ -550,7 +556,8 @@ def get_odepa_consumidor():
         if not fecha_reciente:
             continue
 
-        precios = []
+        precios_nacional = []
+        precios_region = {}
         unidad_norm = None
         for f in filas:
             if f.get("Fecha termino") != fecha_reciente:
@@ -562,20 +569,169 @@ def get_odepa_consumidor():
             precio, unidad = _normalizar_precio_odepa(precio_bruto, f.get("Unidad"))
             if precio is None or precio <= 0:
                 continue
-            precios.append(precio)
+            precios_nacional.append(precio)
             unidad_norm = unidad_norm or unidad
+            region = f.get("Region")
+            if region:
+                precios_region.setdefault(region, []).append(precio)
 
-        if precios:
-            salida[producto] = {
-                "promedio": round(sum(precios) / len(precios)),
+        if precios_nacional:
+            nacional[producto] = {
+                "promedio": round(sum(precios_nacional) / len(precios_nacional)),
                 "fecha": fecha_reciente,
                 "unidad": unidad_norm or "kg",
             }
+        for region, precios in precios_region.items():
+            regional.setdefault(region, {})[producto] = round(sum(precios) / len(precios))
 
-    if not salida:
+    if not nacional:
         print("  aviso: ODEPA no devolvió precios al consumidor utilizables.")
 
-    return salida
+    return {"nacional": nacional, "regional": regional}
+
+
+# ---------------------------------------------------------------------------
+# ODEPA — tendencia mensual (últimos ~9 meses) de cada producto de la canasta
+# ---------------------------------------------------------------------------
+# ODEPA sí tiene trazabilidad real (a diferencia de la CNE), así que acá
+# podemos mostrar variación real mes a mes: el precio del último día (o
+# última semana, para consumidor) CON DATOS de cada uno de los últimos
+# meses — no un promedio del mes completo, sino el corte más reciente de
+# cada mes, para que la serie termine en el mismo valor que ya se muestra
+# como "hoy" en los KPIs de arriba.
+
+ODEPA_MESES_TENDENCIA = 9
+
+
+def _ultimos_n_meses(n):
+    """Los últimos n meses (incluido el actual), como 'YYYY-MM', ordenados
+    del más antiguo al más reciente."""
+    hoy = datetime.now()
+    meses = []
+    anio, mes = hoy.year, hoy.month
+    for _ in range(n):
+        meses.append(f"{anio:04d}-{mes:02d}")
+        mes -= 1
+        if mes == 0:
+            mes = 12
+            anio -= 1
+    return list(reversed(meses))
+
+
+def get_odepa_mayoristas_tendencia():
+    """Serie mensual (últimos ODEPA_MESES_TENDENCIA meses) del precio
+    mayorista nacional normalizado, un punto por mes = el último día hábil
+    con datos de ese mes."""
+    meses = _ultimos_n_meses(ODEPA_MESES_TENDENCIA)
+    anios = sorted({int(m.split("-")[0]) for m in meses})
+    resources = {a: odepa_resource_id("precios-mayoristas-de-frutas-y-hortalizas", a) for a in anios}
+
+    print(f"Descargando tendencia mayorista ODEPA ({len(meses)} meses) ...")
+    tendencia = {}
+    for producto in ODEPA_MAYORISTA_PRODUCTOS:
+        filas_totales = []
+        for anio in anios:
+            rid = resources.get(anio)
+            if not rid:
+                continue
+            try:
+                filas_totales.extend(
+                    odepa_datastore_search(rid, filters={"Producto": producto}, sort='"Fecha" desc', limit=20000)
+                )
+            except Exception as e:
+                print(f"  aviso: no se pudo traer histórico de '{producto}' ({anio}) ODEPA: {e}")
+
+        ultima_fecha_por_mes = {}
+        for f in filas_totales:
+            fecha = f.get("Fecha", "")
+            mes = fecha[:7]
+            if mes not in meses:
+                continue
+            if fecha > ultima_fecha_por_mes.get(mes, ""):
+                ultima_fecha_por_mes[mes] = fecha
+
+        serie = []
+        for mes in meses:
+            fecha_corte = ultima_fecha_por_mes.get(mes)
+            if not fecha_corte:
+                continue
+            precios = []
+            for f in filas_totales:
+                if f.get("Fecha") != fecha_corte:
+                    continue
+                try:
+                    precio_bruto = float(str(f.get("Precio promedio", "")).replace(",", "."))
+                except (TypeError, ValueError):
+                    continue
+                precio, _u = _normalizar_precio_odepa(precio_bruto, f.get("Unidad de comercializacion"))
+                if precio is not None and precio > 0:
+                    precios.append(precio)
+            if precios:
+                serie.append({"periodo": mes, "fecha": fecha_corte, "valor": round(sum(precios) / len(precios))})
+
+        if serie:
+            tendencia[producto] = serie
+
+    return tendencia
+
+
+def get_odepa_consumidor_tendencia():
+    """Igual que get_odepa_mayoristas_tendencia, pero para la canasta de
+    consumidor: un punto por mes = la última semana con datos de ese mes."""
+    meses = _ultimos_n_meses(ODEPA_MESES_TENDENCIA)
+    anios = sorted({int(m.split("-")[0]) for m in meses})
+    resources = {a: odepa_resource_id("precios-consumidor", a) for a in anios}
+
+    print(f"Descargando tendencia consumidor ODEPA ({len(meses)} meses) ...")
+    tendencia = {}
+    for grupo, producto in ODEPA_CONSUMIDOR_ITEMS:
+        filas_totales = []
+        for anio in anios:
+            rid = resources.get(anio)
+            if not rid:
+                continue
+            try:
+                filas_totales.extend(
+                    odepa_datastore_search(
+                        rid, filters={"Grupo": grupo, "Producto": producto},
+                        sort='"Fecha termino" desc', limit=5000,
+                    )
+                )
+            except Exception as e:
+                print(f"  aviso: no se pudo traer histórico de '{producto}' ({anio}, consumidor) ODEPA: {e}")
+
+        ultima_fecha_por_mes = {}
+        for f in filas_totales:
+            fecha = f.get("Fecha termino", "")
+            mes = fecha[:7]
+            if mes not in meses:
+                continue
+            if fecha > ultima_fecha_por_mes.get(mes, ""):
+                ultima_fecha_por_mes[mes] = fecha
+
+        serie = []
+        for mes in meses:
+            fecha_corte = ultima_fecha_por_mes.get(mes)
+            if not fecha_corte:
+                continue
+            precios = []
+            for f in filas_totales:
+                if f.get("Fecha termino") != fecha_corte:
+                    continue
+                try:
+                    precio_bruto = float(str(f.get("Precio promedio", "")).replace(",", "."))
+                except (TypeError, ValueError):
+                    continue
+                precio, _u = _normalizar_precio_odepa(precio_bruto, f.get("Unidad"))
+                if precio is not None and precio > 0:
+                    precios.append(precio)
+            if precios:
+                serie.append({"periodo": mes, "fecha": fecha_corte, "valor": round(sum(precios) / len(precios))})
+
+        if serie:
+            tendencia[producto] = serie
+
+    return tendencia
 
 
 def main():
@@ -588,6 +744,8 @@ def main():
         "alimentos": {
             "mayoristas": get_odepa_mayoristas(),
             "consumidor": get_odepa_consumidor(),
+            "tendencia_mayoristas": get_odepa_mayoristas_tendencia(),
+            "tendencia_consumidor": get_odepa_consumidor_tendencia(),
         },
     }
 
