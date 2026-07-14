@@ -378,6 +378,7 @@ HTML = f"""<!DOCTYPE html>
   <div class="footer">
     Fuentes: <a href="https://mindicador.cl" target="_blank">mindicador.cl</a> (Banco Central de Chile)
     y <a href="https://api.cmfchile.cl" target="_blank">CMF Bancos</a> (Comisión para el Mercado Financiero).
+    Esta data se actualiza de forma automática a las 5:00 AM y 5:00 PM hora de Chile, todos los días.<br>
     Generado automáticamente el {generado}.<br>
     Información con fines informativos. No constituye asesoría ni recomendación de inversión.
   </div>
