@@ -241,34 +241,54 @@ def get_cmf_ipc():
 # api.cne.cl (precios de combustibles líquidos)
 # ---------------------------------------------------------------------------
 
-def get_cne_token():
+def get_cne_token(reintentos=4):
     """La API de la CNE no usa API key fija: hay que loguearse con
     email/password (POST /api/login) y usar el token que devuelve como
-    Bearer en cada request. Lo hacemos una vez por corrida."""
+    Bearer en cada request. Lo hacemos una vez por corrida.
+
+    La API de CNE aplica rate-limit (429) si se llama muy seguido — pasa
+    fácil si se corre el workflow manualmente varias veces en poco rato.
+    Por eso reintentamos con espera creciente antes de rendirnos."""
     if not (CNE_EMAIL and CNE_PASSWORD):
         return None
 
     print("Autenticando con API CNE ...")
     body = urllib.parse.urlencode({"email": CNE_EMAIL, "password": CNE_PASSWORD}).encode("utf-8")
-    req = urllib.request.Request(
-        "https://api.cne.cl/api/login",
-        data=body,
-        headers={
-            "User-Agent": "heuristika-indicadores/1.0",
-            "Content-Type": "application/x-www-form-urlencoded",
-        },
-        method="POST",
-    )
-    try:
-        with urllib.request.urlopen(req, timeout=25) as resp:
-            data = json.loads(resp.read().decode("utf-8"))
-            token = data.get("token")
-            if not token:
-                print("  aviso: login CNE respondió sin token.")
-            return token
-    except Exception as e:
-        print(f"  aviso: no se pudo autenticar con CNE: {e}")
-        return None
+
+    ultimo_error = None
+    for intento in range(1, reintentos + 1):
+        req = urllib.request.Request(
+            "https://api.cne.cl/api/login",
+            data=body,
+            headers={
+                "User-Agent": "heuristika-indicadores/1.0",
+                "Content-Type": "application/x-www-form-urlencoded",
+            },
+            method="POST",
+        )
+        try:
+            with urllib.request.urlopen(req, timeout=25) as resp:
+                data = json.loads(resp.read().decode("utf-8"))
+                token = data.get("token")
+                if not token:
+                    print("  aviso: login CNE respondió sin token.")
+                return token
+        except urllib.error.HTTPError as e:
+            ultimo_error = e
+            if e.code == 429 and intento < reintentos:
+                espera = 20 * intento  # 20s, 40s, 60s...
+                print(f"  aviso: CNE devolvió 429 (rate limit), reintento {intento} en {espera}s...")
+                time.sleep(espera)
+                continue
+            print(f"  aviso: no se pudo autenticar con CNE: {e}")
+            return None
+        except Exception as e:
+            ultimo_error = e
+            print(f"  aviso: no se pudo autenticar con CNE: {e}")
+            return None
+
+    print(f"  aviso: no se pudo autenticar con CNE tras {reintentos} intentos: {ultimo_error}")
+    return None
 
 
 def get_cne_combustibles():
