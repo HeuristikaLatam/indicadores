@@ -1,5 +1,5 @@
 {
-  "generado": "2026-07-14T22:28:17.646058+00:00",
+  "generado": "2026-07-14T23:02:01.403504+00:00",
   "macro": {
     "dolar": {
       "nombre": "Dólar observado",
@@ -9084,27 +9084,27 @@
       "tipo": "mensual",
       "puntos": [
         {
-          "etiqueta": "2026-02",
+          "etiqueta": "2026-02-01",
           "valor": 69611
         },
         {
-          "etiqueta": "2026-03",
+          "etiqueta": "2026-03-01",
           "valor": 69889
         },
         {
-          "etiqueta": "2026-04",
+          "etiqueta": "2026-04-01",
           "valor": 69889
         },
         {
-          "etiqueta": "2026-05",
+          "etiqueta": "2026-05-01",
           "valor": 70588
         },
         {
-          "etiqueta": "2026-06",
+          "etiqueta": "2026-06-01",
           "valor": 71506
         },
         {
-          "etiqueta": "2026-07",
+          "etiqueta": "2026-07-01",
           "valor": 71649
         }
       ]
@@ -9113,56 +9113,56 @@
       "tipo": "mensual",
       "puntos": [
         {
-          "etiqueta": "2025-07",
-          "valor": 0.9
-        },
-        {
-          "etiqueta": "2025-08",
-          "valor": 0
-        },
-        {
-          "etiqueta": "2025-09",
+          "etiqueta": "2026-01-01",
           "valor": 0.4
         },
         {
-          "etiqueta": "2025-10",
-          "valor": 0
+          "etiqueta": "2026-02-01",
+          "valor": 0.0
         },
         {
-          "etiqueta": "2025-11",
-          "valor": 0.3
+          "etiqueta": "2026-03-01",
+          "valor": 1.0
         },
         {
-          "etiqueta": "2025-12",
-          "valor": -0.2
+          "etiqueta": "2026-04-01",
+          "valor": 1.3
+        },
+        {
+          "etiqueta": "2026-05-01",
+          "valor": 0.2
+        },
+        {
+          "etiqueta": "2026-06-01",
+          "valor": 0.0
         }
       ]
     },
     "tpm": {
-      "tipo": "mensual",
+      "tipo": "diario",
       "puntos": [
         {
-          "etiqueta": "2026-07",
+          "etiqueta": "2026-07-07",
           "valor": 4.5
         },
         {
-          "etiqueta": "2026-07",
+          "etiqueta": "2026-07-08",
           "valor": 4.5
         },
         {
-          "etiqueta": "2026-07",
+          "etiqueta": "2026-07-09",
           "valor": 4.5
         },
         {
-          "etiqueta": "2026-07",
+          "etiqueta": "2026-07-10",
           "valor": 4.5
         },
         {
-          "etiqueta": "2026-07",
+          "etiqueta": "2026-07-13",
           "valor": 4.5
         },
         {
-          "etiqueta": "2026-07",
+          "etiqueta": "2026-07-14",
           "valor": 4.5
         }
       ]
@@ -9171,27 +9171,27 @@
       "tipo": "mensual",
       "puntos": [
         {
-          "etiqueta": "2025-12",
+          "etiqueta": "2025-12-01",
           "valor": 1.7
         },
         {
-          "etiqueta": "2026-01",
+          "etiqueta": "2026-01-01",
           "valor": -0.1
         },
         {
-          "etiqueta": "2026-02",
+          "etiqueta": "2026-02-01",
           "valor": -0.3
         },
         {
-          "etiqueta": "2026-03",
+          "etiqueta": "2026-03-01",
           "valor": -0.1
         },
         {
-          "etiqueta": "2026-04",
+          "etiqueta": "2026-04-01",
           "valor": -1.2
         },
         {
-          "etiqueta": "2026-05",
+          "etiqueta": "2026-05-01",
           "valor": -0.9
         }
       ]
@@ -9200,27 +9200,27 @@
       "tipo": "mensual",
       "puntos": [
         {
-          "etiqueta": "2025-12",
+          "etiqueta": "2025-12-01",
           "valor": 8.05
         },
         {
-          "etiqueta": "2026-01",
+          "etiqueta": "2026-01-01",
           "valor": 8.28
         },
         {
-          "etiqueta": "2026-02",
+          "etiqueta": "2026-02-01",
           "valor": 8.33
         },
         {
-          "etiqueta": "2026-03",
+          "etiqueta": "2026-03-01",
           "valor": 8.93
         },
         {
-          "etiqueta": "2026-04",
+          "etiqueta": "2026-04-01",
           "valor": 9.11
         },
         {
-          "etiqueta": "2026-05",
+          "etiqueta": "2026-05-01",
           "valor": 9.44
         }
       ]
@@ -13167,10 +13167,10 @@
         "KE": 1086
       },
       "Valparaíso": {
-        "93": 1402,
-        "97": 1489,
-        "DI": 1188,
-        "95": 1446,
+        "93": 1401,
+        "97": 1488,
+        "DI": 1186,
+        "95": 1444,
         "KE": 1060
       },
       "Del Libertador Gral. Bernardo O’Higgins": {
@@ -13181,9 +13181,9 @@
         "95": 1567
       },
       "Del Maule": {
-        "93": 1420,
+        "93": 1419,
         "97": 1485,
-        "DI": 1197,
+        "DI": 1196,
         "KE": 1073,
         "95": 1453
       },
@@ -13370,29 +13370,29 @@
         }
       },
       "regional": {
-        "Región de Valparaíso": {
-          "Marraqueta": 2352,
-          "Asado Carnicero": 10538,
-          "Pollo Entero": 3767,
-          "Leche Fluida Entera": 1185
-        },
         "Región de Coquimbo": {
           "Marraqueta": 2378,
           "Asado Carnicero": 10840,
           "Pollo Entero": 3860,
           "Leche Fluida Entera": 1220
         },
-        "Región del Maule": {
-          "Marraqueta": 2210,
-          "Asado Carnicero": 11087,
-          "Pollo Entero": 3847,
-          "Leche Fluida Entera": 1189
+        "Región Metropolitana de Santiago": {
+          "Marraqueta": 2218,
+          "Asado Carnicero": 9804,
+          "Pollo Entero": 3715,
+          "Leche Fluida Entera": 1186
         },
-        "Región del Biobío": {
-          "Marraqueta": 2340,
-          "Asado Carnicero": 10366,
-          "Pollo Entero": 4042,
-          "Leche Fluida Entera": 1221
+        "Región de Ñuble": {
+          "Marraqueta": 2208,
+          "Asado Carnicero": 11020,
+          "Pollo Entero": 3768,
+          "Leche Fluida Entera": 1196
+        },
+        "Región de Los Lagos": {
+          "Marraqueta": 2360,
+          "Asado Carnicero": 10007,
+          "Pollo Entero": 3789,
+          "Leche Fluida Entera": 1219
         },
         "Región de La Araucanía": {
           "Marraqueta": 2275,
@@ -13401,23 +13401,23 @@
           "Huevo blanco - Extra": 220,
           "Leche Fluida Entera": 1230
         },
-        "Región de Los Lagos": {
-          "Marraqueta": 2360,
-          "Asado Carnicero": 10007,
-          "Pollo Entero": 3789,
-          "Leche Fluida Entera": 1219
+        "Región del Biobío": {
+          "Marraqueta": 2340,
+          "Asado Carnicero": 10366,
+          "Pollo Entero": 4042,
+          "Leche Fluida Entera": 1221
         },
-        "Región de Ñuble": {
-          "Marraqueta": 2208,
-          "Asado Carnicero": 11020,
-          "Pollo Entero": 3768,
-          "Leche Fluida Entera": 1196
+        "Región del Maule": {
+          "Marraqueta": 2210,
+          "Asado Carnicero": 11087,
+          "Pollo Entero": 3847,
+          "Leche Fluida Entera": 1189
         },
-        "Región Metropolitana de Santiago": {
-          "Marraqueta": 2218,
-          "Asado Carnicero": 9804,
-          "Pollo Entero": 3715,
-          "Leche Fluida Entera": 1186
+        "Región de Valparaíso": {
+          "Marraqueta": 2352,
+          "Asado Carnicero": 10538,
+          "Pollo Entero": 3767,
+          "Leche Fluida Entera": 1185
         },
         "Región de Arica y Parinacota": {
           "Marraqueta": 2144,
