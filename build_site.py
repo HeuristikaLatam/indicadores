@@ -121,6 +121,8 @@ historico_macro = DATA.get("historico_macro", {})
 recientes = DATA.get("recientes", {})
 tasas = DATA.get("tasas", {"tip": {}, "tmc": {}})
 combustibles = DATA.get("combustibles", {"nacional": {}, "regional": {}})
+_alimentos_resumen = DATA.get("alimentos", {})
+_consumidor_nacional_resumen = _alimentos_resumen.get("consumidor", {}).get("nacional", {})
 
 # ---------------------------------------------------------------------------
 # Resumen: KPIs destacados arriba de todo, con flecha de variación vs. el
@@ -163,6 +165,28 @@ for key, label in RESUMEN_ORDEN:
         <div class="kpi-val">{fmt(d['valor'], d['unidad'], key)}</div>
       </div>
       <div class="kpi-delta {clase_flecha}">{flecha}</div>
+    </div>"""
+
+# Dos KPIs extra en el Resumen que no vienen de mindicador.cl (no tienen la
+# misma serie "reciente" para la flecha, así que van sin comparación).
+_gasolina_93 = combustibles.get("nacional", {}).get("93")
+if _gasolina_93:
+    resumen_cards += f"""
+    <div class="kpi">
+      <div class="kpi-main">
+        <div class="kpi-label">Bencina 93</div>
+        <div class="kpi-val">{fmt_litro(_gasolina_93['promedio'])}</div>
+      </div>
+    </div>"""
+
+_pan = _consumidor_nacional_resumen.get("Marraqueta")
+if _pan:
+    resumen_cards += f"""
+    <div class="kpi">
+      <div class="kpi-main">
+        <div class="kpi-label">Pan (marraqueta)</div>
+        <div class="kpi-val">{fmt_alimento(_pan['promedio'], _pan.get('unidad', 'kg'))}</div>
+      </div>
     </div>"""
 
 # ---------------------------------------------------------------------------
@@ -874,18 +898,22 @@ HTML = f"""<!DOCTYPE html>
   }}
   .wrap{{max-width:1100px; margin:0 auto;}}
 
-  .brand{{display:flex; align-items:center; gap:16px; margin-bottom:2px;}}
+  .header-center{{display:flex; flex-direction:column; align-items:center; text-align:center;}}
+  .brand{{display:flex; align-items:center; justify-content:center; gap:16px; margin-bottom:2px;}}
   .brand-mark{{flex-shrink:0;}}
-  .brand-titles{{display:flex; flex-direction:column; gap:4px;}}
+  .brand-titles{{display:flex; flex-direction:column; gap:4px; align-items:center;}}
   .page-title{{font-size:26px; font-weight:700; letter-spacing:.01em;}}
   .page-title .flag{{font-size:22px;}}
   .brand-name{{font-size:13px; font-weight:600; letter-spacing:.08em; color:var(--muted);}}
   .brand-name .k{{color:var(--orange);}}
   .brand-tagline{{
     font-size:11px; color:var(--muted); letter-spacing:.12em; text-transform:uppercase;
-    display:flex; align-items:center; gap:10px; margin:14px 0 18px 0;
+    display:flex; align-items:center; justify-content:center; gap:10px; margin:14px 0 10px 0;
   }}
   .brand-tagline .dash{{display:inline-block; width:22px; height:1px; background:var(--orange);}}
+  .site-link{{font-size:12px; margin-bottom:14px;}}
+  .site-link a{{color:var(--orange); text-decoration:none;}}
+  .site-link a:hover{{text-decoration:underline;}}
   .update-note{{font-size:11px; color:var(--muted); line-height:1.6; margin-bottom:28px;}}
 
   h1{{font-size:14px; font-weight:600; color:var(--muted); text-transform:uppercase;
@@ -1010,23 +1038,26 @@ HTML = f"""<!DOCTYPE html>
 <body>
 <div class="wrap">
 
-  <div class="brand">
-    <svg class="brand-mark" width="48" height="48" viewBox="0 0 112 120" xmlns="http://www.w3.org/2000/svg">
-      <rect x="20" y="8"  width="22" height="40" rx="3" fill="#eef0f2"/>
-      <rect x="20" y="72" width="22" height="40" rx="3" fill="#eef0f2"/>
-      <rect x="68" y="8"  width="22" height="40" rx="3" fill="#eef0f2"/>
-      <path d="M68,72 H90 V112 Q68,112 68,90 Z" fill="#eef0f2"/>
-      <rect x="2"  y="48" width="16" height="16" rx="2" fill="#8a8f98"/>
-      <rect x="48" y="48" width="16" height="16" rx="2" fill="#e2792f"/>
-      <rect x="94" y="48" width="16" height="16" rx="2" fill="#8a8f98"/>
-    </svg>
-    <div class="brand-titles">
-      <div class="page-title">Indicadores Económicos Chile <span class="flag">🇨🇱</span></div>
-      <div class="brand-name">HEURISTI<span class="k">K</span>A</div>
+  <div class="header-center">
+    <div class="brand">
+      <svg class="brand-mark" width="48" height="48" viewBox="0 0 112 120" xmlns="http://www.w3.org/2000/svg">
+        <rect x="20" y="8"  width="22" height="40" rx="3" fill="#eef0f2"/>
+        <rect x="20" y="72" width="22" height="40" rx="3" fill="#eef0f2"/>
+        <rect x="68" y="8"  width="22" height="40" rx="3" fill="#eef0f2"/>
+        <path d="M68,72 H90 V112 Q68,112 68,90 Z" fill="#eef0f2"/>
+        <rect x="2"  y="48" width="16" height="16" rx="2" fill="#8a8f98"/>
+        <rect x="48" y="48" width="16" height="16" rx="2" fill="#e2792f"/>
+        <rect x="94" y="48" width="16" height="16" rx="2" fill="#8a8f98"/>
+      </svg>
+      <div class="brand-titles">
+        <div class="page-title">Indicadores Económicos Chile <span class="flag">🇨🇱</span></div>
+        <div class="brand-name">HEURISTI<span class="k">K</span>A</div>
+      </div>
     </div>
+    <div class="brand-tagline"><span class="dash"></span>Capacidad Humana Amplificada<span class="dash"></span></div>
+    <div class="site-link"><a href="https://www.heuristika.pro" target="_blank">www.heuristika.pro</a></div>
+    <div class="update-note">La información que estás viendo fue cargada el {cargado_en}.</div>
   </div>
-  <div class="brand-tagline"><span class="dash"></span>Capacidad Humana Amplificada<span class="dash"></span></div>
-  <div class="update-note">La información que estás viendo fue cargada el {cargado_en}.</div>
 
   <nav class="nav">
     <a href="#resumen">Resumen</a>
@@ -1068,9 +1099,12 @@ HTML = f"""<!DOCTYPE html>
 
   <div class="footer">
     Fuentes: <a href="https://mindicador.cl" target="_blank">mindicador.cl</a> (Banco Central de Chile),
-    <a href="https://api.cmfchile.cl" target="_blank">CMF Bancos</a> (Comisión para el Mercado Financiera)
-    y <a href="https://api.cne.cl" target="_blank">CNE</a> (Comisión Nacional de Energía).
+    <a href="https://api.cmfchile.cl" target="_blank">CMF Bancos</a> (Comisión para el Mercado Financiera),
+    <a href="https://api.cne.cl" target="_blank">CNE</a> (Comisión Nacional de Energía)
+    y <a href="https://datos.odepa.gob.cl" target="_blank">ODEPA</a> (Oficina de Estudios y Políticas Agrarias).
     Información con fines informativos. No constituye asesoría ni recomendación de inversión.
+    <br><br>
+    <a href="https://www.heuristika.pro" target="_blank">www.heuristika.pro</a> / <a href="mailto:contacto@heuristika.pro">contacto@heuristika.pro</a>
   </div>
 
 </div>
