@@ -3,11 +3,14 @@ indices.py
 Descarga indicadores económicos y financieros de Chile:
   - mindicador.cl (sin API key): valores actuales + históricos mensuales
   - api.cmfchile.cl (requiere CMF_API_KEY): TIP/TMC actuales + históricos
+  - api.cne.cl (requiere CNE_EMAIL/CNE_PASSWORD): precios de combustibles líquidos
 
 Escribe todo a datos.json, que luego consume build_site.py.
 
 Uso local:
     export CMF_API_KEY="tu_api_key"
+    export CNE_EMAIL="tu_email"
+    export CNE_PASSWORD="tu_password"
     python3 indices.py
 """
 
@@ -15,31 +18,21 @@ import json
 import os
 import time
 from datetime import datetime, timezone
-from zoneinfo import ZoneInfo
 import urllib.request
 import urllib.error
+import urllib.parse
 
 CMF_API_KEY = os.environ.get("CMF_API_KEY", "")
-CHILE_TZ = ZoneInfo("America/Santiago")
+CNE_EMAIL = os.environ.get("CNE_EMAIL", "")
+CNE_PASSWORD = os.environ.get("CNE_PASSWORD", "")
 AHORA = datetime.now()
 ANIO_ACTUAL = AHORA.year
-# Cuántos años hacia atrás traer para los gráficos. Separado en dos porque
-# CMF (TIP/TMC/IPC) es más lenta y propensa a rate-limiting — si la
-# estiramos a 20 años se multiplican los llamados y puede volver a colgar
-# el workflow (ya nos pasó). mindicador.cl en cambio responde bien a más años.
-MACRO_ANIOS_HISTORICO = 20  # dólar, euro, UF, UTM, TPM, Imacec, desempleo, cobre, bitcoin
-CMF_ANIOS_HISTORICO = 5     # TIP, TMC, IPC (vía CMF)
+N_ANIOS_HISTORICO = 5  # cuántos años hacia atrás traer para los gráficos
 
 MACRO_INDICADORES = [
     "dolar", "euro", "uf", "utm", "ipc", "tpm",
     "imacec", "tasa_desempleo", "libra_cobre", "bitcoin",
 ]
-
-# Indicadores que se publican día a día vs. una vez al mes —
-# determina si "los últimos N datos" se muestran por día o por mes.
-INDICADORES_DIARIOS = {"dolar", "euro", "uf", "libra_cobre", "bitcoin"}
-# Guardamos 6 puntos: los 5 "anteriores" + el más reciente (destacado).
-N_RECIENTES = 6
 
 # Tipos de operación TIP/TMC más relevantes para "costo del crédito".
 # Ver documentación: https://api.cmfchile.cl/documentacion/TIP.html
@@ -52,20 +45,23 @@ TIPOS_RELEVANTES = {
 }
 
 
-def http_get_json(url, timeout=12, reintentos=2):
-    """GET con reintentos cortos: si falla, falla rápido (no queremos que
-    una API lenta haga que el job entero se demore 20+ minutos)."""
+def http_get_json(url, timeout=25, reintentos=3, headers=None):
+    """GET con reintentos: las APIs públicas a veces se cuelgan un momento,
+    y este script corre solo todos los días sin nadie mirando."""
     ultimo_error = None
+    base_headers = {"User-Agent": "heuristika-indicadores/1.0"}
+    if headers:
+        base_headers.update(headers)
     for intento in range(1, reintentos + 1):
         try:
-            req = urllib.request.Request(url, headers={"User-Agent": "heuristika-indicadores/1.0"})
+            req = urllib.request.Request(url, headers=base_headers)
             with urllib.request.urlopen(req, timeout=timeout) as resp:
                 return json.loads(resp.read().decode("utf-8"))
         except Exception as e:
             ultimo_error = e
             if intento < reintentos:
-                print(f"  aviso: intento {intento} falló ({type(e).__name__}: {e}), reintentando...")
-                time.sleep(1.5)
+                print(f"  aviso: intento {intento} falló ({e}), reintentando...")
+                time.sleep(2 * intento)
     raise ultimo_error
 
 
@@ -90,27 +86,13 @@ def get_mindicador_actual():
 
 def get_mindicador_historico():
     """Trae la serie de cada indicador para los últimos N años y la
-    agrega a promedio mensual (para que los gráficos no sean gigantes).
-    De paso guarda los últimos N_RECIENTES puntos "crudos" (por día para
-    los indicadores diarios, por mes para los mensuales) para la vista
-    de tarjetas con el valor destacado + últimos períodos."""
-    print(f"Descargando histórico ({MACRO_ANIOS_HISTORICO} años) de mindicador.cl ...")
-    anios = range(ANIO_ACTUAL - MACRO_ANIOS_HISTORICO + 1, ANIO_ACTUAL + 1)
+    agrega a promedio mensual (para que los gráficos no sean gigantes)."""
+    print(f"Descargando histórico ({N_ANIOS_HISTORICO} años) de mindicador.cl ...")
+    anios = range(ANIO_ACTUAL - N_ANIOS_HISTORICO + 1, ANIO_ACTUAL + 1)
     resultado = {}
-    recientes = {}
-
-    # La UF (y a veces la UTM) viene publicada por el Banco Central con
-    # semanas/meses de anticipación. Si tomáramos literalmente "los últimos
-    # N puntos de la serie" incluiríamos fechas futuras y el destacado
-    # mostraría un valor de un día que aún no llega. Filtramos todo a
-    # <= hoy (hora de Chile) antes de quedarnos con los N más recientes.
-    hoy_chile = datetime.now(CHILE_TZ).date()
-    hoy_str = hoy_chile.isoformat()
-    mes_actual_str = hoy_str[:7]
 
     for indicador in MACRO_INDICADORES:
         puntos_por_mes = {}
-        puntos_crudos = {}  # fecha -> valor, sin agregar
         for anio in anios:
             url = f"https://mindicador.cl/api/{indicador}/{anio}"
             try:
@@ -125,7 +107,6 @@ def get_mindicador_historico():
                     continue
                 mes = fecha[:7]  # "YYYY-MM"
                 puntos_por_mes.setdefault(mes, []).append(valor)
-                puntos_crudos[fecha] = valor
             time.sleep(0.1)  # ser amable con la API
 
         serie_mensual = [
@@ -134,22 +115,7 @@ def get_mindicador_historico():
         ]
         resultado[indicador] = serie_mensual
 
-        if indicador in INDICADORES_DIARIOS:
-            puntos_pasados = {f: v for f, v in puntos_crudos.items() if f[:10] <= hoy_str}
-            ultimos = sorted(puntos_pasados.items())[-N_RECIENTES:]
-            recientes[indicador] = {
-                "tipo": "diario",
-                "puntos": [{"etiqueta": f, "valor": v} for f, v in ultimos],
-            }
-        else:
-            serie_pasada = [p for p in serie_mensual if p["periodo"] <= mes_actual_str]
-            ultimos = serie_pasada[-N_RECIENTES:]
-            recientes[indicador] = {
-                "tipo": "mensual",
-                "puntos": [{"etiqueta": p["periodo"], "valor": p["valor"]} for p in ultimos],
-            }
-
-    return resultado, recientes
+    return resultado
 
 
 # ---------------------------------------------------------------------------
@@ -168,26 +134,6 @@ def _extraer_items(data, clave, recurso):
     return []
 
 
-CMF_PAUSA = 1.2  # segundos entre llamadas a la API de CMF, para no gatillar su límite de tasa
-
-
-def _cmf_get(recurso, anio):
-    """Wrapper para llamar a un recurso de CMF (tip/tmc/ipc) para un año.
-    Devuelve None si falla, sin cortar el resto del proceso."""
-    url = (
-        f"https://api.cmfchile.cl/api-sbifv3/recursos_api/{recurso}/{anio}"
-        f"?apikey={CMF_API_KEY}&formato=json"
-    )
-    try:
-        data = http_get_json(url)
-    except Exception as e:
-        print(f"  aviso: no se pudo traer {recurso} {anio} desde CMF ({type(e).__name__}: {e})")
-        return None
-    finally:
-        time.sleep(CMF_PAUSA)
-    return data
-
-
 def get_cmf_historico():
     """Trae TIP y TMC para los últimos N años, filtrado a los tipos
     relevantes, y arma una serie de tiempo por tipo de operación."""
@@ -195,15 +141,24 @@ def get_cmf_historico():
         print("AVISO: no hay CMF_API_KEY definida, se omiten tasas bancarias (TIP/TMC).")
         return {"tip": {}, "tmc": {}}
 
-    print(f"Descargando tasas CMF (TIP/TMC), últimos {CMF_ANIOS_HISTORICO} años ...")
-    anios = range(ANIO_ACTUAL - CMF_ANIOS_HISTORICO + 1, ANIO_ACTUAL + 1)
+    print(f"Descargando tasas CMF (TIP/TMC), últimos {N_ANIOS_HISTORICO} años ...")
+    anios = range(ANIO_ACTUAL - N_ANIOS_HISTORICO + 1, ANIO_ACTUAL + 1)
     series = {"tip": {}, "tmc": {}}
 
     for recurso in ("tip", "tmc"):
         clave = "TIPs" if recurso == "tip" else "TMCs"
         for anio in anios:
-            data = _cmf_get(recurso, anio)
-            if data is None:
+            url = (
+                f"https://api.cmfchile.cl/api-sbifv3/recursos_api/{recurso}/{anio}"
+                f"?apikey={CMF_API_KEY}&formato=json"
+            )
+            try:
+                data = http_get_json(url)
+            except urllib.error.HTTPError as e:
+                print(f"  error HTTP en {recurso} {anio}: {e}")
+                continue
+            except Exception as e:
+                print(f"  error en {recurso} {anio}: {e}")
                 continue
 
             items = _extraer_items(data, clave, recurso)
@@ -224,6 +179,7 @@ def get_cmf_historico():
                 if not fecha:
                     continue
                 series[recurso].setdefault(tipo, {})[fecha] = valor
+            time.sleep(0.1)
 
     # convertir dict fecha->valor a lista ordenada por fecha
     salida = {"tip": {}, "tmc": {}}
@@ -243,13 +199,16 @@ def get_cmf_ipc():
     if not CMF_API_KEY:
         return []
 
-    print(f"Descargando IPC (CMF/INE), últimos {CMF_ANIOS_HISTORICO} años ...")
-    anios = range(ANIO_ACTUAL - CMF_ANIOS_HISTORICO + 1, ANIO_ACTUAL + 1)
+    print(f"Descargando IPC (CMF/INE), últimos {N_ANIOS_HISTORICO} años ...")
+    anios = range(ANIO_ACTUAL - N_ANIOS_HISTORICO + 1, ANIO_ACTUAL + 1)
     puntos = {}
 
     for anio in anios:
-        data = _cmf_get("ipc", anio)
-        if data is None:
+        url = f"https://api.cmfchile.cl/api-sbifv3/recursos_api/ipc/{anio}?apikey={CMF_API_KEY}&formato=json"
+        try:
+            data = http_get_json(url)
+        except Exception as e:
+            print(f"  aviso: no se pudo traer IPC {anio}: {e}")
             continue
 
         bloque = data.get("IPCs", [])
@@ -273,67 +232,124 @@ def get_cmf_ipc():
             except ValueError:
                 continue
             puntos[fecha] = valor
+        time.sleep(0.1)
 
     return [{"fecha": f, "periodo": f[:7], "valor": v} for f, v in sorted(puntos.items())]
 
 
-def cargar_datos_anteriores():
-    """Lee el datos.json de la corrida anterior, si existe, para poder usarlo
-    como respaldo cuando alguna fuente falla puntualmente en esta corrida."""
+# ---------------------------------------------------------------------------
+# api.cne.cl (precios de combustibles líquidos)
+# ---------------------------------------------------------------------------
+
+def get_cne_token():
+    """La API de la CNE no usa API key fija: hay que loguearse con
+    email/password (POST /api/login) y usar el token que devuelve como
+    Bearer en cada request. Lo hacemos una vez por corrida."""
+    if not (CNE_EMAIL and CNE_PASSWORD):
+        return None
+
+    print("Autenticando con API CNE ...")
+    body = urllib.parse.urlencode({"email": CNE_EMAIL, "password": CNE_PASSWORD}).encode("utf-8")
+    req = urllib.request.Request(
+        "https://api.cne.cl/api/login",
+        data=body,
+        headers={
+            "User-Agent": "heuristika-indicadores/1.0",
+            "Content-Type": "application/x-www-form-urlencoded",
+        },
+        method="POST",
+    )
     try:
-        with open("datos.json", "r", encoding="utf-8") as f:
-            return json.load(f)
-    except Exception:
+        with urllib.request.urlopen(req, timeout=25) as resp:
+            data = json.loads(resp.read().decode("utf-8"))
+            token = data.get("token")
+            if not token:
+                print("  aviso: login CNE respondió sin token.")
+            return token
+    except Exception as e:
+        print(f"  aviso: no se pudo autenticar con CNE: {e}")
         return None
 
 
-def main():
-    anterior = cargar_datos_anteriores()
+def get_cne_combustibles():
+    """Precio promedio mensual por litro, por tipo de combustible, desde
+    la API de Energía Abierta de la CNE (/api/ea/precio/combustibleliquido).
 
-    historico_macro, recientes = get_mindicador_historico()
-    macro = get_mindicador_actual()
+    Devuelve:
+      - "nacional": {tipo_combustible: [{"periodo": "YYYY-MM", "valor": n}, ...]}
+        (promedio simple de todas las regiones reportadas ese mes)
+      - "regional": {tipo_combustible: {region_nombre: {"periodo": ..., "valor": ...}}}
+        (último valor disponible por región, para la tabla de la sección)
 
-    # Resiliencia: si mindicador.cl falla puntualmente para un indicador en
-    # esta corrida (timeout, etc.), no queremos publicar una tarjeta vacía —
-    # mantenemos el dato de la corrida anterior para ESE indicador y
-    # avisamos en el log, para que se note sin romper el sitio.
-    if anterior:
-        anterior_macro = anterior.get("macro", {})
-        anterior_hist = anterior.get("historico_macro", {})
-        anterior_rec = anterior.get("recientes", {})
-        for indicador in MACRO_INDICADORES:
-            if not recientes.get(indicador, {}).get("puntos") and anterior_rec.get(indicador, {}).get("puntos"):
-                recientes[indicador] = anterior_rec[indicador]
-                print(f"  AVISO: {indicador} sin datos recientes esta corrida, se mantiene el dato anterior.")
-            if not historico_macro.get(indicador) and anterior_hist.get(indicador):
-                historico_macro[indicador] = anterior_hist[indicador]
-            if indicador not in macro and indicador in anterior_macro:
-                macro[indicador] = anterior_macro[indicador]
-                print(f"  AVISO: {indicador} sin valor actual esta corrida, se mantiene el dato anterior.")
+    NOTA: el endpoint está marcado "en desarrollo" en la documentación de la
+    CNE — si cambian los nombres de campo o de tipo_combustible, revisar
+    aquí primero antes que en build_site.py.
+    """
+    token = get_cne_token()
+    if not token:
+        print("AVISO: no hay CNE_EMAIL/CNE_PASSWORD (o falló el login), se omiten combustibles.")
+        return {"nacional": {}, "regional": {}}
 
-    # Para que el valor "destacado" nunca quede desincronizado con la fila de
-    # valores recientes (que viene de una fuente distinta), el destacado se
-    # recalcula a partir del último punto de "recientes" — misma fuente,
-    # mismo dato, sin posibilidad de que se contradigan.
-    for key, rec in recientes.items():
-        puntos = rec.get("puntos", [])
-        if not puntos or key not in macro:
+    print("Descargando precios de combustibles líquidos (CNE) ...")
+    try:
+        data = http_get_json(
+            "https://api.cne.cl/api/ea/precio/combustibleliquido",
+            headers={"Authorization": f"Bearer {token}"},
+        )
+    except Exception as e:
+        print(f"  aviso: no se pudo traer combustibles CNE: {e}")
+        return {"nacional": {}, "regional": {}}
+
+    filas = data.get("data", [])
+    if not filas:
+        print("  aviso: la API CNE no devolvió filas de combustibles.")
+
+    nacional_puntos = {}          # tipo -> periodo -> [precios de cada región]
+    regional_ultimo = {}          # (tipo, region) -> {"periodo", "valor"}
+
+    for f in filas:
+        tipo = f.get("tipo_combustible")
+        anio = f.get("anio")
+        mes = f.get("mes")
+        region = f.get("region_nombre")
+        try:
+            precio = float(f.get("precio_por_litro"))
+        except (TypeError, ValueError):
             continue
-        ultimo = puntos[-1]
-        etiqueta = ultimo["etiqueta"]
-        fecha_iso = etiqueta if rec.get("tipo") != "mensual" else f"{etiqueta}-01"
-        macro[key] = {
-            **macro[key],
-            "valor": ultimo["valor"],
-            "fecha": fecha_iso,
-        }
+        if not tipo or not anio or not mes:
+            continue
+        periodo = f"{int(anio):04d}-{int(mes):02d}"
 
+        nacional_puntos.setdefault(tipo, {}).setdefault(periodo, []).append(precio)
+
+        if region:
+            clave = (tipo, region)
+            actual = regional_ultimo.get(clave)
+            if not actual or periodo >= actual["periodo"]:
+                regional_ultimo[clave] = {"periodo": periodo, "valor": precio}
+
+    nacional = {}
+    for tipo, puntos_por_mes in nacional_puntos.items():
+        serie = [
+            {"periodo": p, "valor": round(sum(vals) / len(vals), 1)}
+            for p, vals in sorted(puntos_por_mes.items())
+        ]
+        nacional[tipo] = serie
+
+    regional = {}
+    for (tipo, region), punto in regional_ultimo.items():
+        regional.setdefault(tipo, {})[region] = punto
+
+    return {"nacional": nacional, "regional": regional}
+
+
+def main():
     salida = {
-        "generado": datetime.now(CHILE_TZ).isoformat(),
-        "macro": macro,
-        "historico_macro": historico_macro,
-        "recientes": recientes,
+        "generado": datetime.now(timezone.utc).isoformat(),
+        "macro": get_mindicador_actual(),
+        "historico_macro": get_mindicador_historico(),
         "tasas": get_cmf_historico(),
+        "combustibles": get_cne_combustibles(),
     }
 
     # El IPC de mindicador.cl suele atrasarse; si CMF tiene datos, los usamos.
@@ -349,31 +365,7 @@ def main():
             "valor": ultimo["valor"],
             "fecha": ultimo["fecha"],
         }
-        salida["recientes"]["ipc"] = {
-            "tipo": "mensual",
-            "puntos": [
-                {"etiqueta": p["periodo"], "valor": p["valor"]}
-                for p in ipc_cmf[-N_RECIENTES:]
-            ],
-        }
         print(f"  IPC actualizado desde CMF: {ultimo['valor']}% ({ultimo['fecha']})")
-
-    # Mismo respaldo para CMF: si TIP/TMC o el IPC vinieron vacíos esta
-    # corrida, mantenemos lo de la corrida anterior en vez de publicar vacío.
-    if anterior:
-        if not salida["tasas"]["tip"] and not salida["tasas"]["tmc"] and anterior.get("tasas"):
-            salida["tasas"] = anterior["tasas"]
-            print("AVISO: tasas TIP/TMC vacías esta corrida (CMF no respondió), se mantienen las anteriores.")
-        if not ipc_cmf and anterior.get("macro", {}).get("ipc"):
-            salida["macro"]["ipc"] = anterior["macro"]["ipc"]
-            salida["historico_macro"]["ipc"] = anterior.get("historico_macro", {}).get("ipc", salida["historico_macro"].get("ipc", []))
-            salida["recientes"]["ipc"] = anterior.get("recientes", {}).get("ipc", salida["recientes"].get("ipc", {}))
-            print("AVISO: no se pudo actualizar IPC desde CMF esta corrida, se mantuvo el IPC anterior.")
-    else:
-        if not salida["tasas"]["tip"] and not salida["tasas"]["tmc"]:
-            print("AVISO: tasas TIP/TMC quedaron vacías esta corrida (CMF no respondió).")
-        if not ipc_cmf:
-            print("AVISO: no se pudo actualizar IPC desde CMF esta corrida (sin dato anterior de respaldo).")
 
     with open("datos.json", "w", encoding="utf-8") as f:
         json.dump(salida, f, ensure_ascii=False, indent=2)
