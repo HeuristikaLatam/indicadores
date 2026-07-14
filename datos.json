@@ -1,5 +1,5 @@
 {
-  "generado": "2026-07-14T23:27:47.556520+00:00",
+  "generado": "2026-07-14T23:38:16.611821+00:00",
   "macro": {
     "dolar": {
       "nombre": "Dólar observado",
@@ -13195,11 +13195,11 @@
         "KE": 1053
       },
       "Ñuble": {
-        "93": 1406,
+        "93": 1404,
         "97": 1472,
-        "DI": 1179,
+        "DI": 1177,
         "KE": 1062,
-        "95": 1442
+        "95": 1440
       },
       "De la Araucanía": {
         "93": 1431,
@@ -13376,23 +13376,29 @@
           "Pollo Entero": 3860,
           "Leche Fluida Entera": 1220
         },
+        "Región de Arica y Parinacota": {
+          "Marraqueta": 2144,
+          "Asado Carnicero": 9752,
+          "Pollo Entero": 3898,
+          "Leche Fluida Entera": 1208
+        },
         "Región Metropolitana de Santiago": {
           "Marraqueta": 2218,
           "Asado Carnicero": 9804,
           "Pollo Entero": 3715,
           "Leche Fluida Entera": 1186
         },
-        "Región de Los Lagos": {
-          "Marraqueta": 2360,
-          "Asado Carnicero": 10007,
-          "Pollo Entero": 3789,
-          "Leche Fluida Entera": 1219
-        },
         "Región de Ñuble": {
           "Marraqueta": 2208,
           "Asado Carnicero": 11020,
           "Pollo Entero": 3768,
           "Leche Fluida Entera": 1196
+        },
+        "Región de Los Lagos": {
+          "Marraqueta": 2360,
+          "Asado Carnicero": 10007,
+          "Pollo Entero": 3789,
+          "Leche Fluida Entera": 1219
         },
         "Región de La Araucanía": {
           "Marraqueta": 2275,
@@ -13418,12 +13424,6 @@
           "Asado Carnicero": 10538,
           "Pollo Entero": 3767,
           "Leche Fluida Entera": 1185
-        },
-        "Región de Arica y Parinacota": {
-          "Marraqueta": 2144,
-          "Asado Carnicero": 9752,
-          "Pollo Entero": 3898,
-          "Leche Fluida Entera": 1208
         }
       }
     },
