@@ -1,29 +1,29 @@
 {
-  "generado": "2026-07-14T01:21:42.684765+00:00",
+  "generado": "2026-07-13T21:38:09.212930-04:00",
   "macro": {
     "dolar": {
       "nombre": "Dólar observado",
       "unidad": "Pesos",
-      "valor": 924.94,
-      "fecha": "2026-07-13T04:00:00.000Z"
+      "valor": 928.84,
+      "fecha": "2026-07-14T04:00:00.000Z"
     },
     "euro": {
       "nombre": "Euro",
       "unidad": "Pesos",
-      "valor": 1055.87,
-      "fecha": "2026-07-13T04:00:00.000Z"
+      "valor": 1057.66,
+      "fecha": "2026-07-14T04:00:00.000Z"
     },
     "uf": {
       "nombre": "Unidad de fomento (UF)",
       "unidad": "Pesos",
       "valor": 40844.79,
-      "fecha": "2026-07-13T04:00:00.000Z"
+      "fecha": "2026-08-09T04:00:00.000Z"
     },
     "utm": {
       "nombre": "Unidad Tributaria Mensual (UTM)",
       "unidad": "Pesos",
-      "valor": 71649,
-      "fecha": "2026-07-01T04:00:00.000Z"
+      "valor": 71649.0,
+      "fecha": "2026-07-01"
     },
     "ipc": {
       "nombre": "Indice de Precios al Consumidor (IPC)",
@@ -35,25 +35,25 @@
       "nombre": "Tasa Política Monetaria (TPM)",
       "unidad": "Porcentaje",
       "valor": 4.5,
-      "fecha": "2026-07-13T04:00:00.000Z"
+      "fecha": "2026-07-01"
     },
     "imacec": {
       "nombre": "Imacec",
       "unidad": "Porcentaje",
       "valor": -0.9,
-      "fecha": "2026-05-01T04:00:00.000Z"
+      "fecha": "2026-05-01"
     },
     "tasa_desempleo": {
       "nombre": "Tasa de desempleo",
       "unidad": "Porcentaje",
       "valor": 9.44,
-      "fecha": "2026-05-01T04:00:00.000Z"
+      "fecha": "2026-05-01"
     },
     "libra_cobre": {
       "nombre": "Libra de Cobre",
       "unidad": "Dólar",
-      "valor": 6.1,
-      "fecha": "2026-07-13T04:00:00.000Z"
+      "valor": 6.09,
+      "fecha": "2026-07-14T04:00:00.000Z"
     },
     "bitcoin": {
       "nombre": "Bitcoin",
@@ -2273,6 +2273,10 @@
       "tipo": "diario",
       "puntos": [
         {
+          "etiqueta": "2026-07-07T04:00:00.000Z",
+          "valor": 926.25
+        },
+        {
           "etiqueta": "2026-07-08T04:00:00.000Z",
           "valor": 927.36
         },
@@ -2297,6 +2301,10 @@
     "euro": {
       "tipo": "diario",
       "puntos": [
+        {
+          "etiqueta": "2026-07-07T04:00:00.000Z",
+          "valor": 1059.54
+        },
         {
           "etiqueta": "2026-07-08T04:00:00.000Z",
           "valor": 1059.48
@@ -2323,6 +2331,10 @@
       "tipo": "diario",
       "puntos": [
         {
+          "etiqueta": "2026-08-04T04:00:00.000Z",
+          "valor": 40844.79
+        },
+        {
           "etiqueta": "2026-08-05T04:00:00.000Z",
           "valor": 40844.79
         },
@@ -2347,6 +2359,10 @@
     "utm": {
       "tipo": "mensual",
       "puntos": [
+        {
+          "etiqueta": "2026-02",
+          "valor": 69611.0
+        },
         {
           "etiqueta": "2026-03",
           "valor": 69889.0
@@ -2373,6 +2389,10 @@
       "tipo": "mensual",
       "puntos": [
         {
+          "etiqueta": "2026-01",
+          "valor": 0.4
+        },
+        {
           "etiqueta": "2026-02",
           "valor": 0.0
         },
@@ -2397,6 +2417,10 @@
     "tpm": {
       "tipo": "mensual",
       "puntos": [
+        {
+          "etiqueta": "2026-02",
+          "valor": 4.5
+        },
         {
           "etiqueta": "2026-03",
           "valor": 4.5
@@ -2423,6 +2447,10 @@
       "tipo": "mensual",
       "puntos": [
         {
+          "etiqueta": "2025-12",
+          "valor": 1.7
+        },
+        {
           "etiqueta": "2026-01",
           "valor": -0.1
         },
@@ -2447,6 +2475,10 @@
     "tasa_desempleo": {
       "tipo": "mensual",
       "puntos": [
+        {
+          "etiqueta": "2025-12",
+          "valor": 8.05
+        },
         {
           "etiqueta": "2026-01",
           "valor": 8.28
@@ -2473,6 +2505,10 @@
       "tipo": "diario",
       "puntos": [
         {
+          "etiqueta": "2026-07-07T04:00:00.000Z",
+          "valor": 6.04
+        },
+        {
           "etiqueta": "2026-07-08T04:00:00.000Z",
           "valor": 6.05
         },
@@ -2497,6 +2533,10 @@
     "bitcoin": {
       "tipo": "diario",
       "puntos": [
+        {
+          "etiqueta": "2026-06-22T04:00:00.000Z",
+          "valor": 63952.2
+        },
         {
           "etiqueta": "2026-06-26T04:00:00.000Z",
           "valor": 60023.84
