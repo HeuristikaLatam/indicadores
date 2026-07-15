@@ -19,11 +19,15 @@ with open("datos.json", "r", encoding="utf-8") as f:
 # Paleta de los gráficos Chart.js — arriba de todo porque la tarjeta del
 # índice de costo de vida (en Resumen) también dibuja un gráfico, y ese
 # bloque se arma antes que los gráficos históricos más abajo en el archivo.
-# Paleta personal de Felipe Alcérreca: azul petróleo + acento cobre.
-CHART_COLOR = "#C17D52"
-CHART_GRID = "#22323a"
-CHART_TEXT = "#8FA3AA"
-CHART_BG = "#0F1C22"
+# Paleta personal de Felipe Alcérreca: fondo arena/crema del logo, tinta
+# azul petróleo para texto, acento cobre. El tooltip de los gráficos se
+# mantiene oscuro (petróleo) para que resalte como una "píldora" sobre el
+# fondo claro de la página.
+CHART_COLOR = "#B86F45"
+CHART_GRID = "#E4DCC8"
+CHART_TEXT = "#46616A"
+CHART_BG = "#0D2630"
+CHART_TOOLTIP_TEXT = "#F6F2EA"
 
 
 def fmt(valor, unidad, key=None):
@@ -284,7 +288,7 @@ if indice_costo_vida:
               borderColor: '{CHART_GRID}',
               borderWidth: 1,
               titleColor: '{CHART_COLOR}',
-              bodyColor: '#eef0f2',
+              bodyColor: '{CHART_TOOLTIP_TEXT}',
               padding: 10,
               displayColors: false,
             }},
@@ -308,7 +312,7 @@ if indice_costo_vida:
     indice_html = f"""
     <div class="indice-card">
       <div class="indice-mitad indice-texto">
-        <div class="indice-title">Índice de costo de vida Heuristika</div>
+        <div class="indice-title">Índice de costo de vida FA</div>
         <div class="indice-desc">Cuánto le cuesta hoy vivir a una familia chilena promedio (2 padres, 1 hijo, ingreso ~$1.500.000/mes) frente al día en que empezamos a medirlo. Combina alimentos (62%), bencina (10%), UF (16%) y dólar (12%), según lo que ese hogar realmente gasta — parte en 100 el {fecha_legible(indice_costo_vida.get('base', {}).get('fecha', ''))}.</div>
         <div class="indice-valor">{_icv_valor:.2f}</div>
         {_icv_delta_html}
@@ -710,7 +714,7 @@ for key, label in MACRO_ORDEN:
               borderColor: '{CHART_GRID}',
               borderWidth: 1,
               titleColor: '{CHART_COLOR}',
-              bodyColor: '#eef0f2',
+              bodyColor: '{CHART_TOOLTIP_TEXT}',
               padding: 10,
               displayColors: false,
             }},
@@ -791,7 +795,7 @@ for recurso, titulo in (("tip", "TIP"), ("tmc", "TMC")):
                   borderColor: '{CHART_GRID}',
                   borderWidth: 1,
                   titleColor: '{CHART_COLOR}',
-                  bodyColor: '#eef0f2',
+                  bodyColor: '{CHART_TOOLTIP_TEXT}',
                   padding: 10,
                   displayColors: false,
                   callbacks: {{
@@ -1084,9 +1088,10 @@ HTML = f"""<!DOCTYPE html>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.0/chart.umd.min.js"></script>
 <style>
   :root{{
-    /* Paleta personal de Felipe Alcérreca: azul petróleo + acento cobre. */
-    --bg:#0A1418; --card:#121E24; --line:#22323a; --text:#EEF2F0;
-    --muted:#8FA3AA; --orange:#C17D52; --navy:#0D2630;
+    /* Paleta personal de Felipe Alcérreca: fondo arena/crema del logo,
+       tinta azul petróleo, acento cobre. */
+    --bg:#F6F2EA; --card:#FFFFFF; --line:#E4DCC8; --text:#0D2630;
+    --muted:#46616A; --orange:#B86F45; --navy:#0D2630;
   }}
   *{{box-sizing:border-box;}}
   body{{
@@ -1123,7 +1128,7 @@ HTML = f"""<!DOCTYPE html>
 
   .nav{{
     position:sticky; top:0; z-index:10; display:flex; gap:4px; overflow-x:auto;
-    background:rgba(11,13,16,.92); backdrop-filter:blur(6px);
+    background:rgba(246,242,234,.92); backdrop-filter:blur(6px);
     margin:0 -24px 28px; padding:12px 24px; border-bottom:1px solid var(--line);
     scrollbar-width:none;
   }}
@@ -1145,8 +1150,8 @@ HTML = f"""<!DOCTYPE html>
   .kpi-label{{font-size:11px; color:var(--muted); margin-bottom:6px;}}
   .kpi-val{{font-size:17px; font-weight:700; font-variant-numeric:tabular-nums;}}
   .kpi-delta{{font-size:13px; font-weight:700;}}
-  .kpi-up{{color:#3ecf6e;}}
-  .kpi-down{{color:#ef5350;}}
+  .kpi-up{{color:#1F8A4F;}}
+  .kpi-down{{color:#C0392B;}}
   .kpi-flat{{color:var(--muted);}}
 
   .placeholder{{opacity:.55;}}
@@ -1199,7 +1204,7 @@ HTML = f"""<!DOCTYPE html>
   }}
   .subhead{{
     display:flex; align-items:center; gap:8px;
-    background:linear-gradient(135deg, rgba(255,140,0,0.10), rgba(255,140,0,0.03));
+    background:linear-gradient(135deg, rgba(184,111,69,0.12), rgba(184,111,69,0.03));
     border:1px solid var(--orange); border-radius:10px;
     padding:10px 16px;
     font-size:12px; color:var(--orange); font-weight:700; text-transform:uppercase; letter-spacing:.08em;
@@ -1228,7 +1233,7 @@ HTML = f"""<!DOCTYPE html>
 
   .anomaly-card{{
     display:flex; align-items:flex-start; gap:12px;
-    background:linear-gradient(135deg, rgba(255,140,0,0.10), rgba(255,140,0,0.03));
+    background:linear-gradient(135deg, rgba(184,111,69,0.12), rgba(184,111,69,0.03));
     border:1px solid var(--orange); border-radius:10px;
     padding:14px 18px; margin-top:16px;
   }}
@@ -1288,9 +1293,9 @@ HTML = f"""<!DOCTYPE html>
   <div class="header-center">
     <div class="brand">
       <svg class="brand-mark" width="48" height="48" viewBox="-260 -190 520 380" xmlns="http://www.w3.org/2000/svg">
-        <path d="M-205 145V-145H-34V-88H-137V-29H-54V28H-137V145Z" fill="#EEF2F0"/>
-        <path d="M0 145L100-145H150L250 145H182L160 73H90L68 145Z" fill="#EEF2F0"/>
-        <path d="M125-61L151 15H99Z" fill="#C17D52"/>
+        <path d="M-205 145V-145H-34V-88H-137V-29H-54V28H-137V145Z" fill="#0D2630"/>
+        <path d="M0 145L100-145H150L250 145H182L160 73H90L68 145Z" fill="#0D2630"/>
+        <path d="M125-61L151 15H99Z" fill="#B86F45"/>
       </svg>
       <div class="brand-titles">
         <div class="page-title">Indicadores Económicos Chile <span class="flag">🇨🇱</span></div>
