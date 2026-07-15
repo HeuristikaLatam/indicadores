@@ -210,6 +210,57 @@ if _pan:
     </div>"""
 
 # ---------------------------------------------------------------------------
+# Índice de costo de vida Heuristika — pensado para una familia promedio
+# chilena (2 padres + 1 hijo, ingreso ~$1.500.000/mes). Combina alimentos,
+# bencina, UF y dólar según su peso real en el gasto de ese hogar. Arranca
+# en 100 el día que se activó (ver indices.py) y compone hacia adelante.
+# ---------------------------------------------------------------------------
+
+indice_costo_vida = DATA.get("indice_costo_vida", {})
+indice_html = ""
+if indice_costo_vida:
+    _icv_valor = indice_costo_vida.get("valor", 100)
+    _icv_historial = indice_costo_vida.get("historial", [])
+    _icv_delta = None
+    if len(_icv_historial) >= 2:
+        _icv_delta = _icv_historial[-1]["valor"] - _icv_historial[-2]["valor"]
+
+    if _icv_delta is None or abs(_icv_delta) < 1e-9:
+        _icv_flecha, _icv_clase = "＝", "kpi-flat"
+    elif _icv_delta > 0:
+        _icv_flecha, _icv_clase = "▲", "kpi-up"
+    else:
+        _icv_flecha, _icv_clase = "▼", "kpi-down"
+
+    _icv_delta_html = ""
+    if _icv_delta is not None:
+        _icv_delta_html = f'<span class="indice-delta {_icv_clase}">{_icv_flecha} {_icv_delta:+.2f} vs. la corrida anterior</span>'
+
+    _icv_timeline_html = ""
+    if len(_icv_historial) >= 2:
+        _puntos = ""
+        total_icv = len(_icv_historial)
+        for i, p in enumerate(_icv_historial[-10:]):
+            es_destacado = (i == min(total_icv, 10) - 1)
+            clase = "pt pt-destacado" if es_destacado else "pt"
+            _puntos += f"""
+            <div class="{clase}">
+              <div class="pt-label">{fecha_legible(p['fecha'])}</div>
+              <div class="pt-val">{p['valor']:.2f}</div>
+            </div>"""
+        _icv_timeline_html = f'<div class="card-timeline" style="margin-top:14px;">{_puntos}</div>'
+
+    indice_html = f"""
+    <div class="indice-card">
+      <div class="indice-head">
+        <span class="indice-title">Índice de costo de vida Heuristika</span>
+        <span class="indice-desc">Cuánto le cuesta hoy vivir a una familia chilena promedio (2 padres, 1 hijo, ingreso ~$1.500.000/mes) frente al día en que empezamos a medirlo. Combina alimentos (62%), bencina (10%), UF (16%) y dólar (12%), según lo que ese hogar realmente gasta — parte en 100 el {fecha_legible(indice_costo_vida.get('base', {}).get('fecha', ''))}.</span>
+      </div>
+      <div class="indice-valor">{_icv_valor:.2f}{_icv_delta_html}</div>
+      {_icv_timeline_html}
+    </div>"""
+
+# ---------------------------------------------------------------------------
 # Tarjetas de valor actual: destacado + últimos N períodos al costado
 # ---------------------------------------------------------------------------
 
@@ -1092,6 +1143,16 @@ HTML = f"""<!DOCTYPE html>
   .anomaly-desc{{font-size:13px; color:var(--text); line-height:1.5;}}
   .anomaly-desc strong{{color:var(--orange);}}
 
+  .indice-card{{
+    background:var(--card); border:1px solid var(--line); border-radius:10px;
+    padding:18px 20px 20px; margin-top:16px;
+  }}
+  .indice-head{{display:flex; flex-direction:column; gap:4px; margin-bottom:12px;}}
+  .indice-title{{font-size:13px; font-weight:700; color:var(--orange);}}
+  .indice-desc{{font-size:12px; color:var(--muted); line-height:1.5; max-width:640px;}}
+  .indice-valor{{display:flex; align-items:baseline; gap:12px; font-size:32px; font-weight:700; color:var(--text); font-variant-numeric:tabular-nums;}}
+  .indice-delta{{font-size:13px; font-weight:600;}}
+
   @media (max-width: 480px){{
     body{{padding:20px 14px 44px;}}
     .brand-mark{{width:32px; height:32px;}}
@@ -1147,6 +1208,7 @@ HTML = f"""<!DOCTYPE html>
     <h1>Resumen</h1>
     <div class="section-sub">Lo más relevante, de un vistazo. La flecha compara con el período anterior.</div>
     <div class="kpis">{resumen_cards}</div>
+    {indice_html}
   </section>
 
   <section id="macro" class="section">
