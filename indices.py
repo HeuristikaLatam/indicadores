@@ -59,11 +59,25 @@ TIPOS_RELEVANTES = {
 }
 
 
-def http_get_json(url, timeout=25, reintentos=3, headers=None):
+def http_get_json(url, timeout=40, reintentos=5, headers=None):
     """GET con reintentos: las APIs públicas a veces se cuelgan un momento,
-    y este script corre solo todos los días sin nadie mirando."""
+    y este script corre solo todos los días sin nadie mirando.
+
+    Timeout y reintentos más generosos que antes: detectamos que mindicador.cl
+    estaba dando timeout consistentemente (3 corridas seguidas) solo desde
+    los runners de GitHub Actions, no desde otros orígenes — probablemente
+    un tema de rate-limiting o filtrado hacia IPs de datacenter. Un
+    User-Agent más "de navegador" (en vez de uno que se identifica como bot)
+    y más margen de tiempo/reintentos con backoff más largo ayudan a
+    absorber ese tipo de bloqueo intermitente."""
     ultimo_error = None
-    base_headers = {"User-Agent": "heuristika-indicadores/1.0"}
+    base_headers = {
+        "User-Agent": (
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+            "(KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
+        ),
+        "Accept": "application/json, text/plain, */*",
+    }
     if headers:
         base_headers.update(headers)
     for intento in range(1, reintentos + 1):
@@ -82,8 +96,9 @@ def http_get_json(url, timeout=25, reintentos=3, headers=None):
         except Exception as e:
             ultimo_error = e
             if intento < reintentos:
-                print(f"  aviso: intento {intento} falló ({e}), reintentando...")
-                time.sleep(2 * intento)
+                espera = min(10 * intento, 60)
+                print(f"  aviso: intento {intento} falló ({e}), reintentando en {espera}s...")
+                time.sleep(espera)
     raise ultimo_error
 
 
