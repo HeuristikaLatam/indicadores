@@ -7,9 +7,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.0/chart.umd.min.js"></script>
 <style>
   :root{
-    /* Paleta personal de Felipe Alcérreca: azul petróleo + acento cobre. */
-    --bg:#0A1418; --card:#121E24; --line:#22323a; --text:#EEF2F0;
-    --muted:#8FA3AA; --orange:#C17D52; --navy:#0D2630;
+    /* Paleta personal de Felipe Alcérreca: fondo arena/crema del logo,
+       tinta azul petróleo, acento cobre. */
+    --bg:#F6F2EA; --card:#FFFFFF; --line:#E4DCC8; --text:#0D2630;
+    --muted:#46616A; --orange:#B86F45; --navy:#0D2630;
   }
   *{box-sizing:border-box;}
   body{
@@ -46,7 +47,7 @@
 
   .nav{
     position:sticky; top:0; z-index:10; display:flex; gap:4px; overflow-x:auto;
-    background:rgba(11,13,16,.92); backdrop-filter:blur(6px);
+    background:rgba(246,242,234,.92); backdrop-filter:blur(6px);
     margin:0 -24px 28px; padding:12px 24px; border-bottom:1px solid var(--line);
     scrollbar-width:none;
   }
@@ -68,8 +69,8 @@
   .kpi-label{font-size:11px; color:var(--muted); margin-bottom:6px;}
   .kpi-val{font-size:17px; font-weight:700; font-variant-numeric:tabular-nums;}
   .kpi-delta{font-size:13px; font-weight:700;}
-  .kpi-up{color:#3ecf6e;}
-  .kpi-down{color:#ef5350;}
+  .kpi-up{color:#1F8A4F;}
+  .kpi-down{color:#C0392B;}
   .kpi-flat{color:var(--muted);}
 
   .placeholder{opacity:.55;}
@@ -122,7 +123,7 @@
   }
   .subhead{
     display:flex; align-items:center; gap:8px;
-    background:linear-gradient(135deg, rgba(255,140,0,0.10), rgba(255,140,0,0.03));
+    background:linear-gradient(135deg, rgba(184,111,69,0.12), rgba(184,111,69,0.03));
     border:1px solid var(--orange); border-radius:10px;
     padding:10px 16px;
     font-size:12px; color:var(--orange); font-weight:700; text-transform:uppercase; letter-spacing:.08em;
@@ -151,7 +152,7 @@
 
   .anomaly-card{
     display:flex; align-items:flex-start; gap:12px;
-    background:linear-gradient(135deg, rgba(255,140,0,0.10), rgba(255,140,0,0.03));
+    background:linear-gradient(135deg, rgba(184,111,69,0.12), rgba(184,111,69,0.03));
     border:1px solid var(--orange); border-radius:10px;
     padding:14px 18px; margin-top:16px;
   }
@@ -211,9 +212,9 @@
   <div class="header-center">
     <div class="brand">
       <svg class="brand-mark" width="48" height="48" viewBox="-260 -190 520 380" xmlns="http://www.w3.org/2000/svg">
-        <path d="M-205 145V-145H-34V-88H-137V-29H-54V28H-137V145Z" fill="#EEF2F0"/>
-        <path d="M0 145L100-145H150L250 145H182L160 73H90L68 145Z" fill="#EEF2F0"/>
-        <path d="M125-61L151 15H99Z" fill="#C17D52"/>
+        <path d="M-205 145V-145H-34V-88H-137V-29H-54V28H-137V145Z" fill="#0D2630"/>
+        <path d="M0 145L100-145H150L250 145H182L160 73H90L68 145Z" fill="#0D2630"/>
+        <path d="M125-61L151 15H99Z" fill="#B86F45"/>
       </svg>
       <div class="brand-titles">
         <div class="page-title">Indicadores Económicos Chile <span class="flag">🇨🇱</span></div>
@@ -222,7 +223,7 @@
     </div>
     <div class="brand-tagline"><span class="dash"></span>ESTRATEGIA · DATOS · INMOBILIARIO<span class="dash"></span></div>
     <div class="site-link"><a href="https://indicadores.felipealcerreca.lat" target="_blank">indicadores.felipealcerreca.lat</a></div>
-    <div class="update-note">La información que estás viendo fue cargada el 15/07/2026 a las 17:49.</div>
+    <div class="update-note">La información que estás viendo fue cargada el 15/07/2026 a las 18:04.</div>
   </div>
 
   <nav class="nav">
@@ -288,7 +289,7 @@
     
     <div class="indice-card">
       <div class="indice-mitad indice-texto">
-        <div class="indice-title">Índice de costo de vida Heuristika</div>
+        <div class="indice-title">Índice de costo de vida FA</div>
         <div class="indice-desc">Cuánto le cuesta hoy vivir a una familia chilena promedio (2 padres, 1 hijo, ingreso ~$1.500.000/mes) frente al día en que empezamos a medirlo. Combina alimentos (62%), bencina (10%), UF (16%) y dólar (12%), según lo que ese hogar realmente gasta — parte en 100 el 14/07/2026.</div>
         <div class="indice-valor">99.95</div>
         
@@ -1632,12 +1633,12 @@ const CHARTS_REGISTRY = {};
           labels: ["2022-01", "2022-02", "2022-03", "2022-04", "2022-05", "2022-06", "2022-07", "2022-08", "2022-09", "2022-10", "2022-11", "2022-12", "2023-01", "2023-02", "2023-03", "2023-04", "2023-05", "2023-06", "2023-07", "2023-08", "2023-09", "2023-10", "2023-11", "2023-12", "2024-01", "2024-02", "2024-03", "2024-04", "2024-05", "2024-06", "2024-07", "2024-08", "2024-09", "2024-10", "2024-11", "2024-12", "2025-01", "2025-02", "2025-03", "2025-04", "2025-05", "2025-06", "2025-07", "2025-08", "2025-09", "2025-10", "2025-11", "2025-12", "2026-01", "2026-02", "2026-03", "2026-04", "2026-05", "2026-06", "2026-07"],
           datasets: [{
             data: [822.05, 807.068, 799.1874, 815.2457, 849.39, 857.7695, 953.7062, 904.3523, 921.0075, 955.8947, 917.0529, 875.6614, 826.3357, 798.2575, 809.5039, 803.8368, 798.6355, 799.8725, 813.3971, 855.6595, 884.4037, 926.347, 886.6143, 874.6658, 907.9868, 963.4424, 967.9325, 960.1382, 917.8771, 926.0811, 937.5609, 929.8952, 926.2144, 933.8123, 971.6, 982.296, 1000.7636, 956.62, 932.5519, 961.9571, 941.0125, 938.037, 951.55, 966.3035, 960.3675, 953.9732, 935.6975, 916.163, 883.9657, 862.02, 909.8932, 897.8862, 897.6379, 903.3843, 926.3518],
-            borderColor: '#C17D52',
-            backgroundColor: '#C17D5222',
+            borderColor: '#B86F45',
+            backgroundColor: '#B86F4522',
             borderWidth: 2,
             pointRadius: 0,
             pointHoverRadius: 5,
-            pointHoverBackgroundColor: '#C17D52',
+            pointHoverBackgroundColor: '#B86F45',
             pointHitRadius: 12,
             tension: 0.25,
             fill: true,
@@ -1650,23 +1651,23 @@ const CHARTS_REGISTRY = {};
           plugins: {
             legend: { display: false },
             tooltip: {
-              backgroundColor: '#0F1C22',
-              borderColor: '#22323a',
+              backgroundColor: '#0D2630',
+              borderColor: '#E4DCC8',
               borderWidth: 1,
-              titleColor: '#C17D52',
-              bodyColor: '#eef0f2',
+              titleColor: '#B86F45',
+              bodyColor: '#F6F2EA',
               padding: 10,
               displayColors: false,
             },
           },
           scales: {
             x: {
-              ticks: { color: '#8FA3AA', font: { size: CHART_FONT_SIZE }, maxTicksLimit: CHART_MAX_TICKS, maxRotation: 0 },
+              ticks: { color: '#46616A', font: { size: CHART_FONT_SIZE }, maxTicksLimit: CHART_MAX_TICKS, maxRotation: 0 },
               grid: { display: false },
             },
             y: {
-              ticks: { color: '#8FA3AA', font: { size: CHART_FONT_SIZE } },
-              grid: { color: '#22323a' },
+              ticks: { color: '#46616A', font: { size: CHART_FONT_SIZE } },
+              grid: { color: '#E4DCC8' },
             }
           }
         }
@@ -1681,12 +1682,12 @@ const CHARTS_REGISTRY = {};
           labels: ["2022-01", "2022-02", "2022-03", "2022-04", "2022-05", "2022-06", "2022-07", "2022-08", "2022-09", "2022-10", "2022-11", "2022-12", "2023-01", "2023-02", "2023-03", "2023-04", "2023-05", "2023-06", "2023-07", "2023-08", "2023-09", "2023-10", "2023-11", "2023-12", "2024-01", "2024-02", "2024-03", "2024-04", "2024-05", "2024-06", "2024-07", "2024-08", "2024-09", "2024-10", "2024-11", "2024-12", "2025-01", "2025-02", "2025-03", "2025-04", "2025-05", "2025-06", "2025-07", "2025-08", "2025-09", "2025-10", "2025-11", "2025-12", "2026-01", "2026-02", "2026-03", "2026-04", "2026-05", "2026-06", "2026-07"],
           datasets: [{
             data: [931.0624, 915.8025, 880.8722, 882.2605, 897.3273, 906.7705, 971.5124, 915.8823, 911.641, 940.5063, 935.6114, 925.8929, 889.73, 855.187, 866.1735, 880.8563, 868.4232, 865.7145, 899.1014, 933.89, 945.1716, 978.4695, 958.579, 954.2647, 990.4355, 1039.8057, 1052.402, 1030.2914, 991.7529, 997.5874, 1015.8414, 1024.119, 1027.1617, 1018.47, 1032.239, 1029.915, 1036.3459, 996.5495, 1006.3486, 1076.159, 1060.662, 1079.5985, 1112.3132, 1123.6595, 1126.5005, 1111.4627, 1081.609, 1072.3215, 1037.0319, 1019.5825, 1052.9109, 1049.8333, 1048.5758, 1041.1457, 1057.9091],
-            borderColor: '#C17D52',
-            backgroundColor: '#C17D5222',
+            borderColor: '#B86F45',
+            backgroundColor: '#B86F4522',
             borderWidth: 2,
             pointRadius: 0,
             pointHoverRadius: 5,
-            pointHoverBackgroundColor: '#C17D52',
+            pointHoverBackgroundColor: '#B86F45',
             pointHitRadius: 12,
             tension: 0.25,
             fill: true,
@@ -1699,23 +1700,23 @@ const CHARTS_REGISTRY = {};
           plugins: {
             legend: { display: false },
             tooltip: {
-              backgroundColor: '#0F1C22',
-              borderColor: '#22323a',
+              backgroundColor: '#0D2630',
+              borderColor: '#E4DCC8',
               borderWidth: 1,
-              titleColor: '#C17D52',
-              bodyColor: '#eef0f2',
+              titleColor: '#B86F45',
+              bodyColor: '#F6F2EA',
               padding: 10,
               displayColors: false,
             },
           },
           scales: {
             x: {
-              ticks: { color: '#8FA3AA', font: { size: CHART_FONT_SIZE }, maxTicksLimit: CHART_MAX_TICKS, maxRotation: 0 },
+              ticks: { color: '#46616A', font: { size: CHART_FONT_SIZE }, maxTicksLimit: CHART_MAX_TICKS, maxRotation: 0 },
               grid: { display: false },
             },
             y: {
-              ticks: { color: '#8FA3AA', font: { size: CHART_FONT_SIZE } },
-              grid: { color: '#22323a' },
+              ticks: { color: '#46616A', font: { size: CHART_FONT_SIZE } },
+              grid: { color: '#E4DCC8' },
             }
           }
         }
@@ -1730,12 +1731,12 @@ const CHARTS_REGISTRY = {};
           labels: ["2022-01", "2022-02", "2022-03", "2022-04", "2022-05", "2022-06", "2022-07", "2022-08", "2022-09", "2022-10", "2022-11", "2022-12", "2023-01", "2023-02", "2023-03", "2023-04", "2023-05", "2023-06", "2023-07", "2023-08", "2023-09", "2023-10", "2023-11", "2023-12", "2024-01", "2024-02", "2024-03", "2024-04", "2024-05", "2024-06", "2024-07", "2024-08", "2024-09", "2024-10", "2024-11", "2024-12", "2025-01", "2025-02", "2025-03", "2025-04", "2025-05", "2025-06", "2025-07", "2025-08", "2025-09", "2025-10", "2025-11", "2025-12", "2026-01", "2026-02", "2026-03", "2026-04", "2026-05", "2026-06", "2026-07", "2026-08"],
           datasets: [{
             data: [31096.0868, 31365.3004, 31669.701, 31905.758, 32453.9948, 32894.8193, 33268.63, 33616.1094, 34059.4113, 34446.4561, 34722.9097, 34948.7423, 35227.2365, 35382.1418, 35579.6184, 35666.6533, 35969.5342, 36069.313, 36079.8861, 36068.7035, 36175.9047, 36273.5868, 36489.395, 36669.3765, 36805.7258, 36750.981, 36984.3235, 37187.5087, 37349.9132, 37514.773, 37591.3781, 37638.5477, 37849.9067, 37950.0887, 38078.2073, 38367.6881, 38415.8542, 38467.2532, 38807.3032, 38983.1107, 39146.9616, 39229.2757, 39246.1548, 39231.8361, 39471.967, 39527.1884, 39637.4667, 39674.8768, 39737.1119, 39724.7146, 39835.1265, 39943.715, 40361.9161, 40763.8177, 40841.6313, 40844.79],
-            borderColor: '#C17D52',
-            backgroundColor: '#C17D5222',
+            borderColor: '#B86F45',
+            backgroundColor: '#B86F4522',
             borderWidth: 2,
             pointRadius: 0,
             pointHoverRadius: 5,
-            pointHoverBackgroundColor: '#C17D52',
+            pointHoverBackgroundColor: '#B86F45',
             pointHitRadius: 12,
             tension: 0.25,
             fill: true,
@@ -1748,23 +1749,23 @@ const CHARTS_REGISTRY = {};
           plugins: {
             legend: { display: false },
             tooltip: {
-              backgroundColor: '#0F1C22',
-              borderColor: '#22323a',
+              backgroundColor: '#0D2630',
+              borderColor: '#E4DCC8',
               borderWidth: 1,
-              titleColor: '#C17D52',
-              bodyColor: '#eef0f2',
+              titleColor: '#B86F45',
+              bodyColor: '#F6F2EA',
               padding: 10,
               displayColors: false,
             },
           },
           scales: {
             x: {
-              ticks: { color: '#8FA3AA', font: { size: CHART_FONT_SIZE }, maxTicksLimit: CHART_MAX_TICKS, maxRotation: 0 },
+              ticks: { color: '#46616A', font: { size: CHART_FONT_SIZE }, maxTicksLimit: CHART_MAX_TICKS, maxRotation: 0 },
               grid: { display: false },
             },
             y: {
-              ticks: { color: '#8FA3AA', font: { size: CHART_FONT_SIZE } },
-              grid: { color: '#22323a' },
+              ticks: { color: '#46616A', font: { size: CHART_FONT_SIZE } },
+              grid: { color: '#E4DCC8' },
             }
           }
         }
@@ -1779,12 +1780,12 @@ const CHARTS_REGISTRY = {};
           labels: ["2022-01", "2022-02", "2022-03", "2022-04", "2022-05", "2022-06", "2022-07", "2022-08", "2022-09", "2022-10", "2022-11", "2022-12", "2023-01", "2023-02", "2023-03", "2023-04", "2023-05", "2023-06", "2023-07", "2023-08", "2023-09", "2023-10", "2023-11", "2023-12", "2024-01", "2024-02", "2024-03", "2024-04", "2024-05", "2024-06", "2024-07", "2024-08", "2024-09", "2024-10", "2024-11", "2024-12", "2025-01", "2025-02", "2025-03", "2025-04", "2025-05", "2025-06", "2025-07", "2025-08", "2025-09", "2025-10", "2025-11", "2025-12", "2026-01", "2026-02", "2026-03", "2026-04", "2026-05", "2026-06", "2026-07"],
           datasets: [{
             data: [54442.0, 54878.0, 55537.0, 55704.0, 56762.0, 57557.0, 58248.0, 58772.0, 59595.0, 60310.0, 60853.0, 61157.0, 61769.0, 61954.0, 62450.0, 62388.0, 63074.0, 63263.0, 63326.0, 63199.0, 63452.0, 63515.0, 63960.0, 64216.0, 64666.0, 64343.0, 64793.0, 65182.0, 65443.0, 65770.0, 65967.0, 65901.0, 66362.0, 66561.0, 66628.0, 67294.0, 67429.0, 67294.0, 68034.0, 68306.0, 68648.0, 68785.0, 68923.0, 68647.0, 69265.0, 69265.0, 69542.0, 69542.0, 69751.0, 69611.0, 69889.0, 69889.0, 70588.0, 71506.0, 71649.0],
-            borderColor: '#C17D52',
-            backgroundColor: '#C17D5222',
+            borderColor: '#B86F45',
+            backgroundColor: '#B86F4522',
             borderWidth: 2,
             pointRadius: 0,
             pointHoverRadius: 5,
-            pointHoverBackgroundColor: '#C17D52',
+            pointHoverBackgroundColor: '#B86F45',
             pointHitRadius: 12,
             tension: 0.25,
             fill: true,
@@ -1797,23 +1798,23 @@ const CHARTS_REGISTRY = {};
           plugins: {
             legend: { display: false },
             tooltip: {
-              backgroundColor: '#0F1C22',
-              borderColor: '#22323a',
+              backgroundColor: '#0D2630',
+              borderColor: '#E4DCC8',
               borderWidth: 1,
-              titleColor: '#C17D52',
-              bodyColor: '#eef0f2',
+              titleColor: '#B86F45',
+              bodyColor: '#F6F2EA',
               padding: 10,
               displayColors: false,
             },
           },
           scales: {
             x: {
-              ticks: { color: '#8FA3AA', font: { size: CHART_FONT_SIZE }, maxTicksLimit: CHART_MAX_TICKS, maxRotation: 0 },
+              ticks: { color: '#46616A', font: { size: CHART_FONT_SIZE }, maxTicksLimit: CHART_MAX_TICKS, maxRotation: 0 },
               grid: { display: false },
             },
             y: {
-              ticks: { color: '#8FA3AA', font: { size: CHART_FONT_SIZE } },
-              grid: { color: '#22323a' },
+              ticks: { color: '#46616A', font: { size: CHART_FONT_SIZE } },
+              grid: { color: '#E4DCC8' },
             }
           }
         }
@@ -1828,12 +1829,12 @@ const CHARTS_REGISTRY = {};
           labels: ["2022-01", "2022-02", "2022-03", "2022-04", "2022-05", "2022-06", "2022-07", "2022-08", "2022-09", "2022-10", "2022-11", "2022-12", "2023-01", "2023-02", "2023-03", "2023-04", "2023-05", "2023-06", "2023-07", "2023-08", "2023-09", "2023-10", "2023-11", "2023-12", "2024-01", "2024-02", "2024-03", "2024-04", "2024-05", "2024-06", "2024-07", "2024-08", "2024-09", "2024-10", "2024-11", "2024-12", "2025-01", "2025-02", "2025-03", "2025-04", "2025-05", "2025-06", "2025-07", "2025-08", "2025-09", "2025-10", "2025-11", "2025-12", "2026-01", "2026-02", "2026-03", "2026-04", "2026-05", "2026-06"],
           datasets: [{
             data: [1.2, 0.3, 1.9, 1.4, 1.2, 0.9, 1.4, 1.2, 0.9, 0.5, 1.0, 0.3, 0.8, -0.1, 1.1, 0.3, 0.1, -0.2, 0.4, 0.1, 0.7, 0.4, 0.7, -0.5, 0.7, 0.6, 0.4, 0.5, 0.3, -0.1, 0.7, 0.3, 0.1, 1.0, 0.2, -0.2, 1.1, 0.4, 0.5, 0.2, 0.2, -0.4, 0.9, 0.0, 0.4, 0.0, 0.3, -0.2, 0.4, 0.0, 1.0, 1.3, 0.2, 0.0],
-            borderColor: '#C17D52',
-            backgroundColor: '#C17D5222',
+            borderColor: '#B86F45',
+            backgroundColor: '#B86F4522',
             borderWidth: 2,
             pointRadius: 0,
             pointHoverRadius: 5,
-            pointHoverBackgroundColor: '#C17D52',
+            pointHoverBackgroundColor: '#B86F45',
             pointHitRadius: 12,
             tension: 0.25,
             fill: true,
@@ -1846,23 +1847,23 @@ const CHARTS_REGISTRY = {};
           plugins: {
             legend: { display: false },
             tooltip: {
-              backgroundColor: '#0F1C22',
-              borderColor: '#22323a',
+              backgroundColor: '#0D2630',
+              borderColor: '#E4DCC8',
               borderWidth: 1,
-              titleColor: '#C17D52',
-              bodyColor: '#eef0f2',
+              titleColor: '#B86F45',
+              bodyColor: '#F6F2EA',
               padding: 10,
               displayColors: false,
             },
           },
           scales: {
             x: {
-              ticks: { color: '#8FA3AA', font: { size: CHART_FONT_SIZE }, maxTicksLimit: CHART_MAX_TICKS, maxRotation: 0 },
+              ticks: { color: '#46616A', font: { size: CHART_FONT_SIZE }, maxTicksLimit: CHART_MAX_TICKS, maxRotation: 0 },
               grid: { display: false },
             },
             y: {
-              ticks: { color: '#8FA3AA', font: { size: CHART_FONT_SIZE } },
-              grid: { color: '#22323a' },
+              ticks: { color: '#46616A', font: { size: CHART_FONT_SIZE } },
+              grid: { color: '#E4DCC8' },
             }
           }
         }
@@ -1877,12 +1878,12 @@ const CHARTS_REGISTRY = {};
           labels: ["2022-01", "2022-02", "2022-03", "2022-04", "2022-05", "2022-06", "2022-07", "2022-08", "2022-09", "2022-10", "2022-11", "2022-12", "2023-01", "2023-02", "2023-03", "2023-04", "2023-05", "2023-06", "2023-07", "2023-08", "2023-09", "2023-10", "2023-11", "2023-12", "2024-01", "2024-02", "2024-03", "2024-04", "2024-05", "2024-06", "2024-07", "2024-08", "2024-09", "2024-10", "2024-11", "2024-12", "2025-01", "2025-02", "2025-03", "2025-04", "2025-05", "2025-06", "2025-07", "2025-08", "2025-09", "2025-10", "2025-11", "2025-12", "2026-01", "2026-02", "2026-03", "2026-04", "2026-05", "2026-06", "2026-07"],
           datasets: [{
             data: [4.2143, 5.5, 5.6304, 7.0, 8.0326, 8.8125, 9.4286, 9.75, 10.55, 11.05, 11.25, 11.25, 11.25, 11.25, 11.25, 11.25, 11.25, 11.25, 11.2024, 10.25, 9.6184, 9.45, 9.0, 8.7237, 8.25, 7.25, 7.25, 6.5682, 6.3571, 5.9079, 5.75, 5.75, 5.5278, 5.3977, 5.25, 5.15, 5.0, 5.0, 5.0, 5.0, 5.0, 5.0, 4.9773, 4.75, 4.75, 4.75, 4.75, 4.631, 4.5, 4.5, 4.5, 4.5, 4.5, 4.5, 4.5],
-            borderColor: '#C17D52',
-            backgroundColor: '#C17D5222',
+            borderColor: '#B86F45',
+            backgroundColor: '#B86F4522',
             borderWidth: 2,
             pointRadius: 0,
             pointHoverRadius: 5,
-            pointHoverBackgroundColor: '#C17D52',
+            pointHoverBackgroundColor: '#B86F45',
             pointHitRadius: 12,
             tension: 0.25,
             fill: true,
@@ -1895,23 +1896,23 @@ const CHARTS_REGISTRY = {};
           plugins: {
             legend: { display: false },
             tooltip: {
-              backgroundColor: '#0F1C22',
-              borderColor: '#22323a',
+              backgroundColor: '#0D2630',
+              borderColor: '#E4DCC8',
               borderWidth: 1,
-              titleColor: '#C17D52',
-              bodyColor: '#eef0f2',
+              titleColor: '#B86F45',
+              bodyColor: '#F6F2EA',
               padding: 10,
               displayColors: false,
             },
           },
           scales: {
             x: {
-              ticks: { color: '#8FA3AA', font: { size: CHART_FONT_SIZE }, maxTicksLimit: CHART_MAX_TICKS, maxRotation: 0 },
+              ticks: { color: '#46616A', font: { size: CHART_FONT_SIZE }, maxTicksLimit: CHART_MAX_TICKS, maxRotation: 0 },
               grid: { display: false },
             },
             y: {
-              ticks: { color: '#8FA3AA', font: { size: CHART_FONT_SIZE } },
-              grid: { color: '#22323a' },
+              ticks: { color: '#46616A', font: { size: CHART_FONT_SIZE } },
+              grid: { color: '#E4DCC8' },
             }
           }
         }
@@ -1926,12 +1927,12 @@ const CHARTS_REGISTRY = {};
           labels: ["2022-01", "2022-02", "2022-03", "2022-04", "2022-05", "2022-06", "2022-07", "2022-08", "2022-09", "2022-10", "2022-11", "2022-12", "2023-01", "2023-02", "2023-03", "2023-04", "2023-05", "2023-06", "2023-07", "2023-08", "2023-09", "2023-10", "2023-11", "2023-12", "2024-01", "2024-02", "2024-03", "2024-04", "2024-05", "2024-06", "2024-07", "2024-08", "2024-09", "2024-10", "2024-11", "2024-12", "2025-01", "2025-02", "2025-03", "2025-04", "2025-05", "2025-06", "2025-07", "2025-08", "2025-09", "2025-10", "2025-11", "2025-12", "2026-01", "2026-02", "2026-03", "2026-04", "2026-05"],
           datasets: [{
             data: [9.0, 6.8, 7.2, 6.9, 6.4, 3.7, 1.0, 0.0, -0.4, -1.2, -2.5, -1.0, 0.4, -0.5, -2.1, -1.1, -2.0, -1.0, 1.8, -0.9, 0.0, 0.3, 1.2, -1.0, 2.5, 4.5, 0.8, 3.5, 1.1, 0.1, 4.2, 2.3, 0.0, 2.3, 2.1, 6.6, 2.5, -0.1, 3.8, 2.5, 3.2, 3.1, 1.8, 0.5, 3.2, 2.2, 1.2, 1.7, -0.1, -0.3, -0.1, -1.2, -0.9],
-            borderColor: '#C17D52',
-            backgroundColor: '#C17D5222',
+            borderColor: '#B86F45',
+            backgroundColor: '#B86F4522',
             borderWidth: 2,
             pointRadius: 0,
             pointHoverRadius: 5,
-            pointHoverBackgroundColor: '#C17D52',
+            pointHoverBackgroundColor: '#B86F45',
             pointHitRadius: 12,
             tension: 0.25,
             fill: true,
@@ -1944,23 +1945,23 @@ const CHARTS_REGISTRY = {};
           plugins: {
             legend: { display: false },
             tooltip: {
-              backgroundColor: '#0F1C22',
-              borderColor: '#22323a',
+              backgroundColor: '#0D2630',
+              borderColor: '#E4DCC8',
               borderWidth: 1,
-              titleColor: '#C17D52',
-              bodyColor: '#eef0f2',
+              titleColor: '#B86F45',
+              bodyColor: '#F6F2EA',
               padding: 10,
               displayColors: false,
             },
           },
           scales: {
             x: {
-              ticks: { color: '#8FA3AA', font: { size: CHART_FONT_SIZE }, maxTicksLimit: CHART_MAX_TICKS, maxRotation: 0 },
+              ticks: { color: '#46616A', font: { size: CHART_FONT_SIZE }, maxTicksLimit: CHART_MAX_TICKS, maxRotation: 0 },
               grid: { display: false },
             },
             y: {
-              ticks: { color: '#8FA3AA', font: { size: CHART_FONT_SIZE } },
-              grid: { color: '#22323a' },
+              ticks: { color: '#46616A', font: { size: CHART_FONT_SIZE } },
+              grid: { color: '#E4DCC8' },
             }
           }
         }
@@ -1975,12 +1976,12 @@ const CHARTS_REGISTRY = {};
           labels: ["2022-01", "2022-02", "2022-03", "2022-04", "2022-05", "2022-06", "2022-07", "2022-08", "2022-09", "2022-10", "2022-11", "2022-12", "2023-01", "2023-02", "2023-03", "2023-04", "2023-05", "2023-06", "2023-07", "2023-08", "2023-09", "2023-10", "2023-11", "2023-12", "2024-01", "2024-02", "2024-03", "2024-04", "2024-05", "2024-06", "2024-07", "2024-08", "2024-09", "2024-10", "2024-11", "2024-12", "2025-01", "2025-02", "2025-03", "2025-04", "2025-05", "2025-06", "2025-07", "2025-08", "2025-09", "2025-10", "2025-11", "2025-12", "2026-01", "2026-02", "2026-03", "2026-04", "2026-05"],
           datasets: [{
             data: [7.27, 7.5, 7.8, 7.75, 7.8, 7.81, 7.92, 7.93, 8.04, 7.97, 7.95, 7.86, 8.04, 8.37, 8.81, 8.66, 8.52, 8.53, 8.77, 9.0, 8.91, 8.89, 8.73, 8.48, 8.44, 8.5, 8.68, 8.52, 8.31, 8.35, 8.68, 8.9, 8.74, 8.58, 8.22, 8.08, 8.02, 8.38, 8.71, 8.84, 8.94, 8.89, 8.7, 8.56, 8.53, 8.45, 8.42, 8.05, 8.28, 8.33, 8.93, 9.11, 9.44],
-            borderColor: '#C17D52',
-            backgroundColor: '#C17D5222',
+            borderColor: '#B86F45',
+            backgroundColor: '#B86F4522',
             borderWidth: 2,
             pointRadius: 0,
             pointHoverRadius: 5,
-            pointHoverBackgroundColor: '#C17D52',
+            pointHoverBackgroundColor: '#B86F45',
             pointHitRadius: 12,
             tension: 0.25,
             fill: true,
@@ -1993,23 +1994,23 @@ const CHARTS_REGISTRY = {};
           plugins: {
             legend: { display: false },
             tooltip: {
-              backgroundColor: '#0F1C22',
-              borderColor: '#22323a',
+              backgroundColor: '#0D2630',
+              borderColor: '#E4DCC8',
               borderWidth: 1,
-              titleColor: '#C17D52',
-              bodyColor: '#eef0f2',
+              titleColor: '#B86F45',
+              bodyColor: '#F6F2EA',
               padding: 10,
               displayColors: false,
             },
           },
           scales: {
             x: {
-              ticks: { color: '#8FA3AA', font: { size: CHART_FONT_SIZE }, maxTicksLimit: CHART_MAX_TICKS, maxRotation: 0 },
+              ticks: { color: '#46616A', font: { size: CHART_FONT_SIZE }, maxTicksLimit: CHART_MAX_TICKS, maxRotation: 0 },
               grid: { display: false },
             },
             y: {
-              ticks: { color: '#8FA3AA', font: { size: CHART_FONT_SIZE } },
-              grid: { color: '#22323a' },
+              ticks: { color: '#46616A', font: { size: CHART_FONT_SIZE } },
+              grid: { color: '#E4DCC8' },
             }
           }
         }
@@ -2024,12 +2025,12 @@ const CHARTS_REGISTRY = {};
           labels: ["2022-01", "2022-02", "2022-03", "2022-04", "2022-05", "2022-06", "2022-07", "2022-08", "2022-09", "2022-10", "2022-11", "2022-12", "2023-01", "2023-02", "2023-03", "2023-04", "2023-05", "2023-06", "2023-07", "2023-08", "2023-09", "2023-10", "2023-11", "2023-12", "2024-01", "2024-02", "2024-03", "2024-04", "2024-05", "2024-06", "2024-07", "2024-08", "2024-09", "2024-10", "2024-11", "2024-12", "2025-01", "2025-02", "2025-03", "2025-04", "2025-05", "2025-06", "2025-07", "2025-08", "2025-09", "2025-10", "2025-11", "2025-12", "2026-01", "2026-02", "2026-03", "2026-04", "2026-05", "2026-06", "2026-07"],
           datasets: [{
             data: [4.4424, 4.494, 4.6226, 4.64, 4.2723, 4.1835, 3.4433, 3.6214, 3.5175, 3.4742, 3.6448, 3.7857, 4.0638, 4.068, 4.0122, 4.0147, 3.7527, 3.7975, 3.8252, 3.8009, 3.7632, 3.6075, 3.7048, 3.8095, 3.7859, 3.7729, 3.9245, 4.2373, 4.58, 4.4016, 4.2686, 4.07, 4.1656, 4.3436, 4.132, 4.0525, 4.07, 4.214, 4.4005, 4.1795, 4.319, 4.44, 4.4559, 4.379, 4.514, 4.8386, 4.8995, 5.2835, 5.8614, 5.8755, 5.7264, 5.8286, 6.11, 6.1657, 6.0436],
-            borderColor: '#C17D52',
-            backgroundColor: '#C17D5222',
+            borderColor: '#B86F45',
+            backgroundColor: '#B86F4522',
             borderWidth: 2,
             pointRadius: 0,
             pointHoverRadius: 5,
-            pointHoverBackgroundColor: '#C17D52',
+            pointHoverBackgroundColor: '#B86F45',
             pointHitRadius: 12,
             tension: 0.25,
             fill: true,
@@ -2042,23 +2043,23 @@ const CHARTS_REGISTRY = {};
           plugins: {
             legend: { display: false },
             tooltip: {
-              backgroundColor: '#0F1C22',
-              borderColor: '#22323a',
+              backgroundColor: '#0D2630',
+              borderColor: '#E4DCC8',
               borderWidth: 1,
-              titleColor: '#C17D52',
-              bodyColor: '#eef0f2',
+              titleColor: '#B86F45',
+              bodyColor: '#F6F2EA',
               padding: 10,
               displayColors: false,
             },
           },
           scales: {
             x: {
-              ticks: { color: '#8FA3AA', font: { size: CHART_FONT_SIZE }, maxTicksLimit: CHART_MAX_TICKS, maxRotation: 0 },
+              ticks: { color: '#46616A', font: { size: CHART_FONT_SIZE }, maxTicksLimit: CHART_MAX_TICKS, maxRotation: 0 },
               grid: { display: false },
             },
             y: {
-              ticks: { color: '#8FA3AA', font: { size: CHART_FONT_SIZE } },
-              grid: { color: '#22323a' },
+              ticks: { color: '#46616A', font: { size: CHART_FONT_SIZE } },
+              grid: { color: '#E4DCC8' },
             }
           }
         }
@@ -2073,12 +2074,12 @@ const CHARTS_REGISTRY = {};
           labels: ["2022-01", "2022-02", "2022-03", "2022-04", "2022-05", "2022-06", "2022-07", "2022-08", "2022-09", "2022-10", "2022-11", "2022-12", "2023-01", "2023-02", "2023-03", "2023-04", "2023-05", "2023-06", "2023-07", "2023-08", "2023-09", "2023-10", "2023-11", "2023-12", "2024-01", "2024-02", "2024-03", "2024-04", "2024-05", "2024-06", "2024-07", "2024-08", "2024-09", "2024-10", "2024-11", "2024-12", "2025-01", "2025-02", "2025-03", "2025-04", "2025-05", "2025-06", "2025-07", "2025-08", "2025-09", "2025-10", "2025-11", "2025-12", "2026-01", "2026-02", "2026-03", "2026-04", "2026-05", "2026-06", "2026-07"],
           datasets: [{
             data: [40885.1587, 40434.945, 41991.1413, 41412.8247, 31413.7653, 24590.5713, 21237.9067, 22251.2259, 19814.3643, 19708.7812, 17634.664, 16969.8293, 20233.5594, 23210.6486, 25193.9713, 28976.256, 27698.9217, 27806.805, 29988.31, 28018.4237, 26315.0137, 29812.3786, 36473.0025, 42271.645, 42985.3714, 49879.5863, 68473.6657, 65658.69, 65415.12, 65736.1871, 63061.9538, 59243.0387, 60362.31, 65614.4062, 87222.4129, 98688.1662, 100714.9113, 95552.0743, 85333.7275, 86223.8643, 104214.9787, 106069.3829, 114580.8938, 114867.7287, 113031.9457, 114457.2888, 96349.5988, 89238.6929, 90506.7312, 69894.6371, 69079.0538, 73751.2329, 78085.8237, 62514.0912, 63026.7867],
-            borderColor: '#C17D52',
-            backgroundColor: '#C17D5222',
+            borderColor: '#B86F45',
+            backgroundColor: '#B86F4522',
             borderWidth: 2,
             pointRadius: 0,
             pointHoverRadius: 5,
-            pointHoverBackgroundColor: '#C17D52',
+            pointHoverBackgroundColor: '#B86F45',
             pointHitRadius: 12,
             tension: 0.25,
             fill: true,
@@ -2091,23 +2092,23 @@ const CHARTS_REGISTRY = {};
           plugins: {
             legend: { display: false },
             tooltip: {
-              backgroundColor: '#0F1C22',
-              borderColor: '#22323a',
+              backgroundColor: '#0D2630',
+              borderColor: '#E4DCC8',
               borderWidth: 1,
-              titleColor: '#C17D52',
-              bodyColor: '#eef0f2',
+              titleColor: '#B86F45',
+              bodyColor: '#F6F2EA',
               padding: 10,
               displayColors: false,
             },
           },
           scales: {
             x: {
-              ticks: { color: '#8FA3AA', font: { size: CHART_FONT_SIZE }, maxTicksLimit: CHART_MAX_TICKS, maxRotation: 0 },
+              ticks: { color: '#46616A', font: { size: CHART_FONT_SIZE }, maxTicksLimit: CHART_MAX_TICKS, maxRotation: 0 },
               grid: { display: false },
             },
             y: {
-              ticks: { color: '#8FA3AA', font: { size: CHART_FONT_SIZE } },
-              grid: { color: '#22323a' },
+              ticks: { color: '#46616A', font: { size: CHART_FONT_SIZE } },
+              grid: { color: '#E4DCC8' },
             }
           }
         }
@@ -2122,12 +2123,12 @@ const CHARTS_REGISTRY = {};
               labels: ["2022-01-15", "2022-02-15", "2022-03-15", "2022-04-14", "2022-05-14", "2022-06-15", "2022-07-15", "2022-08-13", "2022-09-15", "2022-10-15", "2022-11-15", "2022-12-15", "2023-01-14", "2023-02-15", "2023-03-15", "2023-04-15", "2023-05-15", "2023-06-15", "2023-07-15", "2023-08-14", "2023-09-15", "2023-10-14", "2023-11-15", "2023-12-15", "2024-01-15", "2024-02-15", "2024-03-15", "2024-04-15", "2024-05-15", "2024-06-15", "2024-07-15", "2024-08-14", "2024-09-14", "2024-10-15", "2024-11-15", "2024-12-14", "2025-01-15", "2025-02-15", "2025-03-15", "2025-04-15", "2025-05-15", "2025-06-14", "2025-07-15", "2025-08-14", "2025-09-15", "2025-10-15", "2025-11-15", "2025-12-15", "2026-01-15", "2026-02-14", "2026-03-14", "2026-04-15", "2026-05-15", "2026-06-15", "2026-07-15"],
               datasets: [{
                 data: [4.6, 4.64, 4.76, 4.76, 4.7, 4.58, 4.46, 4.4, 4.3, 4.32, 4.52, 4.66, 4.52, 4.3, 4.26, 4.24, 4.26, 4.22, 4.18, 4.24, 4.24, 4.34, 4.68, 5.12, 5.22, 5.06, 5.02, 4.98, 4.95, 5.04, 5.08, 5.1, 5.02, 4.9, 4.76, 4.62, 4.52, 4.54, 4.44, 4.44, 4.48, 4.5, 4.52, 4.52, 4.5, 4.44, 4.44, 4.42, 4.44, 4.46, 4.38, 4.26, 4.26, 4.2, 4.26],
-                borderColor: '#C17D52',
-                backgroundColor: '#C17D5222',
+                borderColor: '#B86F45',
+                backgroundColor: '#B86F4522',
                 borderWidth: 2,
                 pointRadius: 0,
                 pointHoverRadius: 5,
-                pointHoverBackgroundColor: '#C17D52',
+                pointHoverBackgroundColor: '#B86F45',
                 pointHitRadius: 12,
                 tension: 0.1,
                 stepped: true,
@@ -2141,11 +2142,11 @@ const CHARTS_REGISTRY = {};
               plugins: {
                 legend: { display: false },
                 tooltip: {
-                  backgroundColor: '#0F1C22',
-                  borderColor: '#22323a',
+                  backgroundColor: '#0D2630',
+                  borderColor: '#E4DCC8',
                   borderWidth: 1,
-                  titleColor: '#C17D52',
-                  bodyColor: '#eef0f2',
+                  titleColor: '#B86F45',
+                  bodyColor: '#F6F2EA',
                   padding: 10,
                   displayColors: false,
                   callbacks: {
@@ -2155,12 +2156,12 @@ const CHARTS_REGISTRY = {};
               },
               scales: {
                 x: {
-                  ticks: { color: '#8FA3AA', font: { size: CHART_FONT_SIZE }, maxTicksLimit: CHART_MAX_TICKS, maxRotation: 0 },
+                  ticks: { color: '#46616A', font: { size: CHART_FONT_SIZE }, maxTicksLimit: CHART_MAX_TICKS, maxRotation: 0 },
                   grid: { display: false },
                 },
                 y: {
-                  ticks: { color: '#8FA3AA', font: { size: CHART_FONT_SIZE } },
-                  grid: { color: '#22323a' },
+                  ticks: { color: '#46616A', font: { size: CHART_FONT_SIZE } },
+                  grid: { color: '#E4DCC8' },
                 }
               }
             }
@@ -2175,12 +2176,12 @@ const CHARTS_REGISTRY = {};
               labels: ["2022-01-15", "2022-02-15", "2022-03-15", "2022-04-14", "2022-05-14", "2022-06-15", "2022-07-15", "2022-08-13", "2022-09-15", "2022-10-15", "2022-11-15", "2022-12-15", "2023-01-14", "2023-02-15", "2023-03-15", "2023-04-15", "2023-05-15", "2023-06-15", "2023-07-15", "2023-08-14", "2023-09-15", "2023-10-14", "2023-11-15", "2023-12-15", "2024-01-15", "2024-02-15", "2024-03-15", "2024-04-15", "2024-05-15", "2024-06-15", "2024-07-15", "2024-08-14", "2024-09-14", "2024-10-15", "2024-11-15", "2024-12-14", "2025-01-15", "2025-02-15", "2025-03-15", "2025-04-15", "2025-05-15", "2025-06-14", "2025-07-15", "2025-08-14", "2025-09-15", "2025-10-15", "2025-11-15", "2025-12-15", "2026-01-15", "2026-02-14", "2026-03-14", "2026-04-15", "2026-05-15", "2026-06-15", "2026-07-15"],
               datasets: [{
                 data: [16.66, 17.42, 18.16, 18.16, 19.1, 19.44, 19.84, 20.08, 20.14, 20.92, 21.5, 21.2, 21.7, 21.18, 21.88, 21.28, 22.04, 21.8, 21.92, 21.52, 20.6, 20.96, 20.93, 20.68, 20.88, 20.06, 19.74, 18.4, 18.32, 18.08, 17.58, 17.58, 17.16, 17.1, 17.2, 17.56, 18.08, 18.04, 18.44, 17.2, 17.26, 17.26, 16.82, 17.1, 16.8, 16.92, 16.78, 16.88, 17.04, 19.2, 19.9, 19.6, 20.28, 20.42, 20.46],
-                borderColor: '#C17D52',
-                backgroundColor: '#C17D5222',
+                borderColor: '#B86F45',
+                backgroundColor: '#B86F4522',
                 borderWidth: 2,
                 pointRadius: 0,
                 pointHoverRadius: 5,
-                pointHoverBackgroundColor: '#C17D52',
+                pointHoverBackgroundColor: '#B86F45',
                 pointHitRadius: 12,
                 tension: 0.1,
                 stepped: true,
@@ -2194,11 +2195,11 @@ const CHARTS_REGISTRY = {};
               plugins: {
                 legend: { display: false },
                 tooltip: {
-                  backgroundColor: '#0F1C22',
-                  borderColor: '#22323a',
+                  backgroundColor: '#0D2630',
+                  borderColor: '#E4DCC8',
                   borderWidth: 1,
-                  titleColor: '#C17D52',
-                  bodyColor: '#eef0f2',
+                  titleColor: '#B86F45',
+                  bodyColor: '#F6F2EA',
                   padding: 10,
                   displayColors: false,
                   callbacks: {
@@ -2208,12 +2209,12 @@ const CHARTS_REGISTRY = {};
               },
               scales: {
                 x: {
-                  ticks: { color: '#8FA3AA', font: { size: CHART_FONT_SIZE }, maxTicksLimit: CHART_MAX_TICKS, maxRotation: 0 },
+                  ticks: { color: '#46616A', font: { size: CHART_FONT_SIZE }, maxTicksLimit: CHART_MAX_TICKS, maxRotation: 0 },
                   grid: { display: false },
                 },
                 y: {
-                  ticks: { color: '#8FA3AA', font: { size: CHART_FONT_SIZE } },
-                  grid: { color: '#22323a' },
+                  ticks: { color: '#46616A', font: { size: CHART_FONT_SIZE } },
+                  grid: { color: '#E4DCC8' },
                 }
               }
             }
@@ -2228,12 +2229,12 @@ const CHARTS_REGISTRY = {};
               labels: ["2022-01-15", "2022-02-15", "2022-03-15", "2022-04-14", "2022-05-14", "2022-06-15", "2022-07-15", "2022-08-13", "2022-09-15", "2022-10-15", "2022-11-15", "2022-12-15", "2023-01-14", "2023-02-15", "2023-03-15", "2023-04-15", "2023-05-15", "2023-06-15", "2023-07-15", "2023-08-14", "2023-09-15", "2023-10-14", "2023-11-15", "2023-12-15", "2024-01-15", "2024-02-15", "2024-03-15", "2024-04-15", "2024-05-15", "2024-06-15", "2024-07-15", "2024-08-14", "2024-09-14", "2024-10-15", "2024-11-15", "2024-12-14", "2025-01-15", "2025-02-15", "2025-03-15", "2025-04-15", "2025-05-15", "2025-06-14", "2025-07-15", "2025-08-14", "2025-09-15", "2025-10-15", "2025-11-15", "2025-12-15", "2026-01-15", "2026-02-14", "2026-03-14", "2026-04-15", "2026-05-15", "2026-06-15", "2026-07-15"],
               datasets: [{
                 data: [6.9, 6.96, 7.14, 7.14, 7.05, 6.87, 6.69, 6.6, 6.45, 6.48, 6.78, 6.99, 6.78, 6.45, 6.39, 6.36, 6.39, 6.33, 6.27, 6.36, 6.36, 6.51, 7.02, 7.68, 7.83, 7.59, 7.53, 7.47, 7.43, 7.56, 7.62, 7.65, 7.53, 7.35, 7.14, 6.93, 6.78, 6.81, 6.66, 6.66, 6.72, 6.75, 6.78, 6.78, 6.75, 6.66, 6.66, 6.63, 6.66, 6.69, 6.57, 6.39, 6.39, 6.3, 6.39],
-                borderColor: '#C17D52',
-                backgroundColor: '#C17D5222',
+                borderColor: '#B86F45',
+                backgroundColor: '#B86F4522',
                 borderWidth: 2,
                 pointRadius: 0,
                 pointHoverRadius: 5,
-                pointHoverBackgroundColor: '#C17D52',
+                pointHoverBackgroundColor: '#B86F45',
                 pointHitRadius: 12,
                 tension: 0.1,
                 stepped: true,
@@ -2247,11 +2248,11 @@ const CHARTS_REGISTRY = {};
               plugins: {
                 legend: { display: false },
                 tooltip: {
-                  backgroundColor: '#0F1C22',
-                  borderColor: '#22323a',
+                  backgroundColor: '#0D2630',
+                  borderColor: '#E4DCC8',
                   borderWidth: 1,
-                  titleColor: '#C17D52',
-                  bodyColor: '#eef0f2',
+                  titleColor: '#B86F45',
+                  bodyColor: '#F6F2EA',
                   padding: 10,
                   displayColors: false,
                   callbacks: {
@@ -2261,12 +2262,12 @@ const CHARTS_REGISTRY = {};
               },
               scales: {
                 x: {
-                  ticks: { color: '#8FA3AA', font: { size: CHART_FONT_SIZE }, maxTicksLimit: CHART_MAX_TICKS, maxRotation: 0 },
+                  ticks: { color: '#46616A', font: { size: CHART_FONT_SIZE }, maxTicksLimit: CHART_MAX_TICKS, maxRotation: 0 },
                   grid: { display: false },
                 },
                 y: {
-                  ticks: { color: '#8FA3AA', font: { size: CHART_FONT_SIZE } },
-                  grid: { color: '#22323a' },
+                  ticks: { color: '#46616A', font: { size: CHART_FONT_SIZE } },
+                  grid: { color: '#E4DCC8' },
                 }
               }
             }
@@ -2281,12 +2282,12 @@ const CHARTS_REGISTRY = {};
               labels: ["2022-01-15", "2022-02-15", "2022-03-15", "2022-04-14", "2022-05-14", "2022-06-15", "2022-07-15", "2022-08-13", "2022-09-15", "2022-10-15", "2022-11-15", "2022-12-15", "2023-01-14", "2023-02-15", "2023-03-15", "2023-04-15", "2023-05-15", "2023-06-15", "2023-07-15", "2023-08-14", "2023-09-15", "2023-10-14", "2023-11-15", "2023-12-15", "2024-01-15", "2024-02-15", "2024-03-15", "2024-04-15", "2024-05-15", "2024-06-15", "2024-07-15", "2024-08-14", "2024-09-14", "2024-10-15", "2024-11-15", "2024-12-14", "2025-01-15", "2025-02-15", "2025-03-15", "2025-04-15", "2025-05-15", "2025-06-14", "2025-07-15", "2025-08-14", "2025-09-15", "2025-10-15", "2025-11-15", "2025-12-15", "2026-01-15", "2026-02-14", "2026-03-14", "2026-04-15", "2026-05-15", "2026-06-15", "2026-07-15"],
               datasets: [{
                 data: [24.99, 26.13, 27.24, 27.24, 28.65, 29.16, 29.76, 30.12, 30.21, 31.38, 32.25, 31.8, 32.55, 31.77, 32.82, 31.92, 33.06, 32.7, 32.88, 32.28, 30.9, 31.44, 31.39, 31.02, 31.32, 30.09, 29.61, 27.6, 27.48, 27.12, 26.37, 26.37, 25.74, 25.65, 25.8, 26.34, 27.12, 27.06, 27.66, 25.8, 25.89, 25.89, 25.23, 25.65, 25.2, 25.38, 25.17, 25.32, 25.56, 28.8, 29.85, 29.4, 30.42, 30.63, 30.69],
-                borderColor: '#C17D52',
-                backgroundColor: '#C17D5222',
+                borderColor: '#B86F45',
+                backgroundColor: '#B86F4522',
                 borderWidth: 2,
                 pointRadius: 0,
                 pointHoverRadius: 5,
-                pointHoverBackgroundColor: '#C17D52',
+                pointHoverBackgroundColor: '#B86F45',
                 pointHitRadius: 12,
                 tension: 0.1,
                 stepped: true,
@@ -2300,11 +2301,11 @@ const CHARTS_REGISTRY = {};
               plugins: {
                 legend: { display: false },
                 tooltip: {
-                  backgroundColor: '#0F1C22',
-                  borderColor: '#22323a',
+                  backgroundColor: '#0D2630',
+                  borderColor: '#E4DCC8',
                   borderWidth: 1,
-                  titleColor: '#C17D52',
-                  bodyColor: '#eef0f2',
+                  titleColor: '#B86F45',
+                  bodyColor: '#F6F2EA',
                   padding: 10,
                   displayColors: false,
                   callbacks: {
@@ -2314,12 +2315,12 @@ const CHARTS_REGISTRY = {};
               },
               scales: {
                 x: {
-                  ticks: { color: '#8FA3AA', font: { size: CHART_FONT_SIZE }, maxTicksLimit: CHART_MAX_TICKS, maxRotation: 0 },
+                  ticks: { color: '#46616A', font: { size: CHART_FONT_SIZE }, maxTicksLimit: CHART_MAX_TICKS, maxRotation: 0 },
                   grid: { display: false },
                 },
                 y: {
-                  ticks: { color: '#8FA3AA', font: { size: CHART_FONT_SIZE } },
-                  grid: { color: '#22323a' },
+                  ticks: { color: '#46616A', font: { size: CHART_FONT_SIZE } },
+                  grid: { color: '#E4DCC8' },
                 }
               }
             }

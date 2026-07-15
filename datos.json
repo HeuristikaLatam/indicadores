@@ -1,5 +1,5 @@
 {
-  "generado": "2026-07-15T17:49:04.853792+00:00",
+  "generado": "2026-07-15T18:04:52.329610+00:00",
   "macro": {
     "dolar": {
       "nombre": "Dólar observado",
@@ -13392,17 +13392,17 @@
           "Pollo Entero": 3860,
           "Leche Fluida Entera": 1220
         },
-        "Región de Arica y Parinacota": {
-          "Marraqueta": 2144,
-          "Asado Carnicero": 9752,
-          "Pollo Entero": 3898,
-          "Leche Fluida Entera": 1208
-        },
         "Región de Ñuble": {
           "Marraqueta": 2208,
           "Asado Carnicero": 11020,
           "Pollo Entero": 3768,
           "Leche Fluida Entera": 1196
+        },
+        "Región de Arica y Parinacota": {
+          "Marraqueta": 2144,
+          "Asado Carnicero": 9752,
+          "Pollo Entero": 3898,
+          "Leche Fluida Entera": 1208
         },
         "Región Metropolitana de Santiago": {
           "Marraqueta": 2218,
