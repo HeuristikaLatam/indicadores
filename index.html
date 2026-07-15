@@ -151,13 +151,29 @@
 
   .indice-card{
     background:var(--card); border:1px solid var(--line); border-radius:10px;
-    padding:18px 20px 20px; margin-top:16px;
+    padding:20px; margin-top:16px;
+    display:grid; grid-template-columns:1fr 1fr; gap:24px; align-items:center;
   }
-  .indice-head{display:flex; flex-direction:column; gap:4px; margin-bottom:12px;}
+  .indice-mitad{min-width:0;}
+  .indice-texto{
+    display:flex; flex-direction:column; align-items:center; text-align:center;
+    gap:8px;
+  }
   .indice-title{font-size:13px; font-weight:700; color:var(--orange);}
-  .indice-desc{font-size:12px; color:var(--muted); line-height:1.5; max-width:640px;}
-  .indice-valor{display:flex; align-items:baseline; gap:12px; font-size:32px; font-weight:700; color:var(--text); font-variant-numeric:tabular-nums;}
+  .indice-desc{font-size:12px; color:var(--muted); line-height:1.5; max-width:420px;}
+  .indice-valor{font-size:40px; font-weight:700; color:var(--text); font-variant-numeric:tabular-nums; margin-top:4px;}
   .indice-delta{font-size:13px; font-weight:600;}
+  .indice-grafico{height:220px;}
+  .indice-chart{height:220px;}
+  .indice-chart-placeholder{
+    display:flex; align-items:center; justify-content:center; height:100%;
+    color:var(--muted); font-size:12px; font-style:italic; text-align:center;
+    border:1px dashed var(--line); border-radius:8px; padding:16px;
+  }
+  @media (max-width: 720px){
+    .indice-card{grid-template-columns:1fr;}
+    .indice-grafico, .indice-chart{height:200px;}
+  }
 
   @media (max-width: 480px){
     body{padding:20px 14px 44px;}
@@ -198,7 +214,7 @@
     </div>
     <div class="brand-tagline"><span class="dash"></span>Capacidad Humana Amplificada<span class="dash"></span></div>
     <div class="site-link"><a href="https://www.heuristika.pro" target="_blank">www.heuristika.pro</a></div>
-    <div class="update-note">La información que estás viendo fue cargada el 15/07/2026 a las 00:26.</div>
+    <div class="update-note">La información que estás viendo fue cargada el 15/07/2026 a las 00:39.</div>
   </div>
 
   <nav class="nav">
@@ -263,12 +279,15 @@
     </div></div>
     
     <div class="indice-card">
-      <div class="indice-head">
-        <span class="indice-title">Índice de costo de vida Heuristika</span>
-        <span class="indice-desc">Cuánto le cuesta hoy vivir a una familia chilena promedio (2 padres, 1 hijo, ingreso ~$1.500.000/mes) frente al día en que empezamos a medirlo. Combina alimentos (62%), bencina (10%), UF (16%) y dólar (12%), según lo que ese hogar realmente gasta — parte en 100 el 14/07/2026.</span>
+      <div class="indice-mitad indice-texto">
+        <div class="indice-title">Índice de costo de vida Heuristika</div>
+        <div class="indice-desc">Cuánto le cuesta hoy vivir a una familia chilena promedio (2 padres, 1 hijo, ingreso ~$1.500.000/mes) frente al día en que empezamos a medirlo. Combina alimentos (62%), bencina (10%), UF (16%) y dólar (12%), según lo que ese hogar realmente gasta — parte en 100 el 14/07/2026.</div>
+        <div class="indice-valor">100.00</div>
+        
       </div>
-      <div class="indice-valor">100.00</div>
-      
+      <div class="indice-mitad indice-grafico">
+        <div class="indice-chart-placeholder">El gráfico aparece apenas haya dos o más días medidos.</div>
+      </div>
     </div>
   </section>
 
