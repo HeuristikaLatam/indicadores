@@ -19,10 +19,11 @@ with open("datos.json", "r", encoding="utf-8") as f:
 # Paleta de los gráficos Chart.js — arriba de todo porque la tarjeta del
 # índice de costo de vida (en Resumen) también dibuja un gráfico, y ese
 # bloque se arma antes que los gráficos históricos más abajo en el archivo.
-CHART_COLOR = "#e2792f"
-CHART_GRID = "#242830"
-CHART_TEXT = "#8a8f98"
-CHART_BG = "#1a1d22"
+# Paleta personal de Felipe Alcérreca: azul petróleo + acento cobre.
+CHART_COLOR = "#C17D52"
+CHART_GRID = "#22323a"
+CHART_TEXT = "#8FA3AA"
+CHART_BG = "#0F1C22"
 
 
 def fmt(valor, unidad, key=None):
@@ -1079,12 +1080,13 @@ HTML = f"""<!DOCTYPE html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Indicadores Económicos · Heurística</title>
+<title>Indicadores Económicos · Felipe Alcérreca</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.0/chart.umd.min.js"></script>
 <style>
   :root{{
-    --bg:#0b0d10; --card:#14171b; --line:#242830; --text:#eef0f2;
-    --muted:#8a8f98; --orange:#e2792f; --navy:#1a2b42;
+    /* Paleta personal de Felipe Alcérreca: azul petróleo + acento cobre. */
+    --bg:#0A1418; --card:#121E24; --line:#22323a; --text:#EEF2F0;
+    --muted:#8FA3AA; --orange:#C17D52; --navy:#0D2630;
   }}
   *{{box-sizing:border-box;}}
   body{{
@@ -1285,22 +1287,18 @@ HTML = f"""<!DOCTYPE html>
 
   <div class="header-center">
     <div class="brand">
-      <svg class="brand-mark" width="48" height="48" viewBox="0 0 112 120" xmlns="http://www.w3.org/2000/svg">
-        <rect x="20" y="8"  width="22" height="40" rx="3" fill="#eef0f2"/>
-        <rect x="20" y="72" width="22" height="40" rx="3" fill="#eef0f2"/>
-        <rect x="68" y="8"  width="22" height="40" rx="3" fill="#eef0f2"/>
-        <path d="M68,72 H90 V112 Q68,112 68,90 Z" fill="#eef0f2"/>
-        <rect x="2"  y="48" width="16" height="16" rx="2" fill="#8a8f98"/>
-        <rect x="48" y="48" width="16" height="16" rx="2" fill="#e2792f"/>
-        <rect x="94" y="48" width="16" height="16" rx="2" fill="#8a8f98"/>
+      <svg class="brand-mark" width="48" height="48" viewBox="-260 -190 520 380" xmlns="http://www.w3.org/2000/svg">
+        <path d="M-205 145V-145H-34V-88H-137V-29H-54V28H-137V145Z" fill="#EEF2F0"/>
+        <path d="M0 145L100-145H150L250 145H182L160 73H90L68 145Z" fill="#EEF2F0"/>
+        <path d="M125-61L151 15H99Z" fill="#C17D52"/>
       </svg>
       <div class="brand-titles">
         <div class="page-title">Indicadores Económicos Chile <span class="flag">🇨🇱</span></div>
-        <div class="brand-name">HEURISTI<span class="k">K</span>A</div>
+        <div class="brand-name">FELIPE ALCÉRRE<span class="k">C</span>A</div>
       </div>
     </div>
-    <div class="brand-tagline"><span class="dash"></span>Capacidad Humana Amplificada<span class="dash"></span></div>
-    <div class="site-link"><a href="https://www.heuristika.pro" target="_blank">www.heuristika.pro</a></div>
+    <div class="brand-tagline"><span class="dash"></span>ESTRATEGIA · DATOS · INMOBILIARIO<span class="dash"></span></div>
+    <div class="site-link"><a href="https://felipealcerreca.lat" target="_blank">felipealcerreca.lat</a></div>
     <div class="update-note">La información que estás viendo fue cargada el {cargado_en}.</div>
   </div>
 
@@ -1351,7 +1349,7 @@ HTML = f"""<!DOCTYPE html>
     y <a href="https://datos.odepa.gob.cl" target="_blank">ODEPA</a> (Oficina de Estudios y Políticas Agrarias).
     Información con fines informativos. No constituye asesoría ni recomendación de inversión.
     <br><br>
-    <a href="https://www.heuristika.pro" target="_blank">www.heuristika.pro</a> / <a href="mailto:contacto@heuristika.pro">contacto@heuristika.pro</a>
+    <a href="https://felipealcerreca.lat" target="_blank">felipealcerreca.lat</a> / <a href="mailto:contacto@felipealcerreca.lat">contacto@felipealcerreca.lat</a>
   </div>
 
 </div>
