@@ -906,6 +906,108 @@ def get_anomalia_alimentos(tendencia_mayoristas, tendencia_consumidor):
     return max(candidatos, key=lambda c: abs(c["zscore"]))
 
 
+# ---------------------------------------------------------------------------
+# Índice de costo de vida Heuristika — pensado para una familia promedio
+# chilena (2 padres + 1 hijo, ingreso ~$1.500.000/mes, que calza casi exacto
+# con el hogar promedio nacional según la IX Encuesta de Presupuestos
+# Familiares del INE: ingreso $1.413.349, gasto $1.451.782). Combina 4
+# componentes ponderados por su peso real en el gasto de ese hogar:
+#   - Alimentos (consumidor) 62% — lo que más pesa en el gasto mensual real.
+#   - Bencina 93 10% — combustible que efectivamente compra esa familia
+#     (no el peso agregado de "transporte" del IPC, que mezcla hogares con
+#     y sin auto).
+#   - UF 16% — presión sobre créditos hipotecarios/arriendos indexados.
+#   - Dólar 12% — presión sobre precios de bienes importados.
+#
+# Arranca en 100 el día que se activó esta función (INDICE_COSTO_VIDA_BASE),
+# sin historia retroactiva. La base queda fija en el código (no solo en
+# datos.json) para que nunca se pierda aunque datos.json se resetee o un
+# commit falle — ver conversación de diseño del 14-jul-2026.
+# ---------------------------------------------------------------------------
+
+INDICE_COSTO_VIDA_BASE = {
+    "fecha": "2026-07-14",
+    "dolar": 928.84,
+    "uf": 40844.79,
+    "bencina_93": 1413,
+    "alimentos_consumidor": {
+        "Marraqueta": 2293,
+        "Asado Carnicero": 10516,
+        "Pollo Entero": 3824,
+        "Huevo blanco - Extra": 220,
+        "Leche Fluida Entera": 1205,
+    },
+}
+
+INDICE_COSTO_VIDA_PESOS = {"alimentos": 0.62, "bencina": 0.10, "uf": 0.16, "dolar": 0.12}
+
+
+def get_indice_costo_vida(macro, combustibles, alimentos):
+    base = INDICE_COSTO_VIDA_BASE
+    pesos = INDICE_COSTO_VIDA_PESOS
+
+    dolar_hoy = macro.get("dolar", {}).get("valor")
+    uf_hoy = macro.get("uf", {}).get("valor")
+    bencina_hoy = combustibles.get("nacional", {}).get("93", {}).get("promedio")
+    consumidor_hoy = alimentos.get("consumidor", {}).get("nacional", {})
+
+    # Si falta algún dato hoy (ej. la CNE no respondió), tratamos ese
+    # componente como "sin cambio" en vez de romper el cálculo del índice.
+    cambio_dolar = (dolar_hoy - base["dolar"]) / base["dolar"] * 100 if dolar_hoy else 0.0
+    cambio_uf = (uf_hoy - base["uf"]) / base["uf"] * 100 if uf_hoy else 0.0
+    cambio_bencina = (
+        (bencina_hoy - base["bencina_93"]) / base["bencina_93"] * 100 if bencina_hoy else 0.0
+    )
+
+    cambios_alimentos = []
+    for producto, valor_base in base["alimentos_consumidor"].items():
+        info_hoy = consumidor_hoy.get(producto)
+        if info_hoy and valor_base:
+            cambios_alimentos.append((info_hoy["promedio"] - valor_base) / valor_base * 100)
+    cambio_alimentos = sum(cambios_alimentos) / len(cambios_alimentos) if cambios_alimentos else 0.0
+
+    impacto = (
+        pesos["alimentos"] * cambio_alimentos
+        + pesos["bencina"] * cambio_bencina
+        + pesos["uf"] * cambio_uf
+        + pesos["dolar"] * cambio_dolar
+    )
+    valor_indice = round(100 + impacto, 2)
+    hoy = datetime.now().strftime("%Y-%m-%d")
+
+    # Recuperamos el historial de corridas anteriores desde el datos.json que
+    # ya está commiteado en el repo. Si no existe o viene vacío, no importa:
+    # el valor de hoy sigue siendo correcto porque se calculó contra
+    # INDICE_COSTO_VIDA_BASE (fijo en el código) — solo se pierde la curva
+    # visual de días anteriores, no la precisión del índice.
+    historial = []
+    try:
+        with open("datos.json", "r", encoding="utf-8") as f:
+            anterior = json.load(f)
+        historial = anterior.get("indice_costo_vida", {}).get("historial", [])
+    except (FileNotFoundError, json.JSONDecodeError):
+        pass
+
+    if historial and historial[-1]["fecha"] == hoy:
+        historial[-1] = {"fecha": hoy, "valor": valor_indice}
+    else:
+        historial.append({"fecha": hoy, "valor": valor_indice})
+
+    return {
+        "base": base,
+        "pesos": pesos,
+        "valor": valor_indice,
+        "fecha": hoy,
+        "componentes": {
+            "alimentos": round(cambio_alimentos, 2),
+            "bencina": round(cambio_bencina, 2),
+            "uf": round(cambio_uf, 2),
+            "dolar": round(cambio_dolar, 2),
+        },
+        "historial": historial,
+    }
+
+
 def main():
     macro_actual = get_mindicador_actual()
     salida = {
@@ -955,6 +1057,12 @@ def main():
             salida["alimentos"]["tendencia_consumidor"],
         ),
     }
+
+    print("Calculando índice de costo de vida Heuristika ...")
+    salida["indice_costo_vida"] = get_indice_costo_vida(
+        salida["macro"], salida["combustibles"], salida["alimentos"]
+    )
+    print(f"  Índice hoy: {salida['indice_costo_vida']['valor']}")
 
     with open("datos.json", "w", encoding="utf-8") as f:
         json.dump(salida, f, ensure_ascii=False, indent=2)
