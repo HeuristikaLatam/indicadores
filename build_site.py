@@ -1102,21 +1102,14 @@ HTML = f"""<!DOCTYPE html>
   .wrap{{max-width:1100px; margin:0 auto;}}
 
   .header-center{{display:flex; flex-direction:column; align-items:center; text-align:center;}}
-  .brand{{display:flex; align-items:center; justify-content:center; gap:16px; margin-bottom:2px;}}
-  .brand-mark{{flex-shrink:0;}}
-  .brand-titles{{display:flex; flex-direction:column; gap:4px; align-items:center;}}
-  .page-title{{font-size:26px; font-weight:700; letter-spacing:.01em;}}
-  .page-title .flag{{font-size:22px;}}
-  .brand-name{{font-size:13px; font-weight:600; letter-spacing:.08em; color:var(--muted);}}
-  .brand-name .k{{color:var(--orange);}}
-  .brand-tagline{{
-    font-size:11px; color:var(--muted); letter-spacing:.12em; text-transform:uppercase;
-    display:flex; align-items:center; justify-content:center; gap:10px; margin:14px 0 10px 0;
+  .header-row{{
+    display:grid; grid-template-columns:48px 1fr 48px; align-items:center;
+    column-gap:16px; width:100%; margin-bottom:16px;
   }}
-  .brand-tagline .dash{{display:inline-block; width:22px; height:1px; background:var(--orange);}}
-  .site-link{{font-size:12px; margin-bottom:14px;}}
-  .site-link a{{color:var(--orange); text-decoration:none;}}
-  .site-link a:hover{{text-decoration:underline;}}
+  .brand-mark{{flex-shrink:0; justify-self:start;}}
+  .header-spacer{{width:48px;}}
+  .page-title{{font-size:26px; font-weight:700; letter-spacing:.01em; text-align:center;}}
+  .page-title .flag{{font-size:22px;}}
   .update-note{{font-size:11px; color:var(--muted); line-height:1.6; margin-bottom:28px;}}
 
   h1{{font-size:14px; font-weight:600; color:var(--muted); text-transform:uppercase;
@@ -1272,9 +1265,10 @@ HTML = f"""<!DOCTYPE html>
   @media (max-width: 480px){{
     body{{padding:20px 14px 44px;}}
     .brand-mark{{width:32px; height:32px;}}
+    .header-row{{grid-template-columns:32px 1fr 32px;}}
+    .header-spacer{{width:32px;}}
     .page-title{{font-size:19px;}}
     .page-title .flag{{font-size:16px;}}
-    .brand-name{{font-size:11px;}}
     .nav{{margin:0 -14px 22px; padding:10px 14px;}}
     .kpi{{min-width:112px; padding:12px 12px;}}
     .card-wide{{padding:14px 14px 16px;}}
@@ -1291,19 +1285,15 @@ HTML = f"""<!DOCTYPE html>
 <div class="wrap">
 
   <div class="header-center">
-    <div class="brand">
+    <div class="header-row">
       <svg class="brand-mark" width="48" height="48" viewBox="-260 -190 520 380" xmlns="http://www.w3.org/2000/svg">
         <path d="M-205 145V-145H-34V-88H-137V-29H-54V28H-137V145Z" fill="#0D2630"/>
         <path d="M0 145L100-145H150L250 145H182L160 73H90L68 145Z" fill="#0D2630"/>
         <path d="M125-61L151 15H99Z" fill="#B86F45"/>
       </svg>
-      <div class="brand-titles">
-        <div class="page-title">Indicadores Económicos Chile <span class="flag">🇨🇱</span></div>
-        <div class="brand-name">FELIPE ALCÉRRE<span class="k">C</span>A</div>
-      </div>
+      <div class="page-title">Indicadores Económicos Chile <span class="flag">🇨🇱</span></div>
+      <div class="header-spacer"></div>
     </div>
-    <div class="brand-tagline"><span class="dash"></span>ESTRATEGIA · DATOS · INMOBILIARIO<span class="dash"></span></div>
-    <div class="site-link"><a href="https://indicadores.felipealcerreca.lat" target="_blank">indicadores.felipealcerreca.lat</a></div>
     <div class="update-note">La información que estás viendo fue cargada el {cargado_en}.</div>
   </div>
 
