@@ -16,6 +16,14 @@ from datetime import datetime
 with open("datos.json", "r", encoding="utf-8") as f:
     DATA = json.load(f)
 
+# Paleta de los gráficos Chart.js — arriba de todo porque la tarjeta del
+# índice de costo de vida (en Resumen) también dibuja un gráfico, y ese
+# bloque se arma antes que los gráficos históricos más abajo en el archivo.
+CHART_COLOR = "#e2792f"
+CHART_GRID = "#242830"
+CHART_TEXT = "#8a8f98"
+CHART_BG = "#1a1d22"
+
 
 def fmt(valor, unidad, key=None):
     if unidad == "Porcentaje":
@@ -218,6 +226,7 @@ if _pan:
 
 indice_costo_vida = DATA.get("indice_costo_vida", {})
 indice_html = ""
+indice_chart_js = ""
 if indice_costo_vida:
     _icv_valor = indice_costo_vida.get("valor", 100)
     _icv_historial = indice_costo_vida.get("historial", [])
@@ -234,30 +243,78 @@ if indice_costo_vida:
 
     _icv_delta_html = ""
     if _icv_delta is not None:
-        _icv_delta_html = f'<span class="indice-delta {_icv_clase}">{_icv_flecha} {_icv_delta:+.2f} vs. la corrida anterior</span>'
+        _icv_delta_html = f'<div class="indice-delta {_icv_clase}">{_icv_flecha} {_icv_delta:+.2f} vs. la corrida anterior</div>'
 
-    _icv_timeline_html = ""
+    # El gráfico solo tiene sentido con 2+ puntos — con uno solo mostramos un
+    # mensaje corto en su lugar, y aparece automáticamente apenas haya
+    # historial (nada que tocar a mano más adelante).
+    _icv_canvas_id = "chart_indice_costo_vida"
     if len(_icv_historial) >= 2:
-        _puntos = ""
-        total_icv = len(_icv_historial)
-        for i, p in enumerate(_icv_historial[-10:]):
-            es_destacado = (i == min(total_icv, 10) - 1)
-            clase = "pt pt-destacado" if es_destacado else "pt"
-            _puntos += f"""
-            <div class="{clase}">
-              <div class="pt-label">{fecha_legible(p['fecha'])}</div>
-              <div class="pt-val">{p['valor']:.2f}</div>
-            </div>"""
-        _icv_timeline_html = f'<div class="card-timeline" style="margin-top:14px;">{_puntos}</div>'
+        _icv_chart_html = f'<div class="chart-canvas-wrap indice-chart"><canvas id="{_icv_canvas_id}"></canvas></div>'
+        _icv_labels = [fecha_legible(p["fecha"]) for p in _icv_historial]
+        _icv_valores = [p["valor"] for p in _icv_historial]
+        indice_chart_js = f"""
+    (function() {{
+      const chart = new Chart(document.getElementById('{_icv_canvas_id}'), {{
+        type: 'line',
+        data: {{
+          labels: {json.dumps(_icv_labels)},
+          datasets: [{{
+            data: {json.dumps(_icv_valores)},
+            borderColor: '{CHART_COLOR}',
+            backgroundColor: '{CHART_COLOR}22',
+            borderWidth: 2,
+            pointRadius: 2,
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: '{CHART_COLOR}',
+            pointHitRadius: 12,
+            tension: 0.25,
+            fill: true,
+          }}]
+        }},
+        options: {{
+          responsive: true,
+          maintainAspectRatio: false,
+          interaction: {{ mode: 'index', intersect: false }},
+          plugins: {{
+            legend: {{ display: false }},
+            tooltip: {{
+              backgroundColor: '{CHART_BG}',
+              borderColor: '{CHART_GRID}',
+              borderWidth: 1,
+              titleColor: '{CHART_COLOR}',
+              bodyColor: '#eef0f2',
+              padding: 10,
+              displayColors: false,
+            }},
+          }},
+          scales: {{
+            x: {{
+              ticks: {{ color: '{CHART_TEXT}', font: {{ size: CHART_FONT_SIZE }}, maxTicksLimit: CHART_MAX_TICKS, maxRotation: 0 }},
+              grid: {{ display: false }},
+            }},
+            y: {{
+              ticks: {{ color: '{CHART_TEXT}', font: {{ size: CHART_FONT_SIZE }} }},
+              grid: {{ color: '{CHART_GRID}' }},
+            }}
+          }}
+        }}
+      }});
+    }})();"""
+    else:
+        _icv_chart_html = '<div class="indice-chart-placeholder">El gráfico aparece apenas haya dos o más días medidos.</div>'
 
     indice_html = f"""
     <div class="indice-card">
-      <div class="indice-head">
-        <span class="indice-title">Índice de costo de vida Heuristika</span>
-        <span class="indice-desc">Cuánto le cuesta hoy vivir a una familia chilena promedio (2 padres, 1 hijo, ingreso ~$1.500.000/mes) frente al día en que empezamos a medirlo. Combina alimentos (62%), bencina (10%), UF (16%) y dólar (12%), según lo que ese hogar realmente gasta — parte en 100 el {fecha_legible(indice_costo_vida.get('base', {}).get('fecha', ''))}.</span>
+      <div class="indice-mitad indice-texto">
+        <div class="indice-title">Índice de costo de vida Heuristika</div>
+        <div class="indice-desc">Cuánto le cuesta hoy vivir a una familia chilena promedio (2 padres, 1 hijo, ingreso ~$1.500.000/mes) frente al día en que empezamos a medirlo. Combina alimentos (62%), bencina (10%), UF (16%) y dólar (12%), según lo que ese hogar realmente gasta — parte en 100 el {fecha_legible(indice_costo_vida.get('base', {}).get('fecha', ''))}.</div>
+        <div class="indice-valor">{_icv_valor:.2f}</div>
+        {_icv_delta_html}
       </div>
-      <div class="indice-valor">{_icv_valor:.2f}{_icv_delta_html}</div>
-      {_icv_timeline_html}
+      <div class="indice-mitad indice-grafico">
+        {_icv_chart_html}
+      </div>
     </div>"""
 
 # ---------------------------------------------------------------------------
@@ -544,11 +601,6 @@ else:
 # Gráficos históricos — macro (Chart.js)
 # ---------------------------------------------------------------------------
 
-CHART_COLOR = "#e2792f"
-CHART_GRID = "#242830"
-CHART_TEXT = "#8a8f98"
-CHART_BG = "#1a1d22"
-
 ANIO_ACTUAL_CHART = datetime.now().year
 RANGOS_DISPONIBLES = (20, 10, 5)
 RANGO_INICIAL = 5  # con cuántos años parte cada gráfico al cargar la página
@@ -573,6 +625,8 @@ def botones_rango(canvas_id):
 
 
 charts_js = []
+if indice_chart_js:
+    charts_js.append(indice_chart_js)
 macro_chart_cards = ""
 
 for key, label in MACRO_ORDEN:
@@ -1145,13 +1199,29 @@ HTML = f"""<!DOCTYPE html>
 
   .indice-card{{
     background:var(--card); border:1px solid var(--line); border-radius:10px;
-    padding:18px 20px 20px; margin-top:16px;
+    padding:20px; margin-top:16px;
+    display:grid; grid-template-columns:1fr 1fr; gap:24px; align-items:center;
   }}
-  .indice-head{{display:flex; flex-direction:column; gap:4px; margin-bottom:12px;}}
+  .indice-mitad{{min-width:0;}}
+  .indice-texto{{
+    display:flex; flex-direction:column; align-items:center; text-align:center;
+    gap:8px;
+  }}
   .indice-title{{font-size:13px; font-weight:700; color:var(--orange);}}
-  .indice-desc{{font-size:12px; color:var(--muted); line-height:1.5; max-width:640px;}}
-  .indice-valor{{display:flex; align-items:baseline; gap:12px; font-size:32px; font-weight:700; color:var(--text); font-variant-numeric:tabular-nums;}}
+  .indice-desc{{font-size:12px; color:var(--muted); line-height:1.5; max-width:420px;}}
+  .indice-valor{{font-size:40px; font-weight:700; color:var(--text); font-variant-numeric:tabular-nums; margin-top:4px;}}
   .indice-delta{{font-size:13px; font-weight:600;}}
+  .indice-grafico{{height:220px;}}
+  .indice-chart{{height:220px;}}
+  .indice-chart-placeholder{{
+    display:flex; align-items:center; justify-content:center; height:100%;
+    color:var(--muted); font-size:12px; font-style:italic; text-align:center;
+    border:1px dashed var(--line); border-radius:8px; padding:16px;
+  }}
+  @media (max-width: 720px){{
+    .indice-card{{grid-template-columns:1fr;}}
+    .indice-grafico, .indice-chart{{height:200px;}}
+  }}
 
   @media (max-width: 480px){{
     body{{padding:20px 14px 44px;}}
