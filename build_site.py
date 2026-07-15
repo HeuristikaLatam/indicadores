@@ -1298,7 +1298,7 @@ HTML = f"""<!DOCTYPE html>
       </div>
     </div>
     <div class="brand-tagline"><span class="dash"></span>ESTRATEGIA · DATOS · INMOBILIARIO<span class="dash"></span></div>
-    <div class="site-link"><a href="https://felipealcerreca.lat" target="_blank">felipealcerreca.lat</a></div>
+    <div class="site-link"><a href="https://indicadores.felipealcerreca.lat" target="_blank">indicadores.felipealcerreca.lat</a></div>
     <div class="update-note">La información que estás viendo fue cargada el {cargado_en}.</div>
   </div>
 
@@ -1349,7 +1349,7 @@ HTML = f"""<!DOCTYPE html>
     y <a href="https://datos.odepa.gob.cl" target="_blank">ODEPA</a> (Oficina de Estudios y Políticas Agrarias).
     Información con fines informativos. No constituye asesoría ni recomendación de inversión.
     <br><br>
-    <a href="https://felipealcerreca.lat" target="_blank">felipealcerreca.lat</a> / <a href="mailto:contacto@felipealcerreca.lat">contacto@felipealcerreca.lat</a>
+    <a href="https://indicadores.felipealcerreca.lat" target="_blank">indicadores.felipealcerreca.lat</a> / <a href="mailto:contacto@felipealcerreca.lat">contacto@felipealcerreca.lat</a>
   </div>
 
 </div>
