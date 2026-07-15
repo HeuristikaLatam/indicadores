@@ -352,6 +352,33 @@ for key, label in MACRO_ORDEN:
         </div>"""
 
     descripcion = MACRO_DESCRIPCIONES.get(key, "")
+
+    # El IPC en Chile casi siempre se lee junto con su acumulado del año y
+    # su variación a 12 meses (la "inflación anual" que se comenta en las
+    # noticias) — no solo la variación mensual que ya mostramos arriba.
+    # Se calcula componiendo las variaciones mensuales de historico_macro.
+    ipc_extra_html = ""
+    if key == "ipc":
+        serie_ipc = historico_macro.get("ipc", [])
+        anio_actual_str = str(datetime.now().year)
+        meses_del_anio = [p["valor"] for p in serie_ipc if p["periodo"].startswith(anio_actual_str)]
+        meses_12 = [p["valor"] for p in serie_ipc[-12:]]
+
+        def _acumular(valores):
+            factor = 1.0
+            for v in valores:
+                factor *= (1 + v / 100)
+            return (factor - 1) * 100
+
+        if meses_del_anio:
+            acumulado_anio = _acumular(meses_del_anio)
+            ipc_extra_html += f'<span class="card-extra-item">Acumulado {anio_actual_str}: <strong>{acumulado_anio:+.1f}%</strong></span>'
+        if len(meses_12) == 12:
+            var_12m = _acumular(meses_12)
+            ipc_extra_html += f'<span class="card-extra-item">Variación 12 meses: <strong>{var_12m:+.1f}%</strong></span>'
+        if ipc_extra_html:
+            ipc_extra_html = f'<div class="card-extra">{ipc_extra_html}</div>'
+
     macro_cards += f"""
     <div class="card-wide">
       <div class="card-head">
@@ -359,6 +386,7 @@ for key, label in MACRO_ORDEN:
         <span class="card-desc">{descripcion}</span>
       </div>
       <div class="card-timeline">{puntos_html}</div>
+      {ipc_extra_html}
     </div>"""
 
 # --- Anomalía destacada de Macro --------------------------------------------
@@ -1167,8 +1195,19 @@ HTML = f"""<!DOCTYPE html>
     background:var(--card); border:1px solid var(--line); border-radius:10px;
     padding:20px 24px;
   }}
-  .subhead{{font-size:12px; color:var(--orange); text-transform:uppercase; letter-spacing:.08em; margin:24px 0 12px;}}
+  .subhead{{
+    display:flex; align-items:center; gap:8px;
+    background:linear-gradient(135deg, rgba(255,140,0,0.10), rgba(255,140,0,0.03));
+    border:1px solid var(--orange); border-radius:10px;
+    padding:10px 16px;
+    font-size:12px; color:var(--orange); font-weight:700; text-transform:uppercase; letter-spacing:.08em;
+    margin:24px 0 14px;
+  }}
   .subhead:first-of-type{{margin-top:0;}}
+
+  .card-extra{{display:flex; gap:16px; flex-wrap:wrap; margin-top:10px; padding-top:10px; border-top:1px solid var(--line);}}
+  .card-extra-item{{font-size:11px; color:var(--muted);}}
+  .card-extra-item strong{{color:var(--orange); font-size:12px;}}
   .chart-head{{display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; margin-bottom:12px;}}
   .chart-title{{font-size:14px; color:var(--text); font-weight:600;}}
   .chart-desc{{font-size:12px; color:var(--muted);}}
