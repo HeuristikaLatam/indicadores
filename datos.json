@@ -1,5 +1,5 @@
 {
-  "generado": "2026-07-15T18:04:52.329610+00:00",
+  "generado": "2026-07-15T23:05:39.319909+00:00",
   "macro": {
     "dolar": {
       "nombre": "Dólar observado",
@@ -8142,7 +8142,7 @@
       },
       {
         "periodo": "2026-07",
-        "valor": 6.0436
+        "valor": 6.0542
       }
     ],
     "bitcoin": [
@@ -13398,12 +13398,6 @@
           "Pollo Entero": 3768,
           "Leche Fluida Entera": 1196
         },
-        "Región de Arica y Parinacota": {
-          "Marraqueta": 2144,
-          "Asado Carnicero": 9752,
-          "Pollo Entero": 3898,
-          "Leche Fluida Entera": 1208
-        },
         "Región Metropolitana de Santiago": {
           "Marraqueta": 2218,
           "Asado Carnicero": 9804,
@@ -13440,6 +13434,12 @@
           "Asado Carnicero": 10538,
           "Pollo Entero": 3767,
           "Leche Fluida Entera": 1185
+        },
+        "Región de Arica y Parinacota": {
+          "Marraqueta": 2144,
+          "Asado Carnicero": 9752,
+          "Pollo Entero": 3898,
+          "Leche Fluida Entera": 1208
         }
       }
     },
