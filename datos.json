@@ -1,5 +1,5 @@
 {
-  "generado": "2026-07-16T13:06:30.814410+00:00",
+  "generado": "2026-07-16T15:19:43.137349+00:00",
   "macro": {
     "dolar": {
       "nombre": "Dólar observado",
@@ -13145,7 +13145,7 @@
         "fecha": "2026-07-16"
       },
       "KE": {
-        "promedio": 1082,
+        "promedio": 1083,
         "n_estaciones": 1076,
         "fecha": "2026-07-16"
       }
@@ -13175,14 +13175,14 @@
       "Atacama": {
         "93": 1479,
         "97": 1547,
-        "DI": 1254,
+        "DI": 1255,
         "95": 1513,
         "KE": 1109
       },
       "Coquimbo": {
         "93": 1458,
         "97": 1532,
-        "DI": 1236,
+        "DI": 1237,
         "95": 1495,
         "KE": 1086
       },
@@ -13191,7 +13191,7 @@
         "97": 1488,
         "DI": 1186,
         "95": 1444,
-        "KE": 1060
+        "KE": 1061
       },
       "Del Libertador Gral. Bernardo O’Higgins": {
         "93": 1433,
@@ -13212,13 +13212,13 @@
         "95": 1440,
         "97": 1477,
         "DI": 1178,
-        "KE": 1053
+        "KE": 1054
       },
       "Ñuble": {
         "93": 1404,
         "97": 1472,
         "DI": 1177,
-        "KE": 1062,
+        "KE": 1063,
         "95": 1440
       },
       "De la Araucanía": {
@@ -13239,26 +13239,26 @@
         "93": 1464,
         "97": 1523,
         "DI": 1244,
-        "KE": 1120,
+        "KE": 1121,
         "95": 1497
       },
       "Aysén del Gral. Carlos Ibáñez del Campo": {
         "93": 1517,
         "97": 1585,
-        "DI": 1350,
+        "DI": 1344,
         "KE": 1162,
         "95": 1558
       },
       "Magallanes y de la Antártica Chilena": {
         "93": 1510,
-        "95": 1526,
+        "95": 1527,
         "97": 1571,
         "DI": 1353
       },
       "Metropolitana de Santiago": {
         "93": 1364,
         "97": 1460,
-        "DI": 1168,
+        "DI": 1167,
         "KE": 1079,
         "95": 1410
       }
@@ -13396,24 +13396,6 @@
           "Pollo Entero": 3860,
           "Leche Fluida Entera": 1220
         },
-        "Región de Ñuble": {
-          "Marraqueta": 2208,
-          "Asado Carnicero": 11020,
-          "Pollo Entero": 3768,
-          "Leche Fluida Entera": 1196
-        },
-        "Región Metropolitana de Santiago": {
-          "Marraqueta": 2218,
-          "Asado Carnicero": 9804,
-          "Pollo Entero": 3715,
-          "Leche Fluida Entera": 1186
-        },
-        "Región de Los Lagos": {
-          "Marraqueta": 2360,
-          "Asado Carnicero": 10007,
-          "Pollo Entero": 3789,
-          "Leche Fluida Entera": 1219
-        },
         "Región de La Araucanía": {
           "Marraqueta": 2275,
           "Asado Carnicero": 11195,
@@ -13439,11 +13421,29 @@
           "Pollo Entero": 3767,
           "Leche Fluida Entera": 1185
         },
+        "Región de Los Lagos": {
+          "Marraqueta": 2360,
+          "Asado Carnicero": 10007,
+          "Pollo Entero": 3789,
+          "Leche Fluida Entera": 1219
+        },
+        "Región Metropolitana de Santiago": {
+          "Marraqueta": 2218,
+          "Asado Carnicero": 9804,
+          "Pollo Entero": 3715,
+          "Leche Fluida Entera": 1186
+        },
         "Región de Arica y Parinacota": {
           "Marraqueta": 2144,
           "Asado Carnicero": 9752,
           "Pollo Entero": 3898,
           "Leche Fluida Entera": 1208
+        },
+        "Región de Ñuble": {
+          "Marraqueta": 2208,
+          "Asado Carnicero": 11020,
+          "Pollo Entero": 3768,
+          "Leche Fluida Entera": 1196
         }
       }
     },
