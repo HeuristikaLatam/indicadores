@@ -1,5 +1,5 @@
 {
-  "generado": "2026-07-18T23:38:05.654663+00:00",
+  "generado": "2026-07-19T11:40:25.744455+00:00",
   "macro": {
     "dolar": {
       "nombre": "Dólar observado",
@@ -17,7 +17,7 @@
       "nombre": "Unidad de fomento (UF)",
       "unidad": "Pesos",
       "valor": 40844.79,
-      "fecha": "2026-07-18T04:00:00.000Z"
+      "fecha": "2026-07-19T04:00:00.000Z"
     },
     "utm": {
       "nombre": "Unidad Tributaria Mensual (UTM)",
@@ -9059,10 +9059,6 @@
       "tipo": "diario",
       "puntos": [
         {
-          "etiqueta": "2026-07-13",
-          "valor": 40844.79
-        },
-        {
           "etiqueta": "2026-07-14",
           "valor": 40844.79
         },
@@ -9080,6 +9076,10 @@
         },
         {
           "etiqueta": "2026-07-18",
+          "valor": 40844.79
+        },
+        {
+          "etiqueta": "2026-07-19",
           "valor": 40844.79
         }
       ]
@@ -13127,7 +13127,7 @@
       "93": {
         "promedio": 1413,
         "n_estaciones": 1915,
-        "fecha": "2026-07-18"
+        "fecha": "2026-07-19"
       },
       "97": {
         "promedio": 1548,
@@ -13137,17 +13137,17 @@
       "DI": {
         "promedio": 1199,
         "n_estaciones": 1952,
-        "fecha": "2026-07-18"
+        "fecha": "2026-07-19"
       },
       "95": {
         "promedio": 1451,
         "n_estaciones": 1913,
-        "fecha": "2026-07-18"
+        "fecha": "2026-07-19"
       },
       "KE": {
         "promedio": 1082,
         "n_estaciones": 1076,
-        "fecha": "2026-07-18"
+        "fecha": "2026-07-19"
       }
     },
     "regional": {
@@ -13205,7 +13205,7 @@
         "97": 1485,
         "DI": 1195,
         "KE": 1072,
-        "95": 1453
+        "95": 1452
       },
       "Del Biobío": {
         "93": 1404,
@@ -13387,6 +13387,12 @@
         }
       },
       "regional": {
+        "Región de Coquimbo": {
+          "Marraqueta": 2429,
+          "Asado Carnicero": 10752,
+          "Pollo Entero": 3716,
+          "Leche Fluida Entera": 1219
+        },
         "Región de Ñuble": {
           "Marraqueta": 2188,
           "Asado Carnicero": 11250,
@@ -13412,6 +13418,12 @@
           "Huevo blanco - Extra": 216,
           "Leche Fluida Entera": 1229
         },
+        "Región del Biobío": {
+          "Marraqueta": 2300,
+          "Asado Carnicero": 10028,
+          "Pollo Entero": 3817,
+          "Leche Fluida Entera": 1236
+        },
         "Región del Maule": {
           "Marraqueta": 2272,
           "Asado Carnicero": 11393,
@@ -13423,18 +13435,6 @@
           "Asado Carnicero": 10605,
           "Pollo Entero": 3711,
           "Leche Fluida Entera": 1191
-        },
-        "Región del Biobío": {
-          "Marraqueta": 2300,
-          "Asado Carnicero": 10028,
-          "Pollo Entero": 3817,
-          "Leche Fluida Entera": 1236
-        },
-        "Región de Coquimbo": {
-          "Marraqueta": 2429,
-          "Asado Carnicero": 10752,
-          "Pollo Entero": 3716,
-          "Leche Fluida Entera": 1219
         },
         "Región de Arica y Parinacota": {
           "Marraqueta": 2189,
@@ -14013,7 +14013,7 @@
       "dolar": 0.12
     },
     "valor": 99.68,
-    "fecha": "2026-07-18",
+    "fecha": "2026-07-19",
     "componentes": {
       "alimentos": -0.43,
       "bencina": 0.0,
@@ -14035,6 +14035,10 @@
       },
       {
         "fecha": "2026-07-18",
+        "valor": 99.68
+      },
+      {
+        "fecha": "2026-07-19",
         "valor": 99.68
       }
     ]
