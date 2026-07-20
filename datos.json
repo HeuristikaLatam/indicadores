@@ -1,5 +1,5 @@
 {
-  "generado": "2026-07-19T22:36:25.399362+00:00",
+  "generado": "2026-07-20T00:15:59.587949+00:00",
   "macro": {
     "dolar": {
       "nombre": "Dólar observado",
@@ -13387,12 +13387,6 @@
         }
       },
       "regional": {
-        "Región de Coquimbo": {
-          "Marraqueta": 2429,
-          "Asado Carnicero": 10752,
-          "Pollo Entero": 3716,
-          "Leche Fluida Entera": 1219
-        },
         "Región de Ñuble": {
           "Marraqueta": 2188,
           "Asado Carnicero": 11250,
@@ -13441,6 +13435,12 @@
           "Asado Carnicero": 10605,
           "Pollo Entero": 3711,
           "Leche Fluida Entera": 1191
+        },
+        "Región de Coquimbo": {
+          "Marraqueta": 2429,
+          "Asado Carnicero": 10752,
+          "Pollo Entero": 3716,
+          "Leche Fluida Entera": 1219
         }
       }
     },
@@ -14013,7 +14013,7 @@
       "dolar": 0.12
     },
     "valor": 99.68,
-    "fecha": "2026-07-19",
+    "fecha": "2026-07-20",
     "componentes": {
       "alimentos": -0.43,
       "bencina": 0.0,
@@ -14039,6 +14039,10 @@
       },
       {
         "fecha": "2026-07-19",
+        "valor": 99.68
+      },
+      {
+        "fecha": "2026-07-20",
         "valor": 99.68
       }
     ]
