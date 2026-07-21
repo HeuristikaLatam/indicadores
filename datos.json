@@ -1,5 +1,5 @@
 {
-  "generado": "2026-07-21T15:25:57.791394+00:00",
+  "generado": "2026-07-21T23:15:28.686736+00:00",
   "macro": {
     "dolar": {
       "nombre": "Dólar observado",
@@ -8146,7 +8146,7 @@
       },
       {
         "periodo": "2026-07",
-        "valor": 6.0657
+        "valor": 6.0733
       }
     ],
     "bitcoin": [
@@ -13125,23 +13125,23 @@
   "combustibles": {
     "nacional": {
       "93": {
-        "promedio": 1413,
-        "n_estaciones": 1916,
+        "promedio": 1412,
+        "n_estaciones": 1917,
         "fecha": "2026-07-21"
       },
       "97": {
-        "promedio": 1548,
-        "n_estaciones": 1713,
+        "promedio": 1547,
+        "n_estaciones": 1714,
         "fecha": "2026-07-21"
       },
       "DI": {
         "promedio": 1199,
-        "n_estaciones": 1953,
+        "n_estaciones": 1954,
         "fecha": "2026-07-21"
       },
       "95": {
-        "promedio": 1451,
-        "n_estaciones": 1914,
+        "promedio": 1450,
+        "n_estaciones": 1915,
         "fecha": "2026-07-21"
       },
       "KE": {
@@ -13159,10 +13159,10 @@
         "KE": 1233
       },
       "Tarapacá": {
-        "93": 1465,
-        "97": 1523,
+        "93": 1462,
+        "97": 1519,
         "DI": 1215,
-        "95": 1492,
+        "95": 1488,
         "KE": 1228
       },
       "Antofagasta": {
@@ -13194,11 +13194,11 @@
         "KE": 1061
       },
       "Del Libertador Gral. Bernardo O’Higgins": {
-        "93": 1434,
-        "97": 1500,
+        "93": 1432,
+        "97": 1498,
         "DI": 1223,
         "KE": 1099,
-        "95": 1464
+        "95": 1462
       },
       "Del Maule": {
         "93": 1418,
@@ -13399,12 +13399,6 @@
           "Pollo Entero": 3711,
           "Leche Fluida Entera": 1191
         },
-        "Región del Maule": {
-          "Marraqueta": 2272,
-          "Asado Carnicero": 11393,
-          "Pollo Entero": 3550,
-          "Leche Fluida Entera": 1216
-        },
         "Región del Biobío": {
           "Marraqueta": 2300,
           "Asado Carnicero": 10028,
@@ -13435,6 +13429,12 @@
           "Asado Carnicero": 10094,
           "Pollo Entero": 3880,
           "Leche Fluida Entera": 1205
+        },
+        "Región del Maule": {
+          "Marraqueta": 2272,
+          "Asado Carnicero": 11393,
+          "Pollo Entero": 3550,
+          "Leche Fluida Entera": 1216
         },
         "Región de Ñuble": {
           "Marraqueta": 2188,
@@ -14012,11 +14012,11 @@
       "uf": 0.16,
       "dolar": 0.12
     },
-    "valor": 99.79,
+    "valor": 99.78,
     "fecha": "2026-07-21",
     "componentes": {
       "alimentos": -0.43,
-      "bencina": 0.0,
+      "bencina": -0.07,
       "uf": 0.0,
       "dolar": 0.45
     },
@@ -14047,7 +14047,7 @@
       },
       {
         "fecha": "2026-07-21",
-        "valor": 99.79
+        "valor": 99.78
       }
     ]
   }
