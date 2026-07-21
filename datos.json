@@ -1,23 +1,23 @@
 {
-  "generado": "2026-07-21T00:15:27.276132+00:00",
+  "generado": "2026-07-21T13:04:06.655469+00:00",
   "macro": {
     "dolar": {
       "nombre": "Dólar observado",
       "unidad": "Pesos",
-      "valor": 933.92,
-      "fecha": "2026-07-20T04:00:00.000Z"
+      "valor": 933,
+      "fecha": "2026-07-21T04:00:00.000Z"
     },
     "euro": {
       "nombre": "Euro",
       "unidad": "Pesos",
-      "valor": 1068.07,
-      "fecha": "2026-07-20T04:00:00.000Z"
+      "valor": 1065.07,
+      "fecha": "2026-07-21T04:00:00.000Z"
     },
     "uf": {
       "nombre": "Unidad de fomento (UF)",
       "unidad": "Pesos",
       "valor": 40844.79,
-      "fecha": "2026-07-20T04:00:00.000Z"
+      "fecha": "2026-07-21T04:00:00.000Z"
     },
     "utm": {
       "nombre": "Unidad Tributaria Mensual (UTM)",
@@ -35,7 +35,7 @@
       "nombre": "Tasa Política Monetaria (TPM)",
       "unidad": "Porcentaje",
       "valor": 4.5,
-      "fecha": "2026-07-20T04:00:00.000Z"
+      "fecha": "2026-07-21T04:00:00.000Z"
     },
     "imacec": {
       "nombre": "Imacec",
@@ -52,14 +52,14 @@
     "libra_cobre": {
       "nombre": "Libra de Cobre",
       "unidad": "Dólar",
-      "valor": 6.15,
-      "fecha": "2026-07-20T04:00:00.000Z"
+      "valor": 6.12,
+      "fecha": "2026-07-21T04:00:00.000Z"
     },
     "bitcoin": {
       "nombre": "Bitcoin",
       "unidad": "Dólar",
-      "valor": 63790.67,
-      "fecha": "2026-07-16T04:00:00.000Z"
+      "valor": 65209.88,
+      "fecha": "2026-07-20T04:00:00.000Z"
     }
   },
   "historico_macro": {
@@ -8992,7 +8992,7 @@
       },
       {
         "periodo": "2026-07",
-        "valor": 63217.7575
+        "valor": 63616.182
       }
     ]
   },
@@ -9000,10 +9000,6 @@
     "dolar": {
       "tipo": "diario",
       "puntos": [
-        {
-          "etiqueta": "2026-07-10",
-          "valor": 928.99
-        },
         {
           "etiqueta": "2026-07-13",
           "valor": 924.94
@@ -9023,16 +9019,16 @@
         {
           "etiqueta": "2026-07-20",
           "valor": 933.92
+        },
+        {
+          "etiqueta": "2026-07-21",
+          "valor": 933
         }
       ]
     },
     "euro": {
       "tipo": "diario",
       "puntos": [
-        {
-          "etiqueta": "2026-07-10",
-          "valor": 1062.19
-        },
         {
           "etiqueta": "2026-07-13",
           "valor": 1055.87
@@ -9052,16 +9048,16 @@
         {
           "etiqueta": "2026-07-20",
           "valor": 1068.07
+        },
+        {
+          "etiqueta": "2026-07-21",
+          "valor": 1065.07
         }
       ]
     },
     "uf": {
       "tipo": "diario",
       "puntos": [
-        {
-          "etiqueta": "2026-07-15",
-          "valor": 40844.79
-        },
         {
           "etiqueta": "2026-07-16",
           "valor": 40844.79
@@ -9080,6 +9076,10 @@
         },
         {
           "etiqueta": "2026-07-20",
+          "valor": 40844.79
+        },
+        {
+          "etiqueta": "2026-07-21",
           "valor": 40844.79
         }
       ]
@@ -9146,10 +9146,6 @@
       "tipo": "diario",
       "puntos": [
         {
-          "etiqueta": "2026-07-10",
-          "valor": 4.5
-        },
-        {
           "etiqueta": "2026-07-13",
           "valor": 4.5
         },
@@ -9167,6 +9163,10 @@
         },
         {
           "etiqueta": "2026-07-20",
+          "valor": 4.5
+        },
+        {
+          "etiqueta": "2026-07-21",
           "valor": 4.5
         }
       ]
@@ -9233,10 +9233,6 @@
       "tipo": "diario",
       "puntos": [
         {
-          "etiqueta": "2026-07-10",
-          "valor": 5.94
-        },
-        {
           "etiqueta": "2026-07-13",
           "valor": 6.1
         },
@@ -9255,16 +9251,16 @@
         {
           "etiqueta": "2026-07-20",
           "valor": 6.15
+        },
+        {
+          "etiqueta": "2026-07-21",
+          "valor": 6.12
         }
       ]
     },
     "bitcoin": {
       "tipo": "diario",
       "puntos": [
-        {
-          "etiqueta": "2026-06-26",
-          "valor": 60023.84
-        },
         {
           "etiqueta": "2026-06-30",
           "valor": 58534.28
@@ -9284,6 +9280,10 @@
         {
           "etiqueta": "2026-07-16",
           "valor": 63790.67
+        },
+        {
+          "etiqueta": "2026-07-20",
+          "valor": 65209.88
         }
       ]
     }
@@ -13127,22 +13127,22 @@
       "93": {
         "promedio": 1413,
         "n_estaciones": 1916,
-        "fecha": "2026-07-20"
+        "fecha": "2026-07-21"
       },
       "97": {
-        "promedio": 1548,
+        "promedio": 1547,
         "n_estaciones": 1713,
-        "fecha": "2026-07-20"
+        "fecha": "2026-07-21"
       },
       "DI": {
         "promedio": 1199,
         "n_estaciones": 1953,
-        "fecha": "2026-07-20"
+        "fecha": "2026-07-21"
       },
       "95": {
         "promedio": 1451,
         "n_estaciones": 1914,
-        "fecha": "2026-07-20"
+        "fecha": "2026-07-21"
       },
       "KE": {
         "promedio": 1082,
@@ -13229,11 +13229,11 @@
         "KE": 1092
       },
       "De los Ríos": {
-        "93": 1466,
-        "97": 3662,
+        "93": 1465,
+        "97": 3661,
         "DI": 1235,
         "KE": 1098,
-        "95": 1501
+        "95": 1500
       },
       "De los Lagos": {
         "93": 1464,
@@ -13387,23 +13387,35 @@
         }
       },
       "regional": {
-        "Región de Coquimbo": {
-          "Marraqueta": 2429,
-          "Asado Carnicero": 10752,
-          "Pollo Entero": 3716,
-          "Leche Fluida Entera": 1219
-        },
         "Región de Ñuble": {
           "Marraqueta": 2188,
           "Asado Carnicero": 11250,
           "Pollo Entero": 3490,
           "Leche Fluida Entera": 1184
         },
+        "Región del Maule": {
+          "Marraqueta": 2272,
+          "Asado Carnicero": 11393,
+          "Pollo Entero": 3550,
+          "Leche Fluida Entera": 1216
+        },
+        "Región de Arica y Parinacota": {
+          "Marraqueta": 2189,
+          "Asado Carnicero": 10094,
+          "Pollo Entero": 3880,
+          "Leche Fluida Entera": 1205
+        },
         "Región Metropolitana de Santiago": {
           "Marraqueta": 2257,
           "Asado Carnicero": 10208,
           "Pollo Entero": 3717,
           "Leche Fluida Entera": 1194
+        },
+        "Región de Los Lagos": {
+          "Marraqueta": 2353,
+          "Asado Carnicero": 9885,
+          "Pollo Entero": 3624,
+          "Leche Fluida Entera": 1230
         },
         "Región de La Araucanía": {
           "Marraqueta": 2355,
@@ -13418,29 +13430,17 @@
           "Pollo Entero": 3817,
           "Leche Fluida Entera": 1236
         },
-        "Región del Maule": {
-          "Marraqueta": 2272,
-          "Asado Carnicero": 11393,
-          "Pollo Entero": 3550,
-          "Leche Fluida Entera": 1216
-        },
         "Región de Valparaíso": {
           "Marraqueta": 2329,
           "Asado Carnicero": 10605,
           "Pollo Entero": 3711,
           "Leche Fluida Entera": 1191
         },
-        "Región de Los Lagos": {
-          "Marraqueta": 2353,
-          "Asado Carnicero": 9885,
-          "Pollo Entero": 3624,
-          "Leche Fluida Entera": 1230
-        },
-        "Región de Arica y Parinacota": {
-          "Marraqueta": 2189,
-          "Asado Carnicero": 10094,
-          "Pollo Entero": 3880,
-          "Leche Fluida Entera": 1205
+        "Región de Coquimbo": {
+          "Marraqueta": 2429,
+          "Asado Carnicero": 10752,
+          "Pollo Entero": 3716,
+          "Leche Fluida Entera": 1219
         }
       }
     },
@@ -14012,13 +14012,13 @@
       "uf": 0.16,
       "dolar": 0.12
     },
-    "valor": 99.8,
+    "valor": 99.79,
     "fecha": "2026-07-21",
     "componentes": {
       "alimentos": -0.43,
       "bencina": 0.0,
       "uf": 0.0,
-      "dolar": 0.55
+      "dolar": 0.45
     },
     "historial": [
       {
@@ -14047,7 +14047,7 @@
       },
       {
         "fecha": "2026-07-21",
-        "valor": 99.8
+        "valor": 99.79
       }
     ]
   }
