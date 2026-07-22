@@ -1,5 +1,5 @@
 {
-  "generado": "2026-07-22T13:12:21.049300+00:00",
+  "generado": "2026-07-22T23:33:19.164522+00:00",
   "macro": {
     "dolar": {
       "nombre": "Dólar observado",
@@ -5721,6 +5721,390 @@
     ],
     "imacec": [
       {
+        "periodo": "2007-01",
+        "valor": 6.1
+      },
+      {
+        "periodo": "2007-02",
+        "valor": 4.4
+      },
+      {
+        "periodo": "2007-03",
+        "valor": 6.9
+      },
+      {
+        "periodo": "2007-04",
+        "valor": 6.2
+      },
+      {
+        "periodo": "2007-05",
+        "valor": 5.1
+      },
+      {
+        "periodo": "2007-06",
+        "valor": 6.0
+      },
+      {
+        "periodo": "2007-07",
+        "valor": 3.2
+      },
+      {
+        "periodo": "2007-08",
+        "valor": 4.8
+      },
+      {
+        "periodo": "2007-09",
+        "valor": 4.7
+      },
+      {
+        "periodo": "2007-10",
+        "valor": 4.2
+      },
+      {
+        "periodo": "2007-11",
+        "valor": 4.8
+      },
+      {
+        "periodo": "2007-12",
+        "valor": 5.6
+      },
+      {
+        "periodo": "2008-01",
+        "valor": 5.7
+      },
+      {
+        "periodo": "2008-02",
+        "valor": 7.1
+      },
+      {
+        "periodo": "2008-03",
+        "valor": 3.4
+      },
+      {
+        "periodo": "2008-04",
+        "valor": 4.8
+      },
+      {
+        "periodo": "2008-05",
+        "valor": 4.1
+      },
+      {
+        "periodo": "2008-06",
+        "valor": 4.8
+      },
+      {
+        "periodo": "2008-07",
+        "valor": 6.6
+      },
+      {
+        "periodo": "2008-08",
+        "valor": 2.1
+      },
+      {
+        "periodo": "2008-09",
+        "valor": 2.8
+      },
+      {
+        "periodo": "2008-10",
+        "valor": 2.4
+      },
+      {
+        "periodo": "2008-11",
+        "valor": -1.2
+      },
+      {
+        "periodo": "2008-12",
+        "valor": -1.9
+      },
+      {
+        "periodo": "2009-01",
+        "valor": -2.5
+      },
+      {
+        "periodo": "2009-02",
+        "valor": -4.4
+      },
+      {
+        "periodo": "2009-03",
+        "valor": -2.4
+      },
+      {
+        "periodo": "2009-04",
+        "valor": -2.7
+      },
+      {
+        "periodo": "2009-05",
+        "valor": -3.2
+      },
+      {
+        "periodo": "2009-06",
+        "valor": -3.3
+      },
+      {
+        "periodo": "2009-07",
+        "valor": -2.7
+      },
+      {
+        "periodo": "2009-08",
+        "valor": 0.2
+      },
+      {
+        "periodo": "2009-09",
+        "valor": 0.6
+      },
+      {
+        "periodo": "2009-10",
+        "valor": -0.2
+      },
+      {
+        "periodo": "2009-11",
+        "valor": 3.9
+      },
+      {
+        "periodo": "2009-12",
+        "valor": 4.0
+      },
+      {
+        "periodo": "2010-01",
+        "valor": 3.9
+      },
+      {
+        "periodo": "2010-02",
+        "valor": 3.4
+      },
+      {
+        "periodo": "2010-03",
+        "valor": 0.2
+      },
+      {
+        "periodo": "2010-04",
+        "valor": 6.1
+      },
+      {
+        "periodo": "2010-05",
+        "valor": 6.7
+      },
+      {
+        "periodo": "2010-06",
+        "valor": 6.9
+      },
+      {
+        "periodo": "2010-07",
+        "valor": 8.1
+      },
+      {
+        "periodo": "2010-08",
+        "valor": 8.1
+      },
+      {
+        "periodo": "2010-09",
+        "valor": 6.0
+      },
+      {
+        "periodo": "2010-10",
+        "valor": 5.3
+      },
+      {
+        "periodo": "2010-11",
+        "valor": 7.4
+      },
+      {
+        "periodo": "2010-12",
+        "valor": 6.8
+      },
+      {
+        "periodo": "2011-01",
+        "valor": 7.8
+      },
+      {
+        "periodo": "2011-02",
+        "valor": 7.2
+      },
+      {
+        "periodo": "2011-03",
+        "valor": 13.2
+      },
+      {
+        "periodo": "2011-04",
+        "valor": 6.2
+      },
+      {
+        "periodo": "2011-05",
+        "valor": 6.6
+      },
+      {
+        "periodo": "2011-06",
+        "valor": 4.3
+      },
+      {
+        "periodo": "2011-07",
+        "valor": 2.4
+      },
+      {
+        "periodo": "2011-08",
+        "valor": 3.3
+      },
+      {
+        "periodo": "2011-09",
+        "valor": 4.2
+      },
+      {
+        "periodo": "2011-10",
+        "valor": 4.5
+      },
+      {
+        "periodo": "2011-11",
+        "valor": 4.4
+      },
+      {
+        "periodo": "2011-12",
+        "valor": 6.6
+      },
+      {
+        "periodo": "2012-01",
+        "valor": 5.1
+      },
+      {
+        "periodo": "2012-02",
+        "valor": 6.3
+      },
+      {
+        "periodo": "2012-03",
+        "valor": 4.0
+      },
+      {
+        "periodo": "2012-04",
+        "valor": 5.2
+      },
+      {
+        "periodo": "2012-05",
+        "valor": 5.5
+      },
+      {
+        "periodo": "2012-06",
+        "valor": 6.7
+      },
+      {
+        "periodo": "2012-07",
+        "valor": 6.0
+      },
+      {
+        "periodo": "2012-08",
+        "valor": 6.3
+      },
+      {
+        "periodo": "2012-09",
+        "valor": 4.1
+      },
+      {
+        "periodo": "2012-10",
+        "valor": 6.8
+      },
+      {
+        "periodo": "2012-11",
+        "valor": 5.3
+      },
+      {
+        "periodo": "2012-12",
+        "valor": 3.6
+      },
+      {
+        "periodo": "2013-01",
+        "valor": 6.6
+      },
+      {
+        "periodo": "2013-02",
+        "valor": 4.4
+      },
+      {
+        "periodo": "2013-03",
+        "valor": 3.9
+      },
+      {
+        "periodo": "2013-04",
+        "valor": 4.2
+      },
+      {
+        "periodo": "2013-05",
+        "valor": 3.5
+      },
+      {
+        "periodo": "2013-06",
+        "valor": 3.8
+      },
+      {
+        "periodo": "2013-07",
+        "valor": 5.9
+      },
+      {
+        "periodo": "2013-08",
+        "valor": 4.7
+      },
+      {
+        "periodo": "2013-09",
+        "valor": 4.4
+      },
+      {
+        "periodo": "2013-10",
+        "valor": 2.6
+      },
+      {
+        "periodo": "2013-11",
+        "valor": 2.8
+      },
+      {
+        "periodo": "2013-12",
+        "valor": 2.6
+      },
+      {
+        "periodo": "2014-01",
+        "valor": 1.3
+      },
+      {
+        "periodo": "2014-02",
+        "valor": 3.3
+      },
+      {
+        "periodo": "2014-03",
+        "valor": 2.8
+      },
+      {
+        "periodo": "2014-04",
+        "valor": 2.1
+      },
+      {
+        "periodo": "2014-05",
+        "valor": 2.6
+      },
+      {
+        "periodo": "2014-06",
+        "valor": 1.1
+      },
+      {
+        "periodo": "2014-07",
+        "valor": 0.9
+      },
+      {
+        "periodo": "2014-08",
+        "valor": 0.3
+      },
+      {
+        "periodo": "2014-09",
+        "valor": 1.4
+      },
+      {
+        "periodo": "2014-10",
+        "valor": 1.5
+      },
+      {
+        "periodo": "2014-11",
+        "valor": 1.3
+      },
+      {
+        "periodo": "2014-12",
+        "valor": 2.9
+      },
+      {
         "periodo": "2015-01",
         "valor": 2.7
       },
@@ -7762,7 +8146,7 @@
       },
       {
         "periodo": "2026-07",
-        "valor": 6.0733
+        "valor": 6.0875
       }
     ],
     "bitcoin": [
@@ -12742,28 +13126,28 @@
     "nacional": {
       "93": {
         "promedio": 1412,
-        "n_estaciones": 1917,
+        "n_estaciones": 1918,
         "fecha": "2026-07-22"
       },
       "97": {
         "promedio": 1547,
-        "n_estaciones": 1714,
+        "n_estaciones": 1715,
         "fecha": "2026-07-22"
       },
       "DI": {
         "promedio": 1199,
-        "n_estaciones": 1954,
-        "fecha": "2026-07-21"
+        "n_estaciones": 1955,
+        "fecha": "2026-07-22"
       },
       "95": {
         "promedio": 1450,
-        "n_estaciones": 1915,
+        "n_estaciones": 1916,
         "fecha": "2026-07-22"
       },
       "KE": {
         "promedio": 1082,
         "n_estaciones": 1076,
-        "fecha": "2026-07-21"
+        "fecha": "2026-07-22"
       }
     },
     "regional": {
@@ -12854,7 +13238,7 @@
       "De los Lagos": {
         "93": 1464,
         "97": 1523,
-        "DI": 1244,
+        "DI": 1243,
         "KE": 1120,
         "95": 1497
       },
@@ -13009,23 +13393,35 @@
           "Pollo Entero": 3711,
           "Leche Fluida Entera": 1191
         },
-        "Región de Ñuble": {
-          "Marraqueta": 2188,
-          "Asado Carnicero": 11250,
-          "Pollo Entero": 3490,
-          "Leche Fluida Entera": 1184
-        },
         "Región Metropolitana de Santiago": {
           "Marraqueta": 2257,
           "Asado Carnicero": 10208,
           "Pollo Entero": 3717,
           "Leche Fluida Entera": 1194
         },
+        "Región de Coquimbo": {
+          "Marraqueta": 2429,
+          "Asado Carnicero": 10752,
+          "Pollo Entero": 3716,
+          "Leche Fluida Entera": 1219
+        },
+        "Región de Ñuble": {
+          "Marraqueta": 2188,
+          "Asado Carnicero": 11250,
+          "Pollo Entero": 3490,
+          "Leche Fluida Entera": 1184
+        },
         "Región de Los Lagos": {
           "Marraqueta": 2353,
           "Asado Carnicero": 9885,
           "Pollo Entero": 3624,
           "Leche Fluida Entera": 1230
+        },
+        "Región del Maule": {
+          "Marraqueta": 2272,
+          "Asado Carnicero": 11393,
+          "Pollo Entero": 3550,
+          "Leche Fluida Entera": 1216
         },
         "Región de La Araucanía": {
           "Marraqueta": 2355,
@@ -13034,23 +13430,11 @@
           "Huevo blanco - Extra": 216,
           "Leche Fluida Entera": 1229
         },
-        "Región del Maule": {
-          "Marraqueta": 2272,
-          "Asado Carnicero": 11393,
-          "Pollo Entero": 3550,
-          "Leche Fluida Entera": 1216
-        },
         "Región del Biobío": {
           "Marraqueta": 2300,
           "Asado Carnicero": 10028,
           "Pollo Entero": 3817,
           "Leche Fluida Entera": 1236
-        },
-        "Región de Coquimbo": {
-          "Marraqueta": 2429,
-          "Asado Carnicero": 10752,
-          "Pollo Entero": 3716,
-          "Leche Fluida Entera": 1219
         },
         "Región de Arica y Parinacota": {
           "Marraqueta": 2189,
