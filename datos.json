@@ -1,5 +1,5 @@
 {
-  "generado": "2026-07-23T16:01:52.442574+00:00",
+  "generado": "2026-07-23T23:15:22.597096+00:00",
   "macro": {
     "dolar": {
       "nombre": "Dólar observado",
@@ -8146,7 +8146,7 @@
       },
       {
         "periodo": "2026-07",
-        "valor": 6.0875
+        "valor": 6.0982
       }
     ],
     "bitcoin": [
@@ -13126,22 +13126,22 @@
     "nacional": {
       "93": {
         "promedio": 1412,
-        "n_estaciones": 1918,
+        "n_estaciones": 1919,
         "fecha": "2026-07-23"
       },
       "97": {
-        "promedio": 1490,
-        "n_estaciones": 1715,
+        "promedio": 1489,
+        "n_estaciones": 1716,
         "fecha": "2026-07-23"
       },
       "DI": {
         "promedio": 1198,
-        "n_estaciones": 1955,
+        "n_estaciones": 1956,
         "fecha": "2026-07-23"
       },
       "95": {
         "promedio": 1450,
-        "n_estaciones": 1916,
+        "n_estaciones": 1917,
         "fecha": "2026-07-23"
       },
       "KE": {
@@ -13154,9 +13154,9 @@
       "Arica y Parinacota": {
         "93": 1478,
         "97": 1537,
-        "DI": 1230,
+        "DI": 1234,
         "95": 1511,
-        "KE": 1233
+        "KE": 1234
       },
       "Tarapacá": {
         "93": 1465,
@@ -13167,7 +13167,7 @@
       },
       "Antofagasta": {
         "93": 1490,
-        "97": 1551,
+        "97": 1552,
         "DI": 1253,
         "KE": 1208,
         "95": 1522
@@ -13201,11 +13201,11 @@
         "95": 1462
       },
       "Del Maule": {
-        "93": 1419,
+        "93": 1417,
         "97": 1485,
-        "DI": 1194,
+        "DI": 1192,
         "KE": 1073,
-        "95": 1452
+        "95": 1451
       },
       "Del Biobío": {
         "93": 1403,
@@ -13229,11 +13229,11 @@
         "KE": 1092
       },
       "De los Ríos": {
-        "93": 1465,
-        "97": 1520,
-        "DI": 1235,
+        "93": 1463,
+        "97": 1518,
+        "DI": 1232,
         "KE": 1099,
-        "95": 1500
+        "95": 1499
       },
       "De los Lagos": {
         "93": 1463,
@@ -13393,23 +13393,11 @@
           "Pollo Entero": 3716,
           "Leche Fluida Entera": 1219
         },
-        "Región de Ñuble": {
-          "Marraqueta": 2188,
-          "Asado Carnicero": 11250,
-          "Pollo Entero": 3490,
-          "Leche Fluida Entera": 1184
-        },
-        "Región Metropolitana de Santiago": {
-          "Marraqueta": 2257,
-          "Asado Carnicero": 10208,
-          "Pollo Entero": 3717,
-          "Leche Fluida Entera": 1194
-        },
-        "Región de Los Lagos": {
-          "Marraqueta": 2353,
-          "Asado Carnicero": 9885,
-          "Pollo Entero": 3624,
-          "Leche Fluida Entera": 1230
+        "Región del Biobío": {
+          "Marraqueta": 2300,
+          "Asado Carnicero": 10028,
+          "Pollo Entero": 3817,
+          "Leche Fluida Entera": 1236
         },
         "Región de La Araucanía": {
           "Marraqueta": 2355,
@@ -13417,12 +13405,6 @@
           "Pollo Entero": 3962,
           "Huevo blanco - Extra": 216,
           "Leche Fluida Entera": 1229
-        },
-        "Región del Biobío": {
-          "Marraqueta": 2300,
-          "Asado Carnicero": 10028,
-          "Pollo Entero": 3817,
-          "Leche Fluida Entera": 1236
         },
         "Región del Maule": {
           "Marraqueta": 2272,
@@ -13435,6 +13417,24 @@
           "Asado Carnicero": 10605,
           "Pollo Entero": 3711,
           "Leche Fluida Entera": 1191
+        },
+        "Región de Los Lagos": {
+          "Marraqueta": 2353,
+          "Asado Carnicero": 9885,
+          "Pollo Entero": 3624,
+          "Leche Fluida Entera": 1230
+        },
+        "Región Metropolitana de Santiago": {
+          "Marraqueta": 2257,
+          "Asado Carnicero": 10208,
+          "Pollo Entero": 3717,
+          "Leche Fluida Entera": 1194
+        },
+        "Región de Ñuble": {
+          "Marraqueta": 2188,
+          "Asado Carnicero": 11250,
+          "Pollo Entero": 3490,
+          "Leche Fluida Entera": 1184
         },
         "Región de Arica y Parinacota": {
           "Marraqueta": 2189,
