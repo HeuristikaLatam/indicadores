@@ -1,23 +1,23 @@
 {
-  "generado": "2026-07-24T00:14:05.692427+00:00",
+  "generado": "2026-07-24T13:05:48.214797+00:00",
   "macro": {
     "dolar": {
       "nombre": "Dólar observado",
       "unidad": "Pesos",
-      "valor": 936.39,
-      "fecha": "2026-07-23T04:00:00.000Z"
+      "valor": 946.24,
+      "fecha": "2026-07-24T04:00:00.000Z"
     },
     "euro": {
       "nombre": "Euro",
       "unidad": "Pesos",
-      "valor": 1068.33,
-      "fecha": "2026-07-23T04:00:00.000Z"
+      "valor": 1076.37,
+      "fecha": "2026-07-24T04:00:00.000Z"
     },
     "uf": {
       "nombre": "Unidad de fomento (UF)",
       "unidad": "Pesos",
       "valor": 40844.79,
-      "fecha": "2026-07-23T04:00:00.000Z"
+      "fecha": "2026-07-24T04:00:00.000Z"
     },
     "utm": {
       "nombre": "Unidad Tributaria Mensual (UTM)",
@@ -35,7 +35,7 @@
       "nombre": "Tasa Política Monetaria (TPM)",
       "unidad": "Porcentaje",
       "valor": 4.5,
-      "fecha": "2026-07-23T04:00:00.000Z"
+      "fecha": "2026-07-24T04:00:00.000Z"
     },
     "imacec": {
       "nombre": "Imacec",
@@ -52,8 +52,8 @@
     "libra_cobre": {
       "nombre": "Libra de Cobre",
       "unidad": "Dólar",
-      "valor": 6.3,
-      "fecha": "2026-07-23T04:00:00.000Z"
+      "valor": 6.27,
+      "fecha": "2026-07-24T04:00:00.000Z"
     },
     "bitcoin": {
       "nombre": "Bitcoin",
@@ -9001,10 +9001,6 @@
       "tipo": "diario",
       "puntos": [
         {
-          "etiqueta": "2026-07-15",
-          "valor": 924.78
-        },
-        {
           "etiqueta": "2026-07-17",
           "valor": 924.5
         },
@@ -9023,16 +9019,16 @@
         {
           "etiqueta": "2026-07-23",
           "valor": 936.39
+        },
+        {
+          "etiqueta": "2026-07-24",
+          "valor": 946.24
         }
       ]
     },
     "euro": {
       "tipo": "diario",
       "puntos": [
-        {
-          "etiqueta": "2026-07-15",
-          "valor": 1056.29
-        },
         {
           "etiqueta": "2026-07-17",
           "valor": 1060.81
@@ -9052,16 +9048,16 @@
         {
           "etiqueta": "2026-07-23",
           "valor": 1068.33
+        },
+        {
+          "etiqueta": "2026-07-24",
+          "valor": 1076.37
         }
       ]
     },
     "uf": {
       "tipo": "diario",
       "puntos": [
-        {
-          "etiqueta": "2026-07-18",
-          "valor": 40844.79
-        },
         {
           "etiqueta": "2026-07-19",
           "valor": 40844.79
@@ -9080,6 +9076,10 @@
         },
         {
           "etiqueta": "2026-07-23",
+          "valor": 40844.79
+        },
+        {
+          "etiqueta": "2026-07-24",
           "valor": 40844.79
         }
       ]
@@ -9146,10 +9146,6 @@
       "tipo": "diario",
       "puntos": [
         {
-          "etiqueta": "2026-07-15",
-          "valor": 4.5
-        },
-        {
           "etiqueta": "2026-07-17",
           "valor": 4.5
         },
@@ -9167,6 +9163,10 @@
         },
         {
           "etiqueta": "2026-07-23",
+          "valor": 4.5
+        },
+        {
+          "etiqueta": "2026-07-24",
           "valor": 4.5
         }
       ]
@@ -9233,10 +9233,6 @@
       "tipo": "diario",
       "puntos": [
         {
-          "etiqueta": "2026-07-15",
-          "valor": 6.12
-        },
-        {
           "etiqueta": "2026-07-17",
           "valor": 6.17
         },
@@ -9255,6 +9251,10 @@
         {
           "etiqueta": "2026-07-23",
           "valor": 6.3
+        },
+        {
+          "etiqueta": "2026-07-24",
+          "valor": 6.27
         }
       ]
     },
@@ -13127,27 +13127,27 @@
       "93": {
         "promedio": 1412,
         "n_estaciones": 1919,
-        "fecha": "2026-07-23"
+        "fecha": "2026-07-24"
       },
       "97": {
-        "promedio": 1489,
+        "promedio": 1490,
         "n_estaciones": 1716,
-        "fecha": "2026-07-23"
+        "fecha": "2026-07-24"
       },
       "DI": {
         "promedio": 1198,
         "n_estaciones": 1956,
-        "fecha": "2026-07-23"
+        "fecha": "2026-07-24"
       },
       "95": {
         "promedio": 1450,
         "n_estaciones": 1917,
-        "fecha": "2026-07-23"
+        "fecha": "2026-07-24"
       },
       "KE": {
         "promedio": 1083,
         "n_estaciones": 1076,
-        "fecha": "2026-07-23"
+        "fecha": "2026-07-24"
       }
     },
     "regional": {
@@ -13236,11 +13236,11 @@
         "95": 1499
       },
       "De los Lagos": {
-        "93": 1463,
-        "97": 1522,
+        "93": 1464,
+        "97": 1523,
         "DI": 1243,
         "KE": 1121,
-        "95": 1496
+        "95": 1497
       },
       "Aysén del Gral. Carlos Ibáñez del Campo": {
         "93": 1518,
@@ -14012,13 +14012,13 @@
       "uf": 0.16,
       "dolar": 0.12
     },
-    "valor": 99.82,
+    "valor": 99.95,
     "fecha": "2026-07-24",
     "componentes": {
       "alimentos": -0.43,
       "bencina": -0.07,
       "uf": 0.0,
-      "dolar": 0.81
+      "dolar": 1.87
     },
     "historial": [
       {
@@ -14059,7 +14059,7 @@
       },
       {
         "fecha": "2026-07-24",
-        "valor": 99.82
+        "valor": 99.95
       }
     ]
   }
