@@ -1,5 +1,5 @@
 {
-  "generado": "2026-07-27T23:43:00.488110+00:00",
+  "generado": "2026-07-28T00:13:15.549539+00:00",
   "macro": {
     "dolar": {
       "nombre": "Dólar observado",
@@ -1944,7 +1944,7 @@
       },
       {
         "periodo": "2026-07",
-        "valor": 1061.9361
+        "valor": 1062.4121
       }
     ],
     "uf": [
@@ -13390,41 +13390,11 @@
         }
       },
       "regional": {
-        "Región de Valparaíso": {
-          "Marraqueta": 2395,
-          "Asado Carnicero": 10817,
-          "Pollo Entero": 3745,
-          "Leche Fluida Entera": 1186
-        },
         "Región del Maule": {
           "Marraqueta": 2222,
           "Asado Carnicero": 10770,
           "Pollo Entero": 3625,
           "Leche Fluida Entera": 1187
-        },
-        "Región de Ñuble": {
-          "Marraqueta": 2157,
-          "Asado Carnicero": 10954,
-          "Pollo Entero": 3654,
-          "Leche Fluida Entera": 1227
-        },
-        "Región de Los Lagos": {
-          "Marraqueta": 2366,
-          "Asado Carnicero": 10549,
-          "Pollo Entero": 3509,
-          "Leche Fluida Entera": 1219
-        },
-        "Región de Coquimbo": {
-          "Marraqueta": 2348,
-          "Asado Carnicero": 10750,
-          "Pollo Entero": 3779,
-          "Leche Fluida Entera": 1209
-        },
-        "Región Metropolitana de Santiago": {
-          "Marraqueta": 2238,
-          "Asado Carnicero": 10246,
-          "Pollo Entero": 3827,
-          "Leche Fluida Entera": 1197
         },
         "Región de La Araucanía": {
           "Marraqueta": 2326,
@@ -13433,17 +13403,47 @@
           "Huevo blanco - Extra": 213,
           "Leche Fluida Entera": 1208
         },
-        "Región del Biobío": {
-          "Marraqueta": 2335,
-          "Asado Carnicero": 9647,
-          "Pollo Entero": 3681,
-          "Leche Fluida Entera": 1176
+        "Región de Coquimbo": {
+          "Marraqueta": 2348,
+          "Asado Carnicero": 10750,
+          "Pollo Entero": 3779,
+          "Leche Fluida Entera": 1209
+        },
+        "Región de Los Lagos": {
+          "Marraqueta": 2366,
+          "Asado Carnicero": 10549,
+          "Pollo Entero": 3509,
+          "Leche Fluida Entera": 1219
+        },
+        "Región Metropolitana de Santiago": {
+          "Marraqueta": 2238,
+          "Asado Carnicero": 10246,
+          "Pollo Entero": 3827,
+          "Leche Fluida Entera": 1197
+        },
+        "Región de Valparaíso": {
+          "Marraqueta": 2395,
+          "Asado Carnicero": 10817,
+          "Pollo Entero": 3745,
+          "Leche Fluida Entera": 1186
         },
         "Región de Arica y Parinacota": {
           "Marraqueta": 2169,
           "Asado Carnicero": 9640,
           "Pollo Entero": 3873,
           "Leche Fluida Entera": 1198
+        },
+        "Región del Biobío": {
+          "Marraqueta": 2335,
+          "Asado Carnicero": 9647,
+          "Pollo Entero": 3681,
+          "Leche Fluida Entera": 1176
+        },
+        "Región de Ñuble": {
+          "Marraqueta": 2157,
+          "Asado Carnicero": 10954,
+          "Pollo Entero": 3654,
+          "Leche Fluida Entera": 1227
         }
       }
     },
@@ -14016,7 +14016,7 @@
       "dolar": 0.12
     },
     "valor": 99.68,
-    "fecha": "2026-07-27",
+    "fecha": "2026-07-28",
     "componentes": {
       "alimentos": -0.85,
       "bencina": -0.14,
@@ -14074,6 +14074,10 @@
       },
       {
         "fecha": "2026-07-27",
+        "valor": 99.68
+      },
+      {
+        "fecha": "2026-07-28",
         "valor": 99.68
       }
     ]
