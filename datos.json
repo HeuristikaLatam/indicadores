@@ -1,5 +1,5 @@
 {
-  "generado": "2026-07-29T15:35:51.523910+00:00",
+  "generado": "2026-07-29T15:55:33.100416+00:00",
   "macro": {
     "dolar": {
       "nombre": "Dólar observado",
@@ -2894,390 +2894,6 @@
       }
     ],
     "utm": [
-      {
-        "periodo": "2007-01",
-        "valor": 32142.0
-      },
-      {
-        "periodo": "2007-02",
-        "valor": 32174.0
-      },
-      {
-        "periodo": "2007-03",
-        "valor": 32271.0
-      },
-      {
-        "periodo": "2007-04",
-        "valor": 32206.0
-      },
-      {
-        "periodo": "2007-05",
-        "valor": 32335.0
-      },
-      {
-        "periodo": "2007-06",
-        "valor": 32529.0
-      },
-      {
-        "periodo": "2007-07",
-        "valor": 32724.0
-      },
-      {
-        "periodo": "2007-08",
-        "valor": 33019.0
-      },
-      {
-        "periodo": "2007-09",
-        "valor": 33382.0
-      },
-      {
-        "periodo": "2007-10",
-        "valor": 33749.0
-      },
-      {
-        "periodo": "2007-11",
-        "valor": 34120.0
-      },
-      {
-        "periodo": "2007-12",
-        "valor": 34222.0
-      },
-      {
-        "periodo": "2008-01",
-        "valor": 34496.0
-      },
-      {
-        "periodo": "2008-02",
-        "valor": 34668.0
-      },
-      {
-        "periodo": "2008-03",
-        "valor": 34668.0
-      },
-      {
-        "periodo": "2008-04",
-        "valor": 34807.0
-      },
-      {
-        "periodo": "2008-05",
-        "valor": 35085.0
-      },
-      {
-        "periodo": "2008-06",
-        "valor": 35225.0
-      },
-      {
-        "periodo": "2008-07",
-        "valor": 35648.0
-      },
-      {
-        "periodo": "2008-08",
-        "valor": 36183.0
-      },
-      {
-        "periodo": "2008-09",
-        "valor": 36581.0
-      },
-      {
-        "periodo": "2008-10",
-        "valor": 36910.0
-      },
-      {
-        "periodo": "2008-11",
-        "valor": 37316.0
-      },
-      {
-        "periodo": "2008-12",
-        "valor": 37652.0
-      },
-      {
-        "periodo": "2009-01",
-        "valor": 37614.0
-      },
-      {
-        "periodo": "2009-02",
-        "valor": 37163.0
-      },
-      {
-        "periodo": "2009-03",
-        "valor": 36866.0
-      },
-      {
-        "periodo": "2009-04",
-        "valor": 36719.0
-      },
-      {
-        "periodo": "2009-05",
-        "valor": 36866.0
-      },
-      {
-        "periodo": "2009-06",
-        "valor": 36792.0
-      },
-      {
-        "periodo": "2009-07",
-        "valor": 36682.0
-      },
-      {
-        "periodo": "2009-08",
-        "valor": 36792.0
-      },
-      {
-        "periodo": "2009-09",
-        "valor": 36645.0
-      },
-      {
-        "periodo": "2009-10",
-        "valor": 36498.0
-      },
-      {
-        "periodo": "2009-11",
-        "valor": 36863.0
-      },
-      {
-        "periodo": "2009-12",
-        "valor": 36863.0
-      },
-      {
-        "periodo": "2010-01",
-        "valor": 36679.0
-      },
-      {
-        "periodo": "2010-02",
-        "valor": 36569.0
-      },
-      {
-        "periodo": "2010-03",
-        "valor": 36752.0
-      },
-      {
-        "periodo": "2010-04",
-        "valor": 36862.0
-      },
-      {
-        "periodo": "2010-05",
-        "valor": 36899.0
-      },
-      {
-        "periodo": "2010-06",
-        "valor": 37083.0
-      },
-      {
-        "periodo": "2010-07",
-        "valor": 37231.0
-      },
-      {
-        "periodo": "2010-08",
-        "valor": 37231.0
-      },
-      {
-        "periodo": "2010-09",
-        "valor": 37454.0
-      },
-      {
-        "periodo": "2010-10",
-        "valor": 37417.0
-      },
-      {
-        "periodo": "2010-11",
-        "valor": 37567.0
-      },
-      {
-        "periodo": "2010-12",
-        "valor": 37605.0
-      },
-      {
-        "periodo": "2011-01",
-        "valor": 37643.0
-      },
-      {
-        "periodo": "2011-02",
-        "valor": 37681.0
-      },
-      {
-        "periodo": "2011-03",
-        "valor": 37794.0
-      },
-      {
-        "periodo": "2011-04",
-        "valor": 37870.0
-      },
-      {
-        "periodo": "2011-05",
-        "valor": 38173.0
-      },
-      {
-        "periodo": "2011-06",
-        "valor": 38288.0
-      },
-      {
-        "periodo": "2011-07",
-        "valor": 38441.0
-      },
-      {
-        "periodo": "2011-08",
-        "valor": 38518.0
-      },
-      {
-        "periodo": "2011-09",
-        "valor": 38557.0
-      },
-      {
-        "periodo": "2011-10",
-        "valor": 38634.0
-      },
-      {
-        "periodo": "2011-11",
-        "valor": 38827.0
-      },
-      {
-        "periodo": "2011-12",
-        "valor": 39021.0
-      },
-      {
-        "periodo": "2012-01",
-        "valor": 39138.0
-      },
-      {
-        "periodo": "2012-02",
-        "valor": 39373.0
-      },
-      {
-        "periodo": "2012-03",
-        "valor": 39412.0
-      },
-      {
-        "periodo": "2012-04",
-        "valor": 39570.0
-      },
-      {
-        "periodo": "2012-05",
-        "valor": 39649.0
-      },
-      {
-        "periodo": "2012-06",
-        "valor": 39689.0
-      },
-      {
-        "periodo": "2012-07",
-        "valor": 39689.0
-      },
-      {
-        "periodo": "2012-08",
-        "valor": 39570.0
-      },
-      {
-        "periodo": "2012-09",
-        "valor": 39570.0
-      },
-      {
-        "periodo": "2012-10",
-        "valor": 39649.0
-      },
-      {
-        "periodo": "2012-11",
-        "valor": 39966.0
-      },
-      {
-        "periodo": "2012-12",
-        "valor": 40206.0
-      },
-      {
-        "periodo": "2013-01",
-        "valor": 40005.0
-      },
-      {
-        "periodo": "2013-02",
-        "valor": 40005.0
-      },
-      {
-        "periodo": "2013-03",
-        "valor": 40085.0
-      },
-      {
-        "periodo": "2013-04",
-        "valor": 40125.0
-      },
-      {
-        "periodo": "2013-05",
-        "valor": 40286.0
-      },
-      {
-        "periodo": "2013-06",
-        "valor": 40085.0
-      },
-      {
-        "periodo": "2013-07",
-        "valor": 40085.0
-      },
-      {
-        "periodo": "2013-08",
-        "valor": 40326.0
-      },
-      {
-        "periodo": "2013-09",
-        "valor": 40447.0
-      },
-      {
-        "periodo": "2013-10",
-        "valor": 40528.0
-      },
-      {
-        "periodo": "2013-11",
-        "valor": 40731.0
-      },
-      {
-        "periodo": "2013-12",
-        "valor": 40772.0
-      },
-      {
-        "periodo": "2014-01",
-        "valor": 40935.0
-      },
-      {
-        "periodo": "2014-02",
-        "valor": 41181.0
-      },
-      {
-        "periodo": "2014-03",
-        "valor": 41263.0
-      },
-      {
-        "periodo": "2014-04",
-        "valor": 41469.0
-      },
-      {
-        "periodo": "2014-05",
-        "valor": 41801.0
-      },
-      {
-        "periodo": "2014-06",
-        "valor": 42052.0
-      },
-      {
-        "periodo": "2014-07",
-        "valor": 42178.0
-      },
-      {
-        "periodo": "2014-08",
-        "valor": 42220.0
-      },
-      {
-        "periodo": "2014-09",
-        "valor": 42304.0
-      },
-      {
-        "periodo": "2014-10",
-        "valor": 42431.0
-      },
-      {
-        "periodo": "2014-11",
-        "valor": 42770.0
-      },
-      {
-        "periodo": "2014-12",
-        "valor": 43198.0
-      },
       {
         "periodo": "2015-01",
         "valor": 43198.0
@@ -13135,7 +12751,7 @@
         "fecha": "2026-07-29"
       },
       "DI": {
-        "promedio": 1197,
+        "promedio": 1202,
         "n_estaciones": 1957,
         "fecha": "2026-07-29"
       },
@@ -13258,7 +12874,7 @@
       "Metropolitana de Santiago": {
         "93": 1362,
         "97": 1458,
-        "DI": 1164,
+        "DI": 1181,
         "KE": 1080,
         "95": 1408
       }
@@ -13390,30 +13006,11 @@
         }
       },
       "regional": {
-        "Región del Biobío": {
-          "Marraqueta": 2335,
-          "Asado Carnicero": 9647,
-          "Pollo Entero": 3681,
-          "Leche Fluida Entera": 1176
-        },
         "Región de Los Lagos": {
           "Marraqueta": 2366,
           "Asado Carnicero": 10549,
           "Pollo Entero": 3509,
           "Leche Fluida Entera": 1219
-        },
-        "Región de La Araucanía": {
-          "Marraqueta": 2326,
-          "Asado Carnicero": 11540,
-          "Pollo Entero": 3781,
-          "Huevo blanco - Extra": 213,
-          "Leche Fluida Entera": 1208
-        },
-        "Región Metropolitana de Santiago": {
-          "Marraqueta": 2238,
-          "Asado Carnicero": 10246,
-          "Pollo Entero": 3827,
-          "Leche Fluida Entera": 1197
         },
         "Región del Maule": {
           "Marraqueta": 2222,
@@ -13427,23 +13024,42 @@
           "Pollo Entero": 3745,
           "Leche Fluida Entera": 1186
         },
-        "Región de Coquimbo": {
-          "Marraqueta": 2348,
-          "Asado Carnicero": 10750,
-          "Pollo Entero": 3779,
-          "Leche Fluida Entera": 1209
-        },
         "Región de Ñuble": {
           "Marraqueta": 2157,
           "Asado Carnicero": 10954,
           "Pollo Entero": 3654,
           "Leche Fluida Entera": 1227
         },
+        "Región Metropolitana de Santiago": {
+          "Marraqueta": 2238,
+          "Asado Carnicero": 10246,
+          "Pollo Entero": 3827,
+          "Leche Fluida Entera": 1197
+        },
         "Región de Arica y Parinacota": {
           "Marraqueta": 2169,
           "Asado Carnicero": 9640,
           "Pollo Entero": 3873,
           "Leche Fluida Entera": 1198
+        },
+        "Región de Coquimbo": {
+          "Marraqueta": 2348,
+          "Asado Carnicero": 10750,
+          "Pollo Entero": 3779,
+          "Leche Fluida Entera": 1209
+        },
+        "Región del Biobío": {
+          "Marraqueta": 2335,
+          "Asado Carnicero": 9647,
+          "Pollo Entero": 3681,
+          "Leche Fluida Entera": 1176
+        },
+        "Región de La Araucanía": {
+          "Marraqueta": 2326,
+          "Asado Carnicero": 11540,
+          "Pollo Entero": 3781,
+          "Huevo blanco - Extra": 213,
+          "Leche Fluida Entera": 1208
         }
       }
     },
