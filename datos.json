@@ -1,5 +1,5 @@
 {
-  "generado": "2026-08-01T23:17:23.479170+00:00",
+  "generado": "2026-08-02T00:17:50.236124+00:00",
   "macro": {
     "dolar": {
       "nombre": "Dólar observado",
@@ -13277,7 +13277,7 @@
       },
       "Metropolitana de Santiago": {
         "93": 1391,
-        "97": 1487,
+        "97": 1488,
         "DI": 1355,
         "KE": 1079,
         "95": 1436
@@ -13429,17 +13429,10 @@
           "Pollo Entero": 3807,
           "Leche Fluida Entera": 1189
         },
-        "Región del Maule": {
-          "Marraqueta": 2281,
-          "Asado Carnicero": 11392,
-          "Pollo Entero": 3584,
-          "Leche Fluida Entera": 1225
-        },
-        "Región de La Araucanía": {
-          "Marraqueta": 2319,
-          "Asado Carnicero": 11490,
-          "Pollo Entero": 3850,
-          "Huevo blanco - Extra": 213,
+        "Región de Ñuble": {
+          "Marraqueta": 2141,
+          "Asado Carnicero": 11397,
+          "Pollo Entero": 3560,
           "Leche Fluida Entera": 1227
         },
         "Región de Coquimbo": {
@@ -13454,17 +13447,24 @@
           "Pollo Entero": 3874,
           "Leche Fluida Entera": 1183
         },
+        "Región del Maule": {
+          "Marraqueta": 2281,
+          "Asado Carnicero": 11392,
+          "Pollo Entero": 3584,
+          "Leche Fluida Entera": 1225
+        },
+        "Región de La Araucanía": {
+          "Marraqueta": 2319,
+          "Asado Carnicero": 11490,
+          "Pollo Entero": 3850,
+          "Huevo blanco - Extra": 213,
+          "Leche Fluida Entera": 1227
+        },
         "Región de Arica y Parinacota": {
           "Marraqueta": 2163,
           "Asado Carnicero": 9736,
           "Pollo Entero": 3776,
           "Leche Fluida Entera": 1207
-        },
-        "Región de Ñuble": {
-          "Marraqueta": 2141,
-          "Asado Carnicero": 11397,
-          "Pollo Entero": 3560,
-          "Leche Fluida Entera": 1227
         }
       }
     },
@@ -13982,7 +13982,7 @@
       "dolar": 0.12
     },
     "valor": 99.77,
-    "fecha": "2026-08-01",
+    "fecha": "2026-08-02",
     "componentes": {
       "alimentos": -0.56,
       "bencina": 1.98,
@@ -14060,6 +14060,10 @@
       },
       {
         "fecha": "2026-08-01",
+        "valor": 99.77
+      },
+      {
+        "fecha": "2026-08-02",
         "valor": 99.77
       }
     ]
