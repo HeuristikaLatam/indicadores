@@ -1,5 +1,5 @@
 {
-  "generado": "2026-08-03T08:51:34.725078+00:00",
+  "generado": "2026-08-03T16:57:09.878596+00:00",
   "macro": {
     "dolar": {
       "nombre": "Dólar observado",
@@ -40,8 +40,8 @@
     "imacec": {
       "nombre": "Imacec",
       "unidad": "Porcentaje",
-      "valor": -0.9,
-      "fecha": "2026-05-01T04:00:00.000Z"
+      "valor": 2.4,
+      "fecha": "2026-06-01T04:00:00.000Z"
     },
     "tasa_desempleo": {
       "nombre": "Tasa de desempleo",
@@ -6663,6 +6663,10 @@
       {
         "periodo": "2026-05",
         "valor": -0.9
+      },
+      {
+        "periodo": "2026-06",
+        "valor": 2.4
       }
     ],
     "tasa_desempleo": [
@@ -9199,10 +9203,6 @@
       "tipo": "mensual",
       "puntos": [
         {
-          "etiqueta": "2025-12-01",
-          "valor": 1.7
-        },
-        {
           "etiqueta": "2026-01-01",
           "valor": -0.1
         },
@@ -9221,6 +9221,10 @@
         {
           "etiqueta": "2026-05-01",
           "valor": -0.9
+        },
+        {
+          "etiqueta": "2026-06-01",
+          "valor": 2.4
         }
       ]
     },
@@ -13151,35 +13155,35 @@
       "93": {
         "promedio": 1441,
         "n_estaciones": 1924,
-        "fecha": "2026-08-02"
+        "fecha": "2026-08-03"
       },
       "97": {
-        "promedio": 1518,
+        "promedio": 1519,
         "n_estaciones": 1721,
-        "fecha": "2026-08-02"
+        "fecha": "2026-08-03"
       },
       "DI": {
         "promedio": 1272,
         "n_estaciones": 1960,
-        "fecha": "2026-08-02"
+        "fecha": "2026-08-03"
       },
       "95": {
-        "promedio": 1485,
+        "promedio": 1492,
         "n_estaciones": 1921,
-        "fecha": "2026-08-02"
+        "fecha": "2026-08-03"
       },
       "KE": {
         "promedio": 1082,
         "n_estaciones": 1076,
-        "fecha": "2026-08-02"
+        "fecha": "2026-08-03"
       }
     },
     "regional": {
       "Arica y Parinacota": {
-        "93": 1510,
-        "97": 1568,
-        "DI": 1264,
-        "95": 1536,
+        "93": 1512,
+        "97": 1571,
+        "DI": 1266,
+        "95": 1539,
         "KE": 1233
       },
       "Tarapacá": {
@@ -13194,13 +13198,13 @@
         "97": 1584,
         "DI": 1280,
         "KE": 1208,
-        "95": 1555
+        "95": 1819
       },
       "Atacama": {
         "93": 1510,
-        "97": 1577,
-        "DI": 1279,
-        "95": 1544,
+        "97": 1578,
+        "DI": 1280,
+        "95": 1545,
         "KE": 1109
       },
       "Coquimbo": {
@@ -13213,13 +13217,13 @@
       "Valparaíso": {
         "93": 1429,
         "97": 1517,
-        "DI": 1210,
+        "DI": 1209,
         "95": 1473,
-        "KE": 1060
+        "KE": 1061
       },
       "Del Libertador Gral. Bernardo O’Higgins": {
         "93": 1458,
-        "97": 1524,
+        "97": 1523,
         "DI": 1239,
         "KE": 1097,
         "95": 1486
@@ -13232,18 +13236,18 @@
         "95": 1562
       },
       "Del Biobío": {
-        "93": 1429,
+        "93": 1430,
         "95": 1465,
         "97": 1502,
         "DI": 1197,
         "KE": 1054
       },
       "Ñuble": {
-        "93": 1432,
+        "93": 1433,
         "97": 1501,
         "DI": 1201,
         "KE": 1062,
-        "95": 1468
+        "95": 1469
       },
       "De la Araucanía": {
         "93": 1460,
@@ -13264,13 +13268,13 @@
         "97": 1551,
         "DI": 1268,
         "KE": 1121,
-        "95": 1526
+        "95": 1527
       },
       "Aysén del Gral. Carlos Ibáñez del Campo": {
         "93": 1545,
         "97": 1612,
         "DI": 1368,
-        "KE": 1162,
+        "KE": 1161,
         "95": 1586
       },
       "Magallanes y de la Antártica Chilena": {
@@ -13415,17 +13419,23 @@
         }
       },
       "regional": {
+        "Región de Arica y Parinacota": {
+          "Marraqueta": 2163,
+          "Asado Carnicero": 9736,
+          "Pollo Entero": 3776,
+          "Leche Fluida Entera": 1207
+        },
+        "Región del Maule": {
+          "Marraqueta": 2281,
+          "Asado Carnicero": 11392,
+          "Pollo Entero": 3584,
+          "Leche Fluida Entera": 1225
+        },
         "Región de Los Lagos": {
           "Marraqueta": 2346,
           "Asado Carnicero": 9747,
           "Pollo Entero": 3659,
           "Leche Fluida Entera": 1231
-        },
-        "Región de Coquimbo": {
-          "Marraqueta": 2380,
-          "Asado Carnicero": 10737,
-          "Pollo Entero": 3665,
-          "Leche Fluida Entera": 1200
         },
         "Región Metropolitana de Santiago": {
           "Marraqueta": 2243,
@@ -13440,23 +13450,11 @@
           "Huevo blanco - Extra": 213,
           "Leche Fluida Entera": 1227
         },
-        "Región de Valparaíso": {
-          "Marraqueta": 2375,
-          "Asado Carnicero": 10882,
-          "Pollo Entero": 3668,
-          "Leche Fluida Entera": 1192
-        },
-        "Región del Maule": {
-          "Marraqueta": 2281,
-          "Asado Carnicero": 11392,
-          "Pollo Entero": 3584,
-          "Leche Fluida Entera": 1225
-        },
-        "Región del Biobío": {
-          "Marraqueta": 2319,
-          "Asado Carnicero": 9681,
-          "Pollo Entero": 3874,
-          "Leche Fluida Entera": 1183
+        "Región de Coquimbo": {
+          "Marraqueta": 2380,
+          "Asado Carnicero": 10737,
+          "Pollo Entero": 3665,
+          "Leche Fluida Entera": 1200
         },
         "Región de Ñuble": {
           "Marraqueta": 2141,
@@ -13464,11 +13462,17 @@
           "Pollo Entero": 3560,
           "Leche Fluida Entera": 1227
         },
-        "Región de Arica y Parinacota": {
-          "Marraqueta": 2163,
-          "Asado Carnicero": 9736,
-          "Pollo Entero": 3776,
-          "Leche Fluida Entera": 1207
+        "Región del Biobío": {
+          "Marraqueta": 2319,
+          "Asado Carnicero": 9681,
+          "Pollo Entero": 3874,
+          "Leche Fluida Entera": 1183
+        },
+        "Región de Valparaíso": {
+          "Marraqueta": 2375,
+          "Asado Carnicero": 10882,
+          "Pollo Entero": 3668,
+          "Leche Fluida Entera": 1192
         }
       }
     },
