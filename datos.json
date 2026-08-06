@@ -1,5 +1,5 @@
 {
-  "generado": "2026-08-05T23:30:56.880433+00:00",
+  "generado": "2026-08-06T00:12:15.136578+00:00",
   "macro": {
     "dolar": {
       "nombre": "Dólar observado",
@@ -1952,7 +1952,7 @@
       },
       {
         "periodo": "2026-08",
-        "valor": 1062.9733
+        "valor": 1060.57
       }
     ],
     "uf": [
@@ -13419,12 +13419,17 @@
         }
       },
       "regional": {
-        "Región de La Araucanía": {
-          "Marraqueta": 2319,
-          "Asado Carnicero": 11490,
-          "Pollo Entero": 3850,
-          "Huevo blanco - Extra": 213,
-          "Leche Fluida Entera": 1227
+        "Región de Valparaíso": {
+          "Marraqueta": 2375,
+          "Asado Carnicero": 10882,
+          "Pollo Entero": 3668,
+          "Leche Fluida Entera": 1192
+        },
+        "Región del Maule": {
+          "Marraqueta": 2281,
+          "Asado Carnicero": 11392,
+          "Pollo Entero": 3584,
+          "Leche Fluida Entera": 1225
         },
         "Región Metropolitana de Santiago": {
           "Marraqueta": 2243,
@@ -13462,17 +13467,12 @@
           "Pollo Entero": 3665,
           "Leche Fluida Entera": 1200
         },
-        "Región del Maule": {
-          "Marraqueta": 2281,
-          "Asado Carnicero": 11392,
-          "Pollo Entero": 3584,
-          "Leche Fluida Entera": 1225
-        },
-        "Región de Valparaíso": {
-          "Marraqueta": 2375,
-          "Asado Carnicero": 10882,
-          "Pollo Entero": 3668,
-          "Leche Fluida Entera": 1192
+        "Región de La Araucanía": {
+          "Marraqueta": 2319,
+          "Asado Carnicero": 11490,
+          "Pollo Entero": 3850,
+          "Huevo blanco - Extra": 213,
+          "Leche Fluida Entera": 1227
         }
       }
     },
@@ -13990,7 +13990,7 @@
       "dolar": 0.12
     },
     "valor": 99.67,
-    "fecha": "2026-08-05",
+    "fecha": "2026-08-06",
     "componentes": {
       "alimentos": -0.56,
       "bencina": 1.98,
@@ -14084,6 +14084,10 @@
       },
       {
         "fecha": "2026-08-05",
+        "valor": 99.67
+      },
+      {
+        "fecha": "2026-08-06",
         "valor": 99.67
       }
     ]
