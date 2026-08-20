@@ -1,5 +1,5 @@
 {
-  "generado": "2026-08-20T20:19:46.838092+00:00",
+  "generado": "2026-08-20T21:18:38.873971+00:00",
   "macro": {
     "dolar": {
       "nombre": "Dólar observado",
@@ -13182,27 +13182,27 @@
     "nacional": {
       "93": {
         "promedio": 1459,
-        "n_estaciones": 1928,
+        "n_estaciones": 1929,
         "fecha": "2026-08-20"
       },
       "97": {
         "promedio": 1593,
-        "n_estaciones": 1723,
+        "n_estaciones": 1724,
         "fecha": "2026-08-20"
       },
       "DI": {
-        "promedio": 1300,
-        "n_estaciones": 1966,
+        "promedio": 1302,
+        "n_estaciones": 1967,
         "fecha": "2026-08-20"
       },
       "95": {
         "promedio": 1496,
-        "n_estaciones": 1927,
+        "n_estaciones": 1928,
         "fecha": "2026-08-20"
       },
       "KE": {
         "promedio": 1082,
-        "n_estaciones": 1077,
+        "n_estaciones": 1078,
         "fecha": "2026-08-20"
       }
     },
@@ -13210,8 +13210,8 @@
       "Arica y Parinacota": {
         "93": 1526,
         "97": 1584,
-        "DI": 1333,
-        "95": 1550,
+        "DI": 1337,
+        "95": 1553,
         "KE": 1233
       },
       "Tarapacá": {
@@ -13231,7 +13231,7 @@
       "Atacama": {
         "93": 1527,
         "97": 1594,
-        "DI": 1354,
+        "DI": 1356,
         "95": 1561,
         "KE": 1109
       },
@@ -13243,31 +13243,31 @@
         "KE": 1090
       },
       "Valparaíso": {
-        "93": 1444,
-        "97": 1531,
-        "DI": 1288,
-        "95": 1488,
+        "93": 1445,
+        "97": 1532,
+        "DI": 1290,
+        "95": 1489,
         "KE": 1060
       },
       "Del Libertador Gral. Bernardo O’Higgins": {
         "93": 1474,
-        "97": 1541,
-        "DI": 1314,
+        "97": 1542,
+        "DI": 1315,
         "KE": 1096,
         "95": 1502
       },
       "Del Maule": {
         "93": 1465,
         "97": 1530,
-        "DI": 1296,
+        "DI": 1298,
         "KE": 1071,
         "95": 1498
       },
       "Del Biobío": {
         "93": 1446,
-        "95": 1481,
+        "95": 1482,
         "97": 1518,
-        "DI": 1276,
+        "DI": 1277,
         "KE": 1053
       },
       "Ñuble": {
@@ -13278,10 +13278,10 @@
         "95": 1483
       },
       "De la Araucanía": {
-        "93": 1479,
+        "93": 1480,
         "97": 1544,
-        "DI": 1306,
-        "95": 1508,
+        "DI": 1307,
+        "95": 1509,
         "KE": 1085
       },
       "De los Ríos": {
@@ -13294,7 +13294,7 @@
       "De los Lagos": {
         "93": 1512,
         "97": 1570,
-        "DI": 1346,
+        "DI": 1347,
         "KE": 1120,
         "95": 1545
       },
@@ -13314,7 +13314,7 @@
       "Metropolitana de Santiago": {
         "93": 1412,
         "97": 1687,
-        "DI": 1271,
+        "DI": 1272,
         "KE": 1079,
         "95": 1456
       }
@@ -13446,11 +13446,17 @@
         }
       },
       "regional": {
-        "Región de Los Lagos": {
-          "Marraqueta": 2342,
-          "Asado Carnicero": 10182,
-          "Pollo Entero": 3439,
-          "Leche Fluida Entera": 1214
+        "Región de Valparaíso": {
+          "Marraqueta": 2347,
+          "Asado Carnicero": 10751,
+          "Pollo Entero": 3693,
+          "Leche Fluida Entera": 1186
+        },
+        "Región de Coquimbo": {
+          "Marraqueta": 2378,
+          "Asado Carnicero": 10959,
+          "Pollo Entero": 3895,
+          "Leche Fluida Entera": 1193
         },
         "Región de La Araucanía": {
           "Marraqueta": 2338,
@@ -13458,12 +13464,6 @@
           "Pollo Entero": 3838,
           "Huevo blanco - Extra": 215,
           "Leche Fluida Entera": 1226
-        },
-        "Región Metropolitana de Santiago": {
-          "Marraqueta": 2253,
-          "Asado Carnicero": 10512,
-          "Pollo Entero": 3899,
-          "Leche Fluida Entera": 1192
         },
         "Región del Biobío": {
           "Marraqueta": 2339,
@@ -13477,28 +13477,28 @@
           "Pollo Entero": 3618,
           "Leche Fluida Entera": 1212
         },
-        "Región de Valparaíso": {
-          "Marraqueta": 2347,
-          "Asado Carnicero": 10751,
-          "Pollo Entero": 3693,
-          "Leche Fluida Entera": 1186
+        "Región de Arica y Parinacota": {
+          "Marraqueta": 2121,
+          "Asado Carnicero": 9915,
+          "Pollo Entero": 3609,
+          "Leche Fluida Entera": 1215
+        },
+        "Región Metropolitana de Santiago": {
+          "Marraqueta": 2253,
+          "Asado Carnicero": 10512,
+          "Pollo Entero": 3899,
+          "Leche Fluida Entera": 1192
+        },
+        "Región de Los Lagos": {
+          "Marraqueta": 2342,
+          "Asado Carnicero": 10182,
+          "Pollo Entero": 3439,
+          "Leche Fluida Entera": 1214
         },
         "Región de Ñuble": {
           "Marraqueta": 2157,
           "Asado Carnicero": 11011,
           "Pollo Entero": 3902,
-          "Leche Fluida Entera": 1215
-        },
-        "Región de Coquimbo": {
-          "Marraqueta": 2378,
-          "Asado Carnicero": 10959,
-          "Pollo Entero": 3895,
-          "Leche Fluida Entera": 1193
-        },
-        "Región de Arica y Parinacota": {
-          "Marraqueta": 2121,
-          "Asado Carnicero": 9915,
-          "Pollo Entero": 3609,
           "Leche Fluida Entera": 1215
         }
       }
