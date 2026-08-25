@@ -1,5 +1,5 @@
 {
-  "generado": "2026-08-25T08:36:52.047693+00:00",
+  "generado": "2026-08-25T09:28:18.217410+00:00",
   "macro": {
     "dolar": {
       "nombre": "Dólar observado",
@@ -13445,29 +13445,23 @@
         }
       },
       "regional": {
-        "Región de Los Lagos": {
-          "Marraqueta": 2358,
-          "Asado Carnicero": 10415,
-          "Pollo Entero": 3525,
-          "Leche Fluida Entera": 1207
-        },
         "Región Metropolitana de Santiago": {
           "Marraqueta": 2252,
           "Asado Carnicero": 10507,
           "Pollo Entero": 3788,
           "Leche Fluida Entera": 1192
         },
-        "Región de Arica y Parinacota": {
-          "Marraqueta": 2139,
-          "Asado Carnicero": 10066,
-          "Pollo Entero": 3747,
-          "Leche Fluida Entera": 1195
-        },
         "Región de Valparaíso": {
           "Marraqueta": 2350,
           "Asado Carnicero": 11351,
           "Pollo Entero": 3861,
           "Leche Fluida Entera": 1187
+        },
+        "Región de Los Lagos": {
+          "Marraqueta": 2358,
+          "Asado Carnicero": 10415,
+          "Pollo Entero": 3525,
+          "Leche Fluida Entera": 1207
         },
         "Región del Maule": {
           "Marraqueta": 2252,
@@ -13482,6 +13476,12 @@
           "Huevo blanco - Extra": 216,
           "Leche Fluida Entera": 1244
         },
+        "Región de Ñuble": {
+          "Marraqueta": 2142,
+          "Asado Carnicero": 11120,
+          "Pollo Entero": 3840,
+          "Leche Fluida Entera": 1191
+        },
         "Región del Biobío": {
           "Marraqueta": 2341,
           "Asado Carnicero": 10248,
@@ -13494,11 +13494,11 @@
           "Pollo Entero": 3810,
           "Leche Fluida Entera": 1195
         },
-        "Región de Ñuble": {
-          "Marraqueta": 2142,
-          "Asado Carnicero": 11120,
-          "Pollo Entero": 3840,
-          "Leche Fluida Entera": 1191
+        "Región de Arica y Parinacota": {
+          "Marraqueta": 2139,
+          "Asado Carnicero": 10066,
+          "Pollo Entero": 3747,
+          "Leche Fluida Entera": 1195
         }
       }
     },
