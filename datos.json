@@ -1,5 +1,5 @@
 {
-  "generado": "2026-08-31T23:32:04.847656+00:00",
+  "generado": "2026-09-01T00:12:43.163019+00:00",
   "macro": {
     "dolar": {
       "nombre": "Dólar observado",
@@ -1953,6 +1953,10 @@
       {
         "periodo": "2026-08",
         "valor": 1063.1681
+      },
+      {
+        "periodo": "2026-09",
+        "valor": 1084.21
       }
     ],
     "uf": [
@@ -13453,31 +13457,6 @@
         }
       },
       "regional": {
-        "Región del Maule": {
-          "Marraqueta": 2282,
-          "Asado Carnicero": 11892,
-          "Pollo Entero": 3574,
-          "Leche Fluida Entera": 1193
-        },
-        "Región de Los Lagos": {
-          "Marraqueta": 2340,
-          "Asado Carnicero": 10081,
-          "Pollo Entero": 3485,
-          "Leche Fluida Entera": 1210
-        },
-        "Región Metropolitana de Santiago": {
-          "Marraqueta": 2243,
-          "Asado Carnicero": 10634,
-          "Pollo Entero": 3805,
-          "Leche Fluida Entera": 1186
-        },
-        "Región de La Araucanía": {
-          "Marraqueta": 2318,
-          "Asado Carnicero": 11018,
-          "Pollo Entero": 3896,
-          "Huevo blanco - Extra": 215,
-          "Leche Fluida Entera": 1219
-        },
         "Región de Arica y Parinacota": {
           "Marraqueta": 2152,
           "Asado Carnicero": 9910,
@@ -13490,33 +13469,53 @@
           "Pollo Entero": 3716,
           "Leche Fluida Entera": 1186
         },
+        "Región de La Araucanía": {
+          "Marraqueta": 2318,
+          "Asado Carnicero": 11018,
+          "Pollo Entero": 3896,
+          "Huevo blanco - Extra": 215,
+          "Leche Fluida Entera": 1219
+        },
+        "Región del Maule": {
+          "Marraqueta": 2282,
+          "Asado Carnicero": 11892,
+          "Pollo Entero": 3574,
+          "Leche Fluida Entera": 1193
+        },
         "Región del Biobío": {
           "Marraqueta": 2433,
           "Asado Carnicero": 10872,
           "Pollo Entero": 4040,
           "Leche Fluida Entera": 1177
         },
-        "Región de Coquimbo": {
-          "Marraqueta": 2377,
-          "Asado Carnicero": 10699,
-          "Pollo Entero": 3896,
-          "Leche Fluida Entera": 1195
+        "Región Metropolitana de Santiago": {
+          "Marraqueta": 2243,
+          "Asado Carnicero": 10634,
+          "Pollo Entero": 3805,
+          "Leche Fluida Entera": 1186
         },
         "Región de Ñuble": {
           "Marraqueta": 2161,
           "Asado Carnicero": 11573,
           "Pollo Entero": 4080,
           "Leche Fluida Entera": 1183
+        },
+        "Región de Los Lagos": {
+          "Marraqueta": 2340,
+          "Asado Carnicero": 10081,
+          "Pollo Entero": 3485,
+          "Leche Fluida Entera": 1210
+        },
+        "Región de Coquimbo": {
+          "Marraqueta": 2377,
+          "Asado Carnicero": 10699,
+          "Pollo Entero": 3896,
+          "Leche Fluida Entera": 1195
         }
       }
     },
     "tendencia_mayoristas": {
       "Palta": [
-        {
-          "periodo": "2025-12",
-          "fecha": "2025-12-31",
-          "valor": 2892
-        },
         {
           "periodo": "2026-01",
           "fecha": "2026-01-30",
@@ -13560,11 +13559,6 @@
       ],
       "Tomate": [
         {
-          "periodo": "2025-12",
-          "fecha": "2025-12-31",
-          "valor": 891
-        },
-        {
           "periodo": "2026-01",
           "fecha": "2026-01-30",
           "valor": 435
@@ -13606,11 +13600,6 @@
         }
       ],
       "Papa": [
-        {
-          "periodo": "2025-12",
-          "fecha": "2025-12-31",
-          "valor": 300
-        },
         {
           "periodo": "2026-01",
           "fecha": "2026-01-30",
@@ -13654,11 +13643,6 @@
       ],
       "Cebolla": [
         {
-          "periodo": "2025-12",
-          "fecha": "2025-12-31",
-          "valor": 281
-        },
-        {
           "periodo": "2026-01",
           "fecha": "2026-01-30",
           "valor": 280
@@ -13701,11 +13685,6 @@
       ],
       "Plátano": [
         {
-          "periodo": "2025-12",
-          "fecha": "2025-12-31",
-          "valor": 1006
-        },
-        {
           "periodo": "2026-01",
           "fecha": "2026-01-30",
           "valor": 761
@@ -13747,11 +13726,6 @@
         }
       ],
       "Manzana": [
-        {
-          "periodo": "2025-12",
-          "fecha": "2025-12-31",
-          "valor": 1254
-        },
         {
           "periodo": "2026-01",
           "fecha": "2026-01-30",
@@ -13797,11 +13771,6 @@
     "tendencia_consumidor": {
       "Marraqueta": [
         {
-          "periodo": "2025-12",
-          "fecha": "2025-12-26",
-          "valor": 2173
-        },
-        {
           "periodo": "2026-01",
           "fecha": "2026-01-30",
           "valor": 2239
@@ -13843,11 +13812,6 @@
         }
       ],
       "Asado Carnicero": [
-        {
-          "periodo": "2025-12",
-          "fecha": "2025-12-26",
-          "valor": 10127
-        },
         {
           "periodo": "2026-01",
           "fecha": "2026-01-30",
@@ -13891,11 +13855,6 @@
       ],
       "Pollo Entero": [
         {
-          "periodo": "2025-12",
-          "fecha": "2025-12-26",
-          "valor": 4041
-        },
-        {
           "periodo": "2026-01",
           "fecha": "2026-01-30",
           "valor": 4032
@@ -13938,11 +13897,6 @@
       ],
       "Huevo blanco - Extra": [
         {
-          "periodo": "2025-12",
-          "fecha": "2025-12-26",
-          "valor": 161
-        },
-        {
           "periodo": "2026-01",
           "fecha": "2026-01-30",
           "valor": 186
@@ -13984,11 +13938,6 @@
         }
       ],
       "Leche Fluida Entera": [
-        {
-          "periodo": "2025-12",
-          "fecha": "2025-12-26",
-          "valor": 1162
-        },
         {
           "periodo": "2026-01",
           "fecha": "2026-01-30",
@@ -14034,11 +13983,11 @@
   },
   "anomalias": {
     "macro": {
-      "clave": "imacec",
-      "periodo": "2026-06",
-      "valor_actual": 2.4,
-      "cambio_pct": 366.67,
-      "zscore": 0.65
+      "clave": "euro",
+      "periodo": "2026-09",
+      "valor_actual": 1084.21,
+      "cambio_pct": 1.98,
+      "zscore": 0.68
     },
     "credito": {
       "recurso": "tmc",
@@ -14055,7 +14004,7 @@
       "fecha": "2026-08-28",
       "valor_actual": 3813,
       "cambio_pct": 2.12,
-      "zscore": 2.33
+      "zscore": 2.34
     }
   },
   "indice_costo_vida": {
@@ -14079,7 +14028,7 @@
       "dolar": 0.12
     },
     "valor": 100.6,
-    "fecha": "2026-08-31",
+    "fecha": "2026-09-01",
     "componentes": {
       "alimentos": 0.28,
       "bencina": 4.18,
@@ -14277,6 +14226,10 @@
       },
       {
         "fecha": "2026-08-31",
+        "valor": 100.6
+      },
+      {
+        "fecha": "2026-09-01",
         "valor": 100.6
       }
     ]
