@@ -1,23 +1,23 @@
 {
-  "generado": "2026-09-02T22:54:20.816496+00:00",
+  "generado": "2026-09-03T12:32:16.836372+00:00",
   "macro": {
     "dolar": {
       "nombre": "Dólar observado",
       "unidad": "Pesos",
-      "valor": 936.86,
-      "fecha": "2026-09-02T04:00:00.000Z"
+      "valor": 936.32,
+      "fecha": "2026-09-03T04:00:00.000Z"
     },
     "euro": {
       "nombre": "Euro",
       "unidad": "Pesos",
-      "valor": 1085.59,
-      "fecha": "2026-09-02T04:00:00.000Z"
+      "valor": 1084.83,
+      "fecha": "2026-09-03T04:00:00.000Z"
     },
     "uf": {
       "nombre": "Unidad de fomento (UF)",
       "unidad": "Pesos",
-      "valor": 40876.41,
-      "fecha": "2026-09-02T04:00:00.000Z"
+      "valor": 40877.73,
+      "fecha": "2026-09-03T04:00:00.000Z"
     },
     "utm": {
       "nombre": "Unidad Tributaria Mensual (UTM)",
@@ -35,7 +35,7 @@
       "nombre": "Tasa Política Monetaria (TPM)",
       "unidad": "Porcentaje",
       "valor": 4.5,
-      "fecha": "2026-09-02T04:00:00.000Z"
+      "fecha": "2026-09-03T04:00:00.000Z"
     },
     "imacec": {
       "nombre": "Imacec",
@@ -52,14 +52,14 @@
     "libra_cobre": {
       "nombre": "Libra de Cobre",
       "unidad": "Dólar",
-      "valor": 6.55,
-      "fecha": "2026-09-02T04:00:00.000Z"
+      "valor": 6.53,
+      "fecha": "2026-09-03T04:00:00.000Z"
     },
     "bitcoin": {
       "nombre": "Bitcoin",
       "unidad": "Dólar",
-      "valor": 62760.11,
-      "fecha": "2026-08-01T04:00:00.000Z"
+      "valor": 77304.32,
+      "fecha": "2026-09-02T04:00:00.000Z"
     }
   },
   "historico_macro": {
@@ -1010,7 +1010,7 @@
       },
       {
         "periodo": "2026-09",
-        "valor": 935.13
+        "valor": 935.5267
       }
     ],
     "euro": [
@@ -1960,7 +1960,7 @@
       },
       {
         "periodo": "2026-09",
-        "valor": 1084.9
+        "valor": 1084.8767
       }
     ],
     "uf": [
@@ -9057,6 +9057,10 @@
       {
         "periodo": "2026-08",
         "valor": 69400.3237
+      },
+      {
+        "periodo": "2026-09",
+        "valor": 77304.32
       }
     ]
   },
@@ -9064,10 +9068,6 @@
     "dolar": {
       "tipo": "diario",
       "puntos": [
-        {
-          "etiqueta": "2026-08-26",
-          "valor": 911.43
-        },
         {
           "etiqueta": "2026-08-27",
           "valor": 918.42
@@ -9087,16 +9087,16 @@
         {
           "etiqueta": "2026-09-02",
           "valor": 936.86
+        },
+        {
+          "etiqueta": "2026-09-03",
+          "valor": 936.32
         }
       ]
     },
     "euro": {
       "tipo": "diario",
       "puntos": [
-        {
-          "etiqueta": "2026-08-26",
-          "valor": 1064.01
-        },
         {
           "etiqueta": "2026-08-27",
           "valor": 1070.17
@@ -9116,16 +9116,16 @@
         {
           "etiqueta": "2026-09-02",
           "valor": 1085.59
+        },
+        {
+          "etiqueta": "2026-09-03",
+          "valor": 1084.83
         }
       ]
     },
     "uf": {
       "tipo": "diario",
       "puntos": [
-        {
-          "etiqueta": "2026-08-28",
-          "valor": 40869.82
-        },
         {
           "etiqueta": "2026-08-29",
           "valor": 40871.14
@@ -9145,6 +9145,10 @@
         {
           "etiqueta": "2026-09-02",
           "valor": 40876.41
+        },
+        {
+          "etiqueta": "2026-09-03",
+          "valor": 40877.73
         }
       ]
     },
@@ -9210,10 +9214,6 @@
       "tipo": "diario",
       "puntos": [
         {
-          "etiqueta": "2026-08-26",
-          "valor": 4.5
-        },
-        {
           "etiqueta": "2026-08-27",
           "valor": 4.5
         },
@@ -9231,6 +9231,10 @@
         },
         {
           "etiqueta": "2026-09-02",
+          "valor": 4.5
+        },
+        {
+          "etiqueta": "2026-09-03",
           "valor": 4.5
         }
       ]
@@ -9297,10 +9301,6 @@
       "tipo": "diario",
       "puntos": [
         {
-          "etiqueta": "2026-08-26",
-          "valor": 6.51
-        },
-        {
           "etiqueta": "2026-08-27",
           "valor": 6.58
         },
@@ -9319,6 +9319,10 @@
         {
           "etiqueta": "2026-09-02",
           "valor": 6.55
+        },
+        {
+          "etiqueta": "2026-09-03",
+          "valor": 6.53
         }
       ]
     },
@@ -9346,8 +9350,8 @@
           "valor": 78232
         },
         {
-          "etiqueta": "2026-08-01",
-          "valor": 62760.11
+          "etiqueta": "2026-09-02",
+          "valor": 77304.32
         }
       ]
     }
@@ -13205,139 +13209,139 @@
   "combustibles": {
     "nacional": {
       "93": {
-        "promedio": 1472,
+        "promedio": 1471,
         "n_estaciones": 1935,
-        "fecha": "2026-09-02"
+        "fecha": "2026-09-03"
       },
       "97": {
-        "promedio": 1549,
+        "promedio": 1548,
         "n_estaciones": 1729,
-        "fecha": "2026-09-02"
+        "fecha": "2026-09-03"
       },
       "DI": {
         "promedio": 1315,
         "n_estaciones": 1974,
-        "fecha": "2026-09-02"
+        "fecha": "2026-09-03"
       },
       "95": {
-        "promedio": 1509,
+        "promedio": 1508,
         "n_estaciones": 1934,
-        "fecha": "2026-09-02"
+        "fecha": "2026-09-03"
       },
       "KE": {
         "promedio": 1082,
         "n_estaciones": 1079,
-        "fecha": "2026-09-01"
+        "fecha": "2026-09-03"
       }
     },
     "regional": {
       "Arica y Parinacota": {
-        "93": 1540,
-        "97": 1598,
+        "93": 1539,
+        "97": 1597,
         "DI": 1360,
-        "95": 1567,
+        "95": 1566,
         "KE": 1233
       },
       "Tarapacá": {
-        "93": 1525,
-        "95": 1551,
-        "97": 1582,
+        "93": 1523,
+        "95": 1549,
+        "97": 1581,
         "DI": 1312,
         "KE": 1228
       },
       "Antofagasta": {
-        "93": 1551,
-        "97": 1612,
+        "93": 1548,
+        "97": 1609,
         "DI": 1375,
         "KE": 1208,
-        "95": 1583
+        "95": 1581
       },
       "Atacama": {
-        "93": 1537,
-        "97": 1607,
+        "93": 1536,
+        "97": 1606,
         "DI": 1375,
-        "95": 1572,
+        "95": 1571,
         "KE": 1109
       },
       "Coquimbo": {
-        "93": 1519,
-        "97": 1592,
+        "93": 1518,
+        "97": 1591,
         "DI": 1355,
-        "95": 1556,
+        "95": 1555,
         "KE": 1090
       },
       "Valparaíso": {
-        "93": 1458,
-        "97": 1543,
+        "93": 1457,
+        "97": 1542,
         "DI": 1302,
-        "95": 1502,
+        "95": 1500,
         "KE": 1062
       },
       "Del Libertador Gral. Bernardo O’Higgins": {
-        "93": 1487,
-        "97": 1555,
+        "93": 1486,
+        "97": 1554,
         "DI": 1330,
         "KE": 1097,
-        "95": 1515
+        "95": 1514
       },
       "Del Maule": {
-        "93": 1475,
-        "97": 1544,
+        "93": 1473,
+        "97": 1542,
         "DI": 1308,
         "KE": 1073,
-        "95": 1508
+        "95": 1506
       },
       "Del Biobío": {
-        "93": 1461,
-        "95": 1497,
-        "97": 1533,
+        "93": 1460,
+        "95": 1495,
+        "97": 1532,
         "DI": 1295,
         "KE": 1054
       },
       "Ñuble": {
-        "93": 1462,
-        "97": 1532,
+        "93": 1461,
+        "97": 1531,
         "DI": 1294,
         "KE": 1063,
-        "95": 1498
+        "95": 1497
       },
       "De la Araucanía": {
-        "93": 1490,
-        "97": 1556,
+        "93": 1489,
+        "97": 1555,
         "DI": 1321,
-        "95": 1520,
+        "95": 1518,
         "KE": 1089
       },
       "De los Ríos": {
-        "93": 1520,
-        "97": 1578,
+        "93": 1519,
+        "97": 1577,
         "DI": 1352,
         "KE": 1098,
-        "95": 1553
+        "95": 1552
       },
       "De los Lagos": {
-        "93": 1521,
-        "97": 1579,
+        "93": 1520,
+        "97": 1577,
         "DI": 1362,
         "KE": 1121,
-        "95": 1554
+        "95": 1553
       },
       "Aysén del Gral. Carlos Ibáñez del Campo": {
-        "93": 1569,
-        "97": 1638,
+        "93": 1567,
+        "97": 1636,
         "DI": 1464,
         "KE": 1160,
-        "95": 1613
+        "95": 1610
       },
       "Magallanes y de la Antártica Chilena": {
-        "93": 1556,
-        "95": 1569,
-        "97": 1612,
-        "DI": 1449
+        "93": 1555,
+        "95": 1568,
+        "97": 1611,
+        "DI": 1448
       },
       "Metropolitana de Santiago": {
-        "93": 1426,
-        "97": 1522,
+        "93": 1427,
+        "97": 1523,
         "DI": 1282,
         "KE": 1079,
         "95": 1472
@@ -13469,6 +13473,24 @@
         }
       },
       "regional": {
+        "Región de Los Lagos": {
+          "Marraqueta": 2340,
+          "Asado Carnicero": 10081,
+          "Pollo Entero": 3485,
+          "Leche Fluida Entera": 1210
+        },
+        "Región del Maule": {
+          "Marraqueta": 2282,
+          "Asado Carnicero": 11892,
+          "Pollo Entero": 3574,
+          "Leche Fluida Entera": 1193
+        },
+        "Región de Valparaíso": {
+          "Marraqueta": 2360,
+          "Asado Carnicero": 11130,
+          "Pollo Entero": 3716,
+          "Leche Fluida Entera": 1186
+        },
         "Región de La Araucanía": {
           "Marraqueta": 2318,
           "Asado Carnicero": 11018,
@@ -13482,11 +13504,11 @@
           "Pollo Entero": 4080,
           "Leche Fluida Entera": 1183
         },
-        "Región del Biobío": {
-          "Marraqueta": 2433,
-          "Asado Carnicero": 10872,
-          "Pollo Entero": 4040,
-          "Leche Fluida Entera": 1177
+        "Región de Coquimbo": {
+          "Marraqueta": 2377,
+          "Asado Carnicero": 10699,
+          "Pollo Entero": 3896,
+          "Leche Fluida Entera": 1195
         },
         "Región Metropolitana de Santiago": {
           "Marraqueta": 2243,
@@ -13494,35 +13516,17 @@
           "Pollo Entero": 3805,
           "Leche Fluida Entera": 1186
         },
-        "Región de Valparaíso": {
-          "Marraqueta": 2360,
-          "Asado Carnicero": 11130,
-          "Pollo Entero": 3716,
-          "Leche Fluida Entera": 1186
-        },
-        "Región de Coquimbo": {
-          "Marraqueta": 2377,
-          "Asado Carnicero": 10699,
-          "Pollo Entero": 3896,
-          "Leche Fluida Entera": 1195
-        },
-        "Región del Maule": {
-          "Marraqueta": 2282,
-          "Asado Carnicero": 11892,
-          "Pollo Entero": 3574,
-          "Leche Fluida Entera": 1193
-        },
-        "Región de Los Lagos": {
-          "Marraqueta": 2340,
-          "Asado Carnicero": 10081,
-          "Pollo Entero": 3485,
-          "Leche Fluida Entera": 1210
-        },
         "Región de Arica y Parinacota": {
           "Marraqueta": 2152,
           "Asado Carnicero": 9910,
           "Pollo Entero": 3691,
           "Leche Fluida Entera": 1204
+        },
+        "Región del Biobío": {
+          "Marraqueta": 2433,
+          "Asado Carnicero": 10872,
+          "Pollo Entero": 4040,
+          "Leche Fluida Entera": 1177
         }
       }
     },
@@ -13997,7 +14001,7 @@
     "macro": {
       "clave": "euro",
       "periodo": "2026-09",
-      "valor_actual": 1084.9,
+      "valor_actual": 1084.8767,
       "cambio_pct": 2.04,
       "zscore": 0.7
     },
@@ -14039,13 +14043,13 @@
       "uf": 0.16,
       "dolar": 0.12
     },
-    "valor": 100.7,
-    "fecha": "2026-09-02",
+    "valor": 100.69,
+    "fecha": "2026-09-03",
     "componentes": {
       "alimentos": 0.28,
-      "bencina": 4.18,
+      "bencina": 4.1,
       "uf": 0.08,
-      "dolar": 0.86
+      "dolar": 0.81
     },
     "historial": [
       {
@@ -14247,6 +14251,10 @@
       {
         "fecha": "2026-09-02",
         "valor": 100.7
+      },
+      {
+        "fecha": "2026-09-03",
+        "valor": 100.69
       }
     ]
   }
