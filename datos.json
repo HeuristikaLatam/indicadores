@@ -1,5 +1,5 @@
 {
-  "generado": "2026-09-04T13:03:56.911356+00:00",
+  "generado": "2026-09-04T21:59:28.035912+00:00",
   "macro": {
     "dolar": {
       "nombre": "Dólar observado",
@@ -13209,23 +13209,23 @@
   "combustibles": {
     "nacional": {
       "93": {
-        "promedio": 1468,
-        "n_estaciones": 1936,
+        "promedio": 1471,
+        "n_estaciones": 1937,
         "fecha": "2026-09-04"
       },
       "97": {
         "promedio": 1546,
-        "n_estaciones": 1730,
+        "n_estaciones": 1731,
         "fecha": "2026-09-04"
       },
       "DI": {
         "promedio": 1315,
-        "n_estaciones": 1975,
+        "n_estaciones": 1976,
         "fecha": "2026-09-04"
       },
       "95": {
         "promedio": 1505,
-        "n_estaciones": 1935,
+        "n_estaciones": 1936,
         "fecha": "2026-09-04"
       },
       "KE": {
@@ -13239,11 +13239,11 @@
         "93": 1534,
         "97": 1592,
         "DI": 1361,
-        "95": 1562,
+        "95": 1561,
         "KE": 1233
       },
       "Tarapacá": {
-        "93": 1520,
+        "93": 1519,
         "95": 1546,
         "97": 1577,
         "DI": 1313,
@@ -13289,27 +13289,27 @@
         "97": 1539,
         "DI": 1308,
         "KE": 1072,
-        "95": 1503
+        "95": 1502
       },
       "Del Biobío": {
-        "93": 1456,
+        "93": 1490,
         "95": 1491,
         "97": 1528,
         "DI": 1295,
         "KE": 1053
       },
       "Ñuble": {
-        "93": 1458,
+        "93": 1457,
         "97": 1526,
         "DI": 1294,
         "KE": 1063,
-        "95": 1494
+        "95": 1493
       },
       "De la Araucanía": {
         "93": 1485,
         "97": 1550,
         "DI": 1321,
-        "95": 1515,
+        "95": 1514,
         "KE": 1088
       },
       "De los Ríos": {
@@ -13341,10 +13341,10 @@
       },
       "Metropolitana de Santiago": {
         "93": 1426,
-        "97": 1523,
-        "DI": 1282,
+        "97": 1522,
+        "DI": 1281,
         "KE": 1079,
-        "95": 1472
+        "95": 1471
       }
     }
   },
@@ -13447,86 +13447,86 @@
     "consumidor": {
       "nacional": {
         "Marraqueta": {
-          "promedio": 2312,
-          "fecha": "2026-08-28",
+          "promedio": 2303,
+          "fecha": "2026-09-04",
           "unidad": "kg"
         },
         "Asado Carnicero": {
-          "promedio": 10939,
-          "fecha": "2026-08-28",
+          "promedio": 11051,
+          "fecha": "2026-09-04",
           "unidad": "kg"
         },
         "Pollo Entero": {
-          "promedio": 3813,
-          "fecha": "2026-08-28",
+          "promedio": 3772,
+          "fecha": "2026-09-04",
           "unidad": "kg"
         },
         "Huevo blanco - Extra": {
-          "promedio": 215,
-          "fecha": "2026-08-28",
+          "promedio": 217,
+          "fecha": "2026-09-04",
           "unidad": "un"
         },
         "Leche Fluida Entera": {
           "promedio": 1194,
-          "fecha": "2026-08-28",
+          "fecha": "2026-09-04",
           "unidad": "L"
         }
       },
       "regional": {
-        "Región del Maule": {
-          "Marraqueta": 2282,
-          "Asado Carnicero": 11892,
-          "Pollo Entero": 3574,
-          "Leche Fluida Entera": 1193
+        "Región de La Araucanía": {
+          "Marraqueta": 2301,
+          "Asado Carnicero": 11545,
+          "Pollo Entero": 3725,
+          "Huevo blanco - Extra": 217,
+          "Leche Fluida Entera": 1240
         },
         "Región de Valparaíso": {
-          "Marraqueta": 2360,
-          "Asado Carnicero": 11130,
-          "Pollo Entero": 3716,
-          "Leche Fluida Entera": 1186
-        },
-        "Región del Biobío": {
-          "Marraqueta": 2433,
-          "Asado Carnicero": 10872,
-          "Pollo Entero": 4040,
-          "Leche Fluida Entera": 1177
-        },
-        "Región Metropolitana de Santiago": {
-          "Marraqueta": 2243,
-          "Asado Carnicero": 10634,
-          "Pollo Entero": 3805,
-          "Leche Fluida Entera": 1186
+          "Marraqueta": 2352,
+          "Asado Carnicero": 11305,
+          "Pollo Entero": 3843,
+          "Leche Fluida Entera": 1179
         },
         "Región de Los Lagos": {
-          "Marraqueta": 2340,
-          "Asado Carnicero": 10081,
-          "Pollo Entero": 3485,
-          "Leche Fluida Entera": 1210
+          "Marraqueta": 2385,
+          "Asado Carnicero": 10660,
+          "Pollo Entero": 3504,
+          "Leche Fluida Entera": 1203
         },
         "Región de Ñuble": {
-          "Marraqueta": 2161,
-          "Asado Carnicero": 11573,
-          "Pollo Entero": 4080,
-          "Leche Fluida Entera": 1183
+          "Marraqueta": 2183,
+          "Asado Carnicero": 11725,
+          "Pollo Entero": 3889,
+          "Leche Fluida Entera": 1184
         },
-        "Región de Arica y Parinacota": {
-          "Marraqueta": 2152,
-          "Asado Carnicero": 9910,
-          "Pollo Entero": 3691,
-          "Leche Fluida Entera": 1204
+        "Región Metropolitana de Santiago": {
+          "Marraqueta": 2252,
+          "Asado Carnicero": 10698,
+          "Pollo Entero": 3790,
+          "Leche Fluida Entera": 1188
         },
         "Región de Coquimbo": {
-          "Marraqueta": 2377,
-          "Asado Carnicero": 10699,
-          "Pollo Entero": 3896,
-          "Leche Fluida Entera": 1195
+          "Marraqueta": 2378,
+          "Asado Carnicero": 10736,
+          "Pollo Entero": 3773,
+          "Leche Fluida Entera": 1207
         },
-        "Región de La Araucanía": {
-          "Marraqueta": 2318,
-          "Asado Carnicero": 11018,
-          "Pollo Entero": 3896,
-          "Huevo blanco - Extra": 215,
-          "Leche Fluida Entera": 1219
+        "Región del Biobío": {
+          "Marraqueta": 2344,
+          "Asado Carnicero": 10789,
+          "Pollo Entero": 4035,
+          "Leche Fluida Entera": 1161
+        },
+        "Región de Arica y Parinacota": {
+          "Marraqueta": 2161,
+          "Asado Carnicero": 10065,
+          "Pollo Entero": 3821,
+          "Leche Fluida Entera": 1198
+        },
+        "Región del Maule": {
+          "Marraqueta": 2239,
+          "Asado Carnicero": 11300,
+          "Pollo Entero": 3572,
+          "Leche Fluida Entera": 1196
         }
       }
     },
@@ -13825,6 +13825,11 @@
           "periodo": "2026-08",
           "fecha": "2026-08-28",
           "valor": 2312
+        },
+        {
+          "periodo": "2026-09",
+          "fecha": "2026-09-04",
+          "valor": 2303
         }
       ],
       "Asado Carnicero": [
@@ -13867,6 +13872,11 @@
           "periodo": "2026-08",
           "fecha": "2026-08-28",
           "valor": 10939
+        },
+        {
+          "periodo": "2026-09",
+          "fecha": "2026-09-04",
+          "valor": 11051
         }
       ],
       "Pollo Entero": [
@@ -13909,6 +13919,11 @@
           "periodo": "2026-08",
           "fecha": "2026-08-28",
           "valor": 3813
+        },
+        {
+          "periodo": "2026-09",
+          "fecha": "2026-09-04",
+          "valor": 3772
         }
       ],
       "Huevo blanco - Extra": [
@@ -13951,6 +13966,11 @@
           "periodo": "2026-08",
           "fecha": "2026-08-28",
           "valor": 215
+        },
+        {
+          "periodo": "2026-09",
+          "fecha": "2026-09-04",
+          "valor": 217
         }
       ],
       "Leche Fluida Entera": [
@@ -13993,6 +14013,11 @@
           "periodo": "2026-08",
           "fecha": "2026-08-28",
           "valor": 1194
+        },
+        {
+          "periodo": "2026-09",
+          "fecha": "2026-09-04",
+          "valor": 1194
         }
       ]
     }
@@ -14015,12 +14040,12 @@
       "zscore": 0.33
     },
     "alimentos": {
-      "tipo_canasta": "consumidor",
-      "producto": "Pollo Entero",
+      "tipo_canasta": "mayorista",
+      "producto": "Palta",
       "fecha": "2026-08-28",
-      "valor_actual": 3813,
-      "cambio_pct": 2.12,
-      "zscore": 2.34
+      "valor_actual": 2919,
+      "cambio_pct": 22.24,
+      "zscore": 2.07
     }
   },
   "indice_costo_vida": {
@@ -14043,11 +14068,11 @@
       "uf": 0.16,
       "dolar": 0.12
     },
-    "valor": 100.63,
+    "valor": 100.72,
     "fecha": "2026-09-04",
     "componentes": {
-      "alimentos": 0.28,
-      "bencina": 3.89,
+      "alimentos": 0.38,
+      "bencina": 4.1,
       "uf": 0.08,
       "dolar": 0.5
     },
@@ -14258,7 +14283,7 @@
       },
       {
         "fecha": "2026-09-04",
-        "valor": 100.63
+        "valor": 100.72
       }
     ]
   }
