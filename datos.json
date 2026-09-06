@@ -1,5 +1,5 @@
 {
-  "generado": "2026-09-05T22:29:03.201115+00:00",
+  "generado": "2026-09-06T11:54:49.469484+00:00",
   "macro": {
     "dolar": {
       "nombre": "Dólar observado",
@@ -16,8 +16,8 @@
     "uf": {
       "nombre": "Unidad de fomento (UF)",
       "unidad": "Pesos",
-      "valor": 40880.36,
-      "fecha": "2026-09-05T04:00:00.000Z"
+      "valor": 40881.68,
+      "fecha": "2026-09-06T04:00:00.000Z"
     },
     "utm": {
       "nombre": "Unidad Tributaria Mensual (UTM)",
@@ -9127,10 +9127,6 @@
       "tipo": "diario",
       "puntos": [
         {
-          "etiqueta": "2026-08-31",
-          "valor": 40873.77
-        },
-        {
           "etiqueta": "2026-09-01",
           "valor": 40875.09
         },
@@ -9149,6 +9145,10 @@
         {
           "etiqueta": "2026-09-05",
           "valor": 40880.36
+        },
+        {
+          "etiqueta": "2026-09-06",
+          "valor": 40881.68
         }
       ]
     },
@@ -13211,12 +13211,12 @@
       "93": {
         "promedio": 1471,
         "n_estaciones": 1937,
-        "fecha": "2026-09-05"
+        "fecha": "2026-09-06"
       },
       "97": {
         "promedio": 1546,
         "n_estaciones": 1731,
-        "fecha": "2026-09-05"
+        "fecha": "2026-09-06"
       },
       "DI": {
         "promedio": 1315,
@@ -13226,12 +13226,12 @@
       "95": {
         "promedio": 1505,
         "n_estaciones": 1936,
-        "fecha": "2026-09-05"
+        "fecha": "2026-09-06"
       },
       "KE": {
         "promedio": 1082,
         "n_estaciones": 1079,
-        "fecha": "2026-09-04"
+        "fecha": "2026-09-05"
       }
     },
     "regional": {
@@ -13285,9 +13285,9 @@
         "95": 1512
       },
       "Del Maule": {
-        "93": 1470,
+        "93": 1469,
         "97": 1538,
-        "DI": 1308,
+        "DI": 1307,
         "KE": 1072,
         "95": 1502
       },
@@ -13320,7 +13320,7 @@
         "95": 1548
       },
       "De los Lagos": {
-        "93": 1516,
+        "93": 1515,
         "97": 1573,
         "DI": 1362,
         "KE": 1120,
@@ -13334,7 +13334,7 @@
         "95": 1608
       },
       "Magallanes y de la Antártica Chilena": {
-        "93": 1552,
+        "93": 1551,
         "95": 1564,
         "97": 1607,
         "DI": 1448
@@ -13475,25 +13475,6 @@
         }
       },
       "regional": {
-        "Región de La Araucanía": {
-          "Marraqueta": 2301,
-          "Asado Carnicero": 11545,
-          "Pollo Entero": 3725,
-          "Huevo blanco - Extra": 217,
-          "Leche Fluida Entera": 1240
-        },
-        "Región Metropolitana de Santiago": {
-          "Marraqueta": 2252,
-          "Asado Carnicero": 10698,
-          "Pollo Entero": 3790,
-          "Leche Fluida Entera": 1188
-        },
-        "Región de Los Lagos": {
-          "Marraqueta": 2385,
-          "Asado Carnicero": 10660,
-          "Pollo Entero": 3504,
-          "Leche Fluida Entera": 1203
-        },
         "Región de Valparaíso": {
           "Marraqueta": 2352,
           "Asado Carnicero": 11305,
@@ -13512,17 +13493,36 @@
           "Pollo Entero": 3572,
           "Leche Fluida Entera": 1196
         },
+        "Región de Ñuble": {
+          "Marraqueta": 2183,
+          "Asado Carnicero": 11725,
+          "Pollo Entero": 3889,
+          "Leche Fluida Entera": 1184
+        },
+        "Región Metropolitana de Santiago": {
+          "Marraqueta": 2252,
+          "Asado Carnicero": 10698,
+          "Pollo Entero": 3790,
+          "Leche Fluida Entera": 1188
+        },
         "Región del Biobío": {
           "Marraqueta": 2344,
           "Asado Carnicero": 10789,
           "Pollo Entero": 4035,
           "Leche Fluida Entera": 1161
         },
-        "Región de Ñuble": {
-          "Marraqueta": 2183,
-          "Asado Carnicero": 11725,
-          "Pollo Entero": 3889,
-          "Leche Fluida Entera": 1184
+        "Región de Los Lagos": {
+          "Marraqueta": 2385,
+          "Asado Carnicero": 10660,
+          "Pollo Entero": 3504,
+          "Leche Fluida Entera": 1203
+        },
+        "Región de La Araucanía": {
+          "Marraqueta": 2301,
+          "Asado Carnicero": 11545,
+          "Pollo Entero": 3725,
+          "Huevo blanco - Extra": 217,
+          "Leche Fluida Entera": 1240
         },
         "Región de Arica y Parinacota": {
           "Marraqueta": 2161,
@@ -14101,7 +14101,7 @@
       "dolar": 0.12
     },
     "valor": 100.72,
-    "fecha": "2026-09-05",
+    "fecha": "2026-09-06",
     "componentes": {
       "alimentos": 0.38,
       "bencina": 4.1,
@@ -14319,6 +14319,10 @@
       },
       {
         "fecha": "2026-09-05",
+        "valor": 100.72
+      },
+      {
+        "fecha": "2026-09-06",
         "valor": 100.72
       }
     ]
