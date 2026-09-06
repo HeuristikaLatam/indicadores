@@ -1,5 +1,5 @@
 {
-  "generado": "2026-09-06T21:52:35.927355+00:00",
+  "generado": "2026-09-06T22:33:56.198011+00:00",
   "macro": {
     "dolar": {
       "nombre": "Dólar observado",
@@ -13475,18 +13475,6 @@
         }
       },
       "regional": {
-        "Región del Maule": {
-          "Marraqueta": 2239,
-          "Asado Carnicero": 11300,
-          "Pollo Entero": 3572,
-          "Leche Fluida Entera": 1196
-        },
-        "Región de Los Lagos": {
-          "Marraqueta": 2385,
-          "Asado Carnicero": 10660,
-          "Pollo Entero": 3504,
-          "Leche Fluida Entera": 1203
-        },
         "Región del Biobío": {
           "Marraqueta": 2344,
           "Asado Carnicero": 10789,
@@ -13505,12 +13493,11 @@
           "Pollo Entero": 3790,
           "Leche Fluida Entera": 1188
         },
-        "Región de La Araucanía": {
-          "Marraqueta": 2301,
-          "Asado Carnicero": 11545,
-          "Pollo Entero": 3725,
-          "Huevo blanco - Extra": 217,
-          "Leche Fluida Entera": 1240
+        "Región de Los Lagos": {
+          "Marraqueta": 2385,
+          "Asado Carnicero": 10660,
+          "Pollo Entero": 3504,
+          "Leche Fluida Entera": 1203
         },
         "Región de Ñuble": {
           "Marraqueta": 2183,
@@ -13518,11 +13505,24 @@
           "Pollo Entero": 3889,
           "Leche Fluida Entera": 1184
         },
+        "Región del Maule": {
+          "Marraqueta": 2239,
+          "Asado Carnicero": 11300,
+          "Pollo Entero": 3572,
+          "Leche Fluida Entera": 1196
+        },
         "Región de Coquimbo": {
           "Marraqueta": 2378,
           "Asado Carnicero": 10736,
           "Pollo Entero": 3773,
           "Leche Fluida Entera": 1207
+        },
+        "Región de La Araucanía": {
+          "Marraqueta": 2301,
+          "Asado Carnicero": 11545,
+          "Pollo Entero": 3725,
+          "Huevo blanco - Extra": 217,
+          "Leche Fluida Entera": 1240
         },
         "Región de Arica y Parinacota": {
           "Marraqueta": 2161,
