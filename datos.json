@@ -1,5 +1,5 @@
 {
-  "generado": "2026-09-07T13:55:22.161034+00:00",
+  "generado": "2026-09-07T22:25:41.258028+00:00",
   "macro": {
     "dolar": {
       "nombre": "Dólar observado",
@@ -2491,6 +2491,54 @@
       {
         "periodo": "2017-12",
         "valor": 26779.9897
+      },
+      {
+        "periodo": "2018-01",
+        "valor": 26811.9716
+      },
+      {
+        "periodo": "2018-02",
+        "valor": 26864.0882
+      },
+      {
+        "periodo": "2018-03",
+        "valor": 26961.3158
+      },
+      {
+        "periodo": "2018-04",
+        "valor": 26980.7257
+      },
+      {
+        "periodo": "2018-05",
+        "valor": 27040.0558
+      },
+      {
+        "periodo": "2018-06",
+        "valor": 27119.5907
+      },
+      {
+        "periodo": "2018-07",
+        "valor": 27187.1926
+      },
+      {
+        "periodo": "2018-08",
+        "valor": 27237.9768
+      },
+      {
+        "periodo": "2018-09",
+        "valor": 27329.007
+      },
+      {
+        "periodo": "2018-10",
+        "valor": 27393.3358
+      },
+      {
+        "periodo": "2018-11",
+        "valor": 27480.947
+      },
+      {
+        "periodo": "2018-12",
+        "valor": 27561.5329
       },
       {
         "periodo": "2019-01",
@@ -5191,6 +5239,342 @@
         "valor": 3.3611
       },
       {
+        "periodo": "2016-01",
+        "valor": 3.5
+      },
+      {
+        "periodo": "2016-02",
+        "valor": 3.5
+      },
+      {
+        "periodo": "2016-03",
+        "valor": 3.5
+      },
+      {
+        "periodo": "2016-04",
+        "valor": 3.5
+      },
+      {
+        "periodo": "2016-05",
+        "valor": 3.5
+      },
+      {
+        "periodo": "2016-06",
+        "valor": 3.5
+      },
+      {
+        "periodo": "2016-07",
+        "valor": 3.5
+      },
+      {
+        "periodo": "2016-08",
+        "valor": 3.5
+      },
+      {
+        "periodo": "2016-09",
+        "valor": 3.5
+      },
+      {
+        "periodo": "2016-10",
+        "valor": 3.5
+      },
+      {
+        "periodo": "2016-11",
+        "valor": 3.5
+      },
+      {
+        "periodo": "2016-12",
+        "valor": 3.5
+      },
+      {
+        "periodo": "2017-01",
+        "valor": 3.4048
+      },
+      {
+        "periodo": "2017-02",
+        "valor": 3.25
+      },
+      {
+        "periodo": "2017-03",
+        "valor": 3.1304
+      },
+      {
+        "periodo": "2017-04",
+        "valor": 2.875
+      },
+      {
+        "periodo": "2017-05",
+        "valor": 2.6477
+      },
+      {
+        "periodo": "2017-06",
+        "valor": 2.5
+      },
+      {
+        "periodo": "2017-07",
+        "valor": 2.5
+      },
+      {
+        "periodo": "2017-08",
+        "valor": 2.5
+      },
+      {
+        "periodo": "2017-09",
+        "valor": 2.5
+      },
+      {
+        "periodo": "2017-10",
+        "valor": 2.5
+      },
+      {
+        "periodo": "2017-11",
+        "valor": 2.5
+      },
+      {
+        "periodo": "2017-12",
+        "valor": 2.5
+      },
+      {
+        "periodo": "2018-01",
+        "valor": 2.5
+      },
+      {
+        "periodo": "2018-02",
+        "valor": 2.5
+      },
+      {
+        "periodo": "2018-03",
+        "valor": 2.5
+      },
+      {
+        "periodo": "2018-04",
+        "valor": 2.5
+      },
+      {
+        "periodo": "2018-05",
+        "valor": 2.5
+      },
+      {
+        "periodo": "2018-06",
+        "valor": 2.5
+      },
+      {
+        "periodo": "2018-07",
+        "valor": 2.5
+      },
+      {
+        "periodo": "2018-08",
+        "valor": 2.5
+      },
+      {
+        "periodo": "2018-09",
+        "valor": 2.5
+      },
+      {
+        "periodo": "2018-10",
+        "valor": 2.6023
+      },
+      {
+        "periodo": "2018-11",
+        "valor": 2.75
+      },
+      {
+        "periodo": "2018-12",
+        "valor": 2.75
+      },
+      {
+        "periodo": "2019-01",
+        "valor": 2.7614
+      },
+      {
+        "periodo": "2019-02",
+        "valor": 3.0
+      },
+      {
+        "periodo": "2019-03",
+        "valor": 3.0
+      },
+      {
+        "periodo": "2019-04",
+        "valor": 3.0
+      },
+      {
+        "periodo": "2019-05",
+        "valor": 3.0
+      },
+      {
+        "periodo": "2019-06",
+        "valor": 2.625
+      },
+      {
+        "periodo": "2019-07",
+        "valor": 2.5
+      },
+      {
+        "periodo": "2019-08",
+        "valor": 2.5
+      },
+      {
+        "periodo": "2019-09",
+        "valor": 2.0556
+      },
+      {
+        "periodo": "2019-10",
+        "valor": 1.9432
+      },
+      {
+        "periodo": "2019-11",
+        "valor": 1.75
+      },
+      {
+        "periodo": "2019-12",
+        "valor": 1.75
+      },
+      {
+        "periodo": "2020-01",
+        "valor": 1.75
+      },
+      {
+        "periodo": "2020-02",
+        "valor": 1.75
+      },
+      {
+        "periodo": "2020-03",
+        "valor": 1.375
+      },
+      {
+        "periodo": "2020-04",
+        "valor": 0.5
+      },
+      {
+        "periodo": "2020-05",
+        "valor": 0.5
+      },
+      {
+        "periodo": "2020-06",
+        "valor": 0.5
+      },
+      {
+        "periodo": "2020-07",
+        "valor": 0.4783
+      },
+      {
+        "periodo": "2020-08",
+        "valor": 0.5
+      },
+      {
+        "periodo": "2020-09",
+        "valor": 0.5
+      },
+      {
+        "periodo": "2020-10",
+        "valor": 0.5
+      },
+      {
+        "periodo": "2020-11",
+        "valor": 0.5
+      },
+      {
+        "periodo": "2020-12",
+        "valor": 0.5
+      },
+      {
+        "periodo": "2021-01",
+        "valor": 0.5
+      },
+      {
+        "periodo": "2021-02",
+        "valor": 0.5
+      },
+      {
+        "periodo": "2021-03",
+        "valor": 0.5
+      },
+      {
+        "periodo": "2021-04",
+        "valor": 0.5
+      },
+      {
+        "periodo": "2021-05",
+        "valor": 0.5
+      },
+      {
+        "periodo": "2021-06",
+        "valor": 0.5
+      },
+      {
+        "periodo": "2021-07",
+        "valor": 0.631
+      },
+      {
+        "periodo": "2021-08",
+        "valor": 0.75
+      },
+      {
+        "periodo": "2021-09",
+        "valor": 1.5
+      },
+      {
+        "periodo": "2021-10",
+        "valor": 2.25
+      },
+      {
+        "periodo": "2021-11",
+        "valor": 2.75
+      },
+      {
+        "periodo": "2021-12",
+        "valor": 3.4643
+      },
+      {
+        "periodo": "2022-01",
+        "valor": 4.2143
+      },
+      {
+        "periodo": "2022-02",
+        "valor": 5.5
+      },
+      {
+        "periodo": "2022-03",
+        "valor": 5.6304
+      },
+      {
+        "periodo": "2022-04",
+        "valor": 7.0
+      },
+      {
+        "periodo": "2022-05",
+        "valor": 8.0326
+      },
+      {
+        "periodo": "2022-06",
+        "valor": 8.8125
+      },
+      {
+        "periodo": "2022-07",
+        "valor": 9.4286
+      },
+      {
+        "periodo": "2022-08",
+        "valor": 9.75
+      },
+      {
+        "periodo": "2022-09",
+        "valor": 10.55
+      },
+      {
+        "periodo": "2022-10",
+        "valor": 11.05
+      },
+      {
+        "periodo": "2022-11",
+        "valor": 11.25
+      },
+      {
+        "periodo": "2022-12",
+        "valor": 11.25
+      },
+      {
         "periodo": "2023-01",
         "valor": 11.25
       },
@@ -7822,7 +8206,7 @@
       },
       {
         "periodo": "2026-09",
-        "valor": 6.53
+        "valor": 6.5367
       }
     ],
     "bitcoin": [
@@ -13091,11 +13475,11 @@
         }
       },
       "regional": {
-        "Región de Arica y Parinacota": {
-          "Marraqueta": 2161,
-          "Asado Carnicero": 10065,
-          "Pollo Entero": 3821,
-          "Leche Fluida Entera": 1198
+        "Región del Biobío": {
+          "Marraqueta": 2344,
+          "Asado Carnicero": 10789,
+          "Pollo Entero": 4035,
+          "Leche Fluida Entera": 1161
         },
         "Región de La Araucanía": {
           "Marraqueta": 2301,
@@ -13104,17 +13488,17 @@
           "Huevo blanco - Extra": 217,
           "Leche Fluida Entera": 1240
         },
+        "Región de Valparaíso": {
+          "Marraqueta": 2352,
+          "Asado Carnicero": 11305,
+          "Pollo Entero": 3843,
+          "Leche Fluida Entera": 1179
+        },
         "Región de Coquimbo": {
           "Marraqueta": 2378,
           "Asado Carnicero": 10736,
           "Pollo Entero": 3773,
           "Leche Fluida Entera": 1207
-        },
-        "Región de Ñuble": {
-          "Marraqueta": 2183,
-          "Asado Carnicero": 11725,
-          "Pollo Entero": 3889,
-          "Leche Fluida Entera": 1184
         },
         "Región de Los Lagos": {
           "Marraqueta": 2385,
@@ -13122,11 +13506,11 @@
           "Pollo Entero": 3504,
           "Leche Fluida Entera": 1203
         },
-        "Región de Valparaíso": {
-          "Marraqueta": 2352,
-          "Asado Carnicero": 11305,
-          "Pollo Entero": 3843,
-          "Leche Fluida Entera": 1179
+        "Región Metropolitana de Santiago": {
+          "Marraqueta": 2252,
+          "Asado Carnicero": 10698,
+          "Pollo Entero": 3790,
+          "Leche Fluida Entera": 1188
         },
         "Región del Maule": {
           "Marraqueta": 2239,
@@ -13134,17 +13518,17 @@
           "Pollo Entero": 3572,
           "Leche Fluida Entera": 1196
         },
-        "Región Metropolitana de Santiago": {
-          "Marraqueta": 2252,
-          "Asado Carnicero": 10698,
-          "Pollo Entero": 3790,
-          "Leche Fluida Entera": 1188
+        "Región de Ñuble": {
+          "Marraqueta": 2183,
+          "Asado Carnicero": 11725,
+          "Pollo Entero": 3889,
+          "Leche Fluida Entera": 1184
         },
-        "Región del Biobío": {
-          "Marraqueta": 2344,
-          "Asado Carnicero": 10789,
-          "Pollo Entero": 4035,
-          "Leche Fluida Entera": 1161
+        "Región de Arica y Parinacota": {
+          "Marraqueta": 2161,
+          "Asado Carnicero": 10065,
+          "Pollo Entero": 3821,
+          "Leche Fluida Entera": 1198
         }
       }
     },
