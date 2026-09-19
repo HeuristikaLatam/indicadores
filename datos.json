@@ -1,5 +1,5 @@
 {
-  "generado": "2026-09-19T12:48:27.359301+00:00",
+  "generado": "2026-09-19T21:59:48.762984+00:00",
   "macro": {
     "dolar": {
       "nombre": "Dólar observado",
@@ -9374,6 +9374,306 @@
         "etiqueta": "Consumo en pesos (largo plazo, montos medios)",
         "serie": [
           {
+            "fecha": "2007-01-11",
+            "valor": 18.66
+          },
+          {
+            "fecha": "2007-02-12",
+            "valor": 18.84
+          },
+          {
+            "fecha": "2007-03-13",
+            "valor": 19.3
+          },
+          {
+            "fecha": "2007-04-16",
+            "valor": 17.92
+          },
+          {
+            "fecha": "2007-05-10",
+            "valor": 18.08
+          },
+          {
+            "fecha": "2007-06-12",
+            "valor": 18.58
+          },
+          {
+            "fecha": "2007-07-12",
+            "valor": 18.4
+          },
+          {
+            "fecha": "2007-08-14",
+            "valor": 19.02
+          },
+          {
+            "fecha": "2007-09-11",
+            "valor": 18.94
+          },
+          {
+            "fecha": "2007-10-10",
+            "valor": 18.94
+          },
+          {
+            "fecha": "2007-11-13",
+            "valor": 19.12
+          },
+          {
+            "fecha": "2007-12-12",
+            "valor": 19.22
+          },
+          {
+            "fecha": "2008-01-11",
+            "valor": 19.48
+          },
+          {
+            "fecha": "2008-02-11",
+            "valor": 19.68
+          },
+          {
+            "fecha": "2008-03-13",
+            "valor": 20.28
+          },
+          {
+            "fecha": "2008-04-16",
+            "valor": 20.7
+          },
+          {
+            "fecha": "2008-05-09",
+            "valor": 20.48
+          },
+          {
+            "fecha": "2008-06-13",
+            "valor": 20.22
+          },
+          {
+            "fecha": "2008-07-10",
+            "valor": 20.6
+          },
+          {
+            "fecha": "2008-08-13",
+            "valor": 21.02
+          },
+          {
+            "fecha": "2008-09-11",
+            "valor": 21.1
+          },
+          {
+            "fecha": "2008-09-30",
+            "valor": 21.1
+          },
+          {
+            "fecha": "2008-10-10",
+            "valor": 22.16
+          },
+          {
+            "fecha": "2008-11-11",
+            "valor": 22.78
+          },
+          {
+            "fecha": "2008-12-02",
+            "valor": 22.78
+          },
+          {
+            "fecha": "2008-12-13",
+            "valor": 23.88
+          },
+          {
+            "fecha": "2009-01-10",
+            "valor": 23.78
+          },
+          {
+            "fecha": "2009-02-14",
+            "valor": 24.02
+          },
+          {
+            "fecha": "2009-03-13",
+            "valor": 23.24
+          },
+          {
+            "fecha": "2009-04-14",
+            "valor": 20.52
+          },
+          {
+            "fecha": "2009-05-12",
+            "valor": 19.04
+          },
+          {
+            "fecha": "2009-06-11",
+            "valor": 18.5
+          },
+          {
+            "fecha": "2009-07-13",
+            "valor": 18.1
+          },
+          {
+            "fecha": "2009-08-10",
+            "valor": 16.9
+          },
+          {
+            "fecha": "2009-09-10",
+            "valor": 15.54
+          },
+          {
+            "fecha": "2009-10-13",
+            "valor": 15.4
+          },
+          {
+            "fecha": "2009-11-10",
+            "valor": 15.06
+          },
+          {
+            "fecha": "2009-12-15",
+            "valor": 15.12
+          },
+          {
+            "fecha": "2010-01-14",
+            "valor": 15.16
+          },
+          {
+            "fecha": "2010-02-11",
+            "valor": 15.32
+          },
+          {
+            "fecha": "2010-03-13",
+            "valor": 16.1
+          },
+          {
+            "fecha": "2010-04-14",
+            "valor": 16.04
+          },
+          {
+            "fecha": "2010-05-14",
+            "valor": 15.98
+          },
+          {
+            "fecha": "2010-06-14",
+            "valor": 16.02
+          },
+          {
+            "fecha": "2010-07-14",
+            "valor": 16.1
+          },
+          {
+            "fecha": "2010-08-12",
+            "valor": 16.22
+          },
+          {
+            "fecha": "2010-08-26",
+            "valor": 16.22
+          },
+          {
+            "fecha": "2010-09-15",
+            "valor": 16.5
+          },
+          {
+            "fecha": "2010-10-15",
+            "valor": 16.56
+          },
+          {
+            "fecha": "2010-11-13",
+            "valor": 16.76
+          },
+          {
+            "fecha": "2010-12-15",
+            "valor": 16.28
+          },
+          {
+            "fecha": "2011-01-08",
+            "valor": 16.22
+          },
+          {
+            "fecha": "2011-02-10",
+            "valor": 16.22
+          },
+          {
+            "fecha": "2011-03-12",
+            "valor": 16.54
+          },
+          {
+            "fecha": "2011-04-13",
+            "valor": 16.14
+          },
+          {
+            "fecha": "2011-05-13",
+            "valor": 16.22
+          },
+          {
+            "fecha": "2011-06-11",
+            "valor": 16.24
+          },
+          {
+            "fecha": "2011-07-13",
+            "valor": 16.14
+          },
+          {
+            "fecha": "2011-08-12",
+            "valor": 16.16
+          },
+          {
+            "fecha": "2011-09-10",
+            "valor": 16.18
+          },
+          {
+            "fecha": "2011-10-14",
+            "valor": 16.12
+          },
+          {
+            "fecha": "2011-11-12",
+            "valor": 16.12
+          },
+          {
+            "fecha": "2011-12-12",
+            "valor": 16.7
+          },
+          {
+            "fecha": "2012-01-13",
+            "valor": 16.98
+          },
+          {
+            "fecha": "2012-02-10",
+            "valor": 17.84
+          },
+          {
+            "fecha": "2012-03-14",
+            "valor": 17.96
+          },
+          {
+            "fecha": "2012-04-12",
+            "valor": 17.92
+          },
+          {
+            "fecha": "2012-05-12",
+            "valor": 18.3
+          },
+          {
+            "fecha": "2012-06-12",
+            "valor": 18.24
+          },
+          {
+            "fecha": "2012-07-12",
+            "valor": 17.94
+          },
+          {
+            "fecha": "2012-08-13",
+            "valor": 18.0
+          },
+          {
+            "fecha": "2012-09-14",
+            "valor": 17.34
+          },
+          {
+            "fecha": "2012-10-12",
+            "valor": 17.4
+          },
+          {
+            "fecha": "2012-11-14",
+            "valor": 17.7
+          },
+          {
+            "fecha": "2012-12-14",
+            "valor": 17.74
+          },
+          {
             "fecha": "2013-01-11",
             "valor": 17.68
           },
@@ -10038,6 +10338,306 @@
       "24": {
         "etiqueta": "Hipotecario UF (>1 año, hasta 2.000 UF)",
         "serie": [
+          {
+            "fecha": "2007-01-11",
+            "valor": 7.06
+          },
+          {
+            "fecha": "2007-02-12",
+            "valor": 6.16
+          },
+          {
+            "fecha": "2007-03-13",
+            "valor": 6.0
+          },
+          {
+            "fecha": "2007-04-16",
+            "valor": 5.88
+          },
+          {
+            "fecha": "2007-05-10",
+            "valor": 5.48
+          },
+          {
+            "fecha": "2007-06-12",
+            "valor": 5.26
+          },
+          {
+            "fecha": "2007-07-12",
+            "valor": 5.1
+          },
+          {
+            "fecha": "2007-08-14",
+            "valor": 5.26
+          },
+          {
+            "fecha": "2007-09-11",
+            "valor": 5.48
+          },
+          {
+            "fecha": "2007-10-10",
+            "valor": 5.38
+          },
+          {
+            "fecha": "2007-11-13",
+            "valor": 5.5
+          },
+          {
+            "fecha": "2007-12-12",
+            "valor": 5.46
+          },
+          {
+            "fecha": "2008-01-11",
+            "valor": 5.6
+          },
+          {
+            "fecha": "2008-02-11",
+            "valor": 5.8
+          },
+          {
+            "fecha": "2008-03-13",
+            "valor": 5.96
+          },
+          {
+            "fecha": "2008-04-16",
+            "valor": 5.98
+          },
+          {
+            "fecha": "2008-05-09",
+            "valor": 5.6
+          },
+          {
+            "fecha": "2008-06-13",
+            "valor": 5.28
+          },
+          {
+            "fecha": "2008-07-10",
+            "valor": 5.34
+          },
+          {
+            "fecha": "2008-08-13",
+            "valor": 5.66
+          },
+          {
+            "fecha": "2008-09-11",
+            "valor": 5.64
+          },
+          {
+            "fecha": "2008-09-30",
+            "valor": 5.64
+          },
+          {
+            "fecha": "2008-10-10",
+            "valor": 5.66
+          },
+          {
+            "fecha": "2008-11-11",
+            "valor": 6.04
+          },
+          {
+            "fecha": "2008-12-02",
+            "valor": 6.04
+          },
+          {
+            "fecha": "2008-12-13",
+            "valor": 6.4
+          },
+          {
+            "fecha": "2009-01-10",
+            "valor": 6.5
+          },
+          {
+            "fecha": "2009-02-14",
+            "valor": 7.26
+          },
+          {
+            "fecha": "2009-03-13",
+            "valor": 6.82
+          },
+          {
+            "fecha": "2009-04-14",
+            "valor": 6.38
+          },
+          {
+            "fecha": "2009-05-12",
+            "valor": 5.44
+          },
+          {
+            "fecha": "2009-06-11",
+            "valor": 5.06
+          },
+          {
+            "fecha": "2009-07-13",
+            "valor": 5.18
+          },
+          {
+            "fecha": "2009-08-10",
+            "valor": 5.18
+          },
+          {
+            "fecha": "2009-09-10",
+            "valor": 5.06
+          },
+          {
+            "fecha": "2009-10-13",
+            "valor": 5.02
+          },
+          {
+            "fecha": "2009-11-10",
+            "valor": 4.94
+          },
+          {
+            "fecha": "2009-12-15",
+            "valor": 4.8
+          },
+          {
+            "fecha": "2010-01-14",
+            "valor": 4.98
+          },
+          {
+            "fecha": "2010-02-11",
+            "valor": 5.22
+          },
+          {
+            "fecha": "2010-03-13",
+            "valor": 5.12
+          },
+          {
+            "fecha": "2010-04-14",
+            "valor": 5.0
+          },
+          {
+            "fecha": "2010-05-14",
+            "valor": 4.72
+          },
+          {
+            "fecha": "2010-06-14",
+            "valor": 4.74
+          },
+          {
+            "fecha": "2010-07-14",
+            "valor": 4.84
+          },
+          {
+            "fecha": "2010-08-12",
+            "valor": 5.1
+          },
+          {
+            "fecha": "2010-08-26",
+            "valor": 5.1
+          },
+          {
+            "fecha": "2010-09-15",
+            "valor": 4.58
+          },
+          {
+            "fecha": "2010-10-15",
+            "valor": 4.74
+          },
+          {
+            "fecha": "2010-11-13",
+            "valor": 4.78
+          },
+          {
+            "fecha": "2010-12-15",
+            "valor": 4.76
+          },
+          {
+            "fecha": "2011-01-08",
+            "valor": 4.76
+          },
+          {
+            "fecha": "2011-02-10",
+            "valor": 4.92
+          },
+          {
+            "fecha": "2011-03-12",
+            "valor": 4.96
+          },
+          {
+            "fecha": "2011-04-13",
+            "valor": 4.96
+          },
+          {
+            "fecha": "2011-05-13",
+            "valor": 5.06
+          },
+          {
+            "fecha": "2011-06-11",
+            "valor": 4.68
+          },
+          {
+            "fecha": "2011-07-13",
+            "valor": 4.7
+          },
+          {
+            "fecha": "2011-08-12",
+            "valor": 4.56
+          },
+          {
+            "fecha": "2011-09-10",
+            "valor": 4.62
+          },
+          {
+            "fecha": "2011-10-14",
+            "valor": 4.6
+          },
+          {
+            "fecha": "2011-11-12",
+            "valor": 4.62
+          },
+          {
+            "fecha": "2011-12-12",
+            "valor": 4.78
+          },
+          {
+            "fecha": "2012-01-13",
+            "valor": 4.8
+          },
+          {
+            "fecha": "2012-02-10",
+            "valor": 4.88
+          },
+          {
+            "fecha": "2012-03-14",
+            "valor": 4.9
+          },
+          {
+            "fecha": "2012-04-12",
+            "valor": 4.86
+          },
+          {
+            "fecha": "2012-05-12",
+            "valor": 4.84
+          },
+          {
+            "fecha": "2012-06-12",
+            "valor": 4.8
+          },
+          {
+            "fecha": "2012-07-12",
+            "valor": 4.72
+          },
+          {
+            "fecha": "2012-08-13",
+            "valor": 4.74
+          },
+          {
+            "fecha": "2012-09-14",
+            "valor": 4.66
+          },
+          {
+            "fecha": "2012-10-12",
+            "valor": 4.72
+          },
+          {
+            "fecha": "2012-11-14",
+            "valor": 4.92
+          },
+          {
+            "fecha": "2012-12-14",
+            "valor": 4.72
+          },
           {
             "fecha": "2013-01-11",
             "valor": 4.78
@@ -12659,7 +13259,7 @@
       "KE": {
         "promedio": 1082,
         "n_estaciones": 1079,
-        "fecha": "2026-09-18"
+        "fecha": "2026-09-19"
       }
     },
     "regional": {
@@ -12805,6 +13405,14 @@
         }
       },
       "regional": {
+        "Región de Valparaíso": {
+          "Palta": 3520,
+          "Tomate": 819,
+          "Papa": 792,
+          "Cebolla": 691,
+          "Plátano": 1012,
+          "Manzana": 970
+        },
         "Región Metropolitana de Santiago": {
           "Palta": 2790,
           "Tomate": 1163,
@@ -12812,14 +13420,6 @@
           "Cebolla": 680,
           "Plátano": 1200,
           "Manzana": 733
-        },
-        "Región de La Araucanía": {
-          "Palta": 3221,
-          "Tomate": 1319,
-          "Papa": 880,
-          "Cebolla": 790,
-          "Plátano": 1456,
-          "Manzana": 1337
         },
         "Región de Coquimbo": {
           "Palta": 3293,
@@ -12829,13 +13429,21 @@
           "Plátano": 1075,
           "Manzana": 812
         },
-        "Región de Valparaíso": {
-          "Palta": 3520,
-          "Tomate": 819,
-          "Papa": 792,
-          "Cebolla": 691,
-          "Plátano": 1012,
-          "Manzana": 970
+        "Región del Biobío": {
+          "Palta": 3350,
+          "Tomate": 1278,
+          "Papa": 840,
+          "Cebolla": 745,
+          "Plátano": 1025,
+          "Manzana": 750
+        },
+        "Región de Los Lagos": {
+          "Palta": 5000,
+          "Tomate": 1611,
+          "Papa": 680,
+          "Cebolla": 941,
+          "Plátano": 1350,
+          "Manzana": 1200
         },
         "Región del Maule": {
           "Palta": 3050,
@@ -12853,21 +13461,13 @@
           "Plátano": 1050,
           "Manzana": 830
         },
-        "Región del Biobío": {
-          "Palta": 3350,
-          "Tomate": 1278,
-          "Papa": 840,
-          "Cebolla": 745,
-          "Plátano": 1025,
-          "Manzana": 750
-        },
-        "Región de Los Lagos": {
-          "Palta": 5000,
-          "Tomate": 1611,
-          "Papa": 680,
-          "Cebolla": 941,
-          "Plátano": 1350,
-          "Manzana": 1200
+        "Región de La Araucanía": {
+          "Palta": 3221,
+          "Tomate": 1319,
+          "Papa": 880,
+          "Cebolla": 790,
+          "Plátano": 1456,
+          "Manzana": 1337
         },
         "Región de Arica y Parinacota": {
           "Tomate": 209,
@@ -12905,6 +13505,24 @@
         }
       },
       "regional": {
+        "Región de Arica y Parinacota": {
+          "Marraqueta": 2188,
+          "Asado Carnicero": 9312,
+          "Pollo Entero": 3672,
+          "Leche Fluida Entera": 1203
+        },
+        "Región de Valparaíso": {
+          "Marraqueta": 2335,
+          "Asado Carnicero": 10798,
+          "Pollo Entero": 3954,
+          "Leche Fluida Entera": 1185
+        },
+        "Región del Biobío": {
+          "Marraqueta": 2344,
+          "Asado Carnicero": 10341,
+          "Pollo Entero": 3900,
+          "Leche Fluida Entera": 1179
+        },
         "Región de La Araucanía": {
           "Marraqueta": 2234,
           "Asado Carnicero": 11573,
@@ -12912,22 +13530,22 @@
           "Huevo blanco - Extra": 218,
           "Leche Fluida Entera": 1213
         },
-        "Región de Ñuble": {
-          "Marraqueta": 2173,
-          "Asado Carnicero": 10612,
-          "Pollo Entero": 3996,
-          "Leche Fluida Entera": 1198
-        },
         "Región Metropolitana de Santiago": {
           "Marraqueta": 2259,
           "Asado Carnicero": 9908,
           "Pollo Entero": 3744,
           "Leche Fluida Entera": 1204
         },
-        "Región de Los Lagos": {
-          "Marraqueta": 2451,
-          "Asado Carnicero": 10933,
-          "Pollo Entero": 3526,
+        "Región de Coquimbo": {
+          "Marraqueta": 2423,
+          "Asado Carnicero": 10683,
+          "Pollo Entero": 3931,
+          "Leche Fluida Entera": 1212
+        },
+        "Región de Ñuble": {
+          "Marraqueta": 2173,
+          "Asado Carnicero": 10612,
+          "Pollo Entero": 3996,
           "Leche Fluida Entera": 1198
         },
         "Región del Maule": {
@@ -12936,29 +13554,11 @@
           "Pollo Entero": 3573,
           "Leche Fluida Entera": 1206
         },
-        "Región de Valparaíso": {
-          "Marraqueta": 2335,
-          "Asado Carnicero": 10798,
-          "Pollo Entero": 3954,
-          "Leche Fluida Entera": 1185
-        },
-        "Región de Coquimbo": {
-          "Marraqueta": 2423,
-          "Asado Carnicero": 10683,
-          "Pollo Entero": 3931,
-          "Leche Fluida Entera": 1212
-        },
-        "Región de Arica y Parinacota": {
-          "Marraqueta": 2188,
-          "Asado Carnicero": 9312,
-          "Pollo Entero": 3672,
-          "Leche Fluida Entera": 1203
-        },
-        "Región del Biobío": {
-          "Marraqueta": 2344,
-          "Asado Carnicero": 10341,
-          "Pollo Entero": 3900,
-          "Leche Fluida Entera": 1179
+        "Región de Los Lagos": {
+          "Marraqueta": 2451,
+          "Asado Carnicero": 10933,
+          "Pollo Entero": 3526,
+          "Leche Fluida Entera": 1198
         }
       }
     },
