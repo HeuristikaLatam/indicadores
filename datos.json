@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-04T14:32:38.456370+00:00",
+  "generado": "2026-10-04T22:39:57.859850+00:00",
   "macro": {
     "dolar": {
       "nombre": "Dólar observado",
@@ -13268,7 +13268,7 @@
       "97": {
         "promedio": 1609,
         "n_estaciones": 1738,
-        "fecha": "2026-10-03"
+        "fecha": "2026-10-04"
       },
       "DI": {
         "promedio": 1494,
@@ -13283,7 +13283,7 @@
       "KE": {
         "promedio": 1336,
         "n_estaciones": 1076,
-        "fecha": "2026-10-03"
+        "fecha": "2026-10-04"
       }
     },
     "regional": {
@@ -13316,10 +13316,10 @@
         "KE": 1393
       },
       "Coquimbo": {
-        "93": 1569,
+        "93": 1570,
         "97": 1640,
-        "DI": 1534,
-        "95": 1605,
+        "DI": 1536,
+        "95": 1606,
         "KE": 1353
       },
       "Valparaíso": {
@@ -13437,6 +13437,14 @@
           "Plátano": 1472,
           "Manzana": 742
         },
+        "Región de Coquimbo": {
+          "Palta": 2250,
+          "Tomate": 1000,
+          "Papa": 940,
+          "Cebolla": 750,
+          "Plátano": 1525,
+          "Manzana": 884
+        },
         "Región del Maule": {
           "Palta": 2754,
           "Tomate": 1278,
@@ -13459,14 +13467,6 @@
           "Cebolla": 250,
           "Plátano": 1200,
           "Manzana": 733
-        },
-        "Región de Coquimbo": {
-          "Palta": 2250,
-          "Tomate": 1000,
-          "Papa": 940,
-          "Cebolla": 750,
-          "Plátano": 1525,
-          "Manzana": 884
         },
         "Región de La Araucanía": {
           "Palta": 3281,
@@ -13527,6 +13527,18 @@
         }
       },
       "regional": {
+        "Región de Valparaíso": {
+          "Marraqueta": 2358,
+          "Asado Carnicero": 11602,
+          "Pollo Entero": 3565,
+          "Leche Fluida Entera": 1190
+        },
+        "Región de Los Lagos": {
+          "Marraqueta": 2349,
+          "Asado Carnicero": 10801,
+          "Pollo Entero": 3618,
+          "Leche Fluida Entera": 1202
+        },
         "Región de La Araucanía": {
           "Marraqueta": 2400,
           "Asado Carnicero": 11690,
@@ -13534,17 +13546,11 @@
           "Huevo blanco - Extra": 209,
           "Leche Fluida Entera": 1206
         },
-        "Región Metropolitana de Santiago": {
-          "Marraqueta": 2249,
-          "Asado Carnicero": 10617,
-          "Pollo Entero": 3862,
-          "Leche Fluida Entera": 1185
-        },
-        "Región de Valparaíso": {
-          "Marraqueta": 2358,
-          "Asado Carnicero": 11602,
-          "Pollo Entero": 3565,
-          "Leche Fluida Entera": 1190
+        "Región de Coquimbo": {
+          "Marraqueta": 2376,
+          "Asado Carnicero": 10868,
+          "Pollo Entero": 3917,
+          "Leche Fluida Entera": 1218
         },
         "Región del Biobío": {
           "Marraqueta": 2398,
@@ -13558,29 +13564,23 @@
           "Pollo Entero": 3702,
           "Leche Fluida Entera": 1203
         },
-        "Región de Los Lagos": {
-          "Marraqueta": 2349,
-          "Asado Carnicero": 10801,
-          "Pollo Entero": 3618,
-          "Leche Fluida Entera": 1202
-        },
-        "Región de Arica y Parinacota": {
-          "Marraqueta": 2195,
-          "Asado Carnicero": 9946,
-          "Pollo Entero": 3817,
-          "Leche Fluida Entera": 1214
-        },
-        "Región de Coquimbo": {
-          "Marraqueta": 2376,
-          "Asado Carnicero": 10868,
-          "Pollo Entero": 3917,
-          "Leche Fluida Entera": 1218
+        "Región Metropolitana de Santiago": {
+          "Marraqueta": 2249,
+          "Asado Carnicero": 10617,
+          "Pollo Entero": 3862,
+          "Leche Fluida Entera": 1185
         },
         "Región de Ñuble": {
           "Marraqueta": 2215,
           "Asado Carnicero": 11375,
           "Pollo Entero": 4235,
           "Leche Fluida Entera": 1185
+        },
+        "Región de Arica y Parinacota": {
+          "Marraqueta": 2195,
+          "Asado Carnicero": 9946,
+          "Pollo Entero": 3817,
+          "Leche Fluida Entera": 1214
         }
       }
     },
