@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-08T15:09:42.326988+00:00",
+  "generado": "2026-10-08T16:01:16.178608+00:00",
   "macro": {
     "dolar": {
       "nombre": "Dólar observado",
@@ -28,8 +28,8 @@
     "ipc": {
       "nombre": "Indice de Precios al Consumidor (IPC)",
       "unidad": "Porcentaje",
-      "valor": 0.6,
-      "fecha": "2026-08-01"
+      "valor": 0.4,
+      "fecha": "2026-09-01"
     },
     "tpm": {
       "nombre": "Tasa Política Monetaria (TPM)",
@@ -4823,6 +4823,10 @@
       {
         "periodo": "2026-08",
         "valor": 0.6
+      },
+      {
+        "periodo": "2026-09",
+        "valor": 0.4
       }
     ],
     "tpm": [
@@ -9225,10 +9229,6 @@
       "tipo": "mensual",
       "puntos": [
         {
-          "etiqueta": "2026-03-01",
-          "valor": 1.0
-        },
-        {
           "etiqueta": "2026-04-01",
           "valor": 1.3
         },
@@ -9247,6 +9247,10 @@
         {
           "etiqueta": "2026-08-01",
           "valor": 0.6
+        },
+        {
+          "etiqueta": "2026-09-01",
+          "valor": 0.4
         }
       ]
     },
@@ -13285,7 +13289,7 @@
         "fecha": "2026-10-08"
       },
       "KE": {
-        "promedio": 1325,
+        "promedio": 1324,
         "n_estaciones": 1074,
         "fecha": "2026-10-08"
       }
@@ -13301,7 +13305,7 @@
       "Tarapacá": {
         "93": 1581,
         "95": 1607,
-        "97": 1636,
+        "97": 1637,
         "DI": 1496,
         "KE": 1496
       },
@@ -13315,7 +13319,7 @@
       "Atacama": {
         "93": 1934,
         "97": 1658,
-        "DI": 1559,
+        "DI": 1558,
         "95": 1625,
         "KE": 1379
       },
@@ -13331,7 +13335,7 @@
         "97": 1598,
         "DI": 1488,
         "95": 1555,
-        "KE": 1309
+        "KE": 1307
       },
       "Del Libertador Gral. Bernardo O’Higgins": {
         "93": 1541,
@@ -13352,7 +13356,7 @@
         "95": 1545,
         "97": 1582,
         "DI": 1474,
-        "KE": 1297
+        "KE": 1296
       },
       "Ñuble": {
         "93": 1511,
@@ -13366,7 +13370,7 @@
         "97": 1602,
         "DI": 1499,
         "95": 1569,
-        "KE": 1330
+        "KE": 1329
       },
       "De los Ríos": {
         "93": 1573,
@@ -13376,10 +13380,10 @@
         "95": 1605
       },
       "De los Lagos": {
-        "93": 1675,
+        "93": 1676,
         "97": 1629,
         "DI": 1549,
-        "KE": 1375,
+        "KE": 1374,
         "95": 1607
       },
       "Aysén del Gral. Carlos Ibáñez del Campo": {
@@ -13393,13 +13397,13 @@
         "93": 1606,
         "95": 1623,
         "97": 1665,
-        "DI": 1620
+        "DI": 1621
       },
       "Metropolitana de Santiago": {
         "93": 1499,
         "97": 1612,
         "DI": 1463,
-        "KE": 1312,
+        "KE": 1311,
         "95": 1544
       }
     }
@@ -13433,14 +13437,6 @@
         }
       },
       "regional": {
-        "Región Metropolitana de Santiago": {
-          "Palta": 2456,
-          "Tomate": 1223,
-          "Papa": 911,
-          "Cebolla": 541,
-          "Plátano": 1472,
-          "Manzana": 742
-        },
         "Región de Coquimbo": {
           "Palta": 2250,
           "Tomate": 1000,
@@ -13448,6 +13444,21 @@
           "Cebolla": 750,
           "Plátano": 1525,
           "Manzana": 884
+        },
+        "Región del Biobío": {
+          "Palta": 3350,
+          "Tomate": 1222,
+          "Papa": 880,
+          "Cebolla": 824,
+          "Manzana": 875
+        },
+        "Región Metropolitana de Santiago": {
+          "Palta": 2456,
+          "Tomate": 1223,
+          "Papa": 911,
+          "Cebolla": 541,
+          "Plátano": 1472,
+          "Manzana": 742
         },
         "Región del Maule": {
           "Palta": 2754,
@@ -13457,28 +13468,6 @@
           "Plátano": 1500,
           "Manzana": 893
         },
-        "Región del Biobío": {
-          "Palta": 3350,
-          "Tomate": 1222,
-          "Papa": 880,
-          "Cebolla": 824,
-          "Manzana": 875
-        },
-        "Región de Los Lagos": {
-          "Palta": 5000,
-          "Tomate": 1731,
-          "Papa": 700,
-          "Cebolla": 1188,
-          "Plátano": 1725,
-          "Manzana": 1200
-        },
-        "Región de Ñuble": {
-          "Palta": 3250,
-          "Tomate": 944,
-          "Cebolla": 250,
-          "Plátano": 1200,
-          "Manzana": 733
-        },
         "Región de La Araucanía": {
           "Palta": 3281,
           "Tomate": 1446,
@@ -13487,6 +13476,13 @@
           "Plátano": 2050,
           "Manzana": 1444
         },
+        "Región de Ñuble": {
+          "Palta": 3250,
+          "Tomate": 944,
+          "Cebolla": 250,
+          "Plátano": 1200,
+          "Manzana": 733
+        },
         "Región de Valparaíso": {
           "Palta": 3200,
           "Tomate": 907,
@@ -13494,6 +13490,14 @@
           "Cebolla": 621,
           "Plátano": 1489,
           "Manzana": 1025
+        },
+        "Región de Los Lagos": {
+          "Palta": 5000,
+          "Tomate": 1731,
+          "Papa": 700,
+          "Cebolla": 1188,
+          "Plátano": 1725,
+          "Manzana": 1200
         },
         "Región de Arica y Parinacota": {
           "Tomate": 256,
@@ -13531,17 +13535,17 @@
         }
       },
       "regional": {
+        "Región de Ñuble": {
+          "Marraqueta": 2215,
+          "Asado Carnicero": 11375,
+          "Pollo Entero": 4235,
+          "Leche Fluida Entera": 1185
+        },
         "Región de Valparaíso": {
           "Marraqueta": 2358,
           "Asado Carnicero": 11602,
           "Pollo Entero": 3565,
           "Leche Fluida Entera": 1190
-        },
-        "Región de Los Lagos": {
-          "Marraqueta": 2349,
-          "Asado Carnicero": 10801,
-          "Pollo Entero": 3618,
-          "Leche Fluida Entera": 1202
         },
         "Región Metropolitana de Santiago": {
           "Marraqueta": 2249,
@@ -13555,18 +13559,6 @@
           "Pollo Entero": 4092,
           "Leche Fluida Entera": 1178
         },
-        "Región del Maule": {
-          "Marraqueta": 2222,
-          "Asado Carnicero": 11743,
-          "Pollo Entero": 3702,
-          "Leche Fluida Entera": 1203
-        },
-        "Región de Coquimbo": {
-          "Marraqueta": 2376,
-          "Asado Carnicero": 10868,
-          "Pollo Entero": 3917,
-          "Leche Fluida Entera": 1218
-        },
         "Región de La Araucanía": {
           "Marraqueta": 2400,
           "Asado Carnicero": 11690,
@@ -13574,17 +13566,29 @@
           "Huevo blanco - Extra": 209,
           "Leche Fluida Entera": 1206
         },
-        "Región de Ñuble": {
-          "Marraqueta": 2215,
-          "Asado Carnicero": 11375,
-          "Pollo Entero": 4235,
-          "Leche Fluida Entera": 1185
-        },
         "Región de Arica y Parinacota": {
           "Marraqueta": 2195,
           "Asado Carnicero": 9946,
           "Pollo Entero": 3817,
           "Leche Fluida Entera": 1214
+        },
+        "Región de Los Lagos": {
+          "Marraqueta": 2349,
+          "Asado Carnicero": 10801,
+          "Pollo Entero": 3618,
+          "Leche Fluida Entera": 1202
+        },
+        "Región de Coquimbo": {
+          "Marraqueta": 2376,
+          "Asado Carnicero": 10868,
+          "Pollo Entero": 3917,
+          "Leche Fluida Entera": 1218
+        },
+        "Región del Maule": {
+          "Marraqueta": 2222,
+          "Asado Carnicero": 11743,
+          "Pollo Entero": 3702,
+          "Leche Fluida Entera": 1203
         }
       }
     },
@@ -14112,11 +14116,11 @@
   },
   "anomalias": {
     "macro": {
-      "clave": "ipc",
-      "periodo": "2026-08",
-      "valor_actual": 0.6,
-      "cambio_pct": 500.0,
-      "zscore": 2.12
+      "clave": "dolar",
+      "periodo": "2026-10",
+      "valor_actual": 977.6917,
+      "cambio_pct": 3.21,
+      "zscore": 1.02
     },
     "credito": {
       "recurso": "tip",
