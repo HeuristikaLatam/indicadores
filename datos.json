@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-11T14:35:39.781692+00:00",
+  "generado": "2026-10-11T15:14:23.404498+00:00",
   "macro": {
     "dolar": {
       "nombre": "Dólar observado",
@@ -13469,6 +13469,14 @@
           "Plátano": 1629,
           "Manzana": 846
         },
+        "Región de Ñuble": {
+          "Palta": 2525,
+          "Tomate": 1228,
+          "Papa": 747,
+          "Cebolla": 901,
+          "Plátano": 1375,
+          "Manzana": 825
+        },
         "Región de La Araucanía": {
           "Palta": 2818,
           "Cebolla": 1096,
@@ -13482,14 +13490,6 @@
           "Cebolla": 571,
           "Plátano": 1438,
           "Manzana": 1000
-        },
-        "Región de Ñuble": {
-          "Palta": 2525,
-          "Tomate": 1228,
-          "Papa": 747,
-          "Cebolla": 901,
-          "Plátano": 1375,
-          "Manzana": 825
         },
         "Región de Los Lagos": {
           "Palta": 4150,
@@ -13553,18 +13553,18 @@
           "Pollo Entero": 3825,
           "Leche Fluida Entera": 1166
         },
-        "Región de Los Lagos": {
-          "Marraqueta": 2461,
-          "Asado Carnicero": 10630,
-          "Pollo Entero": 3350,
-          "Leche Fluida Entera": 1147
-        },
         "Región de La Araucanía": {
           "Marraqueta": 2363,
           "Asado Carnicero": 11558,
           "Pollo Entero": 3839,
           "Huevo blanco - Extra": 208,
           "Leche Fluida Entera": 1195
+        },
+        "Región de Arica y Parinacota": {
+          "Marraqueta": 2149,
+          "Asado Carnicero": 10214,
+          "Pollo Entero": 3930,
+          "Leche Fluida Entera": 1198
         },
         "Región de Ñuble": {
           "Marraqueta": 2167,
@@ -13590,11 +13590,11 @@
           "Pollo Entero": 3768,
           "Leche Fluida Entera": 1212
         },
-        "Región de Arica y Parinacota": {
-          "Marraqueta": 2149,
-          "Asado Carnicero": 10214,
-          "Pollo Entero": 3930,
-          "Leche Fluida Entera": 1198
+        "Región de Los Lagos": {
+          "Marraqueta": 2461,
+          "Asado Carnicero": 10630,
+          "Pollo Entero": 3350,
+          "Leche Fluida Entera": 1147
         }
       }
     },
