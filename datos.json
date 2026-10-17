@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-17T12:37:07.898400+00:00",
+  "generado": "2026-10-17T21:54:59.429445+00:00",
   "macro": {
     "dolar": {
       "nombre": "Dólar observado",
@@ -13348,9 +13348,9 @@
         "KE": 1365
       },
       "Coquimbo": {
-        "93": 1727,
+        "93": 1728,
         "97": 1647,
-        "DI": 1538,
+        "DI": 1539,
         "95": 1612,
         "KE": 1347
       },
@@ -13461,36 +13461,6 @@
         }
       },
       "regional": {
-        "Región de Valparaíso": {
-          "Palta": 3167,
-          "Tomate": 921,
-          "Papa": 763,
-          "Cebolla": 692,
-          "Plátano": 1488,
-          "Manzana": 1133
-        },
-        "Región de Coquimbo": {
-          "Palta": 1979,
-          "Tomate": 944,
-          "Papa": 1100,
-          "Cebolla": 861,
-          "Plátano": 1575,
-          "Manzana": 927
-        },
-        "Región de La Araucanía": {
-          "Palta": 2817,
-          "Tomate": 1444,
-          "Papa": 800,
-          "Cebolla": 1000,
-          "Plátano": 1522,
-          "Manzana": 1417
-        },
-        "Región del Biobío": {
-          "Palta": 2975,
-          "Tomate": 1389,
-          "Cebolla": 650,
-          "Manzana": 906
-        },
         "Región Metropolitana de Santiago": {
           "Palta": 2299,
           "Tomate": 1280,
@@ -13498,6 +13468,28 @@
           "Cebolla": 595,
           "Plátano": 1716,
           "Manzana": 932
+        },
+        "Región de Los Lagos": {
+          "Palta": 4150,
+          "Tomate": 1657,
+          "Papa": 700,
+          "Cebolla": 1222,
+          "Plátano": 1676,
+          "Manzana": 1175
+        },
+        "Región del Biobío": {
+          "Palta": 2975,
+          "Tomate": 1389,
+          "Cebolla": 650,
+          "Manzana": 906
+        },
+        "Región de Valparaíso": {
+          "Palta": 3167,
+          "Tomate": 921,
+          "Papa": 763,
+          "Cebolla": 692,
+          "Plátano": 1488,
+          "Manzana": 1133
         },
         "Región de Ñuble": {
           "Palta": 2600,
@@ -13507,13 +13499,21 @@
           "Plátano": 1500,
           "Manzana": 822
         },
-        "Región de Los Lagos": {
-          "Palta": 4150,
-          "Tomate": 1657,
-          "Papa": 700,
-          "Cebolla": 1222,
-          "Plátano": 1676,
-          "Manzana": 1175
+        "Región de La Araucanía": {
+          "Palta": 2817,
+          "Tomate": 1444,
+          "Papa": 800,
+          "Cebolla": 1000,
+          "Plátano": 1522,
+          "Manzana": 1417
+        },
+        "Región de Coquimbo": {
+          "Palta": 1979,
+          "Tomate": 944,
+          "Papa": 1100,
+          "Cebolla": 861,
+          "Plátano": 1575,
+          "Manzana": 927
         },
         "Región de Arica y Parinacota": {
           "Palta": 2750,
@@ -13556,11 +13556,11 @@
         }
       },
       "regional": {
-        "Región de Coquimbo": {
-          "Marraqueta": 2390,
-          "Asado Carnicero": 11093,
-          "Pollo Entero": 3947,
-          "Leche Fluida Entera": 1208
+        "Región de Arica y Parinacota": {
+          "Marraqueta": 2112,
+          "Asado Carnicero": 9814,
+          "Pollo Entero": 3909,
+          "Leche Fluida Entera": 1102
         },
         "Región Metropolitana de Santiago": {
           "Marraqueta": 2278,
@@ -13573,12 +13573,6 @@
           "Asado Carnicero": 11557,
           "Pollo Entero": 4010,
           "Leche Fluida Entera": 1136
-        },
-        "Región de Arica y Parinacota": {
-          "Marraqueta": 2112,
-          "Asado Carnicero": 9814,
-          "Pollo Entero": 3909,
-          "Leche Fluida Entera": 1102
         },
         "Región de Los Lagos": {
           "Marraqueta": 2282,
@@ -13610,6 +13604,12 @@
           "Asado Carnicero": 11634,
           "Pollo Entero": 3868,
           "Leche Fluida Entera": 1143
+        },
+        "Región de Coquimbo": {
+          "Marraqueta": 2390,
+          "Asado Carnicero": 11093,
+          "Pollo Entero": 3947,
+          "Leche Fluida Entera": 1208
         }
       }
     },
