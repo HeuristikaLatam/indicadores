@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-22T22:54:04.782146+00:00",
+  "generado": "2026-10-22T23:46:42.925439+00:00",
   "macro": {
     "dolar": {
       "nombre": "Dólar observado",
@@ -1014,7 +1014,7 @@
       },
       {
         "periodo": "2026-10",
-        "valor": 979.8113
+        "valor": 980.2344
       }
     ],
     "euro": [
@@ -13355,9 +13355,9 @@
         "KE": 1372
       },
       "Valparaíso": {
-        "93": 1558,
+        "93": 1559,
         "97": 1643,
-        "DI": 1575,
+        "DI": 1576,
         "95": 1601,
         "KE": 1335
       },
@@ -13385,9 +13385,9 @@
       "Ñuble": {
         "93": 1557,
         "97": 1628,
-        "DI": 1562,
+        "DI": 1563,
         "KE": 1337,
-        "95": 1591
+        "95": 1592
       },
       "De la Araucanía": {
         "93": 1587,
@@ -13418,10 +13418,10 @@
         "95": 1713
       },
       "Magallanes y de la Antártica Chilena": {
-        "93": 1656,
-        "95": 1666,
-        "97": 1706,
-        "DI": 1715
+        "93": 1659,
+        "95": 1670,
+        "97": 1710,
+        "DI": 1721
       },
       "Metropolitana de Santiago": {
         "93": 1702,
@@ -13475,14 +13475,6 @@
           "Cebolla": 650,
           "Manzana": 906
         },
-        "Región de Los Lagos": {
-          "Palta": 4150,
-          "Tomate": 1657,
-          "Papa": 700,
-          "Cebolla": 1222,
-          "Plátano": 1676,
-          "Manzana": 1175
-        },
         "Región de Coquimbo": {
           "Palta": 1979,
           "Tomate": 944,
@@ -13495,6 +13487,22 @@
           "Palta": 2750,
           "Tomate": 583,
           "Cebolla": 639
+        },
+        "Región de Los Lagos": {
+          "Palta": 4150,
+          "Tomate": 1657,
+          "Papa": 700,
+          "Cebolla": 1222,
+          "Plátano": 1676,
+          "Manzana": 1175
+        },
+        "Región de La Araucanía": {
+          "Palta": 2817,
+          "Tomate": 1444,
+          "Papa": 800,
+          "Cebolla": 1000,
+          "Plátano": 1522,
+          "Manzana": 1417
         },
         "Región de Valparaíso": {
           "Palta": 3167,
@@ -13511,14 +13519,6 @@
           "Cebolla": 650,
           "Plátano": 1500,
           "Manzana": 822
-        },
-        "Región de La Araucanía": {
-          "Palta": 2817,
-          "Tomate": 1444,
-          "Papa": 800,
-          "Cebolla": 1000,
-          "Plátano": 1522,
-          "Manzana": 1417
         },
         "Región del Maule": {
           "Tomate": 1333,
@@ -13556,6 +13556,12 @@
         }
       },
       "regional": {
+        "Región de Coquimbo": {
+          "Marraqueta": 2390,
+          "Asado Carnicero": 11093,
+          "Pollo Entero": 3947,
+          "Leche Fluida Entera": 1208
+        },
         "Región de Arica y Parinacota": {
           "Marraqueta": 2112,
           "Asado Carnicero": 9814,
@@ -13567,6 +13573,12 @@
           "Asado Carnicero": 10739,
           "Pollo Entero": 3926,
           "Leche Fluida Entera": 1145
+        },
+        "Región de Ñuble": {
+          "Marraqueta": 2153,
+          "Asado Carnicero": 11557,
+          "Pollo Entero": 4010,
+          "Leche Fluida Entera": 1136
         },
         "Región de Los Lagos": {
           "Marraqueta": 2282,
@@ -13598,18 +13610,6 @@
           "Asado Carnicero": 11634,
           "Pollo Entero": 3868,
           "Leche Fluida Entera": 1143
-        },
-        "Región de Ñuble": {
-          "Marraqueta": 2153,
-          "Asado Carnicero": 11557,
-          "Pollo Entero": 4010,
-          "Leche Fluida Entera": 1136
-        },
-        "Región de Coquimbo": {
-          "Marraqueta": 2390,
-          "Asado Carnicero": 11093,
-          "Pollo Entero": 3947,
-          "Leche Fluida Entera": 1208
         }
       }
     },
@@ -14139,9 +14139,9 @@
     "macro": {
       "clave": "dolar",
       "periodo": "2026-10",
-      "valor_actual": 979.8113,
-      "cambio_pct": 3.44,
-      "zscore": 1.1
+      "valor_actual": 980.2344,
+      "cambio_pct": 3.48,
+      "zscore": 1.12
     },
     "credito": {
       "recurso": "tmc",
