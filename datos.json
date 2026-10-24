@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-23T23:40:39.491971+00:00",
+  "generado": "2026-10-24T12:25:06.295031+00:00",
   "macro": {
     "dolar": {
       "nombre": "Dólar observado",
@@ -16,8 +16,8 @@
     "uf": {
       "nombre": "Unidad de fomento (UF)",
       "unidad": "Pesos",
-      "valor": 41205.16,
-      "fecha": "2026-10-23T03:00:00.000Z"
+      "valor": 41210.47,
+      "fecha": "2026-10-24T03:00:00.000Z"
     },
     "utm": {
       "nombre": "Unidad Tributaria Mensual (UTM)",
@@ -9179,10 +9179,6 @@
       "tipo": "diario",
       "puntos": [
         {
-          "etiqueta": "2026-10-18",
-          "valor": 41178.64
-        },
-        {
           "etiqueta": "2026-10-19",
           "valor": 41183.94
         },
@@ -9201,6 +9197,10 @@
         {
           "etiqueta": "2026-10-23",
           "valor": 41205.16
+        },
+        {
+          "etiqueta": "2026-10-24",
+          "valor": 41210.47
         }
       ]
     },
@@ -13295,22 +13295,22 @@
       "93": {
         "promedio": 1624,
         "n_estaciones": 1953,
-        "fecha": "2026-10-23"
+        "fecha": "2026-10-24"
       },
       "97": {
         "promedio": 1651,
         "n_estaciones": 1743,
-        "fecha": "2026-10-23"
+        "fecha": "2026-10-24"
       },
       "DI": {
         "promedio": 1585,
         "n_estaciones": 1991,
-        "fecha": "2026-10-23"
+        "fecha": "2026-10-24"
       },
       "95": {
         "promedio": 1610,
         "n_estaciones": 1952,
-        "fecha": "2026-10-23"
+        "fecha": "2026-10-24"
       },
       "KE": {
         "promedio": 1349,
@@ -13341,10 +13341,10 @@
         "95": 1683
       },
       "Atacama": {
-        "93": 1639,
-        "97": 1705,
-        "DI": 1646,
-        "95": 1672,
+        "93": 1640,
+        "97": 1706,
+        "DI": 1648,
+        "95": 1673,
         "KE": 1391
       },
       "Coquimbo": {
@@ -13469,14 +13469,6 @@
           "Plátano": 1381,
           "Manzana": 959
         },
-        "Región de Coquimbo": {
-          "Palta": 2136,
-          "Tomate": 778,
-          "Papa": 987,
-          "Cebolla": 806,
-          "Plátano": 1275,
-          "Manzana": 912
-        },
         "Región del Biobío": {
           "Palta": 2900,
           "Tomate": 1056,
@@ -13485,10 +13477,13 @@
           "Plátano": 1225,
           "Manzana": 933
         },
-        "Región de Arica y Parinacota": {
-          "Palta": 2950,
-          "Tomate": 657,
-          "Cebolla": 583
+        "Región de Los Lagos": {
+          "Palta": 4500,
+          "Tomate": 1451,
+          "Papa": 840,
+          "Cebolla": 1208,
+          "Plátano": 1571,
+          "Manzana": 1200
         },
         "Región del Maule": {
           "Palta": 2262,
@@ -13496,6 +13491,21 @@
           "Papa": 720,
           "Cebolla": 250,
           "Plátano": 1100
+        },
+        "Región de Ñuble": {
+          "Palta": 2550,
+          "Papa": 765,
+          "Cebolla": 824,
+          "Plátano": 1400,
+          "Manzana": 889
+        },
+        "Región de Coquimbo": {
+          "Palta": 2136,
+          "Tomate": 778,
+          "Papa": 987,
+          "Cebolla": 806,
+          "Plátano": 1275,
+          "Manzana": 912
         },
         "Región de La Araucanía": {
           "Palta": 3400,
@@ -13513,20 +13523,10 @@
           "Plátano": 1339,
           "Manzana": 1044
         },
-        "Región de Ñuble": {
-          "Palta": 2550,
-          "Papa": 765,
-          "Cebolla": 824,
-          "Plátano": 1400,
-          "Manzana": 889
-        },
-        "Región de Los Lagos": {
-          "Palta": 4500,
-          "Tomate": 1451,
-          "Papa": 840,
-          "Cebolla": 1208,
-          "Plátano": 1571,
-          "Manzana": 1200
+        "Región de Arica y Parinacota": {
+          "Palta": 2950,
+          "Tomate": 657,
+          "Cebolla": 583
         }
       }
     },
@@ -13559,17 +13559,11 @@
         }
       },
       "regional": {
-        "Región del Biobío": {
-          "Marraqueta": 2299,
-          "Asado Carnicero": 10558,
-          "Pollo Entero": 4108,
-          "Leche Fluida Entera": 1129
-        },
-        "Región de Arica y Parinacota": {
-          "Marraqueta": 2139,
-          "Asado Carnicero": 10476,
-          "Pollo Entero": 4030,
-          "Leche Fluida Entera": 1178
+        "Región Metropolitana de Santiago": {
+          "Marraqueta": 2271,
+          "Asado Carnicero": 10770,
+          "Pollo Entero": 3908,
+          "Leche Fluida Entera": 1150
         },
         "Región de Ñuble": {
           "Marraqueta": 2170,
@@ -13577,11 +13571,36 @@
           "Pollo Entero": 3884,
           "Leche Fluida Entera": 1176
         },
-        "Región Metropolitana de Santiago": {
-          "Marraqueta": 2271,
-          "Asado Carnicero": 10770,
-          "Pollo Entero": 3908,
-          "Leche Fluida Entera": 1150
+        "Región de Los Lagos": {
+          "Marraqueta": 2332,
+          "Asado Carnicero": 10215,
+          "Pollo Entero": 3419,
+          "Leche Fluida Entera": 1152
+        },
+        "Región de La Araucanía": {
+          "Marraqueta": 2339,
+          "Asado Carnicero": 12062,
+          "Pollo Entero": 3700,
+          "Huevo blanco - Extra": 187,
+          "Leche Fluida Entera": 1174
+        },
+        "Región de Arica y Parinacota": {
+          "Marraqueta": 2139,
+          "Asado Carnicero": 10476,
+          "Pollo Entero": 4030,
+          "Leche Fluida Entera": 1178
+        },
+        "Región de Coquimbo": {
+          "Marraqueta": 2388,
+          "Asado Carnicero": 10922,
+          "Pollo Entero": 3901,
+          "Leche Fluida Entera": 1204
+        },
+        "Región del Biobío": {
+          "Marraqueta": 2299,
+          "Asado Carnicero": 10558,
+          "Pollo Entero": 4108,
+          "Leche Fluida Entera": 1129
         },
         "Región del Maule": {
           "Marraqueta": 2283,
@@ -13594,25 +13613,6 @@
           "Asado Carnicero": 11539,
           "Pollo Entero": 3807,
           "Leche Fluida Entera": 1138
-        },
-        "Región de La Araucanía": {
-          "Marraqueta": 2339,
-          "Asado Carnicero": 12062,
-          "Pollo Entero": 3700,
-          "Huevo blanco - Extra": 187,
-          "Leche Fluida Entera": 1174
-        },
-        "Región de Los Lagos": {
-          "Marraqueta": 2332,
-          "Asado Carnicero": 10215,
-          "Pollo Entero": 3419,
-          "Leche Fluida Entera": 1152
-        },
-        "Región de Coquimbo": {
-          "Marraqueta": 2388,
-          "Asado Carnicero": 10922,
-          "Pollo Entero": 3901,
-          "Leche Fluida Entera": 1204
         }
       }
     },
@@ -14185,11 +14185,11 @@
       "dolar": 0.12
     },
     "valor": 100.94,
-    "fecha": "2026-10-23",
+    "fecha": "2026-10-24",
     "componentes": {
       "alimentos": -2.33,
       "bencina": 14.93,
-      "uf": 0.88,
+      "uf": 0.9,
       "dolar": 6.22
     },
     "historial": [
@@ -14595,6 +14595,10 @@
       },
       {
         "fecha": "2026-10-23",
+        "valor": 100.94
+      },
+      {
+        "fecha": "2026-10-24",
         "valor": 100.94
       }
     ]
