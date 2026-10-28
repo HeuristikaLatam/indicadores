@@ -1,23 +1,23 @@
 {
-  "generado": "2026-10-27T23:24:26.907478+00:00",
+  "generado": "2026-10-28T14:48:43.770978+00:00",
   "macro": {
     "dolar": {
       "nombre": "Dólar observado",
       "unidad": "Pesos",
-      "valor": 994.29,
-      "fecha": "2026-10-27T03:00:00.000Z"
+      "valor": 985.14,
+      "fecha": "2026-10-28T03:00:00.000Z"
     },
     "euro": {
       "nombre": "Euro",
       "unidad": "Pesos",
-      "valor": 1112.8,
-      "fecha": "2026-10-27T03:00:00.000Z"
+      "valor": 1097.16,
+      "fecha": "2026-10-28T03:00:00.000Z"
     },
     "uf": {
       "nombre": "Unidad de fomento (UF)",
       "unidad": "Pesos",
-      "valor": 41226.39,
-      "fecha": "2026-10-27T03:00:00.000Z"
+      "valor": 41231.7,
+      "fecha": "2026-10-28T03:00:00.000Z"
     },
     "utm": {
       "nombre": "Unidad Tributaria Mensual (UTM)",
@@ -35,7 +35,7 @@
       "nombre": "Tasa Política Monetaria (TPM)",
       "unidad": "Porcentaje",
       "valor": 4.5,
-      "fecha": "2026-10-27T03:00:00.000Z"
+      "fecha": "2026-10-28T03:00:00.000Z"
     },
     "imacec": {
       "nombre": "Imacec",
@@ -52,8 +52,8 @@
     "libra_cobre": {
       "nombre": "Libra de Cobre",
       "unidad": "Dólar",
-      "valor": 6.56,
-      "fecha": "2026-10-27T03:00:00.000Z"
+      "valor": 6.58,
+      "fecha": "2026-10-28T03:00:00.000Z"
     },
     "bitcoin": {
       "nombre": "Bitcoin",
@@ -305,6 +305,54 @@
         "valor": 517.1719
       },
       {
+        "periodo": "2012-01",
+        "valor": 501.3395
+      },
+      {
+        "periodo": "2012-02",
+        "valor": 481.4886
+      },
+      {
+        "periodo": "2012-03",
+        "valor": 485.3955
+      },
+      {
+        "periodo": "2012-04",
+        "valor": 486.001
+      },
+      {
+        "periodo": "2012-05",
+        "valor": 497.0881
+      },
+      {
+        "periodo": "2012-06",
+        "valor": 505.6281
+      },
+      {
+        "periodo": "2012-07",
+        "valor": 491.9345
+      },
+      {
+        "periodo": "2012-08",
+        "valor": 480.9941
+      },
+      {
+        "periodo": "2012-09",
+        "valor": 474.9718
+      },
+      {
+        "periodo": "2012-10",
+        "valor": 475.3627
+      },
+      {
+        "periodo": "2012-11",
+        "valor": 480.5705
+      },
+      {
+        "periodo": "2012-12",
+        "valor": 477.1284
+      },
+      {
         "periodo": "2013-01",
         "valor": 472.6686
       },
@@ -351,6 +399,54 @@
       {
         "periodo": "2013-12",
         "valor": 529.4505
+      },
+      {
+        "periodo": "2014-01",
+        "valor": 537.0295
+      },
+      {
+        "periodo": "2014-02",
+        "valor": 554.4085
+      },
+      {
+        "periodo": "2014-03",
+        "valor": 563.8433
+      },
+      {
+        "periodo": "2014-04",
+        "valor": 554.641
+      },
+      {
+        "periodo": "2014-05",
+        "valor": 555.402
+      },
+      {
+        "periodo": "2014-06",
+        "valor": 553.0633
+      },
+      {
+        "periodo": "2014-07",
+        "valor": 558.2082
+      },
+      {
+        "periodo": "2014-08",
+        "valor": 579.052
+      },
+      {
+        "periodo": "2014-09",
+        "valor": 593.468
+      },
+      {
+        "periodo": "2014-10",
+        "valor": 589.98
+      },
+      {
+        "periodo": "2014-11",
+        "valor": 592.4595
+      },
+      {
+        "periodo": "2014-12",
+        "valor": 612.919
       },
       {
         "periodo": "2015-01",
@@ -593,6 +689,54 @@
         "valor": 770.3905
       },
       {
+        "periodo": "2020-01",
+        "valor": 772.6477
+      },
+      {
+        "periodo": "2020-02",
+        "valor": 796.3795
+      },
+      {
+        "periodo": "2020-03",
+        "valor": 839.3755
+      },
+      {
+        "periodo": "2020-04",
+        "valor": 853.379
+      },
+      {
+        "periodo": "2020-05",
+        "valor": 821.8053
+      },
+      {
+        "periodo": "2020-06",
+        "valor": 793.7181
+      },
+      {
+        "periodo": "2020-07",
+        "valor": 784.7291
+      },
+      {
+        "periodo": "2020-08",
+        "valor": 784.6619
+      },
+      {
+        "periodo": "2020-09",
+        "valor": 773.4024
+      },
+      {
+        "periodo": "2020-10",
+        "valor": 788.2671
+      },
+      {
+        "periodo": "2020-11",
+        "valor": 762.8848
+      },
+      {
+        "periodo": "2020-12",
+        "valor": 734.733
+      },
+      {
         "periodo": "2021-01",
         "valor": 723.556
       },
@@ -641,6 +785,54 @@
         "valor": 849.1219
       },
       {
+        "periodo": "2022-01",
+        "valor": 822.05
+      },
+      {
+        "periodo": "2022-02",
+        "valor": 807.068
+      },
+      {
+        "periodo": "2022-03",
+        "valor": 799.1874
+      },
+      {
+        "periodo": "2022-04",
+        "valor": 815.2457
+      },
+      {
+        "periodo": "2022-05",
+        "valor": 849.39
+      },
+      {
+        "periodo": "2022-06",
+        "valor": 857.7695
+      },
+      {
+        "periodo": "2022-07",
+        "valor": 953.7062
+      },
+      {
+        "periodo": "2022-08",
+        "valor": 904.3523
+      },
+      {
+        "periodo": "2022-09",
+        "valor": 921.0075
+      },
+      {
+        "periodo": "2022-10",
+        "valor": 955.8947
+      },
+      {
+        "periodo": "2022-11",
+        "valor": 917.0529
+      },
+      {
+        "periodo": "2022-12",
+        "valor": 875.6614
+      },
+      {
         "periodo": "2023-01",
         "valor": 826.3357
       },
@@ -687,6 +879,54 @@
       {
         "periodo": "2023-12",
         "valor": 874.6658
+      },
+      {
+        "periodo": "2024-01",
+        "valor": 907.9868
+      },
+      {
+        "periodo": "2024-02",
+        "valor": 963.4424
+      },
+      {
+        "periodo": "2024-03",
+        "valor": 967.9325
+      },
+      {
+        "periodo": "2024-04",
+        "valor": 960.1382
+      },
+      {
+        "periodo": "2024-05",
+        "valor": 917.8771
+      },
+      {
+        "periodo": "2024-06",
+        "valor": 926.0811
+      },
+      {
+        "periodo": "2024-07",
+        "valor": 937.5609
+      },
+      {
+        "periodo": "2024-08",
+        "valor": 929.8952
+      },
+      {
+        "periodo": "2024-09",
+        "valor": 926.2144
+      },
+      {
+        "periodo": "2024-10",
+        "valor": 933.8123
+      },
+      {
+        "periodo": "2024-11",
+        "valor": 971.6
+      },
+      {
+        "periodo": "2024-12",
+        "valor": 982.296
       },
       {
         "periodo": "2025-01",
@@ -774,7 +1014,7 @@
       },
       {
         "periodo": "2026-10",
-        "valor": 981.5772
+        "valor": 981.7647
       }
     ],
     "euro": [
@@ -1401,6 +1641,54 @@
       {
         "periodo": "2019-12",
         "valor": 854.9485
+      },
+      {
+        "periodo": "2020-01",
+        "valor": 857.9295
+      },
+      {
+        "periodo": "2020-02",
+        "valor": 868.7845
+      },
+      {
+        "periodo": "2020-03",
+        "valor": 927.6832
+      },
+      {
+        "periodo": "2020-04",
+        "valor": 927.3752
+      },
+      {
+        "periodo": "2020-05",
+        "valor": 895.1111
+      },
+      {
+        "periodo": "2020-06",
+        "valor": 893.2638
+      },
+      {
+        "periodo": "2020-07",
+        "valor": 898.5477
+      },
+      {
+        "periodo": "2020-08",
+        "valor": 927.4643
+      },
+      {
+        "periodo": "2020-09",
+        "valor": 912.1638
+      },
+      {
+        "periodo": "2020-10",
+        "valor": 927.8724
+      },
+      {
+        "periodo": "2020-11",
+        "valor": 901.5776
+      },
+      {
+        "periodo": "2020-12",
+        "valor": 892.703
       },
       {
         "periodo": "2021-01",
@@ -8833,10 +9121,6 @@
       "tipo": "diario",
       "puntos": [
         {
-          "etiqueta": "2026-10-20",
-          "valor": 981.86
-        },
-        {
           "etiqueta": "2026-10-21",
           "valor": 978.56
         },
@@ -8855,16 +9139,16 @@
         {
           "etiqueta": "2026-10-27",
           "valor": 994.29
+        },
+        {
+          "etiqueta": "2026-10-28",
+          "valor": 985.14
         }
       ]
     },
     "euro": {
       "tipo": "diario",
       "puntos": [
-        {
-          "etiqueta": "2026-10-20",
-          "valor": 1100.86
-        },
         {
           "etiqueta": "2026-10-21",
           "valor": 1099.26
@@ -8884,16 +9168,16 @@
         {
           "etiqueta": "2026-10-27",
           "valor": 1112.8
+        },
+        {
+          "etiqueta": "2026-10-28",
+          "valor": 1097.16
         }
       ]
     },
     "uf": {
       "tipo": "diario",
       "puntos": [
-        {
-          "etiqueta": "2026-10-22",
-          "valor": 41199.85
-        },
         {
           "etiqueta": "2026-10-23",
           "valor": 41205.16
@@ -8913,6 +9197,10 @@
         {
           "etiqueta": "2026-10-27",
           "valor": 41226.39
+        },
+        {
+          "etiqueta": "2026-10-28",
+          "valor": 41231.7
         }
       ]
     },
@@ -8978,10 +9266,6 @@
       "tipo": "diario",
       "puntos": [
         {
-          "etiqueta": "2026-10-20",
-          "valor": 4.5
-        },
-        {
           "etiqueta": "2026-10-21",
           "valor": 4.5
         },
@@ -8999,6 +9283,10 @@
         },
         {
           "etiqueta": "2026-10-27",
+          "valor": 4.5
+        },
+        {
+          "etiqueta": "2026-10-28",
           "valor": 4.5
         }
       ]
@@ -9065,10 +9353,6 @@
       "tipo": "diario",
       "puntos": [
         {
-          "etiqueta": "2026-10-20",
-          "valor": 6.58
-        },
-        {
           "etiqueta": "2026-10-21",
           "valor": 6.55
         },
@@ -9087,6 +9371,10 @@
         {
           "etiqueta": "2026-10-27",
           "valor": 6.56
+        },
+        {
+          "etiqueta": "2026-10-28",
+          "valor": 6.58
         }
       ]
     },
@@ -13043,25 +13331,6 @@
           "Plátano": 1381,
           "Manzana": 959
         },
-        "Región del Maule": {
-          "Palta": 2262,
-          "Tomate": 1306,
-          "Papa": 720,
-          "Cebolla": 250,
-          "Plátano": 1100
-        },
-        "Región de Ñuble": {
-          "Palta": 2550,
-          "Papa": 765,
-          "Cebolla": 824,
-          "Plátano": 1400,
-          "Manzana": 889
-        },
-        "Región de Arica y Parinacota": {
-          "Palta": 2950,
-          "Tomate": 657,
-          "Cebolla": 583
-        },
         "Región del Biobío": {
           "Palta": 2900,
           "Tomate": 1056,
@@ -13077,6 +13346,25 @@
           "Cebolla": 806,
           "Plátano": 1275,
           "Manzana": 912
+        },
+        "Región de Arica y Parinacota": {
+          "Palta": 2950,
+          "Tomate": 657,
+          "Cebolla": 583
+        },
+        "Región de Ñuble": {
+          "Palta": 2550,
+          "Papa": 765,
+          "Cebolla": 824,
+          "Plátano": 1400,
+          "Manzana": 889
+        },
+        "Región del Maule": {
+          "Palta": 2262,
+          "Tomate": 1306,
+          "Papa": 720,
+          "Cebolla": 250,
+          "Plátano": 1100
         },
         "Región de Los Lagos": {
           "Palta": 4500,
@@ -13133,11 +13421,11 @@
         }
       },
       "regional": {
-        "Región de Los Lagos": {
-          "Marraqueta": 2332,
-          "Asado Carnicero": 10215,
-          "Pollo Entero": 3419,
-          "Leche Fluida Entera": 1152
+        "Región Metropolitana de Santiago": {
+          "Marraqueta": 2271,
+          "Asado Carnicero": 10770,
+          "Pollo Entero": 3908,
+          "Leche Fluida Entera": 1150
         },
         "Región de Ñuble": {
           "Marraqueta": 2170,
@@ -13151,11 +13439,17 @@
           "Pollo Entero": 4030,
           "Leche Fluida Entera": 1178
         },
-        "Región Metropolitana de Santiago": {
-          "Marraqueta": 2271,
-          "Asado Carnicero": 10770,
-          "Pollo Entero": 3908,
-          "Leche Fluida Entera": 1150
+        "Región de Los Lagos": {
+          "Marraqueta": 2332,
+          "Asado Carnicero": 10215,
+          "Pollo Entero": 3419,
+          "Leche Fluida Entera": 1152
+        },
+        "Región de Coquimbo": {
+          "Marraqueta": 2388,
+          "Asado Carnicero": 10922,
+          "Pollo Entero": 3901,
+          "Leche Fluida Entera": 1204
         },
         "Región de La Araucanía": {
           "Marraqueta": 2339,
@@ -13181,12 +13475,6 @@
           "Asado Carnicero": 11539,
           "Pollo Entero": 3807,
           "Leche Fluida Entera": 1138
-        },
-        "Región de Coquimbo": {
-          "Marraqueta": 2388,
-          "Asado Carnicero": 10922,
-          "Pollo Entero": 3901,
-          "Leche Fluida Entera": 1204
         }
       }
     },
@@ -13716,9 +14004,9 @@
     "macro": {
       "clave": "dolar",
       "periodo": "2026-10",
-      "valor_actual": 981.5772,
-      "cambio_pct": 3.62,
-      "zscore": 0.97
+      "valor_actual": 981.7647,
+      "cambio_pct": 3.64,
+      "zscore": 1.17
     },
     "credito": {
       "recurso": "tmc",
@@ -13758,13 +14046,13 @@
       "uf": 0.16,
       "dolar": 0.12
     },
-    "valor": 99.55,
+    "valor": 99.44,
     "fecha": "2026-10-28",
     "componentes": {
       "alimentos": -2.33,
       "bencina": 0.0,
-      "uf": 0.93,
-      "dolar": 7.05
+      "uf": 0.95,
+      "dolar": 6.06
     },
     "historial": [
       {
@@ -14189,7 +14477,7 @@
       },
       {
         "fecha": "2026-10-28",
-        "valor": 99.55
+        "valor": 99.44
       }
     ]
   }
