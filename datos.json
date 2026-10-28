@@ -1,5 +1,5 @@
 {
-  "generado": "2026-10-28T14:48:43.770978+00:00",
+  "generado": "2026-10-28T15:43:01.361784+00:00",
   "macro": {
     "dolar": {
       "nombre": "Dólar observado",
@@ -13339,18 +13339,12 @@
           "Plátano": 1225,
           "Manzana": 933
         },
-        "Región de Coquimbo": {
-          "Palta": 2136,
-          "Tomate": 778,
-          "Papa": 987,
-          "Cebolla": 806,
-          "Plátano": 1275,
-          "Manzana": 912
-        },
-        "Región de Arica y Parinacota": {
-          "Palta": 2950,
-          "Tomate": 657,
-          "Cebolla": 583
+        "Región del Maule": {
+          "Palta": 2262,
+          "Tomate": 1306,
+          "Papa": 720,
+          "Cebolla": 250,
+          "Plátano": 1100
         },
         "Región de Ñuble": {
           "Palta": 2550,
@@ -13358,13 +13352,6 @@
           "Cebolla": 824,
           "Plátano": 1400,
           "Manzana": 889
-        },
-        "Región del Maule": {
-          "Palta": 2262,
-          "Tomate": 1306,
-          "Papa": 720,
-          "Cebolla": 250,
-          "Plátano": 1100
         },
         "Región de Los Lagos": {
           "Palta": 4500,
@@ -13382,6 +13369,14 @@
           "Plátano": 1339,
           "Manzana": 1044
         },
+        "Región de Coquimbo": {
+          "Palta": 2136,
+          "Tomate": 778,
+          "Papa": 987,
+          "Cebolla": 806,
+          "Plátano": 1275,
+          "Manzana": 912
+        },
         "Región de La Araucanía": {
           "Palta": 3400,
           "Tomate": 1556,
@@ -13389,6 +13384,11 @@
           "Cebolla": 1122,
           "Plátano": 1400,
           "Manzana": 1500
+        },
+        "Región de Arica y Parinacota": {
+          "Palta": 2950,
+          "Tomate": 657,
+          "Cebolla": 583
         }
       }
     },
@@ -13421,23 +13421,17 @@
         }
       },
       "regional": {
-        "Región Metropolitana de Santiago": {
-          "Marraqueta": 2271,
-          "Asado Carnicero": 10770,
-          "Pollo Entero": 3908,
-          "Leche Fluida Entera": 1150
-        },
-        "Región de Ñuble": {
-          "Marraqueta": 2170,
-          "Asado Carnicero": 11517,
-          "Pollo Entero": 3884,
-          "Leche Fluida Entera": 1176
-        },
         "Región de Arica y Parinacota": {
           "Marraqueta": 2139,
           "Asado Carnicero": 10476,
           "Pollo Entero": 4030,
           "Leche Fluida Entera": 1178
+        },
+        "Región del Maule": {
+          "Marraqueta": 2283,
+          "Asado Carnicero": 12037,
+          "Pollo Entero": 3615,
+          "Leche Fluida Entera": 1192
         },
         "Región de Los Lagos": {
           "Marraqueta": 2332,
@@ -13445,11 +13439,11 @@
           "Pollo Entero": 3419,
           "Leche Fluida Entera": 1152
         },
-        "Región de Coquimbo": {
-          "Marraqueta": 2388,
-          "Asado Carnicero": 10922,
-          "Pollo Entero": 3901,
-          "Leche Fluida Entera": 1204
+        "Región Metropolitana de Santiago": {
+          "Marraqueta": 2271,
+          "Asado Carnicero": 10770,
+          "Pollo Entero": 3908,
+          "Leche Fluida Entera": 1150
         },
         "Región de La Araucanía": {
           "Marraqueta": 2339,
@@ -13464,11 +13458,17 @@
           "Pollo Entero": 4108,
           "Leche Fluida Entera": 1129
         },
-        "Región del Maule": {
-          "Marraqueta": 2283,
-          "Asado Carnicero": 12037,
-          "Pollo Entero": 3615,
-          "Leche Fluida Entera": 1192
+        "Región de Coquimbo": {
+          "Marraqueta": 2388,
+          "Asado Carnicero": 10922,
+          "Pollo Entero": 3901,
+          "Leche Fluida Entera": 1204
+        },
+        "Región de Ñuble": {
+          "Marraqueta": 2170,
+          "Asado Carnicero": 11517,
+          "Pollo Entero": 3884,
+          "Leche Fluida Entera": 1176
         },
         "Región de Valparaíso": {
           "Marraqueta": 2338,
