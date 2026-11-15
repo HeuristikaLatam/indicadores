@@ -1,5 +1,5 @@
 {
-  "generado": "2026-11-14T23:33:06.728799+00:00",
+  "generado": "2026-11-15T00:31:38.419608+00:00",
   "macro": {
     "dolar": {
       "nombre": "Dólar observado",
@@ -13521,6 +13521,13 @@
           "Plátano": 1118,
           "Manzana": 979
         },
+        "Región del Biobío": {
+          "Palta": 3250,
+          "Tomate": 1667,
+          "Papa": 580,
+          "Cebolla": 731,
+          "Manzana": 938
+        },
         "Región de Valparaíso": {
           "Palta": 968,
           "Tomate": 1345,
@@ -13528,14 +13535,6 @@
           "Cebolla": 801,
           "Plátano": 1286,
           "Manzana": 1120
-        },
-        "Región de La Araucanía": {
-          "Palta": 3600,
-          "Tomate": 1819,
-          "Papa": 740,
-          "Cebolla": 1278,
-          "Plátano": 1700,
-          "Manzana": 1461
         },
         "Región de Coquimbo": {
           "Palta": 2293,
@@ -13545,12 +13544,13 @@
           "Plátano": 1325,
           "Manzana": 1053
         },
-        "Región del Biobío": {
-          "Palta": 3250,
-          "Tomate": 1667,
-          "Papa": 580,
-          "Cebolla": 731,
-          "Manzana": 938
+        "Región de La Araucanía": {
+          "Palta": 3600,
+          "Tomate": 1819,
+          "Papa": 740,
+          "Cebolla": 1278,
+          "Plátano": 1700,
+          "Manzana": 1461
         },
         "Región de Los Lagos": {
           "Tomate": 2194,
@@ -13612,23 +13612,35 @@
           "Pollo Entero": 3478,
           "Leche Fluida Entera": 1154
         },
+        "Región Metropolitana de Santiago": {
+          "Marraqueta": 2253,
+          "Asado Carnicero": 10568,
+          "Pollo Entero": 3814,
+          "Leche Fluida Entera": 1128
+        },
+        "Región de Ñuble": {
+          "Marraqueta": 2210,
+          "Asado Carnicero": 12278,
+          "Pollo Entero": 3815,
+          "Leche Fluida Entera": 1157
+        },
         "Región de Coquimbo": {
           "Marraqueta": 2396,
           "Asado Carnicero": 11215,
           "Pollo Entero": 3773,
           "Leche Fluida Entera": 1189
         },
-        "Región de Arica y Parinacota": {
-          "Marraqueta": 2199,
-          "Asado Carnicero": 10158,
-          "Pollo Entero": 3680,
-          "Leche Fluida Entera": 1198
-        },
         "Región de Valparaíso": {
           "Marraqueta": 2392,
           "Asado Carnicero": 11249,
           "Pollo Entero": 3666,
           "Leche Fluida Entera": 1117
+        },
+        "Región del Biobío": {
+          "Marraqueta": 2283,
+          "Asado Carnicero": 11125,
+          "Pollo Entero": 4164,
+          "Leche Fluida Entera": 1105
         },
         "Región de La Araucanía": {
           "Marraqueta": 2249,
@@ -13637,29 +13649,17 @@
           "Huevo blanco - Extra": 185,
           "Leche Fluida Entera": 1161
         },
-        "Región Metropolitana de Santiago": {
-          "Marraqueta": 2253,
-          "Asado Carnicero": 10568,
-          "Pollo Entero": 3814,
-          "Leche Fluida Entera": 1128
-        },
-        "Región del Biobío": {
-          "Marraqueta": 2283,
-          "Asado Carnicero": 11125,
-          "Pollo Entero": 4164,
-          "Leche Fluida Entera": 1105
+        "Región de Arica y Parinacota": {
+          "Marraqueta": 2199,
+          "Asado Carnicero": 10158,
+          "Pollo Entero": 3680,
+          "Leche Fluida Entera": 1198
         },
         "Región del Maule": {
           "Marraqueta": 2237,
           "Asado Carnicero": 11626,
           "Pollo Entero": 3606,
           "Leche Fluida Entera": 1138
-        },
-        "Región de Ñuble": {
-          "Marraqueta": 2210,
-          "Asado Carnicero": 12278,
-          "Pollo Entero": 3815,
-          "Leche Fluida Entera": 1157
         }
       }
     },
@@ -14232,7 +14232,7 @@
       "dolar": 0.12
     },
     "valor": 100.4,
-    "fecha": "2026-11-14",
+    "fecha": "2026-11-15",
     "componentes": {
       "alimentos": -3.35,
       "bencina": 14.65,
@@ -14730,6 +14730,10 @@
       },
       {
         "fecha": "2026-11-14",
+        "valor": 100.4
+      },
+      {
+        "fecha": "2026-11-15",
         "valor": 100.4
       }
     ]
